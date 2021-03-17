@@ -1,0 +1,55 @@
+<div class="body-inner">
+  <app-header
+    [intro]="(eventContent | json) != ({} | json) ? true:false"
+    [speakers]="(speakersContent | json) != ({} | json) ? true:false"
+    [schedule]="(scheduleContent | json) != ({} | json) ? true:false"
+    [pricing]="(pricingContent | json) != ({} | json) ? true:false"
+    [organisers]="(organisersContent | json) != ({} | json) ? true:false"
+    [sponsors]="(sponsorsContent | json) != ({} | json) ? true:false"
+    [direction]="dataContent?.hosting == 'Physical' ? true:false">
+  </app-header>
+
+  <app-banner
+    [bannerImg]="this.bannerImg"
+    [title]="this.eventTitle"
+    [startDate]="this.startDate"
+    [endDate]="this.endDate"
+    [venue]="this.venue">
+  </app-banner>
+
+  <app-basic-info
+    *ngIf="(eventContent | json) != ({} | json)"
+    [description]="this.description">
+  </app-basic-info>
+
+  <app-speakers
+    *ngIf="(speakersContent | json) != ({} | json)">
+  </app-speakers>
+
+  <app-schedule
+    *ngIf="(scheduleContent | json) != ({} | json)">
+  </app-schedule>
+
+  <app-pricing
+    *ngIf="(pricingContent | json) != ({} | json)"
+    [pricing]="pricingContent">
+  </app-pricing>
+
+  <app-organizers
+    *ngIf="(organisersContent | json) != ({} | json)"
+    [organizers]="organisersContent">
+  </app-organizers>
+
+  <app-sponsors
+    *ngIf="(sponsorsContent | json) != ({} | json)">
+  </app-sponsors>
+
+  <app-location
+    *ngIf="dataContent?.hosting == 'Physical'" 
+    [venue]="this.venue"
+    [contactPhone]="this.contactPhone"
+    [contactEmail]="this.contactEmail">
+  </app-location>
+
+  <app-event-footer></app-event-footer>
+</div>

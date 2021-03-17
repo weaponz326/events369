@@ -1,0 +1,58 @@
+.card-body{
+    padding: 0;
+}
+
+.stuffs-side{
+    background-color: #456ea9;
+    color: white;
+    padding: 50px;
+}
+
+.form-side{
+    padding: 35px;
+}
+
+i.fa{
+    font-size: 82px;
+}
+
+.form-footer{
+    position: absolute;
+    bottom: 25px;
+    right: 22px;
+}
+
+
+a.form-link{
+    color: #888;
+}
+
+a.form-link:hover{
+    color: #222;
+}
+
+.form-full-width {
+    width: 100%;
+}
+
+button.form-full-width{
+    height: 45px;
+}
+
+button.git-color{
+    background-color: #456ea9;
+    color: white;
+    box-shadow: none;
+}
+
+::ng-deep .mat-step-header{
+    width: 10px;
+}
+
+::ng-deep .register-stepper .mat-horizontal-content-container {
+    padding: 0 !important;
+}
+
+::ng-deep .register-stepper .mat-horizontal-stepper-header-container {
+    display: none !important;
+}
