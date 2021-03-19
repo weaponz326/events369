@@ -7,11 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  @Input() bannerImg?: String;
-  @Input() title?: String;
-  @Input() startDate?: Date;
-  @Input() endDate?: Date;
-  @Input() venue?: String;
+  @Input() eventContent?: any;  
 
   constructor() { }
 
