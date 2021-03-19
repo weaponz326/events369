@@ -7,15 +7,26 @@
 .stuffs-side{
   background-color: #456ea9;
   color: white;
-  padding: 50px;
+  padding: 50px 18px;
 }
 
 .form-side{
   padding: 35px;
 }
 
-i.fa{
-  font-size: 82px;
+i {
+  font-size: 65px;
+}
+
+.lead {
+  font-size: 15px;
+}
+
+.display-7 {
+  font-weight: 300;
+  line-height: 1.2;
+  font-size: 2.2rem;
+  margin-top: 60px;
 }
 
 .form-footer{
