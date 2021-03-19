@@ -15,7 +15,7 @@
         <div class="description">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="bi-lightbulb"></i> Did You Know ?</h5>
+              <h6 class="card-title"><i class="bi-lightbulb text-warning"></i> &nbsp; Did You Know ?</h6>
               <p class="card-text">It's know that events with favorouble timing allows lost more attendees to attend the event.</p>
               <a href="#" class="card-link">Learn more</a>
             </div>
@@ -24,8 +24,8 @@
 
         <div class="navigation">
           <div class="nav-buttons">
-            <button type="button" class="btn btn-lg btn-warning mr-3">Previous</button>
-            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+            <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
           </div>
         </div>
       </div>

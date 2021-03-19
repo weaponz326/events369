@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -40,7 +41,6 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { LiveEventsComponent } from './components/live-events/live-events.component';
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
-import { CreateEventPageComponent } from './pages/create-event/create-event-page/create-event-page.component';
 import { CreateBasicInfoComponent } from './pages/create-event/create-basic-info/create-basic-info.component';
 import { CreateEventDetailsComponent } from './pages/create-event/create-event-details/create-event-details.component';
 import { CreateEventSchedulesComponent } from './pages/create-event/create-event-schedules/create-event-schedules.component';
@@ -74,7 +74,6 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     LiveEventsComponent,
     EventCategoriesComponent,
     EventsListComponent,
-    CreateEventPageComponent,
     CreateBasicInfoComponent,
     CreateEventDetailsComponent,
     CreateEventSchedulesComponent,
@@ -96,7 +95,8 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     MatStepperModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

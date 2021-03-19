@@ -15,7 +15,7 @@
         <div class="description">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="bi bi-lightbulb"></i> Did You Know ?</h5>
+              <h6 class="card-title"><i class="bi-lightbulb text-warning"></i> &nbsp; Did You Know ?</h6>
               <p class="card-text">Statistics show events with affordable pricing sell all tickets in the first few weeks.</p>
               <a href="#" class="card-link">Learn more</a>
             </div>
@@ -24,8 +24,8 @@
 
         <div class="navigation">
           <div class="nav-buttons">
-            <button type="button" class="btn btn-lg btn-warning mr-3">Previous</button>
-            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+            <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+            <button type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
           </div>
         </div>
       </div>
@@ -212,7 +212,7 @@
                       <div class="col-md-2">
                         <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                         <div class="card-body">
                           <h5 class="card-title">Ticket Name</h5>
                           <p class="card-text">
@@ -222,7 +222,7 @@
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-4">
                         <button class="btn btn-light" type="button">
                           <i class="bi-pencil"></i>
                         </button>
@@ -239,7 +239,7 @@
                       <div class="col-md-2">
                         <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-6">
                         <div class="card-body">
                           <h5 class="card-title">Ticket Name</h5>
                           <p class="card-text">
@@ -249,7 +249,7 @@
                           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-4">
                         <button class="btn btn-light" type="button">
                           <i class="bi-pencil"></i>
                         </button>
