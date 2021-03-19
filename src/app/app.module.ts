@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,8 +33,9 @@ import { PricingComponent } from './components/event-details/pricing/pricing.com
 import { ScheduleComponent } from './components/event-details/schedule/schedule.component';
 import { SpeakersComponent } from './components/event-details/speakers/speakers.component';
 import { SponsorsComponent } from './components/event-details/sponsors/sponsors.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+
 import { BasicInfoComponent } from './components/event-details/basic-info/basic-info.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BannerComponent } from './components/event-details/banner/banner.component';
 import { EventFooterComponent } from './components/event-details/event-footer/event-footer.component';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -47,7 +49,7 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
-import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+
 
 @NgModule({
   declarations: [
