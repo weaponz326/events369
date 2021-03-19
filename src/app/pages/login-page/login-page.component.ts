@@ -10,8 +10,9 @@ import { UserAuthService } from '../../services/user-auth.service'
 })
 export class LoginPageComponent implements OnInit {
 
-  loginForm: FormGroup = new FormGroup({});
+  errorMsg: String = "";
 
+  loginForm: FormGroup = new FormGroup({});
 
   constructor(private auth: UserAuthService) {
   }
@@ -32,7 +33,8 @@ export class LoginPageComponent implements OnInit {
           console.log(res);        
         },
         err => {
-          console.log(err)
+          console.log(err);
+          this.errorMsg = err.error.message;
         }
       );
   }

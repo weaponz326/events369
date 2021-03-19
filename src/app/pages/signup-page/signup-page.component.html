@@ -27,7 +27,7 @@
 
                             <div class="row mb-2 text-center">
                                 <div class="col-lg-12">
-                                    <img src="../../assets/logo1.png" width="40" height="40">
+                                    <img routerLink="/" src="../../assets/logo1.png" width="40" height="40">
                                 </div>
                             </div>
                             
@@ -37,6 +37,12 @@
                                 <div class="row mb-3 text-center">
                                     <div class="col-md-12">
                                         <h4>Register</h4>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="text-center text-danger"><small>{{errorMsg}}</small></p>
                                     </div>
                                 </div>
                             
@@ -66,8 +72,8 @@
                                                 <mat-form-field appearance="outline" class="form-full-width">
                                                     <mat-label>User Type</mat-label>
                                                     <mat-select formControlName="usertype" required>
-                                                        <mat-option value="admin">Admin</mat-option>
-                                                        <mat-option value="g)b3">G)b3 seller</mat-option>
+                                                        <mat-option value="1">Individual</mat-option>
+                                                        <mat-option value="2">Organisation</mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
                                             </div>

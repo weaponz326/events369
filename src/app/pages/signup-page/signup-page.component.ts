@@ -11,6 +11,8 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 })
 export class SignupPageComponent implements OnInit {
 
+  errorMsg: String = "";
+
   public registerForm: FormGroup = new FormGroup({});
 
   constructor(private auth: UserAuthService) { }
@@ -39,6 +41,7 @@ export class SignupPageComponent implements OnInit {
         },
         err => {
           console.log(err)
+          this.errorMsg = err.error.message;
         }
       );
   }
