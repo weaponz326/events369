@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BasicInfoComponent implements OnInit {
 
-  @Input() description?: String;
+  @Input() eventContent?: any;
 
   constructor() { }
 
