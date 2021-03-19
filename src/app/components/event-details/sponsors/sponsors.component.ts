@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sponsors',
@@ -9,6 +9,8 @@ export class SponsorsComponent implements OnInit {
 
   constructor() { }
 
+  @Input() organizers?: any;
+  
   ngOnInit(): void {
   }
 
