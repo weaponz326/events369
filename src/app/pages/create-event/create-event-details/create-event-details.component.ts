@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-event-details',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEventDetailsComponent implements OnInit {
 
-  constructor() { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
+  }
+
+  previous() {
+    this.router.navigateByUrl('/create_event/schedule');
+  }
+
+  save() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('/create_event/ticketing');
+    }, 3500);
   }
 
 }

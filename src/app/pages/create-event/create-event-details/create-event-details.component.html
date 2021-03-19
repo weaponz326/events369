@@ -15,7 +15,7 @@
         <div class="description">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="bi bi-lightbulb-off"></i> Did You Know ?</h5>
+              <h6 class="card-title"><i class="bi-lightbulb-off text-warning"></i> &nbsp; Did You Know ?</h6>
               <p class="card-text">Its much easier for people to pay more attention to your event when its hosted online, because its easy to find and share.</p>
               <a href="#" class="card-link">Learn more</a>
             </div>
@@ -24,8 +24,9 @@
 
         <div class="navigation">
           <div class="nav-buttons">
-            <button type="button" class="btn btn-lg btn-warning mr-3">Previous</button>
-            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+            <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+            <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+            <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
         </div>
       </div>
@@ -42,7 +43,7 @@
               <h2>Event Image</h2>
             </div>
             <div class="form-description">
-              <p class="text-muted lead">This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio).</p>
+              <p class="lead">This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px (2:1 ratio).</p>
             </div>
           </div>
 

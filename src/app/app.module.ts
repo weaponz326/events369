@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -31,8 +33,9 @@ import { PricingComponent } from './components/event-details/pricing/pricing.com
 import { ScheduleComponent } from './components/event-details/schedule/schedule.component';
 import { SpeakersComponent } from './components/event-details/speakers/speakers.component';
 import { SponsorsComponent } from './components/event-details/sponsors/sponsors.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+
 import { BasicInfoComponent } from './components/event-details/basic-info/basic-info.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BannerComponent } from './components/event-details/banner/banner.component';
 import { EventFooterComponent } from './components/event-details/event-footer/event-footer.component';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -40,13 +43,13 @@ import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { LiveEventsComponent } from './components/live-events/live-events.component';
 import { EventCategoriesComponent } from './components/event-categories/event-categories.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
-import { CreateEventPageComponent } from './pages/create-event/create-event-page/create-event-page.component';
 import { CreateBasicInfoComponent } from './pages/create-event/create-basic-info/create-basic-info.component';
 import { CreateEventDetailsComponent } from './pages/create-event/create-event-details/create-event-details.component';
 import { CreateEventSchedulesComponent } from './pages/create-event/create-event-schedules/create-event-schedules.component';
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
+
 
 @NgModule({
   declarations: [
@@ -74,13 +77,13 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     LiveEventsComponent,
     EventCategoriesComponent,
     EventsListComponent,
-    CreateEventPageComponent,
     CreateBasicInfoComponent,
     CreateEventDetailsComponent,
     CreateEventSchedulesComponent,
     CreateEventTicketingComponent,
     CreateEventPublishComponent,
     EditEventPageComponent,
+    LoadingButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     MatStepperModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],

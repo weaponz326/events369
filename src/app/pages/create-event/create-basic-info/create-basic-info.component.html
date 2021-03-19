@@ -15,7 +15,7 @@
         <div class="description">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><i class="bi bi-lightbulb text-warning"></i> Did You Know ?</h5>
+              <h6 class="card-title"><i class="bi-lightbulb text-warning"></i> &nbsp; Did You Know ?</h6>
               <p class="card-text">A good event title and a properly scripted description is a major key in attracting people to not only pay attention to your event but to also attend.</p>
               <a href="#" class="card-link">Create as an organization.</a>
               <a href="#" class="card-link">Learn more</a>
@@ -25,7 +25,8 @@
 
         <div class="navigation">
           <div class="nav-buttons">
-            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+            <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+            <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
         </div>
       </div>
@@ -323,7 +324,7 @@
                   </div>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                  <p class="lead">Online events have unique event pages where you can add links to livestreams and more</p>
+                  <p class="lead">Online events requires a link to livestreams and more which is required during publishing.</p>
                 </div>
               </div>
             </div>

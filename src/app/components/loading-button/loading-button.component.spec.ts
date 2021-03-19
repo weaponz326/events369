@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateEventPageComponent } from './create-event-page.component';
+import { LoadingButtonComponent } from './loading-button.component';
 
-describe('CreateEventPageComponent', () => {
-  let component: CreateEventPageComponent;
-  let fixture: ComponentFixture<CreateEventPageComponent>;
+describe('LoadingButtonComponent', () => {
+  let component: LoadingButtonComponent;
+  let fixture: ComponentFixture<LoadingButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateEventPageComponent ]
+      declarations: [ LoadingButtonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateEventPageComponent);
+    fixture = TestBed.createComponent(LoadingButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

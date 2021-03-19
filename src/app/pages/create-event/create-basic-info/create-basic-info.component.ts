@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-basic-info',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateBasicInfoComponent implements OnInit {
 
-  constructor() { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
+  }
+
+  save() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('/create_event/schedule');
+    }, 3500);
   }
 
 }
