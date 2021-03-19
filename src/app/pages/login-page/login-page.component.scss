@@ -54,3 +54,7 @@ button.git-color{
 .register-stepper .mat-horizontal-content-container {
   padding: 0 !important;
 }
+
+input.form-control, .form-floating>.form-select {
+  box-shadow: none;
+}
