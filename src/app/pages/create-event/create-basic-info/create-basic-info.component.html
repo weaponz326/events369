@@ -1,0 +1,342 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-4">
+      <div class="page-info">
+        <div class="title">
+          <h1>Let's start you off easy!</h1>
+          <h5>Steps 1 <span class="of">of</span> 5</h5>
+        </div>
+
+        <div class="image">
+          <i class="bi-journal-text" style="font-size: 10em;"></i>
+        </div>
+
+        <div class="description">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-lightbulb text-warning"></i> Did You Know ?</h5>
+              <p class="card-text">A good event title and a properly scripted description is a major key in attracting people to not only pay attention to your event but to also attend.</p>
+              <a href="#" class="card-link">Create as an organization.</a>
+              <a href="#" class="card-link">Learn more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navigation">
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-5">
+      <div class="form">
+        <div class="divider mb-1 mt-5"></div>
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>Basic Info</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Name your event and why attendees should come. Add details that highlight what makes it unique.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <!-- title -->
+            <div class="form-group">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Event title">
+                <label for="floatingTitle">Event Title</label>
+                <small id="titleHelp" class="form-text text-muted">
+                  Title is required
+                </small>
+              </div>
+            </div>
+            <!-- /.title -->
+
+            <!-- description -->
+            <div class="form-group">
+              <div class="form-floating">
+                <textarea class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description"></textarea>
+                <label for="floatingDesc">Event Description</label>
+                <small id="descHelp" class="form-text text-muted">
+                  Description is required.
+                </small>
+              </div>
+            </div>
+            <!-- /.description-->
+
+            <!-- event type and categories -->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>Select event type</option>
+                      <option value="1">Paid</option>
+                      <option value="2">Free</option>
+                    </select>
+                    <label for="floatingSelect">Event Type</label>
+                  </div>
+                  <small id="descHelp" class="form-text text-muted">
+                    Event type is required.
+                  </small>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>Select category</option>
+                      <option value="1">Business</option>
+                      <option value="2">Conference</option>
+                      <option value="3">Entertainment</option>
+                    </select>
+                    <label for="floatingSelect">Event Category</label>
+                  </div>
+                  <small id="descHelp" class="form-text text-muted">
+                    Event category is required.
+                  </small>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>Select a sub-category</option>
+                      <option value="1">Party</option>
+                      <option value="2">Meeting</option>
+                      <option value="3">Face Time</option>
+                    </select>
+                    <label for="floatingSelect">Event sub-category</label>
+                  </div>
+                  <small id="descHelp" class="form-text text-muted">
+                    Event sub-category is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <!-- /.end -->
+
+            <!-- tags -->
+            <div class="form-group">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event">
+                <label for="floatingTitle">Tags</label>
+                <small id="titleHelp" class="form-text text-muted">
+                  Tags are required.
+                </small>
+              </div>
+            </div>
+            <!-- /.tags -->
+
+            <!-- selected tags -->
+            <div class="form-group tags-view">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#business</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#conference</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group tags-view">
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#money</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#strategies</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- /.selected tags -->
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!--
+          Date Time Section
+        -->
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>Date and time</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Tell your attendees when your event starts and ends so they can adjust their calendar to attend.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-onetime-tab" data-toggle="pill" href="#pills-onetime" role="tab" aria-controls="pills-onetime" aria-selected="true">One-time Event</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-recurring-tab" data-toggle="pill" href="#pills-recurring" role="tab" aria-controls="pills-recurring" aria-selected="false">Recurring Event</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <!-- one time event -->
+              <div class="tab-pane fade show active" id="pills-onetime" role="tabpanel" aria-labelledby="pills-onetime-tab">
+                <!-- start & end date -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-floating">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
+                          <label for="floatingTitle">Start Date</label>
+                          <small id="titleHelp" class="form-text text-muted">
+                            Start date is required.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="form-floating">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                          <label for="floatingTitle">End Date</label>
+                          <small id="titleHelp" class="form-text text-muted">
+                            End date is required.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.end -->
+
+                <!-- start & end time -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-floating">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start time">
+                          <label for="floatingTitle">Start Time</label>
+                          <small id="titleHelp" class="form-text text-muted">
+                            Start time is required.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="form-floating">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End time">
+                          <label for="floatingTitle">End Time</label>
+                          <small id="titleHelp" class="form-text text-muted">
+                            End time is required.
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.end -->
+              </div>
+              <!-- /.end one-time event -->
+
+              <!-- recurring event -->
+              <div class="tab-pane fade" id="pills-recurring" role="tabpanel" aria-labelledby="pills-recurring-tab">
+                <p class="lead mb-3">
+                  If your event repeats or occurs more than once, you can schedule additional times and dates in the next step.
+                </p>
+                <p class="lead">
+                  Event details and ticket types will automatically appear on all event occurrences and can't be customized for an individual occurrence.
+                </p>
+              </div>
+              <!-- /.end recurring event -->
+            </div>
+          </div>
+        </div>
+        <!--
+          /. End Date time Section
+        -->
+
+        <div class="divider"></div>
+
+        <!--
+          Location Section
+        -->
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>Venue</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Help people in the area discover your event and let attendees know where to show up.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <!-- start & end date -->
+            <div class="form-group">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                    Location
+                  </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+                    Online Event
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <div class="form-group">
+                    <div class="form-floating">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Address">
+                        <label for="floatingTitle">Enter Address / Place</label>
+                        <small id="titleHelp" class="form-text text-muted">
+                          Location is required.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                  <p class="lead">Online events have unique event pages where you can add links to livestreams and more</p>
+                </div>
+              </div>
+            </div>
+            <!-- /.end -->
+          </div>
+        </div>
+        <!--
+          /. End Location Section
+        -->
+      </div>
+    </div>
+
+    <div class="col-2"></div>
+
+  </div>
+</div>

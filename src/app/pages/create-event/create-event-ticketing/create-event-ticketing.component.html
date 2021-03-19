@@ -1,0 +1,274 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-4">
+      <div class="page-info">
+        <div class="title">
+          <h1>Let's get finances in order.</h1>
+          <h5>Steps 4 <span class="of">of</span> 5</h5>
+        </div>
+
+        <div class="image">
+          <i class="bi-credit-card-2-front" style="font-size: 10em;"></i>
+        </div>
+
+        <div class="description">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-lightbulb"></i> Did You Know ?</h5>
+              <p class="card-text">Statistics show events with affordable pricing sell all tickets in the first few weeks.</p>
+              <a href="#" class="card-link">Learn more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navigation">
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-lg btn-warning mr-3">Previous</button>
+            <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="form">
+        <div class="divider mb-1 mt-5"></div>
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>New ticket</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Setup tickets for your event if you want to sell tickets.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <!-- title & quantity -->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
+                      <label for="floatingTitle">Name</label>
+                      <small id="titleHelp" class="form-text text-muted">
+                        Ticket name is required.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-floating">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                      <label for="floatingTitle">Available quantity</label>
+                      <small id="titleHelp" class="form-text text-muted">
+                        Quantity is required.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.end -->
+
+            <!-- pricing -->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>Select Currency</option>
+                      <option value="1">GHS</option>
+                      <option value="2">USD</option>
+                    </select>
+                    <label for="floatingSelect">Currency</label>
+                  </div>
+                  <small id="descHelp" class="form-text text-muted">
+                    Currency is required.
+                  </small>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                      <label for="floatingTitle">Price</label>
+                      <small id="titleHelp" class="form-text text-muted">
+                        Price is required.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.pricing-->
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!--
+          Advanced Section
+        -->
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>Advanced</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Provide more information on how tickets should be purchased by the event attendees.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <!-- quantity -->
+            <div class="form-group">
+              <div class="row">
+                <h5 class="text-muted">Tickets Per Order</h5>
+                <div class="col">
+                  <div class="form-floating">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
+                      <label for="floatingTitle">Minimum quantity</label>
+                      <small id="titleHelp" class="form-text text-muted">
+                        Minimum quantity is required.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="form-floating">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                      <label for="floatingTitle">Maximum quantity</label>
+                      <small id="titleHelp" class="form-text text-muted">
+                        Maximum quantity is required.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.end -->
+
+            <!-- delivery mode -->
+            <div class="form-group">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option selected>Select Delivery Mode</option>
+                  <option value="1">eTicket</option>
+                  <option value="2">Door delivery</option>
+                </select>
+                <label for="floatingSelect">Delivery mode</label>
+              </div>
+              <small id="descHelp" class="form-text text-muted">
+                Delivery mode is required.
+              </small>
+            </div>
+            <!-- /.end -->
+
+            <!-- buttons -->
+            <div class="form-group">
+              <div class="submit-button">
+                <button type="button" class="btn btn-lg btn-primary">Save Ticket</button>
+              </div>
+            </div>
+            <!-- /.buttons -->
+          </div>
+        </div>
+        <!--
+          /. End Advanced Section
+        -->
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="divider mb-1 mt-5"></div>
+
+        <!--
+          Tickets List Section
+        -->
+        <div class="form-item">
+          <div class="form-header">
+            <div class="form-title">
+              <h2>Added Tickets</h2>
+            </div>
+            <div class="form-description">
+              <p class="text-muted lead">Help people in the area discover your event and let attendees know where to show up.</p>
+            </div>
+          </div>
+
+          <div class="form-body">
+            <!-- start & end date -->
+            <div class="form-group">
+              <ul class="list-unstyled">
+                <li>
+                  <div class="card mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-md-2">
+                        <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Ticket Name</h5>
+                          <p class="card-text">
+                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / 250 <br>
+                            USD 27.50
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-light" type="button">
+                          <i class="bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-light" type="button">
+                          <i class="bi-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="card mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-md-2">
+                        <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Ticket Name</h5>
+                          <p class="card-text">
+                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / 250 <br>
+                            USD 27.50
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-light" type="button">
+                          <i class="bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-light" type="button">
+                          <i class="bi-trash"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- /.end -->
+          </div>
+        </div>
+        <!--
+          /. End Tickets List
+        -->
+    </div>
+
+  </div>
+</div>
