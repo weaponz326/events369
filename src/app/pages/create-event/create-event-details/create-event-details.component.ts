@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class CreateEventDetailsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
   }
@@ -18,7 +22,10 @@ export class CreateEventDetailsComponent implements OnInit {
   }
 
   save() {
-    this.router.navigateByUrl('/create_event/ticketing');
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('/create_event/ticketing');
+    }, 3500);
   }
 
 }

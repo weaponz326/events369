@@ -47,6 +47,7 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     CreateEventTicketingComponent,
     CreateEventPublishComponent,
     EditEventPageComponent,
+    LoadingButtonComponent,
   ],
   imports: [
     BrowserModule,

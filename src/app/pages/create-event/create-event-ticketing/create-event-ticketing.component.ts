@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class CreateEventTicketingComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
   }
@@ -18,7 +22,10 @@ export class CreateEventTicketingComponent implements OnInit {
   }
 
   save() {
-    this.router.navigateByUrl('/create_event/publishing');
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('/create_event/publishing');
+    }, 3500);
   }
 
 }

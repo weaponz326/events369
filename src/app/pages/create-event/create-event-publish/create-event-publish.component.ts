@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
 })
 export class CreateEventPublishComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
   }

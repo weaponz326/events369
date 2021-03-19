@@ -8,13 +8,20 @@ import { Router } from '@angular/router';
 })
 export class CreateBasicInfoComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isLoading: boolean;
+
+  constructor(private router: Router) {
+    this.isLoading = false;
+  }
 
   ngOnInit(): void {
   }
 
   save() {
-    this.router.navigateByUrl('/create_event/schedule');
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigateByUrl('/create_event/schedule');
+    }, 3500);
   }
 
 }
