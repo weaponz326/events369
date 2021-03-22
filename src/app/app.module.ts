@@ -49,6 +49,9 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
+import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
+import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
+import { AccountSideMenuComponent } from './components/account-side-menu/account-side-menu.component';
 
 
 @NgModule({
@@ -84,6 +87,9 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     CreateEventPublishComponent,
     EditEventPageComponent,
     LoadingButtonComponent,
+    UserProfilePageComponent,
+    OrganizationProfilePageComponent,
+    AccountSideMenuComponent,
   ],
   imports: [
     BrowserModule,

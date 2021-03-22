@@ -11,6 +11,8 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventDetailsComponent } from './pages/create-event/create-event-details/create-event-details.component';
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
+import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
+import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,19 @@ const routes: Routes = [
   {
     path: 'event_details',
     component: EventPageComponent
+  },
+  {
+    path: 'account',
+    children: [
+      {
+        path: 'user',
+        component: UserProfilePageComponent
+      },
+      {
+        path: 'organization',
+        component: OrganizationProfilePageComponent
+      }
+    ]
   },
   {
     path: 'create_event',
