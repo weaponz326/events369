@@ -100,7 +100,7 @@ import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
