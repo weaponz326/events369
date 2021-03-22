@@ -57,6 +57,9 @@ import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recover
 import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
 import { ResetInvalidComponent } from './pages/user-auth/reset-invalid/reset-invalid.component';
 import { ResetConfirmedComponent } from './pages/user-auth/reset-confirmed/reset-confirmed.component';
+import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
+import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
+import { AccountSideMenuComponent } from './components/account-side-menu/account-side-menu.component';
 
 
 @NgModule({
@@ -100,6 +103,9 @@ import { ResetConfirmedComponent } from './pages/user-auth/reset-confirmed/reset
     PasswordResetComponent,
     ResetInvalidComponent,
     ResetConfirmedComponent,
+    UserProfilePageComponent,
+    OrganizationProfilePageComponent,
+    AccountSideMenuComponent,
   ],
   imports: [
     BrowserModule,
