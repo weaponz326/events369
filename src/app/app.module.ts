@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { OwlModule } from 'ngx-owl-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -106,6 +107,7 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    OwlModule,
     NgbModule,
   ],
   providers: [],

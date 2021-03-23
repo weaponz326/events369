@@ -4,3 +4,37 @@ input.form-control {
   box-shadow: none;
   outline: none;
 }
+
+.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color: #444;
+  font-weight: 500;
+}
+
+.navbar-light {
+  background-color: #fff;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.bg-light {
+  background-color: #fff;
+}
+
+.searchbar {
+  width: 65%;
+}
+
+.searchbar > .form-floating > input {
+  width: 45vw;
+}
+
+/* For mobile phones: */
+@media only screen and (max-width: 768px) {
+  .searchbar {
+    width: 100%;
+  }
+  
+  .searchbar > .form-floating > input {
+    width: 91vw;
+    margin-top: 7px;
+  }
+}
