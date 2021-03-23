@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfilePageComponent implements OnInit {
 
+  show_logged_in: boolean = false 
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+  openAccountsPage() {
+    
+  }
+
+  logIn() {
+    
   }
 
 }
