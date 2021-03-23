@@ -12,11 +12,23 @@ export class UserAuthService {
   private apiUrl = 'http://events369.logitall.biz/api/';
 
   regsiterUser(user: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'register', user) ;      
+    return this.http.post<any>(this.apiUrl + 'register', user);      
   }
 
   loginUser(user: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'login', user) ;      
+    return this.http.post<any>(this.apiUrl + 'login', user);      
+  }
+
+  authenticatePhone(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'twoWayAuthenticationVerification', user);      
+  }
+
+  accountRecovery(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'forgotPassword', user);      
+  }
+
+  resetPassword(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'resetPassword', user);      
   }
 
 }

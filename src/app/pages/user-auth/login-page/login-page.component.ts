@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { UserAuthService } from '../../services/user-auth.service'
+import { UserAuthService } from '../../../services/user-auth.service'
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +15,7 @@ export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private auth: UserAuthService) {
+  constructor(private auth: UserAuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -30,7 +31,8 @@ export class LoginPageComponent implements OnInit {
     this.auth.loginUser(this.loginForm.value)
       .subscribe(
         res => {
-          console.log(res);        
+          console.log(res);
+          if (res.id) this.router.navigateByUrl('/phone_authentication');
         },
         err => {
           console.log(err);
