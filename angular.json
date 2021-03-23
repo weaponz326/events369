@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "22238bc3-1b9f-47bd-9434-173455c674bb"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -37,7 +40,8 @@
               "node_modules/animate.css/animate.min.css",
               "src/styles.scss",
               "src/app/themes/uilib.css",
-              "src/app/themes/utils.css"
+              "src/app/themes/utils.css",
+              "src/app/themes/app.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
