@@ -13,6 +13,7 @@ import { UserAuthService } from '../../../services/user-auth.service'
 export class RecoveryEmailComponent implements OnInit {
 
   errorMsg: String = "";
+  showPrompt: Boolean = false;
 
   recoveryForm: FormGroup = new FormGroup({});
 
@@ -32,7 +33,7 @@ export class RecoveryEmailComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          if (res.id) this.router.navigateByUrl('/validation_prompt');
+          if (res.id) this.showPrompt = true;
         },
         err => {
           console.log(err);

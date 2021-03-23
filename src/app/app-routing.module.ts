@@ -11,7 +11,6 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventDetailsComponent } from './pages/create-event/create-event-details/create-event-details.component';
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
-import { ValidationPromptComponent } from './pages/user-auth/validation-prompt/validation-prompt.component';
 import { EmailConfirmedComponent } from './pages/user-auth/email-confirmed/email-confirmed.component';
 import { EmailInvalidComponent } from './pages/user-auth/email-invalid/email-invalid.component';
 import { PhoneAuthenticationComponent } from './pages/user-auth/phone-authentication/phone-authentication.component';
@@ -34,10 +33,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: SignupPageComponent
-  },
-  {
-    path: 'validation_prompt',
-    component: ValidationPromptComponent
   },
   {
     path: 'email_confirmed',

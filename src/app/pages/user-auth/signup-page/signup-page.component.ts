@@ -13,6 +13,7 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 export class SignupPageComponent implements OnInit {
 
   errorMsg: String = "";
+  showPrompt: Boolean = false;
 
   public registerForm: FormGroup = new FormGroup({});
 
@@ -40,7 +41,7 @@ export class SignupPageComponent implements OnInit {
         res => {
           console.log(res);
           
-          if(res.message == 'Ok') this.router.navigateByUrl('/validation_prompt');
+          if(res.message == 'Ok') this.showPrompt = true;
         },
         err => {
           console.log(err)

@@ -51,7 +51,6 @@ import { CreateEventPublishComponent } from './pages/create-event/create-event-p
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
 import { EmailConfirmedComponent } from './pages/user-auth/email-confirmed/email-confirmed.component';
 import { EmailInvalidComponent } from './pages/user-auth/email-invalid/email-invalid.component';
-import { ValidationPromptComponent } from './pages/user-auth/validation-prompt/validation-prompt.component';
 import { PhoneAuthenticationComponent } from './pages/user-auth/phone-authentication/phone-authentication.component';
 import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recovery-email.component';
 import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
@@ -97,7 +96,6 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     LoadingButtonComponent,
     EmailConfirmedComponent,
     EmailInvalidComponent,
-    ValidationPromptComponent,
     PhoneAuthenticationComponent,
     RecoveryEmailComponent,
     PasswordResetComponent,
