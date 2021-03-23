@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
@@ -12,10 +13,11 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 export class SignupPageComponent implements OnInit {
 
   errorMsg: String = "";
+  showPrompt: Boolean = false;
 
   public registerForm: FormGroup = new FormGroup({});
 
-  constructor(private auth: UserAuthService) { }
+  constructor(private auth: UserAuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -37,7 +39,9 @@ export class SignupPageComponent implements OnInit {
     this.auth.regsiterUser(this.registerForm.value)
       .subscribe(
         res => {
-          console.log(res);        
+          console.log(res);
+          
+          if(res.message == 'Ok') this.showPrompt = true;
         },
         err => {
           console.log(err)
