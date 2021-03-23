@@ -21,9 +21,30 @@ h5.card-title {
 }
 
 .display-6 {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .card {
   border-radius: 9px;
+}
+
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+  padding-left: 25px;
+}
+
+.btn-group>:not(.btn-check)+.btn {
+  padding-right: 25px;
+}
+
+.nav-link {
+  color: #717171;
+  font-weight: 500;
+}
+
+ul.nav {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

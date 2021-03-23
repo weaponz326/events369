@@ -24,9 +24,18 @@ p.card-text {
 }
 
 .display-6 {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .card {
   border-radius: 12px;
+}
+
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+  padding-left: 25px;
+}
+
+.btn-group>:not(.btn-check)+.btn {
+  padding-right: 25px;
 }
