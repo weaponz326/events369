@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,14 @@ export class EndpointService {
   storageHost: string;
   private localApiHost: string;
   private productionApiHost: string;
+  private environment: string;
 
   constructor() {
+    this.environment = environment.production ? 'dev' : 'prod';
     this.productionApiHost = '';
     this.localApiHost = 'http://127.0.0.1:8000/';
-    this.apiHost = window.origin == 'http://localhost:4200' ? this.localApiHost : this.productionApiHost;
-    this.storageHost = window.origin == 'http://localhost:4200' ? this.apiHost + 'storage/' : this.productionApiHost + 'storage/';
+    this.apiHost = this.environment == 'dev' ? this.localApiHost : this.productionApiHost;
+    this.storageHost = this.environment == 'dev' ? this.apiHost + 'storage/' : this.productionApiHost + 'storage/';
   }
 
   /**
