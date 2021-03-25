@@ -28,6 +28,7 @@
             <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
+          <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span>
         </div>
       </div>
     </div>
@@ -51,7 +52,7 @@
             <!-- title -->
             <div class="form-group">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Event title">
+                <input [ngModel]="basicInfoModel.title" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Event title">
                 <label for="floatingTitle">Event Title</label>
                 <small id="titleHelp" class="form-text text-muted">
                   Title is required
@@ -63,7 +64,7 @@
             <!-- description -->
             <div class="form-group">
               <div class="form-floating">
-                <textarea class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description"></textarea>
+                <textarea [ngModel]="basicInfoModel.description" class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description"></textarea>
                 <label for="floatingDesc">Event Description</label>
                 <small id="descHelp" class="form-text text-muted">
                   Description is required.
@@ -77,7 +78,7 @@
               <div class="row">
                 <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select [ngModel]="basicInfoModel.type" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                       <option selected>Select event type</option>
                       <option value="1">Paid</option>
                       <option value="2">Free</option>
@@ -90,7 +91,7 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select [ngModel]="basicInfoModel.category_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                       <option selected>Select category</option>
                       <option value="1">Business</option>
                       <option value="2">Conference</option>
@@ -104,7 +105,7 @@
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select [ngModel]="basicInfoModel.subcategory_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
                       <option selected>Select a sub-category</option>
                       <option value="1">Party</option>
                       <option value="2">Meeting</option>
@@ -123,7 +124,7 @@
             <!-- tags -->
             <div class="form-group">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event">
+                <input [ngModel]="basicInfoModel.tags" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event">
                 <label for="floatingTitle">Tags</label>
                 <small id="titleHelp" class="form-text text-muted">
                   Tags are required.
@@ -206,7 +207,7 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
+                          <input [ngModel]="basicInfoModel.start_date" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
                           <label for="floatingTitle">Start Date</label>
                           <small id="titleHelp" class="form-text text-muted">
                             Start date is required.
@@ -218,7 +219,7 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                          <input [ngModel]="basicInfoModel.end_date" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
                           <label for="floatingTitle">End Date</label>
                           <small id="titleHelp" class="form-text text-muted">
                             End date is required.
@@ -236,7 +237,7 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start time">
+                          <input [ngModel]="basicInfoModel.start_time" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start time">
                           <label for="floatingTitle">Start Time</label>
                           <small id="titleHelp" class="form-text text-muted">
                             Start time is required.
@@ -248,7 +249,7 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End time">
+                          <input [ngModel]="basicInfoModel.end_time" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End time">
                           <label for="floatingTitle">End Time</label>
                           <small id="titleHelp" class="form-text text-muted">
                             End time is required.
@@ -314,7 +315,7 @@
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Address">
+                        <input [ngModel]="basicInfoModel.venue" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Address">
                         <label for="floatingTitle">Enter Address / Place</label>
                         <small id="titleHelp" class="form-text text-muted">
                           Location is required.
