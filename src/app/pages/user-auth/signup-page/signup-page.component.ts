@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { MatStepper } from '@angular/material/stepper';
 
 import { UserAuthService } from 'src/app/services/user-auth/user-auth.service';
 
@@ -12,8 +14,10 @@ import { UserAuthService } from 'src/app/services/user-auth/user-auth.service';
 })
 export class SignupPageComponent implements OnInit {
 
+  @ViewChild('registerStepper') private stepper?: MatStepper;
+
   isSending: boolean = false;
-  errorMsg: String = "";
+  errorMsgs: any = {};
   showPrompt: Boolean = false;
 
   public registerForm: FormGroup = new FormGroup({});
@@ -51,7 +55,9 @@ export class SignupPageComponent implements OnInit {
         err => {
           console.log(err)
           this.isSending = false;
-          this.errorMsg = err.error.message;
+          this.errorMsgs = err.error;
+
+          this.stepper?.reset()
         }
       );
   }

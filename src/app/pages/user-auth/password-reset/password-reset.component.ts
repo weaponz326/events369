@@ -13,7 +13,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 export class PasswordResetComponent implements OnInit {
 
   isSending: boolean = false;
-  errorMsg: String = "";
+  errorMsgs: any = {};
 
   resetForm: FormGroup = new FormGroup({});
 
@@ -40,7 +40,7 @@ export class PasswordResetComponent implements OnInit {
         err => {
           console.log(err);
           this.isSending = false;
-          this.errorMsg = err.error.message;
+          this.errorMsgs = err.error;
         }
       );
   }

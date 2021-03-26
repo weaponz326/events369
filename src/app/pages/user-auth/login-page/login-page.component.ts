@@ -12,7 +12,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 export class LoginPageComponent implements OnInit {
 
   isSending: boolean = false;
-  errorMsg: String = "";
+  errorMsgs: any = {};
 
   loginForm: FormGroup = new FormGroup({});
 
@@ -34,12 +34,16 @@ export class LoginPageComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+
+          sessionStorage.setItem('user_id', res.id);
+          sessionStorage.setItem('user_phone', res.phone);
+
           if (res.id) this.router.navigateByUrl('/phone_authentication');
         },
         err => {
           console.log(err);
           this.isSending = false;
-          this.errorMsg = err.error.message;
+          this.errorMsgs = err.error;
         }
       );
   }

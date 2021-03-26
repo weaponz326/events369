@@ -28,20 +28,21 @@
                 
                 <div class="row">
                   <div class="col">
-                    <p class="text-center"><small class="text-danger">{{errorMsg}}</small></p>
+                    <p class="text-center"><small class="text-danger">{{errorMsgs.message}}</small></p>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-floating mb-3">
+                  <div class="col">
+                    <div class="form-floating mt-3">
                       <input type="text" class="form-control" id="floatingInput" placeholder="000000" formControlName="confirmationCode" required>
                       <label for="floatingInput">Confirmation Code</label>
                     </div>
+                    <small><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small>
                   </div>
                 </div>   
                 
-                <div class="row">
+                <div class="row mt-4">
                   <div class="col">
                     <small class="txt-muted">A confirmation code has been sent to your phone</small>
                   </div>

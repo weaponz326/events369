@@ -13,7 +13,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 export class PhoneAuthenticationComponent implements OnInit {
 
   isSending: boolean = false;
-  errorMsg: String = "";
+  errorMsgs: any = {};
 
   authenticationForm: FormGroup = new FormGroup({});
 
@@ -30,7 +30,7 @@ export class PhoneAuthenticationComponent implements OnInit {
     console.log(this.authenticationForm.value);
     this.isSending = true;
     
-    this.auth.authenticatePhone(this.authenticationForm.value)
+    this.auth.authenticatePhone(this.authenticationForm.value.confirmationCode)
       .subscribe(
         res => {
           console.log(res);
@@ -39,7 +39,7 @@ export class PhoneAuthenticationComponent implements OnInit {
         err => {
           console.log(err);
           this.isSending = false;
-          this.errorMsg = err.error.message;
+          this.errorMsgs = err.error;
         }
       );
   }
