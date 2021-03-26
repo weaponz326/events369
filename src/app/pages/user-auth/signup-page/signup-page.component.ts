@@ -12,6 +12,7 @@ import { UserAuthService } from 'src/app/services/user-auth/user-auth.service';
 })
 export class SignupPageComponent implements OnInit {
 
+  isSending: boolean = false;
   errorMsg: String = "";
   showPrompt: Boolean = false;
 
@@ -24,17 +25,21 @@ export class SignupPageComponent implements OnInit {
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       country: new FormControl('GH', Validators.required),
-      phone: new FormControl('', Validators.required),
-      usertype: new FormControl('admin', Validators.required),
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      usertype: new FormControl('30', Validators.required),
       username: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      password_confirmation: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password_confirmation: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
+  get firstname() { return this.registerForm.get('firstname'); }
+  get lastname() { return this.registerForm.get('lastname'); }
+
   onSubmit(){
     console.log(this.registerForm.value);
+    this.isSending = true;
 
     this.auth.regsiterUser(this.registerForm.value)
       .subscribe(
@@ -45,6 +50,7 @@ export class SignupPageComponent implements OnInit {
         },
         err => {
           console.log(err)
+          this.isSending = false;
           this.errorMsg = err.error.message;
         }
       );

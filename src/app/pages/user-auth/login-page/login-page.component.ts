@@ -11,6 +11,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 })
 export class LoginPageComponent implements OnInit {
 
+  isSending: boolean = false;
   errorMsg: String = "";
 
   loginForm: FormGroup = new FormGroup({});
@@ -21,12 +22,13 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   onSubmit(){
     console.log(this.loginForm.value);
+    this.isSending = true;
 
     this.auth.loginUser(this.loginForm.value)
       .subscribe(
@@ -36,9 +38,11 @@ export class LoginPageComponent implements OnInit {
         },
         err => {
           console.log(err);
+          this.isSending = false;
           this.errorMsg = err.error.message;
         }
       );
   }
+
 
 }

@@ -12,6 +12,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 })
 export class PasswordResetComponent implements OnInit {
 
+  isSending: boolean = false;
   errorMsg: String = "";
 
   resetForm: FormGroup = new FormGroup({});
@@ -21,22 +22,24 @@ export class PasswordResetComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetForm = new FormGroup({
-      password: new FormControl('', Validators.required),
-      passwordConfirmation: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   onSubmit(){
     console.log(this.resetForm.value);
-
+    this.isSending = true;
+    
     this.auth.resetPassword(this.resetForm.value)
       .subscribe(
         res => {
           console.log(res);
-          if (res.id) this.router.navigateByUrl('/validation_prompt');
+          if (res.id) this.router.navigateByUrl('/');
         },
         err => {
           console.log(err);
+          this.isSending = false;
           this.errorMsg = err.error.message;
         }
       );

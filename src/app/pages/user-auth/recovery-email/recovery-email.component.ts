@@ -12,6 +12,7 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 })
 export class RecoveryEmailComponent implements OnInit {
 
+  isSending: boolean = false;
   errorMsg: String = "";
   showPrompt: Boolean = false;
 
@@ -22,21 +23,23 @@ export class RecoveryEmailComponent implements OnInit {
 
   ngOnInit(): void {
     this.recoveryForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
   onSubmit(){
     console.log(this.recoveryForm.value);
-
+    this.isSending = true;
+    
     this.auth.accountRecovery(this.recoveryForm.value)
       .subscribe(
         res => {
           console.log(res);
-          if (res.id) this.showPrompt = true;
+          if (res.message == "OK") this.showPrompt = true;
         },
         err => {
           console.log(err);
+          this.isSending = false;
           this.errorMsg = err.error.message;
         }
       );
