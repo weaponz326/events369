@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { OwlModule } from 'ngx-owl-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -59,6 +60,10 @@ import { ResetConfirmedComponent } from './pages/user-auth/reset-confirmed/reset
 import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
 import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
 import { AccountSideMenuComponent } from './components/account-side-menu/account-side-menu.component';
+import { CreateEventOrganizersComponent } from './pages/create-event/create-event-organizers/create-event-organizers.component';
+import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
+import { CreateEventSpeakersComponent } from './pages/create-event/create-event-speakers/create-event-speakers.component';
+import { CreateEventMediaComponent } from './pages/create-event/create-event-media/create-event-media.component';
 
 
 @NgModule({
@@ -104,6 +109,10 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     UserProfilePageComponent,
     OrganizationProfilePageComponent,
     AccountSideMenuComponent,
+    CreateEventOrganizersComponent,
+    CreateEventSponsorsComponent,
+    CreateEventSpeakersComponent,
+    CreateEventMediaComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +129,7 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    OwlModule,
     NgbModule,
   ],
   providers: [],

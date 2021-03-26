@@ -1,22 +1,47 @@
 <nav style="width: 100%;z-index: 1;background-color: var(--ev-background) !important;color: var(--primary-color);" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand mr-5" style="color: var(--primary-color) !important;" href="#">Events369</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+  <a id="brand-name" class="navbar-brand mr-5" style="color: var(--primary-color) !important;" href="#"><b style="color: #f05537;font-size: 24px;"> events</b> <b style="color: #1e0a3c;font-size: 24px;">369</b></a>
+  
+  <form class="form" class="search-form">
+    <div class="form-group has-search" style="margin-bottom: 0rem !important;">
+      <span class="bi bi-search form-control-feedback"></span>
+      <input style="background-color: var(--ev-searchbar-background) !important;border-color: var(--ev-searchbar-border) !important;" class="form-control mr-sm-2" type="search" placeholder="What do you want to attend?" aria-label="Search">
+    </div>
+   </form>
+
+   
+
+   <!-- <button type="button" class="btn btn-light"> -->
+    <span (click)="showSearchBar()" id="searchIcon" class="bi bi-search form-control-feedback navbar-standalone-search-icon nav-link"></span> 
+   <!-- </button> -->
+
+  <button id="toggle-button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <form class="form search-form-for-sm search-on-mobile-only">
+    <div class="form-group has-search" style="margin-bottom: 0rem !important;">
+      <span class="bi bi-search form-control-feedback"></span>
+      <input style="background-color: var(--ev-searchbar-background) !important;border-color: var(--ev-searchbar-border) !important;" class="form-control mr-sm-2" type="search" placeholder="What do you want to attend?" aria-label="Search">
+    </div>
+   </form>
+   <span class="cancel-btn search-on-mobile-only" (click)="hideMobileSearch()">Cancel</span>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto ml-5">
+    <ul style="margin-right: 0 !important; position: absolute; right: 1rem;" class="nav navbar-nav mr-auto ml-5 dropdown-content">
       <li class="nav-item">
-        <a class="nav-link" style="color: var(--primary-color) !important;" href="#">Host an event <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Help</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color: var(--primary-color) !important;" href="#">Log in</a>
+        <a class="nav-link" style="color: var(--blue);" href="#">Host an event <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color: var(--primary-color) !important;" href="#">Sign up</a>
+        <a class="nav-link" href="#">Log in</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Sign up</a>
+      </li>
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" style="color: var(--primary-color) !important;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Help
@@ -27,11 +52,8 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 
-  <form class="form">
-    <input style="background-color: var(--ev-item-background) !important;border-color: var(--ev-item-background) !important;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  </form>
 </nav>

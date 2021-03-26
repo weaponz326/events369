@@ -26,6 +26,15 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent
   },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./components/new-home-page/new-home-page.module').then( m => m.NewHomePageModule)
+  // },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginPageComponent

@@ -3,9 +3,11 @@
 .page-info {
   height: 100vh;
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
   width: 34vw;
+  overflow: auto;
   background-color: #f9f9f9;
 }
 
@@ -64,9 +66,11 @@
 }
 
 .navigation {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  padding-right: 50px;
+  float: right;
 }
 
 .nav-buttons .btn-lg {

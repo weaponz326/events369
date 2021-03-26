@@ -1,10 +1,10 @@
-<div id="carouselExampleControls" class="carousel slide mt-5 pt-5" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+<div class="mt-5 pt-5 bg-white">
+  <owl-carousel [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">
+    <div class="items">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-5 col-lg-5">
-            <div class="bg-light p-5 rounded-lg p-3">
+            <div class="bg-white p-5 rounded-lg p-3">
               <h1 class="display-5">Events369</h1>
               <p class="lead">
                 Biggest Event Platform
@@ -20,11 +20,12 @@
         </div>
       </div>
     </div>
-    <div class="carousel-item">
+  
+    <div class="items">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-5 col-lg-5">
-            <div class="bg-light p-5 rounded-lg m-3">
+            <div class="bg-white p-5 rounded-lg m-3">
               <h1 class="display-5">Online events.</h1>
               <p class="lead">
                 Human Connections.
@@ -40,11 +41,12 @@
         </div>
       </div>
     </div>
-    <div class="carousel-item">
+  
+    <div class="items">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-5 col-lg-5">
-            <div class="bg-light p-5 rounded-lg m-3">
+            <div class="bg-white p-5 rounded-lg m-3">
               <h1 class="display-5">More stuffs</h1>
               <p class="lead">
                 Plan with us
@@ -60,13 +62,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+  </owl-carousel>
 </div>
