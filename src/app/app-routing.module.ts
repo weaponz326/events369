@@ -23,7 +23,7 @@ import { OrganizationProfilePageComponent } from './pages/profile/organization-p
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomePageComponent
   },
   // {
@@ -32,7 +32,7 @@ const routes: Routes = [
   // },
   {
     path: '',
-    redirectTo: '',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {

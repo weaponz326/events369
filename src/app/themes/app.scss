@@ -1,4 +1,10 @@
 :root {
+    
+    --ev-searchbar-background: #f8f7fb !important;
+    --ev-placeholder-background: #b7b2b2 !important;
+    --ev-searchbar-border: #f8f7fa !important;
+    --ev-nav-link-color: rgba(0,0,0,.55) !important;
+
     .dark-theme {
         --primary-color: #fff;
         --ev-background: #1e1e2e;
@@ -6,6 +12,9 @@
         --ev-item-background: #414553;
         --ev-active: #0d79f8;
         --ev-menu-item: #a4a4a4;
+        --ev-searchbar-background: #f8f7fb !important;
+        --ev-placeholder-background: #b7b2b2 !important;
+        --ev-searchbar-border: #f8f7fa !important;
 
 
     }
