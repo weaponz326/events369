@@ -1,8 +1,9 @@
+<app-create-event-navbar></app-create-event-navbar>
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-4">
-      <div class="page-info">
+    <div class="col-3">
+      <!-- <div class="page-info">
         <div class="title">
           <h1>Let's get scheduling, shall we?</h1>
           <h5>Steps 2 <span class="of">of</span> 5</h5>
@@ -29,7 +30,8 @@
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
         </div>
-      </div>
+      </div> -->
+      <app-create-event-side-menu></app-create-event-side-menu>
     </div>
 
     <div class="col-1"></div>
@@ -184,9 +186,26 @@
           /. End Date time Section
         -->
       </div>
+      
+      <!-- <div class="container">
+        <div class="col-md-9 offset-md-3">
+          <button type="button" class="btn btn-lg btn-outline-secondary">Discard</button> &nbsp;
+          <button type="button" class="btn btn-lg btn-primary">Save & Continue</button>
+        </div>
+        <br>
+      </div> -->
+      <div class="navigation">
+        <div class="nav-buttons">
+          <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+          <app-loading-button *ngIf="isLoading"></app-loading-button>
+        </div>
+      </div>
+
     </div>
 
     <div class="col-2"></div>
 
   </div>
+  
 </div>

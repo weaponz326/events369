@@ -65,6 +65,8 @@ import { CreateEventMediaComponent } from './pages/create-event/create-event-med
 import { FormSidePaneComponent } from './components/auth-forms/form-side-pane/form-side-pane.component';
 import { FormHeaderComponent } from './components/auth-forms/form-header/form-header.component';
 import { FormFooterComponent } from './components/auth-forms/form-footer/form-footer.component';
+import { CreateEventSideMenuComponent } from './components/create-event-side-menu/create-event-side-menu.component';
+import { CreateEventNavbarComponent } from './components/create-event-navbar/create-event-navbar.component';
 
 
 @NgModule({
@@ -115,6 +117,8 @@ import { FormFooterComponent } from './components/auth-forms/form-footer/form-fo
     FormSidePaneComponent,
     FormHeaderComponent,
     FormFooterComponent,
+    CreateEventSideMenuComponent,
+    CreateEventNavbarComponent,
   ],
   imports: [
     BrowserModule,

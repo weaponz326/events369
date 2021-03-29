@@ -72,4 +72,12 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  // logIn() {
+  //   this.router
+  // }
+
+  // signUp() {
+
+  // }
+
 }
