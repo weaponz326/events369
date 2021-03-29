@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
-import { BasicInfo } from 'src/app/models/create-event/basic-info-model';
+import { BasicInfo } from 'src/app/models/create-event/basic-info.model';
 import { CreateEventService } from 'src/app/services/create-event/create-event.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class CreateBasicInfoComponent implements OnInit {
   isLoading: boolean;
   saveError: boolean;
 
-  basicInfoModel = new BasicInfo();
+  basicInfoModel = new BasicInfo('', '', 0, 0, 0, '', moment().format('YYYY-MM-DD hh:mm:ss'), moment().format('YYYY-MM-DD hh:mm:ss'), 0, '', '', 0, 0);
 
   constructor(private router: Router, private createEvent: CreateEventService) {
     this.isLoading = false;
@@ -26,22 +27,20 @@ export class CreateBasicInfoComponent implements OnInit {
 
   save() {
     console.log(this.basicInfoModel);
-
-      this.router.navigateByUrl('/create_event/schedule');
-    // this.isLoading = true;
-
-    // this.createEvent.createBasicInfo(this.basicInfoModel)
-    //   .subscribe(
-    //     res => {
-    //       console.log(res);
-    //       this.router.navigateByUrl('/create_event/schedule');
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       this.isLoading = false;
-    //       this.saveError = true;
-    //     }
-    //   );
+    this.isLoading = true;
+    
+    this.createEvent.createBasicInfo(this.basicInfoModel)
+      .subscribe(
+        res => {
+          console.log(res);
+          if(res.message == 'Ok') this.router.navigateByUrl('/create_event/schedule');
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+          this.saveError = true;
+        }
+      );
 
     // setTimeout(() => {
     //   this.router.navigateByUrl('/create_event/schedule');
