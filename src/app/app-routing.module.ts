@@ -21,8 +21,17 @@ import { OrganizationProfilePageComponent } from './pages/profile/organization-p
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomePageComponent
+  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./components/new-home-page/new-home-page.module').then( m => m.NewHomePageModule)
+  // },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
   },
   {
     path: 'login',
