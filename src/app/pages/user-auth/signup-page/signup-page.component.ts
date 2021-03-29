@@ -29,7 +29,7 @@ export class SignupPageComponent implements OnInit {
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       country: new FormControl('GH', Validators.required),
-      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      phone: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
       usertype: new FormControl('30', Validators.required),
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),

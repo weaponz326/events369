@@ -34,7 +34,12 @@ export class PhoneAuthenticationComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
-          if (res.id) this.router.navigateByUrl('/home');
+          if (res.token) this.router.navigateByUrl('/');
+
+          sessionStorage.setItem('events_auth_token', res.token);
+          sessionStorage.setItem('events_user_id', res.user.id);
+          sessionStorage.setItem('events_user_name', res.user.name);
+          sessionStorage.setItem('events_user_email', res.user.email);
         },
         err => {
           console.log(err);
