@@ -27,7 +27,6 @@ export class CreateBasicInfoComponent implements OnInit {
 
   save() {
     console.log(this.basicInfoModel);
-<<<<<<< HEAD
     this.isLoading = true;
     
     this.createEvent.createBasicInfo(this.basicInfoModel)
@@ -42,24 +41,6 @@ export class CreateBasicInfoComponent implements OnInit {
           this.saveError = true;
         }
       );
-=======
-
-      this.router.navigateByUrl('/create_event/schedule');
-    // this.isLoading = true;
-
-    // this.createEvent.createBasicInfo(this.basicInfoModel)
-    //   .subscribe(
-    //     res => {
-    //       console.log(res);
-    //       this.router.navigateByUrl('/create_event/schedule');
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       this.isLoading = false;
-    //       this.saveError = true;
-    //     }
-    //   );
->>>>>>> 2a1a0a6cf0fdf8e21cb31f25d8e0b5b0416db174
 
     // setTimeout(() => {
     //   this.router.navigateByUrl('/create_event/schedule');
