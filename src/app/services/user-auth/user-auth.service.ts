@@ -19,8 +19,8 @@ export class UserAuthService {
     return this.http.post<any>(this.apiUrl + 'login', user);      
   }
 
-  authenticatePhone(user: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + 'twoWayAuthenticationVerification', user);      
+  authenticatePhone(code: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'twoWayAuthenticationVerification/' + sessionStorage.getItem('user_id') + '/' + code + '/' + sessionStorage.getItem('user_phone'), {});      
   }
 
   accountRecovery(user: any): Observable<any> {

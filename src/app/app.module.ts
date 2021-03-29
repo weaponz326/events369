@@ -55,8 +55,6 @@ import { EmailInvalidComponent } from './pages/user-auth/email-invalid/email-inv
 import { PhoneAuthenticationComponent } from './pages/user-auth/phone-authentication/phone-authentication.component';
 import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recovery-email.component';
 import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
-import { ResetInvalidComponent } from './pages/user-auth/reset-invalid/reset-invalid.component';
-import { ResetConfirmedComponent } from './pages/user-auth/reset-confirmed/reset-confirmed.component';
 import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
 import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
 import { AccountSideMenuComponent } from './components/account-side-menu/account-side-menu.component';
@@ -64,6 +62,9 @@ import { CreateEventOrganizersComponent } from './pages/create-event/create-even
 import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
 import { CreateEventSpeakersComponent } from './pages/create-event/create-event-speakers/create-event-speakers.component';
 import { CreateEventMediaComponent } from './pages/create-event/create-event-media/create-event-media.component';
+import { FormSidePaneComponent } from './components/auth-forms/form-side-pane/form-side-pane.component';
+import { FormHeaderComponent } from './components/auth-forms/form-header/form-header.component';
+import { FormFooterComponent } from './components/auth-forms/form-footer/form-footer.component';
 
 
 @NgModule({
@@ -104,8 +105,6 @@ import { CreateEventMediaComponent } from './pages/create-event/create-event-med
     PhoneAuthenticationComponent,
     RecoveryEmailComponent,
     PasswordResetComponent,
-    ResetInvalidComponent,
-    ResetConfirmedComponent,
     UserProfilePageComponent,
     OrganizationProfilePageComponent,
     AccountSideMenuComponent,
@@ -113,6 +112,9 @@ import { CreateEventMediaComponent } from './pages/create-event/create-event-med
     CreateEventSponsorsComponent,
     CreateEventSpeakersComponent,
     CreateEventMediaComponent,
+    FormSidePaneComponent,
+    FormHeaderComponent,
+    FormFooterComponent,
   ],
   imports: [
     BrowserModule,

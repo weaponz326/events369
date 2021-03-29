@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResetInvalidComponent } from './reset-invalid.component';
+import { FormHeaderComponent } from './form-header.component';
 
-describe('ResetInvalidComponent', () => {
-  let component: ResetInvalidComponent;
-  let fixture: ComponentFixture<ResetInvalidComponent>;
+describe('FormHeaderComponent', () => {
+  let component: FormHeaderComponent;
+  let fixture: ComponentFixture<FormHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResetInvalidComponent ]
+      declarations: [ FormHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ResetInvalidComponent);
+    fixture = TestBed.createComponent(FormHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
