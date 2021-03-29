@@ -54,6 +54,8 @@ export class CreateEventTicketingComponent implements OnInit {
     });
   }
 
+  displayFailedDeleteToast(): void {}
+
   previous(): void {
     this.router.navigateByUrl('/create_event/more_details');
   }
@@ -157,6 +159,15 @@ export class CreateEventTicketingComponent implements OnInit {
 
   delete(id: string, index: number): void {}
 
-  deleteTicket(): void {}
+  deleteTicket(ticketId: string, index: number): void {
+    this.ticketService.deleteTicket(ticketId).then(
+      ok => {
+        ok
+          ? this.createdTicketList.splice(index, 1)
+          : this.displayFailedDeleteToast();
+      },
+      err => {}
+    );
+  }
 
 }
