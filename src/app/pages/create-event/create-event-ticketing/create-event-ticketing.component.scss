@@ -61,6 +61,14 @@
   box-shadow: none;
 }
 
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  box-shadow: none;
+}
+
+.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+  box-shadow: none;
+}
+
 .navigation {
   position: relative;
   padding-top: 40px;

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventMediaService } from './event-media.service';
+import { EventsService } from './events.service';
 
-describe('EventMediaService', () => {
-  let service: EventMediaService;
+describe('EventsService', () => {
+  let service: EventsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EventMediaService);
+    service = TestBed.inject(EventsService);
   });
 
   it('should be created', () => {
