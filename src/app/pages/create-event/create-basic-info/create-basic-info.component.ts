@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BasicInfo } from 'src/app/models/create-event/basic-info-model';
+import { BasicInfo } from 'src/app/models/create-event/basic-info.model';
 import { CreateEventService } from 'src/app/services/create-event/create-event.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class CreateBasicInfoComponent implements OnInit {
   isLoading: boolean;
   saveError: boolean;
 
-  basicInfoModel = new BasicInfo();
+  basicInfoModel = new BasicInfo('', '', 0, 0, 0, '', new Date, new Date, new Date, new Date, '');
 
   constructor(private router: Router, private createEvent: CreateEventService) {
     this.isLoading = false;
@@ -27,7 +27,7 @@ export class CreateBasicInfoComponent implements OnInit {
   save() {
     console.log(this.basicInfoModel);
     this.isLoading = true;
-
+    
     this.createEvent.createBasicInfo(this.basicInfoModel)
       .subscribe(
         res => {
