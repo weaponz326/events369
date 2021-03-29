@@ -222,14 +222,41 @@ nav {
 
 // added styles
 .ev-menu-icon {
-    color: #fff !important;
-    font-size: xx-large !important;
+    color: rgb(196, 194, 194) !important;
+    font-size: x-large !important;
 }
 
-.ev-nav-help {
-    color: #fff !important;
-    
+.ev-nav-help-icon {
+    display: contents;
+
 }
+
+
+.nav-item a:hover {
+    background: inherit;
+    color: #fff;
+}
+
+@media (max-width: 576px) {
+    .ev-nav-help {
+        color: #000 !important;
+        
+    }
+    .ev-nav-help-icon {
+        display: none;
+    }
+}
+
+@media (min-width: 577px) {
+    .ev-nav-help {
+        color: rgb(197, 196, 196) !important;
+        
+    }
+    .ev-nav-help-icon {
+        display: contents;
+    }
+}
+
 
 .ev-nav-help-icon {
     margin-bottom: -1rem;

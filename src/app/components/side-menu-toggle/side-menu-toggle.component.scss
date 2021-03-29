@@ -1,0 +1,26 @@
+.ev-marginlr {
+    margin-left: -2vh;
+    margin-right: -2vh;
+}
+
+.bi-list {
+    font-size: x-large !important;
+}
+
+@media (max-width: 796px) {
+    .only-non-mobile {
+      display: none;
+    }
+    .only-mobile {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 797px) {
+    .only-mobile {
+      display: none;
+    }
+    .only-non-mobile {
+      display: block;
+    }
+  }
