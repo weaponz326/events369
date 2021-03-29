@@ -67,3 +67,19 @@ input.form-control, .form-floating>.form-select {
   padding: .5rem 2rem;
   font-size: 1rem;
 }
+
+input.ng-invalid.ng-dirty{
+  border-left: 5px solid rgba(255, 0, 0, 0.5);
+}
+
+input.ng-valid.ng-dirty{
+  border-left: 5px solid rgba(0, 128, 0, 0.5);
+}
+
+input.ng-invalid.ng-dirty{
+  border-left: 5px solid rgba(255, 0, 0, 0.5);
+}
+
+input.ng-valid.ng-dirty{
+  border-left: 5px solid rgba(0, 128, 0, 0.5);
+}

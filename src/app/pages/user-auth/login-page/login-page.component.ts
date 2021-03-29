@@ -11,7 +11,8 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 })
 export class LoginPageComponent implements OnInit {
 
-  errorMsg: String = "";
+  isSending: boolean = false;
+  errorMsgs: any = {};
 
   loginForm: FormGroup = new FormGroup({});
 
@@ -21,24 +22,31 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   onSubmit(){
     console.log(this.loginForm.value);
+    this.isSending = true;
 
     this.auth.loginUser(this.loginForm.value)
       .subscribe(
         res => {
           console.log(res);
+
+          sessionStorage.setItem('user_id', res.id);
+          sessionStorage.setItem('user_phone', res.phone);
+
           if (res.id) this.router.navigateByUrl('/phone_authentication');
         },
         err => {
           console.log(err);
-          this.errorMsg = err.error.message;
+          this.isSending = false;
+          this.errorMsgs = err.error;
         }
       );
   }
+
 
 }

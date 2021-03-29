@@ -16,8 +16,6 @@ import { EmailInvalidComponent } from './pages/user-auth/email-invalid/email-inv
 import { PhoneAuthenticationComponent } from './pages/user-auth/phone-authentication/phone-authentication.component';
 import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recovery-email.component';
 import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
-import { ResetInvalidComponent } from './pages/user-auth/reset-invalid/reset-invalid.component';
-import { ResetConfirmedComponent } from './pages/user-auth/reset-confirmed/reset-confirmed.component';
 import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
 import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
 
@@ -62,14 +60,6 @@ const routes: Routes = [
   {
     path: 'password_reset',
     component: PasswordResetComponent
-  },
-  {
-    path: 'reset_invalid',
-    component: ResetInvalidComponent
-  },
-  {
-    path: 'reset_confirmed',
-    component: ResetConfirmedComponent
   },
   {
     path: 'event_details',

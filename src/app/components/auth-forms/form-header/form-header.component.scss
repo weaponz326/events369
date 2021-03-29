@@ -7,7 +7,7 @@
 .stuffs-side{
   background-color: #456ea9;
   color: white;
-  padding: 50px;
+  padding: 50px 18px;
 }
 
 .form-side{
@@ -20,6 +20,13 @@ i {
 
 .lead {
   font-size: 15px;
+}
+
+.display-7 {
+  font-weight: 300;
+  line-height: 1.2;
+  font-size: 2.2rem;
+  margin-top: 60px;
 }
 
 .form-footer{
@@ -51,12 +58,16 @@ button.git-color{
   box-shadow: none;
 }
 
-.mat-step-header{
+::ng-deep .mat-step-header{
   width: 10px;
 }
 
-.register-stepper .mat-horizontal-content-container {
+::ng-deep .register-stepper .mat-horizontal-content-container {
   padding: 0 !important;
+}
+
+::ng-deep .register-stepper .mat-horizontal-stepper-header-container {
+  display: none !important;
 }
 
 input.form-control, .form-floating>.form-select {
@@ -68,10 +79,12 @@ input.form-control, .form-floating>.form-select {
   font-size: 1rem;
 }
 
-input.ng-invalid{
+input.ng-invalid,
+select.ng-invalid{
   border-left: 5px solid rgba(255, 0, 0, 0.5);
 }
 
-input.ng-valid{
+input.ng-valid,
+select.ng-valid{
   border-left: 5px solid rgba(0, 128, 0, 0.5);
 }

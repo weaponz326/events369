@@ -12,7 +12,8 @@ import { UserAuthService } from '../../../services/user-auth/user-auth.service'
 })
 export class PhoneAuthenticationComponent implements OnInit {
 
-  errorMsg: String = "";
+  isSending: boolean = false;
+  errorMsgs: any = {};
 
   authenticationForm: FormGroup = new FormGroup({});
 
@@ -21,14 +22,15 @@ export class PhoneAuthenticationComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationForm = new FormGroup({
-      confirmationCode: new FormControl('', Validators.required),
+      confirmationCode: new FormControl('', [Validators.required, Validators.maxLength(4), Validators.minLength(4)]),
     });
   }
 
   onSubmit(){
     console.log(this.authenticationForm.value);
-
-    this.auth.authenticatePhone(this.authenticationForm.value)
+    this.isSending = true;
+    
+    this.auth.authenticatePhone(this.authenticationForm.value.confirmationCode)
       .subscribe(
         res => {
           console.log(res);
@@ -36,7 +38,8 @@ export class PhoneAuthenticationComponent implements OnInit {
         },
         err => {
           console.log(err);
-          this.errorMsg = err.error.message;
+          this.isSending = false;
+          this.errorMsgs = err.error;
         }
       );
   }
