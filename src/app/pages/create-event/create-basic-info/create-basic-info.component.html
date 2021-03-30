@@ -26,10 +26,10 @@
 
         <div class="navigation">
           <div class="nav-buttons">
-            <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+            <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
-          <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span>
+          <!-- <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span> -->
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="col-1"></div>
 
     <div class="col-5">
-      <div class="form">
+      <form class="form" [formGroup]="form" (ngSubmit)="create()">
         <div class="divider mb-1 mt-5"></div>
         <div class="form-item">
           <div class="form-header">
@@ -53,10 +53,11 @@
             <!-- title -->
             <div class="form-group">
               <div class="form-floating mb-3">
-                <input [(ngModel)]="basicInfoModel.title" type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Event title">
+                <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Event title"
+                  formControlName="title" [ngClass]="{'is-invalid': saved && f.title.errors, 'is-valid': !f.title.errors}">
                 <label for="floatingTitle">Event Title</label>
-                <small id="titleHelp" class="form-text text-muted">
-                  Title is required
+                <small *ngIf="saved && f.title.errors" id="titleHelp" class="form-text invalid-feedback">
+                  Title is required.
                 </small>
               </div>
             </div>
@@ -65,11 +66,8 @@
             <!-- description -->
             <div class="form-group">
               <div class="form-floating">
-                <textarea [(ngModel)]="basicInfoModel.description" class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description"></textarea>
-                <label for="floatingDesc">Event Description</label>
-                <small id="descHelp" class="form-text text-muted">
-                  Description is required.
-                </small>
+                <textarea class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description" formControlName="description"></textarea>
+                <label for="floatingDesc">Event Description</label>                
               </div>
             </div>
             <!-- /.description-->
@@ -79,44 +77,46 @@
               <div class="row">
                 <div class="col">
                   <div class="form-floating">
-                    <select [(ngModel)]="basicInfoModel.type" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option selected>Select event type</option>
+                    <select class="form-select" id="floatingType" aria-label="Floating label select example"
+                      formControlName="type" [ngClass]="{'is-invalid': saved && f.type.errors, 'is-valid': !f.type.errors}">
                       <option value="1">Paid</option>
                       <option value="2">Free</option>
                     </select>
-                    <label for="floatingSelect">Event Type</label>
-                  </div>
-                  <small id="descHelp" class="form-text text-muted">
+                    <label for="floatingType">Event Type</label>
+                  </div>   
+                  <small *ngIf="saved && f.type.errors" id="titleHelp" class="form-text invalid-feedback">
                     Event type is required.
-                  </small>
+                  </small>               
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <select [(ngModel)]="basicInfoModel.category_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option selected>Select category</option>
-                      <option value="1">Business</option>
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                      formControlName="category_id" [ngClass]="{'is-invalid': saved && f.category_id.errors, 'is-valid': !f.category_id.errors}">
+                      <option *ngFor="let x of categoriesData" value={{x.id}}>{{x.temp_name}}</option>
+                      <!-- <option value="1">Business</option>
                       <option value="2">Conference</option>
-                      <option value="3">Entertainment</option>
+                      <option value="3">Entertainment</option> -->
                     </select>
                     <label for="floatingSelect">Event Category</label>
                   </div>
-                  <small id="descHelp" class="form-text text-muted">
+                  <small *ngIf="saved && f.category_id.errors" id="titleHelp" class="form-text invalid-feedback">
                     Event category is required.
                   </small>
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <select [(ngModel)]="basicInfoModel.subcategory_id" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option selected>Select a sub-category</option>
-                      <option value="1">Party</option>
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                      formControlName="subcategory_id" [ngClass]="{'is-invalid': saved && f.subcategory_id.errors, 'is-valid': !f.subcategory_id.errors}">
+                      <option *ngFor="let x of subCategoriesData" value={{x.id}}>{{x.name}}</option>
+                      <!-- <option value="1">Party</option>
                       <option value="2">Meeting</option>
-                      <option value="3">Face Time</option>
+                      <option value="3">Face Time</option> -->
                     </select>
                     <label for="floatingSelect">Event sub-category</label>
-                  </div>
-                  <small id="descHelp" class="form-text text-muted">
-                    Event sub-category is required.
-                  </small>
+                  </div> 
+                  <small *ngIf="saved && f.subcategory_id.errors" id="titleHelp" class="form-text invalid-feedback">
+                    Event sub-category type is required.
+                  </small>              
                 </div>
               </div>
             </div>
@@ -125,11 +125,8 @@
             <!-- tags -->
             <div class="form-group">
               <div class="form-floating mb-3">
-                <input [(ngModel)]="basicInfoModel.tags" type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event">
-                <label for="floatingTags">Tags</label>
-                <small id="titleHelp" class="form-text text-muted">
-                  Tags are required.
-                </small>
+                <input type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
+                <label for="floatingTags">Tags</label>                
               </div>
             </div>
             <!-- /.tags -->
@@ -192,10 +189,10 @@
 
           <div class="form-body">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              <li class="nav-item" role="presentation">
+              <li class="nav-item" role="presentation" (click)="setRecurring(0)">
                 <a class="nav-link active" id="pills-onetime-tab" data-toggle="pill" href="#pills-onetime" role="tab" aria-controls="pills-onetime" aria-selected="true">One-time Event</a>
               </li>
-              <li class="nav-item" role="presentation">
+              <li class="nav-item" role="presentation" (click)="setRecurring(1)">
                 <a class="nav-link" id="pills-recurring-tab" data-toggle="pill" href="#pills-recurring" role="tab" aria-controls="pills-recurring" aria-selected="false">Recurring Event</a>
               </li>
             </ul>
@@ -207,11 +204,16 @@
                   <div class="row">
                     <div class="col">
                       <div class="form-floating">
-                        <div class="form-floating mb-3">
-                          <input [(ngModel)]="basicInfoModel.start_date" type="text" class="form-control" id="floatingStartDate" aria-describedby="titleHelp" placeholder="Start date">
+                        <div class="form-floating mb-3 input-group">
+                          <input type="text" class="form-control" id="floatingStartDate" aria-describedby="titleHelp" placeholder="Start date"
+                            formControlName="start_date" ngbDatepicker #sd="ngbDatepicker"
+                            [ngClass]="{'is-invalid': saved && f.start_date.errors, 'is-valid': !f.start_date.errors}">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button"></button>
+                          </div>
                           <label for="floatingStartDate">Start Date</label>
-                          <small id="titleHelp" class="form-text text-muted">
-                            Start date is required.
+                          <small *ngIf="saved && f.start_date.errors" id="titleHelp" class="form-text invalid-feedback">
+                            Start date type is required.
                           </small>
                         </div>
                       </div>
@@ -219,11 +221,16 @@
 
                     <div class="col">
                       <div class="form-floating">
-                        <div class="form-floating mb-3">
-                          <input [(ngModel)]="basicInfoModel.end_date" type="text" class="form-control" id="floatingEndDate" aria-describedby="titleHelp" placeholder="End date">
+                        <div class="form-floating mb-3 input-group">
+                          <input type="text" class="form-control" id="floatingEndDate" aria-describedby="titleHelp" placeholder="End date"
+                            formControlName="end_date" ngbDatepicker #ed="ngbDatepicker"
+                            [ngClass]="{'is-invalid': saved && f.end_date.errors, 'is-valid': !f.end_date.errors}">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button"></button>
+                          </div>
                           <label for="floatingEndDate">End Date</label>
-                          <small id="titleHelp" class="form-text text-muted">
-                            End date is required.
+                          <small *ngIf="saved && f.end_date.errors" id="titleHelp" class="form-text invalid-feedback">
+                            End date type is required.
                           </small>
                         </div>
                       </div>
@@ -233,15 +240,18 @@
                 <!-- /.end -->
 
                 <!-- start & end time -->
-                <!-- <div class="form-group">
+                <div class="form-group">
                   <div class="row">
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <input [(ngModel)]="basicInfoModel.start_time" type="text" class="form-control" id="floatingStartTime" aria-describedby="titleHelp" placeholder="Start time">
+                          <!-- <input type="text" class="form-control" id="floatingStartTime" aria-describedby="titleHelp" placeholder="Start time"
+                            formControlName="start_time" [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"> -->
+                          <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time" 
+                            [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"></ngb-timepicker>
                           <label for="floatingStartTime">Start Time</label>
-                          <small id="titleHelp" class="form-text text-muted">
-                            Start time is required.
+                          <small *ngIf="saved && f.start_time.errors" id="titleHelp" class="form-text invalid-feedback">
+                            Start time type is required.
                           </small>
                         </div>
                       </div>
@@ -249,17 +259,20 @@
 
                     <div class="col">
                       <div class="form-floating">
-                        <div class="form-floating mb-3">
-                          <input [(ngModel)]="basicInfoModel.end_time" type="text" class="form-control" id="floatingEndTime" aria-describedby="titleHelp" placeholder="End time">
+                        <div class="form-floating mb-3 input-group">
+                          <!-- <input type="text" class="form-control" id="floatingEndTime" aria-describedby="titleHelp" placeholder="End time"
+                            formControlName="end_time" [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"> -->
+                          <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time" 
+                            [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"></ngb-timepicker>
                           <label for="floatingEndTime">End Time</label>
-                          <small id="titleHelp" class="form-text text-muted">
-                            End time is required.
+                          <small *ngIf="saved && f.end_time.errors" id="titleHelp" class="form-text invalid-feedback">
+                            End time type is required.
                           </small>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <!-- /.end -->
               </div>
               <!-- /.end one-time event -->
@@ -300,12 +313,12 @@
             <!-- start & end date -->
             <div class="form-group">
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" (click)="setHosting(1)">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
                     Location
                   </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item" role="presentation" (click)="setHosting(1)">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
                     Online Event
                   </a>
@@ -313,14 +326,27 @@
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <div class="form-check my-2 py-2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="venue_tobe_announced">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Venue Yet to be announced
+                    </label>
+                  </div>
+
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input [(ngModel)]="basicInfoModel.venue" type="text" class="form-control" id="floatingAddress" aria-describedby="titleHelp" placeholder="Address">
-                        <label for="floatingAddress">Enter Address / Place</label>
-                        <small id="titleHelp" class="form-text text-muted">
-                          Location is required.
-                        </small>
+                        <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" formControlName="venue">
+                        <label for="floatingVenue">Venue</label>                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row form-group">
+                    <div class="col-lg-5 form-floating">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" formControlName="gps">
+                        <label for="floatingGps">GPS Cordinates</label>                        
                       </div>
                     </div>
                   </div>
@@ -336,7 +362,7 @@
         <!--
           /. End Location Section
         -->
-      </div>
+      </form>
     </div>
 
     <div class="col-2"></div>
