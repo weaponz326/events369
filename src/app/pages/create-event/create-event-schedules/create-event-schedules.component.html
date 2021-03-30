@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-3 only-non-mobile">
       <!-- <div class="page-info">
         <div class="title">
           <h1>Let's get scheduling, shall we?</h1>
@@ -34,9 +34,11 @@
       <app-create-event-side-menu [currentPage]="'schedule'"></app-create-event-side-menu>
     </div>
 
-    <div class="col-1"></div>
+    <div class="col-1 only-non-mobile"></div>
 
-    <div class="col-5">
+    <div class="col-md-8 col-lg-5 col-sm-12">
+      <!-- As a link -->
+      <app-side-menu-toggle></app-side-menu-toggle>
       <div class="form">
         <div class="divider mb-1 mt-5"></div>
 
@@ -194,18 +196,24 @@
         </div>
         <br>
       </div> -->
-      <div class="navigation">
-        <div class="nav-buttons">
+      
+      <div class="col-sm-12 navigation">
+        <div class="nav-buttons only-non-mobile">
           <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+          <app-loading-button *ngIf="isLoading"></app-loading-button>
+        </div>
+        <div class="nav-buttons only-mobile">
+          <button type="button" class="btn btn-md btn-warning mr-3" (click)="previous()">Previous</button>
+          <button *ngIf="!isLoading" type="button" class="btn btn-md btn-primary" (click)="save()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>
         </div>
       </div>
 
     </div>
 
-    <div class="col-2"></div>
+    <div class="col-2 only-non-mobile"></div>
 
-  </div>
+  </div> 
   
 </div>

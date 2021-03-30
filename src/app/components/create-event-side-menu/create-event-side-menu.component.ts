@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThemeSwitcherService } from 'src/app/services/theme-switcher.service';
+declare var $: any;
 
 
 @Component({
@@ -34,9 +35,13 @@ export class CreateEventSideMenuComponent implements OnInit {
       this.dark_theme = false;
 
     }
-    
-    
   
+  }
+
+  hideSideMenu() {
+    
+      $('#side_bar').attr('class', 'sidenav slide-left');
+    
   }
 
 }
