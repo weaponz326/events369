@@ -18,7 +18,8 @@ export class AdBannerComponent implements OnInit {
       dots: true,
       margin: 30,
       center: true,
-      loop: true
+      loop: true,
+      autoplay: true
     };
  }
 
