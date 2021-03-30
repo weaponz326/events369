@@ -16,8 +16,8 @@ export class EndpointService {
 
   constructor() {
     this.environment = environment.production ? 'dev' : 'prod';
-    this.productionApiHost = '';
-    this.localApiHost = 'http://127.0.0.1:8000/';
+    this.productionApiHost = 'http://events369.logitall.biz/api';
+    this.localApiHost = 'http://events369.logitall.biz/api';
     this.apiHost = this.environment == 'dev' ? this.localApiHost : this.productionApiHost;
     this.storageHost = this.environment == 'dev' ? this.apiHost + 'storage/' : this.productionApiHost + 'storage/';
   }

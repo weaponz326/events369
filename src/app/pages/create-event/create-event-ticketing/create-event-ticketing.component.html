@@ -1,4 +1,4 @@
-<app-create-event-navbar></app-create-event-navbar>
+<app-navbar></app-navbar>
 <div class="container-fluid">
   <div class="row">
 
@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-4">
-      <div class="form">
+      <form class="form" [formGroup]="form" (ngSubmit)="create()">
         <div class="divider mb-1 mt-5"></div>
         <div class="form-item">
           <div class="form-header">
@@ -54,9 +54,10 @@
                 <div class="col">
                   <div class="form-floating">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="ticket name"
+                        formControlName="name" [ngClass]="{'is-invalid': saved && f.name.errors, 'is-valid': !f.name.errors}">
                       <label for="floatingTitle">Name</label>
-                      <small id="titleHelp" class="form-text text-muted">
+                      <small *ngIf="saved && f.name.errors" id="titleHelp" class="form-text invalid-feedback">
                         Ticket name is required.
                       </small>
                     </div>
@@ -66,11 +67,12 @@
                 <div class="col">
                   <div class="form-floating">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="quantity"
+                        formControlName="quantity">
                       <label for="floatingTitle">Available quantity</label>
-                      <small id="titleHelp" class="form-text text-muted">
+                      <!-- <small id="titleHelp" class="form-text text-muted">
                         Quantity is required.
-                      </small>
+                      </small> -->
                     </div>
                   </div>
                 </div>
@@ -83,25 +85,26 @@
               <div class="row">
                 <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label" formControlName="currency">
                       <option selected>Select Currency</option>
-                      <option value="1">GHS</option>
-                      <option value="2">USD</option>
+                      <option value="GHS">GHS</option>
+                      <option value="USD">USD</option>
                     </select>
                     <label for="floatingSelect">Currency</label>
                   </div>
-                  <small id="descHelp" class="form-text text-muted">
+                  <!-- <small id="descHelp" class="form-text text-muted">
                     Currency is required.
-                  </small>
+                  </small> -->
                 </div>
                 <div class="col">
                   <div class="form-floating">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="price"
+                      formControlName="price">
                       <label for="floatingTitle">Price</label>
-                      <small id="titleHelp" class="form-text text-muted">
+                      <!-- <small id="titleHelp" class="form-text text-muted">
                         Price is required.
-                      </small>
+                      </small> -->
                     </div>
                   </div>
                 </div>
@@ -177,7 +180,8 @@
             <!-- buttons -->
             <div class="navigation form-group">
               <div class="submit-button">
-                <button type="button" class="btn btn-lg btn-primary">Save Ticket</button>
+                <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Save Ticket</button>
+                <app-loading-button *ngIf="isSaving"></app-loading-button>
               </div>
             </div>
             
@@ -187,7 +191,7 @@
         <!--
           /. End Advanced Section
         -->
-      </div>
+      </form>
     </div>
 
     <div class="col-4">
@@ -206,11 +210,15 @@
             </div>
           </div>
 
+          <div *ngIf="isLoadingTickets" class="pt-3 pb-3 text-center">
+            <span class="spinner-border spinner-border-sm" style="width: 2em; height: 2em" role="status" aria-hidden="true"></span>
+          </div>
+
           <div class="form-body">
             <!-- start & end date -->
             <div class="form-group">
               <ul class="list-unstyled">
-                <li>
+                <li *ngFor="let ticket of createdTicketList; let i=index">
                   <div class="card mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-2">
@@ -218,43 +226,21 @@
                       </div>
                       <div class="col-md-6">
                         <div class="card-body">
-                          <h5 class="card-title">Ticket Name</h5>
+                          <h5 class="card-title">{{ ticket.name }}</h5>
                           <p class="card-text">
-                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / 250 <br>
-                            USD 27.50
+                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / {{ ticket.quantity }} <br>
+                            {{ ticket.currency }} {{ ticket.price }}
                           </p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <p class="card-text">
+                            <small class="text-muted">
+                              {{ ticket.sales_startdate_time | date }} -
+                              {{ ticket.sales_enddate_time | date }}
+                            </small>
+                          </p>
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <button class="btn btn-light" type="button">
-                          <i class="bi-pencil"></i>
-                        </button>
-                        <button class="btn btn-light" type="button">
-                          <i class="bi-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="card mb-3">
-                    <div class="row no-gutters">
-                      <div class="col-md-2">
-                        <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="card-body">
-                          <h5 class="card-title">Ticket Name</h5>
-                          <p class="card-text">
-                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / 250 <br>
-                            USD 27.50
-                          </p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-light" type="button">
+                        <button class="btn btn-light" type="button" (click)="edit(ticket, i)">
                           <i class="bi-pencil"></i>
                         </button>
                         <button class="btn btn-light" type="button">
