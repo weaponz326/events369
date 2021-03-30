@@ -10,7 +10,7 @@
         </div>
 
         <div class="image">
-          <i class="bi-credit-card-2-front" style="font-size: 10em;"></i>
+          <i class="bi-credit-card-2-front" style="font-size: 7em;"></i>
         </div>
 
         <div class="description">
@@ -178,8 +178,13 @@
 
             <!-- buttons -->
             <div class="form-group">
-              <div class="submit-button">
+              <div *ngIf="!isEditMode" class="submit-button">
                 <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Save Ticket</button>
+                <app-loading-button *ngIf="isSaving"></app-loading-button>
+              </div>
+
+              <div *ngIf="isEditMode" class="submit-button">
+                <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Update Ticket</button>
                 <app-loading-button *ngIf="isSaving"></app-loading-button>
               </div>
             </div>
@@ -226,7 +231,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{ ticket.name }}</h5>
                           <p class="card-text">
-                            On Sale &nbsp; &nbsp; - &nbsp; &nbsp; 0 / {{ ticket.quantity }} <br>
+                            On Sale &nbsp; &nbsp; - {{ ticket.max_quantity }} <br>
                             {{ ticket.currency }} {{ ticket.price }}
                           </p>
                           <p class="card-text">
