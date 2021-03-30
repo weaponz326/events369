@@ -67,6 +67,7 @@ import { FormHeaderComponent } from './components/auth-forms/form-header/form-he
 import { FormFooterComponent } from './components/auth-forms/form-footer/form-footer.component';
 import { CreateEventSideMenuComponent } from './components/create-event-side-menu/create-event-side-menu.component';
 import { CreateEventNavbarComponent } from './components/create-event-navbar/create-event-navbar.component';
+import { SideMenuToggleComponent } from './components/side-menu-toggle/side-menu-toggle.component';
 
 
 @NgModule({
@@ -119,6 +120,7 @@ import { CreateEventNavbarComponent } from './components/create-event-navbar/cre
     FormFooterComponent,
     CreateEventSideMenuComponent,
     CreateEventNavbarComponent,
+    SideMenuToggleComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,8 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-4">
-      <div class="page-info">
+    <div class="col-3">
+      <!-- <div class="page-info">
         <div class="title">
           <h1>Let's get finances in order.</h1>
           <h5>Steps 4 <span class="of">of</span> 5</h5>
@@ -30,7 +30,8 @@
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
         </div>
-      </div>
+      </div> -->
+    <app-create-event-side-menu [currentPage]="'ticketing'"></app-create-event-side-menu>
     </div>
 
     <div class="col-4">
@@ -188,6 +189,7 @@
                 <app-loading-button *ngIf="isSaving"></app-loading-button>
               </div>
             </div>
+            
             <!-- /.buttons -->
           </div>
         </div>
@@ -261,7 +263,18 @@
         <!--
           /. End Tickets List
         -->
+        
     </div>
 
+    <div class="col-12">
+      
+      <div class="navigation">
+        <div class="nav-buttons">
+          <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Save & Continue</button>
+          <app-loading-button *ngIf="isLoading"></app-loading-button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
