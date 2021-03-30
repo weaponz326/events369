@@ -154,6 +154,10 @@ export class TicketsService {
   deleteTicket(ticketId: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = this.deleteTicketUrl = ticketId;
+      this.http.post(url, {}, { headers: this.headers }).subscribe(
+        res => {},
+        err =>{}
+      );
     });
   }
 }

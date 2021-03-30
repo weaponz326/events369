@@ -198,14 +198,15 @@ export class CreateEventTicketingComponent implements OnInit {
   }
 
   deleteTicket(ticketId: string, index: number): void {
-    this.ticketService.deleteTicket(ticketId).then(
-      ok => {
-        ok
-          ? this.createdTicketList.splice(index, 1)
-          : this.displayFailedDeleteToast();
-      },
-      err => {}
-    );
+    this.createdTicketList.splice(index, 1);
+    // this.ticketService.deleteTicket(ticketId).then(
+    //   ok => {
+    //     ok
+    //       ? this.createdTicketList.splice(index, 1)
+    //       : this.displayFailedDeleteToast();
+    //   },
+    //   err => {}
+    // );
   }
 
 }
