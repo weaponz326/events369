@@ -15,6 +15,8 @@ export class CreateEventTicketingComponent implements OnInit {
   saved: boolean;
   isEditMode: boolean;
   isSaving: boolean;
+  selectedTicketId: string;
+  selectedTicketIndex: number;
   isLoadingTickets: boolean;
   createdTicketList: Array<any>;
   form: FormGroup = new FormGroup({});
@@ -30,6 +32,9 @@ export class CreateEventTicketingComponent implements OnInit {
     this.isEditMode = false;
     this.isLoadingTickets = false;
     this.createdTicketList = [];
+    this.selectedTicketIndex = -1;
+    this.selectedTicketId = '';
+
     this.getExistingTickets();
   }
 
@@ -71,20 +76,25 @@ export class CreateEventTicketingComponent implements OnInit {
     this.saved = true;
     if (this.form.valid) {
       console.log('form is valid');
-      this.isSaving = true;
-      this.createTicket().then(
-        ok => {
-          if (ok) {
-            this.isSaving = false;
-            this.form.reset();
-          }
-          else {
-            this.isSaving = false;
-            alert('didnt create');
-          }
-        },
-        err => {}
-      );
+      if (!this.isEditMode) {
+        this.isSaving = true;
+        this.createTicket().then(
+          ok => {
+            if (ok) {
+              this.isSaving = false;
+              this.form.reset();
+            }
+            else {
+              this.isSaving = false;
+              alert('didnt create');
+            }
+          },
+          err => {}
+        );
+      }
+      else {
+        this.editTicket(this.selectedTicketId, this.selectedTicketIndex);
+      }
     }
   }
 
@@ -152,22 +162,51 @@ export class CreateEventTicketingComponent implements OnInit {
   edit(ticket: any, index: number): void {
     this.isEditMode = true;
     this.f.name.setValue(ticket.name);
+    this.f.price.setValue(ticket.price);
+    this.f.currency.setValue(ticket.currency);
     this.f.quantity.setValue(ticket.max_quantity);
+    this.f.salesEndDate.setValue(ticket.sales_enddate_time);
+    this.f.salesStartDate.setValue(ticket.sales_startdate_time);
+
+    this.selectedTicketId = ticket.id;
+    this.selectedTicketIndex = index;
   }
 
-  editTicket(): void {}
-
-  delete(id: string, index: number): void {}
-
-  deleteTicket(ticketId: string, index: number): void {
-    this.ticketService.deleteTicket(ticketId).then(
+  editTicket(ticketId: string, index: number): void {
+    this.isSaving = true;
+    const ticket = this.getFormData();
+    this.ticketService.editTicket(ticketId, ticket).then(
       ok => {
-        ok
-          ? this.createdTicketList.splice(index, 1)
-          : this.displayFailedDeleteToast();
+        if (ok) {
+          this.isSaving = false;
+          this.isEditMode = false;
+          const editedTicket = this.createdTicketList[index];
+          editedTicket.name = ticket.name;
+          editedTicket.max_quantity = ticket.quantity;
+          editedTicket.price = ticket.price,
+          editedTicket.sales_enddate_time = ticket.salesEndDate,
+          editedTicket.sales_startdate_time = ticket.salesStartDate,
+          editedTicket.currency = ticket.currency;
+        }
       },
       err => {}
     );
+  }
+
+  delete(id: string, index: number): void {
+    this.deleteTicket(id, index);
+  }
+
+  deleteTicket(ticketId: string, index: number): void {
+    this.createdTicketList.splice(index, 1);
+    // this.ticketService.deleteTicket(ticketId).then(
+    //   ok => {
+    //     ok
+    //       ? this.createdTicketList.splice(index, 1)
+    //       : this.displayFailedDeleteToast();
+    //   },
+    //   err => {}
+    // );
   }
 
 }
