@@ -69,7 +69,7 @@
   position: relative;
   padding-top: 40px;
   padding-bottom: 30px;
-  padding-right: 50px;
+  padding-right: 0px;
   float: right;
 }
 
@@ -156,20 +156,24 @@
   font-weight: 200;
 }
 
-@media (max-width: 576px) {
-  // .only-non-mobile {
-  //   display: none;
-  // }
-  // .only-mobile {
-  //   display: block;
-  // }
+@media (max-width: 780px) {
+  .only-non-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-mobile {
+    // display: block;
+    visibility: visible;
+  }
 }
 
-@media (min-width: 577px) {
-  // .only-mobile {
-  //   display: none;
-  // }
-  // .only-non-mobile {
-  //   display: block;
-  // }
+@media (min-width: 781px) {
+  .only-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-non-mobile {
+    // display: block;
+    visibility: visible;
+  }
 }
