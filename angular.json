@@ -41,8 +41,6 @@
               "node_modules/owl.carousel/dist/assets/owl.carousel.css",
               "node_modules/owl.carousel/dist/assets/owl.theme.default.css",
               "src/styles.scss",
-              "src/app/themes/uilib.css",
-              "src/app/themes/utils.css",
               "src/app/themes/app.scss"
             ],
             "scripts": [

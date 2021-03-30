@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ThemeSwitcherService } from 'src/app/services/theme-switcher.service';
+declare var $: any;
+
 
 @Component({
   selector: 'app-create-event-side-menu',
@@ -8,8 +10,9 @@ import { ThemeSwitcherService } from 'src/app/services/theme-switcher.service';
 })
 export class CreateEventSideMenuComponent implements OnInit {
 
+  @Input() currentPage: any;
+
   dark_theme: boolean = false
-  currentPage: string = 'schedule';
 
   constructor(
     private themeSwitcher: ThemeSwitcherService
@@ -32,9 +35,13 @@ export class CreateEventSideMenuComponent implements OnInit {
       this.dark_theme = false;
 
     }
-    
-    
   
+  }
+
+  hideSideMenu() {
+    
+      $('#side_bar').attr('class', 'sidenav slide-left');
+    
   }
 
 }

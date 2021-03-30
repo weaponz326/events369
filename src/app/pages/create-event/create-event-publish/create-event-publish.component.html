@@ -1,8 +1,9 @@
+<app-create-event-navbar></app-create-event-navbar>
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-4">
-      <div class="page-info">
+    <div class="col-3">
+      <!-- <div class="page-info">
         <div class="title">
           <h1>Let's publish your event. It's ready.</h1>
           <h5>Steps 5 <span class="of">of</span> 5</h5>
@@ -28,7 +29,8 @@
             <button type="button" class="btn btn-lg btn-primary" (lick)="publish()">Publish</button>
           </div>
         </div>
-      </div>
+      </div> -->
+      <app-create-event-side-menu [currentPage]="'publishing'"></app-create-event-side-menu>
     </div>
 
     <div class="col-1"></div>
@@ -142,9 +144,16 @@
         <!--
           /. End Date time Section
         -->
+        
+        <div class="navigation">
+          <div class="nav-buttons">
+            <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+            <button type="button" class="btn btn-lg btn-primary" (lick)="publish()">Publish</button>
+          </div>
+        </div>
       </div>
     </div>
-
+    
     <div class="col-2"></div>
 
   </div>

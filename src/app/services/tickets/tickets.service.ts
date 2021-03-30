@@ -17,7 +17,7 @@ export class TicketsService {
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
-    this.editTicketUrl = this.endpoint.apiHost + '/edit_ticket/';
+    this.editTicketUrl = this.endpoint.apiHost + '/v1/edit_ticket/';
     this.getTicketUrl = this.endpoint.apiHost + '/get_events_tickets/';
     this.createTicketUrtl = this.endpoint.apiHost + '/create_ticket';
     this.hasTicketUrl = this.endpoint.apiHost + '/hasTicket/';
@@ -72,12 +72,12 @@ export class TicketsService {
     return new Promise((resolve, reject) => {
       const url = this.editTicketUrl + ticketId;
       const body = {
-        'event_id': ticket.eventId,
+        // 'event_id': ticket.eventId,
         'name': ticket.name,
         'quantity': ticket.quantity,
         'price': ticket.price,
-        'sales_startdate': ticket.startDate,
-        'sales_enddate': ticket.endDate,
+        'sales_startdate': ticket.salesStartDate,
+        'sales_enddate': ticket.salesEndDate,
         'currency': ticket.currency
       };
 
@@ -154,6 +154,10 @@ export class TicketsService {
   deleteTicket(ticketId: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = this.deleteTicketUrl = ticketId;
+      this.http.post(url, {}, { headers: this.headers }).subscribe(
+        res => {},
+        err =>{}
+      );
     });
   }
 }
