@@ -29,7 +29,7 @@ export class CreateBasicInfoComponent implements OnInit {
     console.log(this.basicInfoModel);
     this.isLoading = true;
     
-      this.router.navigateByUrl('/create_event/schedule');
+      this.router.navigateByUrl('/create_event/more_details');
     // this.createEvent.createBasicInfo(this.basicInfoModel)
     //   .subscribe(
     //     res => {
