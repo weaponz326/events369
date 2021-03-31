@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -7,6 +7,9 @@ declare var $: any;
   styleUrls: ['./side-menu-toggle.component.scss']
 })
 export class SideMenuToggleComponent implements OnInit {
+
+  @Input() eventTitle: any;
+  @Input() eventDate: any;
   
   constructor() {
     // console.log(_x.side)
@@ -18,7 +21,7 @@ export class SideMenuToggleComponent implements OnInit {
 
   toggleSideMenu() {
     
-    $('#side_bar').attr('class', 'sidenav visible slide-right');
+    $('#side_bar').attr('class', 'sidenav slide-right');
   }
 
 }

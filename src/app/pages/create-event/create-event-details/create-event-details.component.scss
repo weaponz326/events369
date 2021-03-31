@@ -4,11 +4,12 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 280px;
+  background-color: #fff;
   right: 0;
   width: 34vw;
   overflow: auto;
-  background-color: #f9f9f9;
+  // background-color: #f9f9f9;
 }
 
 .page-info > .title {
@@ -156,6 +157,10 @@
   font-weight: 200;
 }
 
+.file-input {
+  display: none;
+}
+
 @media (max-width: 780px) {
   .only-non-mobile {
     // display: none;
@@ -164,6 +169,10 @@
   .only-mobile {
     // display: block;
     visibility: visible;
+  }
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
   }
 }
 
@@ -176,8 +185,16 @@
     // display: block;
     visibility: visible;
   }
+
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
+  }
 }
 
-.file-input {
-  display: none;
+@media (min-width: 1400px) {
+  .only-xx-non-mobile {
+    visibility: visible;
+    display: block;
+  }
 }

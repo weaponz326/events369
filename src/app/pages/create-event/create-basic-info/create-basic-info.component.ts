@@ -19,6 +19,9 @@ export class CreateBasicInfoComponent implements OnInit {
   categoriesData: any[];
   subCategoriesData: any[];
 
+  url: string = ''
+  currentRoute: string = ''
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -36,6 +39,12 @@ export class CreateBasicInfoComponent implements OnInit {
     this.getCategories();  
     this.disableSubcategory();
     this.initEnableSubcategory();
+
+    this.url = this.router.url
+    var ind1 = this.url.indexOf('/');
+    var ind2 = this.url.indexOf('/', ind1 + 1);
+
+    this.currentRoute = this.url.substring(ind2 + 1);
   }
 
   save(): void {
