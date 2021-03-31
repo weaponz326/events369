@@ -1,7 +1,7 @@
 /* The sidebar menu */
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 250px; /* Set the width of the sidebar */
+    width: 0px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 0; /* Stay on top */
     top: 0; /* Stay at the top */
@@ -10,8 +10,8 @@
     background-color: #f8f9fa;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 120px;
-    margin-left: -250px;
-    transition-property: margin-left;
+    transition: 0.5s;
+    overflow-y: hidden;
   }
   
   .sidenav .bottom {
@@ -26,11 +26,13 @@
   }
 
   .slide-left {
-    margin-left: -250px;
+    width: 0px;
   }
 
   .slide-right {
-    margin-left: 0px;
+    width: 250px !important;
+    visibility: visible;
+    z-index: 999;
   }
 
   
@@ -64,6 +66,9 @@
         visibility: hidden;
         transition: 1s;
       }
+      .sidenav {
+        width: 0px;
+      }
       .visible {
           visibility: visible;
           z-index: 999;
@@ -71,11 +76,20 @@
       .hide {
         display: none;
       }
+      .display-none {
+        display: block;
+      }
   }
 
   @media (min-width: 781px) {
     .sidenav {
-      margin-left: 0px !important;
+      width: 250px;
+    }
+    .display-none {
+      display: none;
+    }
+    .slide-left {
+      width: 250px !important;
     }
   }
   // added styles 

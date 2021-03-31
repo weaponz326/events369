@@ -1,17 +1,17 @@
-<div id="side_bar" class="sidenav hidden" style="background-color: var(--ev-create-event-side-menu-background);color: var(--primary-color);">
+<div id="side_bar" class="sidenav" style="background-color: var(--ev-create-event-side-menu-background);color: var(--primary-color);">
     <div class="container title ev-margin-top-bottom">
         <h4 class="ev-font-size-xxlarge hide">
            A Chat With Rashida Jones</h4>
-        <h4 class="ev-font-size-xxlarge only-mobile" (click)="hideSideMenu()"><i class="bi bi-chevron-left"></i></h4>
+        <h4 class="ev-font-size-xxlarge display-none only-mobile" (click)="hideSideMenu()"><i class="bi bi-chevron-left"></i></h4>
 
-        <span class="ev-event-date">Sat, May 8, 2021 <span class="of">7:00</span> PM</span>
+        <span class="ev-event-date hide">Sat, May 8, 2021 <span class="of">7:00</span> PM</span>
       </div>
-    <a routerLink="/create_event/basic_info">
+    <a routerLink="/create_event/edit_basic_info" [class.active]="currentPage === 'edit_basic_info'">
        <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info</a>
-    <a routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span> Schedule</a>
-    <a routerLink="/create_event/more_details" [class.active]="currentPage === 'details'"><span class="ev-checkmark">3</span> More Details</a>
-    <a routerLink="/create_event/ticketing" [class.active]="currentPage === 'ticketing'"><span class="ev-checkmark">4</span> Ticketing</a>
-    <a routerLink="/create_event/publishing" [class.active]="currentPage === 'publishing'"><span class="ev-checkmark">5</span> Publishing</a>
+    <!-- <a routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span> Schedule</a> -->
+    <a routerLink="/create_event/more_details" [class.active]="currentPage === 'details'"><span class="ev-checkmark">2</span> More Details</a>
+    <a routerLink="/create_event/ticketing" [class.active]="currentPage === 'ticketing'"><span class="ev-checkmark">3</span> Ticketing</a>
+    <a routerLink="/create_event/publishing" [class.active]="currentPage === 'publishing'"><span class="ev-checkmark">4</span> Publishing</a>
   
     <div class="bottom">
       <div class="list-group">

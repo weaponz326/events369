@@ -20,7 +20,7 @@ export class CreateEventService {
 
   
   // authToken = new HttpHeaders().set('Authorization', sessionStorage.getItem('events_auth_token'));
-  // headers = { Token: this.authToken };
+  // headers = { Token: this.authToken }; 
 
   createBasicInfo(event: BasicInfo): Observable<any> {
     // const form = new FormData();

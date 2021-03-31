@@ -67,7 +67,7 @@ export class TicketsService {
    * @param ticketId Ticket ID.
    * @param ticket Ticket
    * @returns 
-   */
+   */ 
   editTicket(ticketId: string, ticket: any): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = this.editTicketUrl + ticketId;
