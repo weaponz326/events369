@@ -6,6 +6,16 @@
 .bi-list {
     font-size: x-large !important;
 }
+.navbar-brand {
+  display: inline-flex;
+  color: var(--ev-create-event-nav-background) !important;
+}
+
+.navbar-brand span {
+  display: inline-block;
+  margin-left: 10%;
+  margin-top: -1vh;
+}
 
 @media (max-width: 780px) {
     .only-non-mobile {

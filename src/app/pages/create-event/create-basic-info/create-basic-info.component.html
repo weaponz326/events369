@@ -1,9 +1,10 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="currentRoute === 'basic_info'"></app-navbar>
+<app-create-event-navbar *ngIf="currentRoute === 'edit_basic_info'"></app-create-event-navbar>
 <div class="container-fluid">
   <div class="row">
 
     <div class="col-4">
-      <div class="page-info">
+      <div class="page-info" *ngIf="currentRoute === 'basic_info'">
         <div class="title ev-margin-top-bottom">
           <h1>Let's start you off easy!</h1>
           <h5>Steps 1 <span class="of">of</span> 5</h5>
@@ -32,11 +33,15 @@
           <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span>
         </div>
       </div>
+
+      
+      <app-create-event-side-menu [currentPage]="'edit_basic_info'" *ngIf="currentRoute === 'edit_basic_info'"></app-create-event-side-menu>
     </div>
 
-    <div class="col-1"></div>
+    <div class="col-1 only-non-mobile"></div>
 
-    <div class="col-5">
+    <div class="col-md-7 col-lg-5 col-sm-12">
+      <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'"></app-side-menu-toggle>
       <div class="form">
         <div class="divider mb-1 mt-5"></div>
         <div class="form-item">
@@ -340,7 +345,7 @@
       </div>
     </div>
 
-    <div class="col-2"></div>
+    <div class="col-2  only-non-mobile"></div>
 
   </div>
 </div>

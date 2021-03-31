@@ -86,6 +86,10 @@ const routes: Routes = [
         component: CreateBasicInfoComponent
       },
       {
+        path: 'edit_basic_info',
+        component: CreateBasicInfoComponent
+      },
+      {
         path: 'schedule',
         component: CreateEventSchedulesComponent
       },

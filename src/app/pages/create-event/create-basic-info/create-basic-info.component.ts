@@ -17,16 +17,26 @@ export class CreateBasicInfoComponent implements OnInit {
 
   basicInfoModel = new BasicInfo('', '', 0, 0, 0, '', moment().format('YYYY-MM-DD hh:mm:ss'), moment().format('YYYY-MM-DD hh:mm:ss'), 0, '', '', 0, 0);
 
+  url: string = ''
+  currentRoute: string = ''
+
   constructor(private router: Router, private createEvent: CreateEventService) {
     this.isLoading = false;
     this.saveError = false;
   }
 
   ngOnInit(): void {
+
+    this.url = this.router.url
+    var ind1 = this.url.indexOf('/');
+    var ind2 = this.url.indexOf('/', ind1 + 1);
+
+    this.currentRoute = this.url.substring(ind2 + 1);
+    
   }
 
   save() {
-    console.log(this.basicInfoModel);
+    // console.log(this.basicInfoModel);
     this.isLoading = true;
     
       this.router.navigateByUrl('/create_event/more_details');
