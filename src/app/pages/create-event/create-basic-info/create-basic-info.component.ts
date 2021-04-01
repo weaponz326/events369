@@ -88,7 +88,7 @@ export class CreateBasicInfoComponent implements OnInit {
         res => {
           if (res) {
             this.isLoading = false;
-            this.router.navigateByUrl('/create_event/organizers');
+            this.router.navigateByUrl('/create_event/more_details');
           }
           else {
             this.isLoading = false;
