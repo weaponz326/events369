@@ -14,11 +14,16 @@ export class CreateEventSideMenuComponent implements OnInit {
 
   dark_theme: boolean = false
 
+  event : any = {
+    recurring: 'Yes',
+  }
+
   constructor(
     private themeSwitcher: ThemeSwitcherService
   ) { }
 
   ngOnInit(): void {
+    console.log(this.event.recurring)
   }
 
   
