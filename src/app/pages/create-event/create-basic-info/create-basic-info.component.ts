@@ -69,12 +69,12 @@ export class CreateBasicInfoComponent implements OnInit {
       end_date: ['', Validators.required],
       start_time: ['', Validators.required],
       end_time: ['', Validators.required],
-      recurring: [''],
+      recurring: ['0'],
       type: ['', Validators.required],
       category_id: ['', Validators.required],
       subcategory_id: ['', Validators.required],
       tags: [''],
-      venue_tobe_announced: [''],
+      venue_tobe_announced: ['0'],
       hosting: ['']
     });
   }
@@ -109,15 +109,18 @@ export class CreateBasicInfoComponent implements OnInit {
       description: this.f.description.value,
       venue: this.f.venue.value,
       gps: this.f.gps.value,
-      start_date: this.f.start_date.value + ' ' + this.f.start_time.value,
-      end_date: this.f.end_date.value + ' ' + this.f.end_time.value,
+      start_date: '2021-04-04 01:30:00',
+      end_date: '2021-04-11 15:30:00',
+      // start_date: this.f.start_date.value + ' ' + this.f.start_time.value,
+      // end_date: this.f.end_date.value + ' ' + this.f.end_time.value,
       recurring: this.f.recurring.value,
       type: this.f.type.value,
       category_id: this.f.category_id.value,
       subcategory_id: this.f.subcategory_id.value,
       tags: this.f.tags.value,
       venue_tobe_announced: this.f.venue_tobe_announced.value,
-      hosting: this.f.hosting.value,      
+      hosting: this.f.hosting.value,
+      ticketing: this.f.type.value   
     };
     return data;
   }

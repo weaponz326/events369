@@ -30,7 +30,7 @@ export class BasicInfoService {
     return new Promise((resolve, reject) => {
       const body = {
         'title': event.title,        
-        'description': event.description,        
+        'description': event.description,
         'venue': event.venue,        
         'gps': event.gps,        
         'start_date': event.start_date,        
@@ -41,7 +41,8 @@ export class BasicInfoService {
         'subcategory_id': event.subcategory_id,        
         'tags': event.tags,        
         'venue_tobe_announced': event.venue_tobe_announced,        
-        'hosting': event.hosting,        
+        'hosting': event.hosting,
+        'ticketing': event.ticketing     
       };
 
       console.log(body);
