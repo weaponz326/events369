@@ -15,7 +15,7 @@ export class EventDetailsService {
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
-    this.editDetailsUrl = this.endpoint.apiHost + '/v1/edit_more_event_info';
+    this.editDetailsUrl = this.endpoint.apiHost + '/v1/edit_more_event_info/18';  // can't get event id for now
     this.getBasicUrl = this.endpoint.apiHost + '';  // not available
     this.updateBasicUrl = this.endpoint.apiHost + '';  // not available
   }
