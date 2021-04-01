@@ -157,6 +157,10 @@
   font-weight: 200;
 }
 
+.file-input {
+  display: none;
+}
+
 @media (max-width: 780px) {
   .only-non-mobile {
     // display: none;
@@ -181,6 +185,7 @@
     // display: block;
     visibility: visible;
   }
+
   .only-xx-non-mobile {
     visibility: hidden;
     display: none;

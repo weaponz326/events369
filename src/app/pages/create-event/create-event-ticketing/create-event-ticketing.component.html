@@ -75,10 +75,7 @@
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="quantity"
                         formControlName="quantity">
-                      <label for="floatingTitle">Available quantity</label>
-                      <!-- <small id="titleHelp" class="form-text text-muted">
-                        Quantity is required.
-                      </small> -->
+                      <label for="floatingTitle">Quantity</label>
                     </div>
                   </div>
                 </div>
@@ -98,9 +95,6 @@
                     </select>
                     <label for="floatingSelect">Currency</label>
                   </div>
-                  <!-- <small id="descHelp" class="form-text text-muted">
-                    Currency is required.
-                  </small> -->
                 </div>
                 <div class="col">
                   <div class="form-floating">
@@ -108,9 +102,6 @@
                       <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="price"
                       formControlName="price">
                       <label for="floatingTitle">Price</label>
-                      <!-- <small id="titleHelp" class="form-text text-muted">
-                        Price is required.
-                      </small> -->
                     </div>
                   </div>
                 </div>
@@ -144,7 +135,7 @@
                   <div class="form-floating">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="Start date">
-                      <label for="floatingTitle">Minimum quantity</label>
+                      <label for="floatingTitle">Min quantity</label>
                       <small id="titleHelp" class="form-text text-muted">
                         Minimum quantity is required.
                       </small>
@@ -156,7 +147,7 @@
                   <div class="form-floating">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="End date">
-                      <label for="floatingTitle">Maximum quantity</label>
+                      <label for="floatingTitle">Max quantity</label>
                       <small id="titleHelp" class="form-text text-muted">
                         Maximum quantity is required.
                       </small>
@@ -205,7 +196,7 @@
       </form>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-12 col-xs-12 col-md-4">
       <div class="divider mb-1 mt-5"></div>
 
         <!--
@@ -232,10 +223,10 @@
                 <li *ngFor="let ticket of createdTicketList; let i=index">
                   <div class="card mb-3">
                     <div class="row no-gutters">
-                      <div class="col-md-2">
+                      <div class="col-sm-4 col-md-2 d-xs-none d-sm-none d-md-block">
                         <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-sm-8 col-md-6">
                         <div class="card-body">
                           <h5 class="card-title">{{ ticket.name }}</h5>
                           <p class="card-text">

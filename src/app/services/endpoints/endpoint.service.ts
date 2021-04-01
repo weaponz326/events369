@@ -36,7 +36,7 @@ export class EndpointService {
       const httpHeaders = new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token,
+        'Authorization': 'Bearer ' + token
       });
 
       return httpHeaders;
@@ -44,7 +44,7 @@ export class EndpointService {
     else {
       const httpHeaders = new HttpHeaders({
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token,
+        'Authorization': 'Bearer ' + token
       });
 
       return httpHeaders;

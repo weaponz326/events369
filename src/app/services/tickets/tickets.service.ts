@@ -19,8 +19,8 @@ export class TicketsService {
     this.headers = this.endpoint.headers();
     this.editTicketUrl = this.endpoint.apiHost + '/v1/edit_ticket/';
     this.getTicketUrl = this.endpoint.apiHost + '/get_events_tickets/';
-    this.createTicketUrtl = this.endpoint.apiHost + '/create_ticket';
-    this.hasTicketUrl = this.endpoint.apiHost + '/hasTicket/';
+    this.createTicketUrtl = this.endpoint.apiHost + '/v1/create_ticket';
+    this.hasTicketUrl = this.endpoint.apiHost + '/v1/hasTicket/';
     this.deleteTicketUrl = this.endpoint.apiHost + '';
   }
 
