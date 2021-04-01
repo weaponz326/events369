@@ -43,10 +43,14 @@ export class CreateEventDetailsComponent implements OnInit {
   public get f(): any {
     return this.form.controls;
   }
-  
+
   initForm(): void {
     this.form = this.formBuilder.group({
-      banner: ['', Validators.required],
+      email: ['', Validators.email],
+      phone: ['', [Validators.minLength(12), Validators.maxLength(12)]],
+      hosted_on: [''],
+      banner_image: [''],
+      organizer: ['', Validators.required],
     });
   }
 
@@ -55,22 +59,22 @@ export class CreateEventDetailsComponent implements OnInit {
     if (this.form.valid) {
       console.log('form is valid');
       this.isLoading = true;
-      // this.eventDetailsService.createEventDetails(this.getFormData()).then(
-      //   res => {
-      //     if (res) {
-      //       this.isLoading = false;
-      //       this.router.navigateByUrl('/create_event/organizers');
-      //     }
-      //     else {
-      //       this.isLoading = false;
-      //       alert('didnt create');
-      //     }
-      //   },
-      //   err => {
-      //     console.log(err);
-      //     this.isLoading = false;
-      //   }
-      // );
+      this.eventDetailsService.editEventDetails(this.getFormData()).then(
+        res => {
+          if (res) {
+            this.isLoading = false;
+            this.router.navigateByUrl('/create_event/ticketing');
+          }
+          else {
+            this.isLoading = false;
+            alert('didnt create');
+          }
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
     }
   }
 
@@ -90,7 +94,11 @@ export class CreateEventDetailsComponent implements OnInit {
 
   getFormData(): any {
     const data = {
-      banner: this.f.banner.value,
+      email: this.f.email.value,
+      phone: this.f.phone.value,
+      hosted_on: this.f.hosted_on.value,
+      banner_image: this.f.banner_image.value,
+      organizer: this.f.organizer.value,
     };
     return data;
   }
