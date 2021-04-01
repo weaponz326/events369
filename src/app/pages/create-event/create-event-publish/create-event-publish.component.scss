@@ -173,3 +173,10 @@
     visibility: visible;
   }
 }
+
+@media (min-width: 1400px) {
+  .display-only-lg {
+    visibility: hidden;
+    display: none;
+  }
+}
