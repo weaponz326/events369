@@ -34,13 +34,13 @@
         </div>
       </div>
 
-      
-      <app-create-event-side-menu [currentPage]="'edit_basic_info'" *ngIf="currentRoute === 'edit_basic_info'"></app-create-event-side-menu>
+
+      <!-- <app-create-event-side-menu [currentPage]="'edit_basic_info'" *ngIf="currentRoute === 'edit_basic_info'"></app-create-event-side-menu> -->
     </div>
 
     <div class="col-1 only-non-mobile"></div>
 
-    <div class="col-md-7 col-lg-5 col-xs-12 col-sm-12">
+    <div class="col-md-7 col-lg-7 col-xs-12 col-sm-12">
       <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'" *ngIf="currentRoute === 'edit_basic_info'"></app-side-menu-toggle>
       <form class="form" [formGroup]="form" (ngSubmit)="create()">
         <div class="divider mb-1 mt-5"></div>
@@ -72,7 +72,7 @@
             <div class="form-group">
               <div class="form-floating">
                 <textarea class="form-control" id="floatingDesc" style="height: 100px" aria-describedby="descHelp" placeholder="Event description" formControlName="description"></textarea>
-                <label for="floatingDesc">Event Description</label>                
+                <label for="floatingDesc">Event Description</label>
               </div>
             </div>
             <!-- /.description-->
@@ -89,10 +89,10 @@
                       <option value="3">Donations</option>
                     </select>
                     <label for="floatingType">Ticketing</label>
-                  </div>   
+                  </div>
                   <small *ngIf="saved && f.ticketing.errors" id="titleHelp" class="form-text invalid-feedback">
                     Ticketing is required.
-                  </small>               
+                  </small>
                 </div>
                 <div class="col">
                   <div class="form-floating">
@@ -102,18 +102,18 @@
                       <option value="2">Private</option>
                     </select>
                     <label for="floatingType">Event Type</label>
-                  </div>   
+                  </div>
                   <small *ngIf="saved && f.type.errors" id="titleHelp" class="form-text invalid-feedback">
                     Event type is required.
-                  </small>               
-                </div>                
+                  </small>
+                </div>
               </div>
             </div>
             <!-- /.end -->
 
             <!-- event categories -->
             <div class="form-group">
-              <div class="row">                
+              <div class="row">
                 <div class="col">
                   <div class="form-floating">
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
@@ -139,10 +139,10 @@
                       <option value="3">Face Time</option> -->
                     </select>
                     <label for="floatingSelect">Event sub-category</label>
-                  </div> 
+                  </div>
                   <small *ngIf="saved && f.subcategory_id.errors" id="titleHelp" class="form-text invalid-feedback">
                     Event sub-category type is required.
-                  </small>              
+                  </small>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@
             <div class="form-group">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
-                <label for="floatingTags">Tags</label>                
+                <label for="floatingTags">Tags</label>
               </div>
             </div>
             <!-- /.tags -->
@@ -273,7 +273,7 @@
                         <div class="form-floating mb-3">
                           <!-- <input type="text" class="form-control" id="floatingStartTime" aria-describedby="titleHelp" placeholder="Start time"
                             formControlName="start_time" [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"> -->
-                          <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time" 
+                          <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time"
                             [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"></ngb-timepicker>
                           <label style="top: -5vh;" for="floatingStartTime">Start Time</label>
                           <small *ngIf="saved && f.start_time.errors" id="titleHelp" class="form-text invalid-feedback">
@@ -288,7 +288,7 @@
                         <div class="form-floating mb-3 input-group">
                           <!-- <input type="text" class="form-control" id="floatingEndTime" aria-describedby="titleHelp" placeholder="End time"
                             formControlName="end_time" [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"> -->
-                          <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time" 
+                          <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time"
                             [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"></ngb-timepicker>
                           <label style="top: -5vh;" for="floatingEndTime">End Time</label>
                           <small *ngIf="saved && f.end_time.errors" id="titleHelp" class="form-text invalid-feedback">
@@ -363,7 +363,7 @@
                     <div class="form-floating">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" formControlName="venue">
-                        <label for="floatingVenue">Venue</label>                        
+                        <label for="floatingVenue">Venue</label>
                       </div>
                     </div>
                   </div>
@@ -372,7 +372,7 @@
                     <div class="col-lg-5 form-floating">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" formControlName="gps">
-                        <label for="floatingGps">GPS Cordinates</label>                        
+                        <label for="floatingGps">GPS Cordinates</label>
                       </div>
                     </div>
                   </div>

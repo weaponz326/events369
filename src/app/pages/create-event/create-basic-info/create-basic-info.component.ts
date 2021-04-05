@@ -19,8 +19,8 @@ export class CreateBasicInfoComponent implements OnInit {
   categoriesData: any[];
   subCategoriesData: any[];
 
-  url: string = ''
-  currentRoute: string = ''
+  url: string = '';
+  currentRoute: string = '';
 
   constructor(
     private router: Router,
@@ -36,7 +36,7 @@ export class CreateBasicInfoComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.toggleVenueView();
-    this.getCategories();  
+    this.getCategories();
     this.disableSubcategory();
     this.initEnableSubcategory();
 
@@ -57,7 +57,7 @@ export class CreateBasicInfoComponent implements OnInit {
   public get f(): any {
     return this.form.controls;
   }
-  
+
 
   initForm(): void {
     this.form = this.formBuilder.group({
@@ -122,7 +122,7 @@ export class CreateBasicInfoComponent implements OnInit {
       tags: this.f.tags.value,
       venue_tobe_announced: this.f.venue_tobe_announced.value,
       hosting: this.f.hosting.value,
-      ticketing: this.f.ticketing.value   
+      ticketing: this.f.ticketing.value
     };
     return data;
   }
