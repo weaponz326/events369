@@ -85,22 +85,23 @@ export class CreateBasicInfoComponent implements OnInit {
     if (this.form.valid) {
       console.log('form is valid');
       this.isLoading = true;
-      this.basicInfoService.createBasicEvent(this.getFormData()).then(
-        res => {
-          if (res) {
-            this.isLoading = false;
-            this.router.navigateByUrl('/create_event/more_details');
-          }
-          else {
-            this.isLoading = false;
-            alert('didnt create');
-          }
-        },
-        err => {
-          console.log(err);
-          this.isLoading = false;
-        }
-      );
+         this.router.navigateByUrl('/create_event/more_details');
+      // this.basicInfoService.createBasicEvent(this.getFormData()).then(
+      //   res => {
+      //     if (res) {
+      //       this.isLoading = false;
+      //       this.router.navigateByUrl('/create_event/more_details');
+      //     }
+      //     else {
+      //       this.isLoading = false;
+      //       alert('didnt create');
+      //     }
+      //   },
+      //   err => {
+      //     console.log(err);
+      //     this.isLoading = false;
+      //   }
+      // );
     }
   }
 

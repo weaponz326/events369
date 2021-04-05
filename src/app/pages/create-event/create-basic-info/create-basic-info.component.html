@@ -7,12 +7,12 @@
       <div class="page-info" *ngIf="currentRoute === 'basic_info'">
         <div class="title ev-margin-top-bottom">
           <h1 class="ev-font-size-xxlarge">Let's start you off easy!</h1>
-          <!-- <h5>Steps 1 <span class="of">of</span> 5</h5> -->
+          <h5>Steps 1 <span class="of">of</span> 5</h5>
         </div>
 
-        <!-- <div class="image">
+        <div class="image">
           <i class="bi-journal-text" style="font-size: 10em;"></i>
-        </div> -->
+        </div>
 
         <div class="description">
           <div class="card">
@@ -158,7 +158,7 @@
             <!-- /.tags -->
 
             <!-- selected tags -->
-            <div class="form-group tags-view">
+            <!-- <div class="form-group tags-view">
               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
                   <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#business</button>
@@ -193,7 +193,7 @@
                   </button>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- /.selected tags -->
           </div>
         </div>
@@ -275,7 +275,7 @@
                             formControlName="start_time" [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time" 
                             [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"></ngb-timepicker>
-                          <label for="floatingStartTime">Start Time</label>
+                          <label style="top: -5vh;" for="floatingStartTime">Start Time</label>
                           <small *ngIf="saved && f.start_time.errors" id="titleHelp" class="form-text invalid-feedback">
                             Start time type is required.
                           </small>
@@ -290,7 +290,7 @@
                             formControlName="end_time" [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time" 
                             [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"></ngb-timepicker>
-                          <label for="floatingEndTime">End Time</label>
+                          <label style="top: -5vh;" for="floatingEndTime">End Time</label>
                           <small *ngIf="saved && f.end_time.errors" id="titleHelp" class="form-text invalid-feedback">
                             End time type is required.
                           </small>
