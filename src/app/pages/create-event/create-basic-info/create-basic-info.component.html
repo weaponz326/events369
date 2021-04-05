@@ -389,6 +389,14 @@
           /. End Location Section
         -->
       </form>
+      
+      <div class="navigation ev-basic-info-navigation-for-md">
+        <div class="nav-buttons">
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
+          <app-loading-button *ngIf="isLoading"></app-loading-button>
+        </div>
+        <!-- <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span> -->
+      </div>
     </div>
 
     <div class="col-2  only-non-mobile"></div>

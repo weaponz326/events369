@@ -164,7 +164,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 970px) {
   .only-non-mobile {
     // display: none;
     visibility: hidden;
@@ -176,9 +176,12 @@
   .page-info {
     visibility: hidden;
   }
+  .ev-basic-info-navigation-for-md {
+    visibility: visible;
+  }
 }
 
-@media (min-width: 901px) {
+@media (min-width: 971px) {
   .only-mobile {
     // display: none;
     visibility: hidden;
@@ -186,5 +189,8 @@
   .only-non-mobile {
     // display: block;
     visibility: visible;
+  }
+  .ev-basic-info-navigation-for-md {
+    visibility: hidden;
   }
 }
