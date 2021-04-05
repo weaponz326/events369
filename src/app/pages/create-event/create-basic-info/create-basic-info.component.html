@@ -235,7 +235,9 @@
                             formControlName="start_date" ngbDatepicker #sd="ngbDatepicker"
                             [ngClass]="{'is-invalid': saved && f.start_date.errors, 'is-valid': !f.start_date.errors}">
                           <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button"></button>
+                            <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button">
+                              <i class="bi bi-chevron-down"></i>
+                            </button>
                           </div>
                           <label for="floatingStartDate">Start Date</label>
                           <small *ngIf="saved && f.start_date.errors" id="titleHelp" class="form-text invalid-feedback">
@@ -252,7 +254,9 @@
                             formControlName="end_date" ngbDatepicker #ed="ngbDatepicker"
                             [ngClass]="{'is-invalid': saved && f.end_date.errors, 'is-valid': !f.end_date.errors}">
                           <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button"></button>
+                            <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button">
+                              <i class="bi bi-chevron-down"></i>
+                            </button>
                           </div>
                           <label for="floatingEndDate">End Date</label>
                           <small *ngIf="saved && f.end_date.errors" id="titleHelp" class="form-text invalid-feedback">
@@ -390,7 +394,7 @@
         -->
       </form>
       
-      <div class="navigation ev-basic-info-navigation-for-md">
+      <div class="navigation" *ngIf="currentRoute === 'edit_basic_info'">
         <div class="nav-buttons">
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>

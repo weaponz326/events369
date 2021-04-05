@@ -176,9 +176,6 @@
   .page-info {
     visibility: hidden;
   }
-  .ev-basic-info-navigation-for-md {
-    visibility: visible;
-  }
 }
 
 @media (min-width: 971px) {
@@ -190,7 +187,11 @@
     // display: block;
     visibility: visible;
   }
-  .ev-basic-info-navigation-for-md {
-    visibility: hidden;
-  }
 }
+
+// @media (max-width: 1024px) {
+//   .ev-basic-info-navigation-for-md {
+//     visibility: visible;
+//   }
+
+// }
