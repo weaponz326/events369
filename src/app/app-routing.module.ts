@@ -98,11 +98,11 @@ const routes: Routes = [
     path: 'edit_event',
     children: [
       {
-        path: 'basic_info',
+        path: 'edit_basic_info',
         component: CreateBasicInfoComponent
       },
       {
-        path: 'schedule',
+        path: 'schedule', 
         component: CreateEventSchedulesComponent
       },
       {
