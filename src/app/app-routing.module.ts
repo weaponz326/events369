@@ -18,6 +18,10 @@ import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recover
 import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
 import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
 import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
+import { EditBasicInfoComponent } from './pages/edit-event/edit-basic-info/edit-basic-info.component';
+import { EditEventSchedulesComponent } from './pages/edit-event/edit-event-schedules/edit-event-schedules.component';
+import { EditEventDetailsComponent } from './pages/edit-event/edit-event-details/edit-event-details.component';
+import { EditEventTicketingComponent } from './pages/edit-event/edit-event-ticketing/edit-event-ticketing.component';
 
 const routes: Routes = [
   {
@@ -99,19 +103,19 @@ const routes: Routes = [
     children: [
       {
         path: 'basic_info',
-        component: CreateBasicInfoComponent
+        component: EditBasicInfoComponent
       },
       {
         path: 'schedule',
-        component: CreateEventSchedulesComponent
+        component: EditEventSchedulesComponent
       },
       {
         path: 'more_details',
-        component: CreateEventDetailsComponent
+        component: EditEventDetailsComponent
       },
       {
         path: 'ticketing',
-        component: CreateEventTicketingComponent
+        component: EditEventTicketingComponent
       },
       {
         path: 'publishing',
