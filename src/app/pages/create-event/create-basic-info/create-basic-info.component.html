@@ -279,7 +279,7 @@
                             formControlName="start_time" [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time" 
                             [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"></ngb-timepicker>
-                          <label style="top: -5vh;" for="floatingStartTime">Start Time</label>
+                          <label style="top: -3.5vh;" for="floatingStartTime">Start Time</label>
                           <small *ngIf="saved && f.start_time.errors" id="titleHelp" class="form-text invalid-feedback">
                             Start time type is required.
                           </small>
@@ -294,7 +294,7 @@
                             formControlName="end_time" [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time" 
                             [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"></ngb-timepicker>
-                          <label style="top: -5vh;" for="floatingEndTime">End Time</label>
+                          <label style="top: -3.5vh;" for="floatingEndTime">End Time</label>
                           <small *ngIf="saved && f.end_time.errors" id="titleHelp" class="form-text invalid-feedback">
                             End time type is required.
                           </small>
@@ -395,6 +395,14 @@
       </form>
       
       <div class="navigation" *ngIf="currentRoute === 'edit_basic_info'">
+        <div class="nav-buttons">
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
+          <app-loading-button *ngIf="isLoading"></app-loading-button>
+        </div>
+        <!-- <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span> -->
+      </div>
+      
+      <div class="navigation only-mobile" *ngIf="currentRoute !== 'edit_basic_info'">
         <div class="nav-buttons">
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>
