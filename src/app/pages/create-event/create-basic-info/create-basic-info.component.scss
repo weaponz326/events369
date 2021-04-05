@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 34vw;
+  width: 26vw;
   overflow: auto;
   background-color: #f9f9f9;
 }
@@ -158,13 +158,13 @@
   font-size: xx-large !important;
 }
 
-@media (min-width: 744px) and (max-width: 768px) {
+@media (min-width: 744px) and (max-width: 908px) {
   .col-md-7 {
     width: 100% !important;
   }
 }
 
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   .only-non-mobile {
     // display: none;
     visibility: hidden;
@@ -178,7 +178,7 @@
   }
 }
 
-@media (min-width: 781px) {
+@media (min-width: 901px) {
   .only-mobile {
     // display: none;
     visibility: hidden;
