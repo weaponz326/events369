@@ -3,7 +3,7 @@
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 250px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
+  z-index: 0; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #fcfcfc; /* Black */
@@ -26,7 +26,7 @@
   padding: 15px 8px 15px 35px;
   text-decoration: none;
   font-size: 16px;
-  color: #555;
+  color: var(--ev-menu-item);
   font-weight: 500;
   display: block;
 }

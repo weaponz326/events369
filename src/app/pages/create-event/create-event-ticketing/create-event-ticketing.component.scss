@@ -3,10 +3,13 @@
 .page-info {
   height: 100vh;
   position: fixed;
-  left: 0;
+  top: 64px;
+  left: 280px;
+  background-color: inherit;
   right: 0;
   width: 34vw;
-  background-color: #f9f9f9;
+  overflow: auto;
+  // background-color: #f9f9f9;
 }
 
 .page-info > .title {
@@ -16,7 +19,7 @@
 }
 
 .page-info > .title > h1 {
-  font-size: 55px;
+  font-size: 45px;
   line-height: 1.2;
   color: #454b50;
 }
@@ -59,10 +62,20 @@
   box-shadow: none;
 }
 
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  box-shadow: none;
+}
+
+.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+  box-shadow: none;
+}
+
 .navigation {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  padding-right: 50px;
+  float: right;
 }
 
 .nav-buttons .btn-lg {
@@ -172,4 +185,42 @@
 
 .list-unstyled h5.card-title {
   font-size: 1rem;
+}
+
+
+@media (max-width: 780px) {
+  .only-non-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-mobile {
+    // display: block;
+    visibility: visible;
+  }
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media (min-width: 781px) {
+  .only-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-non-mobile {
+    // display: block;
+    visibility: visible;
+  }
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media (min-width: 1400px) {
+  .only-xx-non-mobile {
+    visibility: visible;
+    display: block;
+  }
 }

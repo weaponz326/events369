@@ -3,10 +3,13 @@
 .page-info {
   height: 100vh;
   position: fixed;
-  left: 0;
+  top: 0;
+  left: 280px;
+  background-color: #fff;
   right: 0;
   width: 34vw;
-  background-color: #f9f9f9;
+  overflow: auto;
+  // background-color: #f9f9f9;
 }
 
 .page-info > .title {
@@ -64,9 +67,11 @@
 }
 
 .navigation {
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 30px;
+  padding-right: 0px;
+  float: right;
 }
 
 .nav-buttons .btn-lg {
@@ -150,4 +155,46 @@
   width: 200px;
   font-size: 20px;
   font-weight: 200;
+}
+
+.file-input {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .only-non-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-mobile {
+    // display: block;
+    visibility: visible;
+  }
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media (min-width: 781px) {
+  .only-mobile {
+    // display: none;
+    visibility: hidden;
+  }
+  .only-non-mobile {
+    // display: block;
+    visibility: visible;
+  }
+
+  .only-xx-non-mobile {
+    visibility: hidden;
+    display: none;
+  }
+}
+
+@media (min-width: 1400px) {
+  .only-xx-non-mobile {
+    visibility: visible;
+    display: block;
+  }
 }

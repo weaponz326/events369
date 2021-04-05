@@ -14,12 +14,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { OwlModule } from 'ngx-owl-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { SignupPageComponent } from './pages/signup-page/signup-page.component';
+import { LoginPageComponent } from './pages/user-auth/login-page/login-page.component';
+import { SignupPageComponent } from './pages/user-auth/signup-page/signup-page.component';
 import { DiscoverPageComponent } from './pages/discover-page/discover-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
@@ -49,9 +50,24 @@ import { CreateEventSchedulesComponent } from './pages/create-event/create-event
 import { CreateEventTicketingComponent } from './pages/create-event/create-event-ticketing/create-event-ticketing.component';
 import { CreateEventPublishComponent } from './pages/create-event/create-event-publish/create-event-publish.component';
 import { EditEventPageComponent } from './pages/edit-event/edit-event-page/edit-event-page.component';
+import { EmailConfirmedComponent } from './pages/user-auth/email-confirmed/email-confirmed.component';
+import { EmailInvalidComponent } from './pages/user-auth/email-invalid/email-invalid.component';
+import { PhoneAuthenticationComponent } from './pages/user-auth/phone-authentication/phone-authentication.component';
+import { RecoveryEmailComponent } from './pages/user-auth/recovery-email/recovery-email.component';
+import { PasswordResetComponent } from './pages/user-auth/password-reset/password-reset.component';
 import { UserProfilePageComponent } from './pages/profile/user-profile-page/user-profile-page.component';
 import { OrganizationProfilePageComponent } from './pages/profile/organization-profile-page/organization-profile-page.component';
 import { AccountSideMenuComponent } from './components/account-side-menu/account-side-menu.component';
+import { CreateEventOrganizersComponent } from './pages/create-event/create-event-organizers/create-event-organizers.component';
+import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
+import { CreateEventSpeakersComponent } from './pages/create-event/create-event-speakers/create-event-speakers.component';
+import { CreateEventMediaComponent } from './pages/create-event/create-event-media/create-event-media.component';
+import { FormSidePaneComponent } from './components/auth-forms/form-side-pane/form-side-pane.component';
+import { FormHeaderComponent } from './components/auth-forms/form-header/form-header.component';
+import { FormFooterComponent } from './components/auth-forms/form-footer/form-footer.component';
+import { CreateEventSideMenuComponent } from './components/create-event-side-menu/create-event-side-menu.component';
+import { CreateEventNavbarComponent } from './components/create-event-navbar/create-event-navbar.component';
+import { SideMenuToggleComponent } from './components/side-menu-toggle/side-menu-toggle.component';
 
 
 @NgModule({
@@ -87,9 +103,24 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     CreateEventPublishComponent,
     EditEventPageComponent,
     LoadingButtonComponent,
+    EmailConfirmedComponent,
+    EmailInvalidComponent,
+    PhoneAuthenticationComponent,
+    RecoveryEmailComponent,
+    PasswordResetComponent,
     UserProfilePageComponent,
     OrganizationProfilePageComponent,
     AccountSideMenuComponent,
+    CreateEventOrganizersComponent,
+    CreateEventSponsorsComponent,
+    CreateEventSpeakersComponent,
+    CreateEventMediaComponent,
+    FormSidePaneComponent,
+    FormHeaderComponent,
+    FormFooterComponent,
+    CreateEventSideMenuComponent,
+    CreateEventNavbarComponent,
+    SideMenuToggleComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +137,7 @@ import { AccountSideMenuComponent } from './components/account-side-menu/account
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
+    OwlModule,
     NgbModule,
   ],
   providers: [],
