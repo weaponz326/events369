@@ -2,15 +2,20 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-3 only-non-mobile">
-      <!-- <div class="page-info">
+    <div class="col-md-4 col-lg-4">
+      <app-create-event-side-menu [currentPage]="'schedule'"></app-create-event-side-menu>
+      <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'"></app-side-menu-toggle>
+    </div>
+
+    <!-- <div class="col-3 only-non-mobile">
+      <div class="page-info">
         <div class="title">
           <h1>Let's get scheduling, shall we?</h1>
           <h5>Steps 2 <span class="of">of</span> 5</h5>
         </div>
 
         <div class="image">
-          <i class="bi-calendar2-week" style="font-size: 10em;"></i>
+          <i class="bi-calendar2-week" style="font-size: 7em;"></i>
         </div>
 
         <div class="description">
@@ -30,15 +35,14 @@
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
         </div>
-      </div> -->
-      <app-create-event-side-menu [currentPage]="'schedule'"></app-create-event-side-menu>
-    </div>
+      </div>
+    </div> -->
 
     <div class="col-1 only-non-mobile"></div>
- 
-    <div class="col-md-8 col-lg-5 col-sm-12">
+
+    <div class="col-md-7 col-lg-7 col-sm-12">
       <!-- As a link -->
-      <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'"></app-side-menu-toggle>
+      <!-- <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'"></app-side-menu-toggle> -->
       <div class="form">
         <div class="divider mb-1 mt-5"></div>
 
@@ -188,7 +192,7 @@
           /. End Date time Section
         -->
       </div>
-      
+
       <!-- <div class="container">
         <div class="col-md-9 offset-md-3">
           <button type="button" class="btn btn-lg btn-outline-secondary">Discard</button> &nbsp;
@@ -196,7 +200,7 @@
         </div>
         <br>
       </div> -->
-      
+
       <div class="col-sm-12 navigation">
         <div class="nav-buttons only-non-mobile">
           <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
@@ -214,6 +218,6 @@
 
     <div class="col-2 only-non-mobile"></div>
 
-  </div> 
-  
+  </div>
+
 </div>

@@ -1,10 +1,9 @@
-<!-- <app-navbar *ngIf="currentRoute === 'basic_info'"></app-navbar> -->
 <app-create-event-navbar></app-create-event-navbar>
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-3">
-      <div class="page-info" *ngIf="currentRoute === 'basic_info'">
+    <div class="col-md-4 col-lg-4">
+      <div class="page-info">
         <div class="title ev-margin-top-bottom">
           <h1 class="ev-font-size-xxlarge">Let's start you off easy!</h1>
           <h5>Steps 1 <span class="of">of</span> 5</h5>
@@ -30,7 +29,6 @@
             <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
             <app-loading-button *ngIf="isLoading"></app-loading-button>
           </div>
-          <!-- <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span> -->
         </div>
       </div>
 
@@ -134,9 +132,6 @@
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
                       formControlName="subcategory_id" [ngClass]="{'is-invalid': saved && f.subcategory_id.errors, 'is-valid': !f.subcategory_id.errors}">
                       <option *ngFor="let x of subCategoriesData" value={{x.id}}>{{x.name}}</option>
-                      <!-- <option value="1">Party</option>
-                      <option value="2">Meeting</option>
-                      <option value="3">Face Time</option> -->
                     </select>
                     <label for="floatingSelect">Event sub-category</label>
                   </div>
@@ -271,8 +266,6 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                          <!-- <input type="text" class="form-control" id="floatingStartTime" aria-describedby="titleHelp" placeholder="Start time"
-                            formControlName="start_time" [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingStartTime" aria-describedby="titleHelp" formControlName="start_time"
                             [ngClass]="{'is-invalid': saved && f.start_time.errors, 'is-valid': !f.start_time.errors}"></ngb-timepicker>
                           <label style="top: -5vh;" for="floatingStartTime">Start Time</label>
@@ -286,8 +279,6 @@
                     <div class="col">
                       <div class="form-floating">
                         <div class="form-floating mb-3 input-group">
-                          <!-- <input type="text" class="form-control" id="floatingEndTime" aria-describedby="titleHelp" placeholder="End time"
-                            formControlName="end_time" [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"> -->
                           <ngb-timepicker [seconds]="true" id="floatingEndTime" aria-describedby="titleHelp" formControlName="end_time"
                             [ngClass]="{'is-invalid': saved && f.end_time.errors, 'is-valid': !f.end_time.errors}"></ngb-timepicker>
                           <label style="top: -5vh;" for="floatingEndTime">End Time</label>
@@ -389,13 +380,12 @@
           /. End Location Section
         -->
       </form>
-      
+
       <div class="navigation ev-basic-info-navigation-for-md">
         <div class="nav-buttons">
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>
         </div>
-        <!-- <span class="mt-2 text-danger" *ngIf="saveError">oops! something went wrong</span> -->
       </div>
     </div>
 
