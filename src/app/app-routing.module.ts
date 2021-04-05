@@ -21,17 +21,8 @@ import { OrganizationProfilePageComponent } from './pages/profile/organization-p
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomePageComponent
-  },
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./components/new-home-page/new-home-page.module').then( m => m.NewHomePageModule)
-  // },
-  {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    component: HomePageComponent
   },
   {
     path: 'login',
@@ -86,7 +77,28 @@ const routes: Routes = [
         component: CreateBasicInfoComponent
       },
       {
-        path: 'edit_basic_info',
+        path: 'schedule',
+        component: CreateEventSchedulesComponent
+      },
+      {
+        path: 'more_details',
+        component: CreateEventDetailsComponent
+      },
+      {
+        path: 'ticketing',
+        component: CreateEventTicketingComponent
+      },
+      {
+        path: 'publishing',
+        component: CreateEventPublishComponent
+      }
+    ]
+  },
+  {
+    path: 'edit_event',
+    children: [
+      {
+        path: 'basic_info',
         component: CreateBasicInfoComponent
       },
       {
