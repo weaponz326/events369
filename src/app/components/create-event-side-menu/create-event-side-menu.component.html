@@ -1,11 +1,17 @@
 <div id="side_bar" class="sidenav"
   style="background-color: var(--ev-create-event-side-menu-background);color: var(--primary-color);">
-  <div class="container title ev-margin-top-bottom">
+  <div class="container title ev-margin-top-bottom"  *ngIf="event.title != null">
     <h4 class="ev-font-size-xxlarge hide">
-      A Chat With Rashida Jones</h4>
+      {{event.title}}
+      </h4>
     <h4 class="ev-font-size-xxlarge display-none only-mobile" (click)="hideSideMenu()"><i class="bi bi-chevron-left"></i></h4>
 
-    <span class="ev-event-date hide">Sat, May 8, 2021 <span class="of">7:00</span> PM</span>
+    <span class="ev-event-date hide">{{getEventStartDateFormatted(event.start_date_time)}} 
+      <!-- <span class="of">7:00</span> PM -->
+    </span>
+    <span *ngIf="event.recurring === 'Yes'" class="recurring-span">
+      <i class="bi bi-arrow-repeat"></i> Recurring event
+    </span>
   </div>
   <ng-container *ngIf="event.recurring === 'Yes'">
     <a routerLink="/edit_event/edit_basic_info" [class.active]="currentPage === 'edit_basic_info'">

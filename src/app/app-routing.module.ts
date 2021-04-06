@@ -107,7 +107,7 @@ const routes: Routes = [
       },
       {
         path: 'schedule',
-        component: EditEventSchedulesComponent
+        component: EditEventSchedulesComponent 
       },
       {
         path: 'more_details',

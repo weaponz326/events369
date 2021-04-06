@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Component({
+@Component({ 
   selector: 'app-create-event-schedules',
   templateUrl: './create-event-schedules.component.html',
   styleUrls: ['./create-event-schedules.component.scss']
