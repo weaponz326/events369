@@ -76,7 +76,7 @@ export class CreateBasicInfoComponent implements OnInit {
       subcategory_id: ['', Validators.required],
       tags: [''],
       venue_tobe_announced: ['0'],
-      hosting: [1]
+      hosting: ['1']
     });
   }
 
@@ -90,6 +90,7 @@ export class CreateBasicInfoComponent implements OnInit {
         res => {
           if (res) {
             this.isLoading = false;
+            this.getCreatedEvent(res);
             this.router.navigateByUrl('/create_event/more_details');
           }
           else {
@@ -108,8 +109,8 @@ export class CreateBasicInfoComponent implements OnInit {
   getFormData(): any {
     let f_start_date = this.f.start_date.value.year + '-' + this.f.start_date.value.month + '-' + this.f.start_date.value.day;
     let f_end_date = this.f.end_date.value.year + '-' + this.f.end_date.value.month + '-' + this.f.end_date.value.day;
-    let f_start_time = this.f.start_time.value.hour + '-' + this.f.start_time.value.minute + '-' + this.f.start_time.value.second;
-    let f_end_time = this.f.end_time.value.hour + '-' + this.f.end_time.value.minute + '-' + this.f.end_time.value.second;
+    let f_start_time = this.f.start_time.value.hour + ':' + this.f.start_time.value.minute + ':' + this.f.start_time.value.second;
+    let f_end_time = this.f.end_time.value.hour + ':' + this.f.end_time.value.minute + ':' + this.f.end_time.value.second;
 
     const data = {
       title: this.f.title.value,
@@ -130,11 +131,11 @@ export class CreateBasicInfoComponent implements OnInit {
     return data;
   }
 
-  setRecurring(value: number): void {
+  setRecurring(value: any): void {
     this.form.controls['recurring'].setValue(value);
   }
 
-  setHosting(value: number): void {
+  setHosting(value: any): void {
     this.form.controls['recurring'].setValue(value);
   }
 
@@ -185,6 +186,18 @@ export class CreateBasicInfoComponent implements OnInit {
       res => {
         console.log(res);
         this.subCategoriesData = res.sub_categories;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getCreatedEvent(eventId: any): void {
+    this.basicInfoService.getCreatedEvent(eventId).then(
+      res => {
+        console.log(res);
+        sessionStorage.setItem('created_event', JSON.stringify(res));
       },
       err => {
         console.log(err);
