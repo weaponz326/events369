@@ -194,7 +194,7 @@
       </form>
     </div>
 
-    <div class="col-sm-12 col-xs-12 col-md-4">
+    <div class="col-sm-12 col-xs-12 col-md-4 col-lg-4">
       <div class="divider mb-1 mt-5"></div>
 
         <!--
@@ -221,7 +221,7 @@
                 <li *ngFor="let ticket of createdTicketList; let i=index">
                   <div class="card mb-3">
                     <div class="row no-gutters">
-                      <div class="col-sm-4 col-md-2 d-xs-none d-sm-none d-md-block">
+                      <div class="col-sm-4 col-md-3">
                         <i class="bi-distribute-vertical" style="font-size: 30px; color: #ccc;"></i>
                       </div>
                       <div class="col-sm-8 col-md-6">
@@ -239,7 +239,7 @@
                           </p>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-3">
                         <button class="btn btn-light" type="button" (click)="edit(ticket, i)">
                           <i class="bi-pencil"></i>
                         </button>
