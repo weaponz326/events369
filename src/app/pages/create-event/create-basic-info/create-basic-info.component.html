@@ -227,14 +227,11 @@
                       <div class="form-floating">
                         <div class="form-floating mb-3 input-group">
                           <input type="text" class="form-control" id="floatingStartDate" aria-describedby="titleHelp" placeholder="Start date"
-                            formControlName="start_date" ngbDatepicker #sd="ngbDatepicker"
+                            formControlName="start_date" ngbDatepicker #sd="ngbDatepicker" (click)="sd.toggle()"
                             [ngClass]="{'is-invalid': saved && f.start_date.errors, 'is-valid': !f.start_date.errors}">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button">
-                              <!-- <i class="bi bi-chevron-down"></i> -->
-                            </button>
-                            <i class="bi bi-chevron-down ev-chevron-down-datepicker"></i>
-                          </div>
+                          <!-- <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button"></button>
+                          </div> -->
                           <label for="floatingStartDate">Start Date</label>
                           <small *ngIf="saved && f.start_date.errors" id="titleHelp" class="form-text invalid-feedback">
                             Start date type is required.
@@ -247,14 +244,11 @@
                       <div class="form-floating">
                         <div class="form-floating mb-3 input-group">
                           <input type="text" class="form-control" id="floatingEndDate" aria-describedby="titleHelp" placeholder="End date"
-                            formControlName="end_date" ngbDatepicker #ed="ngbDatepicker"
+                            formControlName="end_date" ngbDatepicker #ed="ngbDatepicker" (click)="ed.toggle()"
                             [ngClass]="{'is-invalid': saved && f.end_date.errors, 'is-valid': !f.end_date.errors}">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button">
-                              <!-- <i class="bi bi-chevron-down"></i> -->
-                            </button>
-                            <i class="bi bi-chevron-down ev-chevron-down-datepicker"></i>
-                          </div>
+                          <!-- <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button"></button>
+                          </div> -->
                           <label for="floatingEndDate">End Date</label>
                           <small *ngIf="saved && f.end_date.errors" id="titleHelp" class="form-text invalid-feedback">
                             End date type is required.
@@ -364,8 +358,8 @@
                     </div>
                   </div>
 
-                  <div class="row form-group">
-                    <div class="col-lg-5 form-floating">
+                  <div class="form-group">
+                    <div class="form-floating">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" formControlName="gps">
                         <label for="floatingGps">GPS Cordinates</label>
