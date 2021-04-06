@@ -170,3 +170,15 @@
     visibility: visible;
   }
 }
+
+@media (min-width: 768px) and (orientation : landscape) {
+    .col-md-7 {
+      width: 50%;
+    }
+  }
+  
+  @media (min-width: 768px) and (orientation : portrait) {
+    .col-md-7 {
+      width: 100%;
+    }
+  }
