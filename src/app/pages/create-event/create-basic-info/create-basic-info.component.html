@@ -210,10 +210,10 @@
 
           <div class="form-body">
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-              <li class="nav-item" role="presentation" (click)="setRecurring(0)">
+              <li class="nav-item" role="presentation" (click)="setRecurring('0')">
                 <a class="nav-link active" id="pills-onetime-tab" data-toggle="pill" href="#pills-onetime" role="tab" aria-controls="pills-onetime" aria-selected="true">One-time Event</a>
               </li>
-              <li class="nav-item" role="presentation" (click)="setRecurring(1)">
+              <li class="nav-item" role="presentation" (click)="setRecurring('1')">
                 <a class="nav-link" id="pills-recurring-tab" data-toggle="pill" href="#pills-recurring" role="tab" aria-controls="pills-recurring" aria-selected="false">Recurring Event</a>
               </li>
             </ul>
@@ -329,21 +329,16 @@
             <!-- start & end date -->
             <div class="form-group">
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation" (click)="setHosting(0)">
+                <li class="nav-item" role="presentation" (click)="setHosting('0')">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
                     Location
                   </a>
                 </li>
-                <li class="nav-item" role="presentation" (click)="setHosting(1)">
+                <li class="nav-item" role="presentation" (click)="setHosting('1')">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
                     Online Event
                   </a>
-                </li>
-                <li class="nav-item" role="presentation" (click)="setHosting(1)">
-                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
-                    Online Event
-                  </a>
-                </li>
+                </li>                
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
