@@ -69,14 +69,14 @@ export class CreateBasicInfoComponent implements OnInit {
       end_date: ['', Validators.required],
       start_time: ['', Validators.required],
       end_time: ['', Validators.required],
-      recurring: [0],
+      recurring: ['0'],
       type: ['', Validators.required],
       ticketing: ['', Validators.required],
       category_id: ['', Validators.required],
       subcategory_id: ['', Validators.required],
       tags: [''],
-      venue_tobe_announced: [0],
-      hosting: ['']
+      venue_tobe_announced: ['0'],
+      hosting: [1]
     });
   }
 
@@ -85,36 +85,39 @@ export class CreateBasicInfoComponent implements OnInit {
     if (this.form.valid) {
       console.log('form is valid');
       this.isLoading = true;
-         this.router.navigateByUrl('/create_event/more_details');
-      // this.basicInfoService.createBasicEvent(this.getFormData()).then(
-      //   res => {
-      //     if (res) {
-      //       this.isLoading = false;
-      //       this.router.navigateByUrl('/create_event/more_details');
-      //     }
-      //     else {
-      //       this.isLoading = false;
-      //       alert('didnt create');
-      //     }
-      //   },
-      //   err => {
-      //     console.log(err);
-      //     this.isLoading = false;
-      //   }
-      // );
+      // this.router.navigateByUrl('/create_event/more_details');
+      this.basicInfoService.createBasicEvent(this.getFormData()).then(
+        res => {
+          if (res) {
+            this.isLoading = false;
+            this.router.navigateByUrl('/create_event/more_details');
+          }
+          else {
+            this.isLoading = false;
+            alert('didnt create');
+          }
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
     }
   }
 
   getFormData(): any {
+    let f_start_date = this.f.start_date.value.year + '-' + this.f.start_date.value.month + '-' + this.f.start_date.value.day;
+    let f_end_date = this.f.end_date.value.year + '-' + this.f.end_date.value.month + '-' + this.f.end_date.value.day;
+    let f_start_time = this.f.start_time.value.hour + '-' + this.f.start_time.value.minute + '-' + this.f.start_time.value.second;
+    let f_end_time = this.f.end_time.value.hour + '-' + this.f.end_time.value.minute + '-' + this.f.end_time.value.second;
+
     const data = {
       title: this.f.title.value,
       description: this.f.description.value,
       venue: this.f.venue.value,
       gps: this.f.gps.value,
-      start_date: '2021-04-04 01:30:00',
-      end_date: '2021-04-11 15:30:00',
-      // start_date: this.f.start_date.value + ' ' + this.f.start_time.value,
-      // end_date: this.f.end_date.value + ' ' + this.f.end_time.value,
+      start_date: f_start_date + ' ' + f_end_time,      
+      end_date: f_end_date + ' ' + f_end_time,
       recurring: this.f.recurring.value,
       type: this.f.type.value,
       category_id: this.f.category_id.value,
