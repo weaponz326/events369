@@ -18,6 +18,10 @@ export class EditEventSchedulesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
     var data: any =  sessionStorage.getItem('created_event')
     data = JSON.parse(data)
     this.eventTitle = data.event[0].title;

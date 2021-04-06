@@ -27,6 +27,10 @@ export class EditEventDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    
     this.initForm();
   }
 

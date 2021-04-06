@@ -97,6 +97,7 @@ export class CreateBasicInfoComponent implements OnInit {
             this.isLoading = false;
             this.getCreatedEvent(res);
             console.log(this.getFormData().recurring)
+            
             if(this.getFormData().recurring == '1') {
               this.router.navigateByUrl('/edit_event/schedule');
             } else {

@@ -14,7 +14,7 @@
     </span>
   </div>
   <ng-container *ngIf="event.recurring === 'Yes'">
-    <a routerLink="/edit_event/edit_basic_info" [class.active]="currentPage === 'edit_basic_info'">
+    <a routerLink="/edit_event/basic_info" [class.active]="currentPage === 'basic_info'">
       <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info</a>
     <a routerLink="/edit_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span>
       Schedule</a>
@@ -27,7 +27,7 @@
   </ng-container>
 
   <ng-container *ngIf="event.recurring === 'No'">
-    <a routerLink="/edit_event/edit_basic_info" [class.active]="currentPage === 'edit_basic_info'">
+    <a routerLink="/edit_event/basic_info" [class.active]="currentPage === 'basic_info'">
       <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info</a>
     <!-- <a routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span> Schedule</a> -->
     <a routerLink="/edit_event/more_details" [class.active]="currentPage === 'details'"><span
