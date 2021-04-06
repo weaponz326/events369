@@ -96,7 +96,14 @@ export class CreateBasicInfoComponent implements OnInit {
             console.log(res);
             this.isLoading = false;
             this.getCreatedEvent(res);
-            this.router.navigateByUrl('/create_event/more_details');
+            console.log(this.getFormData().recurring)
+            
+            if(this.getFormData().recurring == '1') {
+              this.router.navigateByUrl('/edit_event/schedule');
+            } else {
+              this.router.navigateByUrl('/edit_event/more_details');
+            }
+            // this.router.navigateByUrl('/create_event/more_details');
           }
           else {
             this.isLoading = false;

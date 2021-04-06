@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThemeSwitcherService } from 'src/app/services/theme-switcher.service';
+import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
+import moment from 'moment';
 declare var $: any;
 
 
@@ -16,14 +18,38 @@ export class CreateEventSideMenuComponent implements OnInit {
 
   event : any = {
     recurring: 'Yes',
+    title: '',
+    start_date_time: '',
   }
 
   constructor(
-    private themeSwitcher: ThemeSwitcherService
   ) { }
 
   ngOnInit(): void {
+    this.getCreatedEvent()
     console.log(this.event.recurring)
+
+  }
+
+  getCreatedEvent(): void {
+        
+    var data: any =  sessionStorage.getItem('created_event')
+    data = JSON.parse(data)
+    this.event.recurring = data.event[0].recurring;
+    this.event.title = data.event[0].title
+    this.event.start_date_time = data.event[0].start_date_time
+
+    console.log(data)
+      
+  }
+
+  getEventStartDateFormatted(date: any) {
+    return moment(date).format('ddd, MMM D, YYYY h:mm A')
+  }
+
+  getEventTime(date: any) {
+    return moment(date).format('h:mm A')
+
   }
 
   
