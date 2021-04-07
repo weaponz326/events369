@@ -24,12 +24,12 @@ export class EditBasicInfoComponent implements OnInit {
   currentRoute: string = '';
 
   event: any = {
-    title: 'A Fish In The Sea',
-    description: 'a small minicaht',
+    title: '',
+    description: '',
     ticketing: '',
-    event_type: '',
-    event_category: '',
-    event_subcategory: '',
+    type: '',
+    category: '',
+    subcategory: '',
     tags: '',
     start_date: '',
     end_date: '',
@@ -84,20 +84,20 @@ export class EditBasicInfoComponent implements OnInit {
     this.form = this.formBuilder.group({
       title: [this.event.title, Validators.required],
       description: [this.event.description],
-      venue: [''],
-      gps: [''],
+      venue: [this.event.venue],
+      gps: [this.event.gps],
       start_date: [this.event.start_date, Validators.required],
-      end_date: ['', Validators.required],
-      start_time: ['', Validators.required],
-      end_time: ['', Validators.required],
-      recurring: ['0'],
-      type: ['', Validators.required],
+      end_date: [this.event.end_date, Validators.required],
+      start_time: [this.event.start_time, Validators.required],
+      end_time: [this.event.end_time, Validators.required],
+      recurring: [this.event.recurring],
+      type: [this.event.type, Validators.required],
       ticketing: [this.event.ticketing, Validators.required],
-      category_id: ['', Validators.required],
-      subcategory_id: ['', Validators.required],
-      tags: [''],
+      category_id: [this.event.category, Validators.required],
+      subcategory_id: [this.event.subcategory, Validators.required],
+      tags: [this.event.tags],
       venue_tobe_announced: [0],
-      hosting: ['1']
+      hosting: [this.event.hosting]
     });
   }
 
@@ -260,15 +260,20 @@ export class EditBasicInfoComponent implements OnInit {
     //     this.event.ticketing = 0;
     // }
     this.event.ticketing = data.event[0].ticketing
-    this.event.event_type = data.event[0].type
-    this.event.event_category = data.event[0].Category
-    this.event.event_subcategory = data.event[0].sub_category
+    this.event.type = ((data.event[0].type === true) ? '1' : '2')
+    this.event.category = ((data.event[0].Category == 'Corporate Events') ? '2' : '3')
+    this.event.subcategory = ((data.event[0].sub_category == 'Seminars') ? '2' : '1')
     this.event.tags = ((data.event[0].tags != null) ? data.event[0].tags : '')
     this.event.start_date = data.event[0].start_date_time.split(' ')[0]
     
-    // this.event.start_date_time = data.event[0].start_date_time
+    this.event.end_date = data.event[0].end_date_time.split(' ')[0]
+    this.event.start_time = data.event[0].start_date_time.split(' ')[1]
+    this.event.end_time = data.event[0].end_date_time.split(' ')[1]
 
-    // console.log(data)
+    this.event.venue = ((data.event[0].venue != null) ? data.event[0].venue : '')
+    this.event.gps =((data.event[0].gps != null) ? data.event[0].gps : '')
+
+    console.log(this.event)
       
   }
 
