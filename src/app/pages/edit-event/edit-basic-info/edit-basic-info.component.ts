@@ -23,6 +23,22 @@ export class EditBasicInfoComponent implements OnInit {
   url: string = '';
   currentRoute: string = '';
 
+  event: any = {
+    title: 'A Fish In The Sea',
+    description: 'a small minicaht',
+    ticketing: '',
+    event_type: '',
+    event_category: '',
+    event_subcategory: '',
+    tags: '',
+    start_date: '',
+    end_date: '',
+    start_time: '',
+    end_time: '',
+    venue: '',
+    gps: ''
+  }
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -37,6 +53,7 @@ export class EditBasicInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.populateForm()
     this.initForm();
     this.toggleVenueView();
     this.getCategories();
@@ -63,18 +80,19 @@ export class EditBasicInfoComponent implements OnInit {
 
 
   initForm(): void {
+    console.log(this.event.start_date)
     this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: [''],
+      title: [this.event.title, Validators.required],
+      description: [this.event.description],
       venue: [''],
       gps: [''],
-      start_date: ['', Validators.required],
+      start_date: [this.event.start_date, Validators.required],
       end_date: ['', Validators.required],
       start_time: ['', Validators.required],
       end_time: ['', Validators.required],
       recurring: ['0'],
       type: ['', Validators.required],
-      ticketing: ['', Validators.required],
+      ticketing: [this.event.ticketing, Validators.required],
       category_id: ['', Validators.required],
       subcategory_id: ['', Validators.required],
       tags: [''],
@@ -216,5 +234,43 @@ export class EditBasicInfoComponent implements OnInit {
       }
     );
   }
+
+  populateForm(): void {
+        
+    var data: any =  sessionStorage.getItem('created_event')
+    data = JSON.parse(data)
+    console.log(data)
+    this.event.recurring = data.event[0].recurring;
+    this.event.title = data.event[0].title
+    this.event.description = data.event[0].description
+    // switch (data.event[0].ticketing) {
+    //   case 'Donation':
+    //     this.event.ticketing = 2
+    //     break;
+      
+    //   case 'Paid':
+    //     this.event.ticketing = 1
+    //     break;
+
+    //   case 'Free':
+    //     this.event.ticketing = 0
+    //     break;
+    
+    //   default:
+    //     this.event.ticketing = 0;
+    // }
+    this.event.ticketing = data.event[0].ticketing
+    this.event.event_type = data.event[0].type
+    this.event.event_category = data.event[0].Category
+    this.event.event_subcategory = data.event[0].sub_category
+    this.event.tags = ((data.event[0].tags != null) ? data.event[0].tags : '')
+    this.event.start_date = data.event[0].start_date_time.split(' ')[0]
+    
+    // this.event.start_date_time = data.event[0].start_date_time
+
+    // console.log(data)
+      
+  }
+
 
 }

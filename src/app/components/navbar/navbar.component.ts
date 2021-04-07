@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  userAuthenticated: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.checkIfUserAuthenticated()
   }
 
   showSearchBar() {
@@ -70,6 +73,17 @@ export class NavbarComponent implements OnInit {
       searchIcon.style.display = 'block'
     }
 
+  }
+
+  checkIfUserAuthenticated() {
+    var data: any =  sessionStorage.getItem('x_auth_token')
+
+    this.userAuthenticated = ((data != null)? true : false)
+    // data = JSON.parse(data)
+    console.log('user authenticated: ', this.userAuthenticated)
+    // this.event.recurring = data.event[0].recurring;
+    // this.event.title = data.event[0].title
+   
   }
 
   // logIn() {
