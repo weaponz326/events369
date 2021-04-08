@@ -1,7 +1,7 @@
+import _ from 'lodash';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import _ from 'lodash';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class CreateEventTicketingComponent implements OnInit {
 
   isLoading: boolean;
   saved: boolean;
+  eventId: string;
   isEditMode: boolean;
   isSaving: boolean;
   selectedTicketId: string;
@@ -28,6 +29,7 @@ export class CreateEventTicketingComponent implements OnInit {
   ) {
     this.isLoading = false;
     this.saved = false;
+    this.eventId = '';
     this.isSaving = false;
     this.isEditMode = false;
     this.isLoadingTickets = false;
@@ -35,6 +37,7 @@ export class CreateEventTicketingComponent implements OnInit {
     this.selectedTicketIndex = -1;
     this.selectedTicketId = '';
 
+    this.getEventDetails();
     this.getExistingTickets();
   }
 
@@ -61,15 +64,19 @@ export class CreateEventTicketingComponent implements OnInit {
 
   displayFailedDeleteToast(): void {}
 
+  getEventDetails(): any {
+    const rawData = sessionStorage.getItem('created_event');
+    const eventData = rawData != null ? JSON.parse(rawData) : {};
+    this.eventId = eventData.event[0].id;
+    console.log(this.eventId);
+  }
+
   previous(): void {
     this.router.navigateByUrl('/create_event/more_details');
   }
 
   save(): void {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.router.navigateByUrl('/create_event/publishing');
-    }, 3500);
+    this.router.navigateByUrl('/create_event/publishing');
   }
 
   create(): void {
@@ -107,7 +114,7 @@ export class CreateEventTicketingComponent implements OnInit {
       salesEndDate: this.f.salesEndDate.value,
       salesStartDate: this.f.salesStartDate.value,
       currency: this.f.currency.value,
-      eventId: 18
+      eventId: this.eventId
     };
     return data;
   }
@@ -128,7 +135,7 @@ export class CreateEventTicketingComponent implements OnInit {
 
   getExistingTickets(): any {
     this.isLoadingTickets = true;
-    this.ticketService.getTickets('18').then(
+    this.ticketService.getTickets(this.eventId).then(
       tickets => {
         this.isLoadingTickets = false;
         _.forEach(tickets, (ticket) => {
@@ -165,7 +172,7 @@ export class CreateEventTicketingComponent implements OnInit {
     this.f.name.setValue(ticket.name);
     this.f.price.setValue(ticket.price);
     this.f.currency.setValue(ticket.currency);
-    this.f.quantity.setValue(ticket.max_quantity);
+    this.f.quantity.setValue(ticket.max_quantity || ticket.quantity);
     this.f.salesEndDate.setValue(ticket.sales_enddate_time);
     this.f.salesStartDate.setValue(ticket.sales_startdate_time);
 
