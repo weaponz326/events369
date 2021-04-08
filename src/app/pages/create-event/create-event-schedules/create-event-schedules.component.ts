@@ -23,6 +23,7 @@ export class CreateEventSchedulesComponent implements OnInit {
 
   eventId: string = ''
   eventTitle: string = ''
+  eventDate: string = '' 
   startDate: string = ''
   endDate: string = ''
 

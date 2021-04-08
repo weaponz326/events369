@@ -122,7 +122,7 @@ export class TicketsService {
   }
 
   /**
-   * Determines if an event has tickets.
+   * Determines if an event has tickets. 
    * @param eventId Event ID.
    * @returns 
    */
