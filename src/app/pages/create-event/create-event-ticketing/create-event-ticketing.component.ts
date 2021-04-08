@@ -11,6 +11,9 @@ import { TicketsService } from 'src/app/services/tickets/tickets.service';
 })
 export class CreateEventTicketingComponent implements OnInit {
 
+  eventTitle: string = ''
+  eventDate: string = ''
+
   isLoading: boolean;
   saved: boolean;
   isEditMode: boolean;
@@ -40,6 +43,12 @@ export class CreateEventTicketingComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+
+    var data: any =  sessionStorage.getItem('created_event')
+    data = JSON.parse(data)
+    this.eventTitle = data.event[0].title;
+    this.eventDate = data.event[0].start_date_time
+    
   }
 
   
@@ -146,7 +155,7 @@ export class CreateEventTicketingComponent implements OnInit {
           if (ticketId == 0) {
             resolve(false);
           }
-          else {
+          else { 
             const createdTicket = this.getCreatedTicketData(ticketId);
             this.createdTicketList.unshift(createdTicket);
             resolve(true);

@@ -11,7 +11,7 @@ export class CreateEventSchedulesComponent implements OnInit {
   isLoading: boolean;
   
   eventTitle: string = ''
-  eventDate: string = ''
+  eventDate: string = '' 
 
   constructor(private router: Router) {
     this.isLoading = false;
