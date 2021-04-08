@@ -79,10 +79,7 @@ export class NavbarComponent implements OnInit {
     var data: any =  sessionStorage.getItem('x_auth_token')
 
     this.userAuthenticated = ((data != null)? true : false)
-    // data = JSON.parse(data)
     console.log('user authenticated: ', this.userAuthenticated)
-    // this.event.recurring = data.event[0].recurring;
-    // this.event.title = data.event[0].title
    
   }
 

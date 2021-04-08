@@ -12,9 +12,6 @@ export class EventSideMenuCheckService {
   eventHasScheduleData() {
     this.data = sessionStorage.getItem('created_event')
     this.data = JSON.parse(this.data)
-    // this.eventTitle = this.data.event[0].title;
-    // this.eventDate = this.data.event[0].start_date_time
-    // console.log(this.data)
     if(this.data.schedule.length > 0) {
       return true
     }
@@ -26,8 +23,6 @@ export class EventSideMenuCheckService {
   eventHasMoreDetailsData() {
     this.data = sessionStorage.getItem('created_event')
     this.data = JSON.parse(this.data)
-    // this.eventTitle = this.data.event[0].title;
-    // this.eventDate = this.data.event[0].start_date_time
     if(this.data.images.length > 0) {
       return true
     }
@@ -39,8 +34,6 @@ export class EventSideMenuCheckService {
   eventHasTicketingData() {
     this.data = sessionStorage.getItem('created_event')
     this.data = JSON.parse(this.data)
-    // this.eventTitle = this.data.event[0].title;
-    // this.eventDate = this.data.event[0].start_date_time
     if(this.data.tickets.length > 0) {
       return true
     }
@@ -52,8 +45,6 @@ export class EventSideMenuCheckService {
   eventHasPublishingData() {
     this.data = sessionStorage.getItem('created_event')
     this.data = JSON.parse(this.data)
-    // this.eventTitle = this.data.event[0].title;
-    // this.eventDate = this.data.event[0].start_date_time
     if(this.data.event[0].event_url !== null) {
       return true
     }
