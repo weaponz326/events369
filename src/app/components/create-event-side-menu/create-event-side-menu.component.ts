@@ -29,10 +29,12 @@ export class CreateEventSideMenuComponent implements OnInit {
 
   constructor(
     private checkSessionEventData: EventSideMenuCheckService
-  ) { }
+  ) {
+    
+    this.getCreatedEvent()
+   }
 
   ngOnInit(): void {
-    this.getCreatedEvent()
     console.log(this.event.recurring)
     this.event.hasMoreDetailsData = this.checkSessionEventData.eventHasMoreDetailsData()
     this.event.hasScheduleData = this.checkSessionEventData.eventHasScheduleData()
@@ -43,6 +45,9 @@ export class CreateEventSideMenuComponent implements OnInit {
 
   }
 
+  // ngAfterViewInit() {
+  // }
+
   getCreatedEvent(): void {
         
     var data: any =  sessionStorage.getItem('created_event')
@@ -51,7 +56,7 @@ export class CreateEventSideMenuComponent implements OnInit {
     this.event.title = data.event[0].title
     this.event.start_date_time = data.event[0].start_date_time
 
-    // console.log(data)
+    console.log(this.event.start_date_time)
       
   }
 
