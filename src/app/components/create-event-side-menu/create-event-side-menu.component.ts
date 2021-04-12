@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ThemeSwitcherService } from 'src/app/services/theme-switcher/theme-switcher.service';
 import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
 import moment from 'moment';
@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './create-event-side-menu.component.html',
   styleUrls: ['./create-event-side-menu.component.scss']
 })
-export class CreateEventSideMenuComponent implements OnInit {
+export class CreateEventSideMenuComponent implements OnInit, AfterViewInit {
 
   @Input() currentPage: any;
 
@@ -32,7 +32,6 @@ export class CreateEventSideMenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCreatedEvent()
     console.log(this.event.recurring)
     this.event.hasMoreDetailsData = this.checkSessionEventData.eventHasMoreDetailsData()
     this.event.hasScheduleData = this.checkSessionEventData.eventHasScheduleData()
@@ -41,6 +40,10 @@ export class CreateEventSideMenuComponent implements OnInit {
 
     // console.log(this.event)
 
+  }
+
+  ngAfterViewInit() {
+    this.getCreatedEvent()
   }
 
   getCreatedEvent(): void {
