@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ThemeSwitcherService } from 'src/app/services/theme-switcher/theme-switcher.service';
 import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
 import moment from 'moment';
@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './create-event-side-menu.component.html',
   styleUrls: ['./create-event-side-menu.component.scss']
 })
-export class CreateEventSideMenuComponent implements OnInit {
+export class CreateEventSideMenuComponent implements OnInit, AfterViewInit {
 
   @Input() currentPage: any;
 
@@ -35,21 +35,36 @@ export class CreateEventSideMenuComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    
+    
     console.log(this.event.recurring)
     this.event.hasMoreDetailsData = this.checkSessionEventData.eventHasMoreDetailsData()
     this.event.hasScheduleData = this.checkSessionEventData.eventHasScheduleData()
     this.event.hasTicketingData = this.checkSessionEventData.eventHasTicketingData()
     this.event.hasPublishingData = this.checkSessionEventData.eventHasPublishingData()
 
-    // console.log(this.event)
+    console.log(this.event)
 
   }
 
-  // ngAfterViewInit() {
-  // }
+  ngAfterViewInit() {
+    // $(document).ready(function(){
+    //   if( localStorage )
+    //     {
+    //       if( !localStorage.getItem('firstLoad') )
+    //       {
+    //         localStorage['firstLoad'] = true;
+    //         location.reload();
+    //       }  
+    //       else
+    //         localStorage.removeItem('firstLoad');
+    //     }
+    //   // location.reload()
+    // });
+  }
 
   getCreatedEvent(): void {
-        
+    
     var data: any =  sessionStorage.getItem('created_event')
     data = JSON.parse(data)
     this.event.recurring = data.event[0].recurring;

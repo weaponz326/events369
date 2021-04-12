@@ -12,6 +12,7 @@ export class SchedulingService {
   private getSchedulingUrl: string;
   private editSchedulingUrl: string;
   private createSchedulingUrl: string;
+  private getEventUrl: string
 
   constructor(
     private http: HttpClient, 
@@ -21,6 +22,7 @@ export class SchedulingService {
       this.editSchedulingUrl = this.endpoint.apiHost + '/v1/edit_schedule/';
       this.getSchedulingUrl = this.endpoint.apiHost + '/v1/get_schedule/';
       this.createSchedulingUrl = this.endpoint.apiHost + '/v1/create_schedule';
+      this.getEventUrl = this.endpoint.apiHost + '/get_event_data/';
     }
 
     createSchedule(schedule: any): Promise<any> {
@@ -46,6 +48,24 @@ export class SchedulingService {
           },
           err => {
             console.error('create_schedule_error: ', err);
+            reject(err);
+          }
+        );
+      });
+    }
+
+    getCreatedEvent(eventId: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+        let event;
+        const url = this.getEventUrl + eventId;
+        this.http.get<any>(url, { headers: this.headers}).subscribe(
+          res => {
+            console.log('get_created_event: ', res);
+            event = res;
+            resolve(event);
+          },
+          err => {
+            console.log('get_created_event_error: ', err);
             reject(err);
           }
         );
