@@ -22,11 +22,16 @@ import { EditBasicInfoComponent } from './pages/edit-event/edit-basic-info/edit-
 import { EditEventSchedulesComponent } from './pages/edit-event/edit-event-schedules/edit-event-schedules.component';
 import { EditEventDetailsComponent } from './pages/edit-event/edit-event-details/edit-event-details.component';
 import { EditEventTicketingComponent } from './pages/edit-event/edit-event-ticketing/edit-event-ticketing.component';
+import { UserEventsComponent } from './pages/user-events/user-events.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
+  },
+  {
+    path: 'user_events',
+    component: UserEventsComponent
   },
   {
     path: 'login',

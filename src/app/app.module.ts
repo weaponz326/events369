@@ -76,6 +76,7 @@ import { EditEventSpeakersComponent } from './pages/edit-event/edit-event-speake
 import { EditEventSponsorsComponent } from './pages/edit-event/edit-event-sponsors/edit-event-sponsors.component';
 import { EditEventTicketingComponent } from './pages/edit-event/edit-event-ticketing/edit-event-ticketing.component';
 import { EventsListPageComponent } from './pages/events-list-page/events-list-page.component';
+import { UserEventsComponent } from './pages/user-events/user-events.component';
 
 
 @NgModule({
@@ -137,6 +138,7 @@ import { EventsListPageComponent } from './pages/events-list-page/events-list-pa
     EditEventSponsorsComponent,
     EditEventTicketingComponent,
     EventsListPageComponent,
+    UserEventsComponent,
   ],
   imports: [
     BrowserModule,
