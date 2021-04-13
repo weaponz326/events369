@@ -27,6 +27,8 @@ export class EditEventSchedulesComponent implements OnInit {
   endDate: string = ''
   eventRecurs: string = ''
   eventOccursEvery: string = ''
+
+  scheduleID: any
   
   constructor(
     private router: Router,
@@ -55,6 +57,7 @@ export class EditEventSchedulesComponent implements OnInit {
     this.endDate = data.event[0].end_date_time;
     this.eventRecurs = data.schedule[0].recurs;
     this.eventOccursEvery = data.schedule[0].occurs_every;
+    this.scheduleID = data.schedule[0].id
 
     this.initForm();
     // console.log(data.event[0].title)
@@ -70,7 +73,7 @@ export class EditEventSchedulesComponent implements OnInit {
       start_date: [this.startDate],
       end_date: [this.endDate],
       recurs: [this.eventRecurs, Validators.required],
-      days: [this.eventOccursEvery],
+      occurs_every: [this.eventOccursEvery],
       months: [''],
     });
 
@@ -92,9 +95,10 @@ export class EditEventSchedulesComponent implements OnInit {
   edit(): void {
     this.saved = true;
     if (this.form.valid) {
-      console.log('form is valid');
+      console.log('form is valid'); 
+      console.log(this.getFormData())
       this.isLoading = true;
-      this.schedulingService.createSchedule(this.getFormData()).then(
+      this.schedulingService.editSchedule( this.scheduleID, this.getFormData()).then(
         res => {
           if (res) {
             console.log(res);
@@ -124,9 +128,9 @@ export class EditEventSchedulesComponent implements OnInit {
 
   getFormData(): any {
     const data = {
-      event_id: this.eventId,
+      // event_id: this.eventId,
       recurs: this.f.recurs.value,
-      occurs_every: this.f.recurs.daily,
+      occurs_every: this.f.occurs_every.value,
     };
     return data;
   } 

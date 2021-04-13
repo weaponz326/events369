@@ -54,6 +54,42 @@ export class SchedulingService {
       });
     }
 
+    /**
+   * Edits an event schedule.
+   * @param scheduleID Schedule ID.
+   * @param schedule Schedule
+   * @returns 
+   */ 
+  editSchedule(scheduleID: any, schedule: any): Promise<any> {
+    // console.log(this.editSchedulingUrl);
+    const url = this.editSchedulingUrl + scheduleID
+    return new Promise((resolve, reject) => {
+      const body = {       
+        'recurs': schedule.recurs,        
+        'occurs_every': schedule.occurs_every,         
+      };
+
+      console.log(body);
+
+      this.http.post<any>(url, JSON.stringify(body), { headers: this.headers}).subscribe(
+        res => {
+          console.log('edit_schedule_ok: ', res);
+          if (_.toLower(res.message) == 'ok') {
+            resolve(true);            
+          }
+          else {
+            resolve(false);
+          }
+        },
+        err => {
+          console.error('edit_event_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+
     getCreatedEvent(eventId: string): Promise<any> {
       return new Promise((resolve, reject) => {
         let event;

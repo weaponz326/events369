@@ -26,6 +26,7 @@ export class EventDetailsService {
 
   editEventDetails(event: any, banner: File, eventId: any): Promise<any> {
     console.log(this.editDetailsUrl, eventId);
+
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append("banner_image", banner);
@@ -37,7 +38,7 @@ export class EventDetailsService {
       const url = this.editDetailsUrl + eventId;
       this.http.post<any>(url, formData, { headers: this.formHeaders}).subscribe(
         res => {
-          console.log('create_event_ok: ', res);
+          console.log('edit_event_more_info_ok: ', res);
           if (_.toLower(res.message) == 'ok') {
             resolve(res.message); 
           }
@@ -46,7 +47,7 @@ export class EventDetailsService {
           }
         },
         err => {
-          console.error('create_event_error: ', err);
+          console.error('edit_event_more_info_error: ', err);
           reject(err);
         }
       );
