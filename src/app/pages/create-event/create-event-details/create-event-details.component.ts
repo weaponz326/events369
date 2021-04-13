@@ -73,7 +73,7 @@ export class CreateEventDetailsComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
-      phone: ['', [Validators.minLength(12), Validators.maxLength(12)]],      
+      phone: ['', [Validators.minLength(13), Validators.maxLength(13)]],      
       hosted_on: [''],
       banner_image: [''],
       organizer: ['', Validators.required],

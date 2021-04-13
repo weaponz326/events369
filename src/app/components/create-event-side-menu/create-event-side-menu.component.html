@@ -1,51 +1,61 @@
 <div id="side_bar" class="sidenav"
   style="background-color: var(--ev-create-event-side-menu-background);color: var(--primary-color);">
-  <div class="container title ev-margin-top-bottom"  *ngIf="event.title != null">
+  <div class="container title ev-margin-top-bottom"  *ngIf="event?.title != null">
     <h4 class="ev-font-size-xxlarge hide">
-      {{event.title}}
+      {{event?.title}}
       </h4>
     <h4 class="ev-font-size-xxlarge display-none only-mobile" (click)="hideSideMenu()"><i class="bi bi-chevron-left"></i></h4>
 
-    <span class="ev-event-date hide">{{getEventStartDateFormatted(event.start_date_time)}} 
-      <!-- <span class="of">7:00</span> PM -->
+    <span class="ev-event-date hide">
+      {{ getEventStartDateFormatted(event?.start_date_time) }} 
     </span>
-    <span *ngIf="event.recurring === '1'" class="recurring-span">
+    <span *ngIf="event?.recurring === '1'" class="recurring-span">
       <i class="bi bi-arrow-repeat"></i> Recurring event
     </span>
   </div>
   <ng-container *ngIf="event.recurring === '1'">
     <a routerLink="/edit_event/basic_info" [class.active]="currentPage === 'basic_info'">
-      <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info</a>
+      <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info
+    </a>
 
-    <a *ngIf="event.hasScheduleData" routerLink="/edit_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span>
-      Schedule</a>
+    <a *ngIf="event.hasScheduleData" routerLink="/edit_event/schedule" [class.active]="currentPage === 'schedule'">
+      <span class="ev-checkmark">2</span>
+      Schedule
+    </a>
 
-    <a *ngIf="!event.hasScheduleData" routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span>
-      Schedule</a>
+    <a *ngIf="!event.hasScheduleData" routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'">
+      <span class="ev-checkmark">2</span>
+      Schedule
+    </a>
 
-    <a *ngIf="event.hasMoreDetailsData" routerLink="/edit_event/more_details" [class.active]="currentPage === 'details'"><span
-        class="ev-checkmark">3</span> More Details</a>
+    <a *ngIf="event.hasMoreDetailsData" routerLink="/edit_event/more_details" [class.active]="currentPage === 'details'">
+      <span class="ev-checkmark">3</span> More Details
+    </a>
 
-    <a *ngIf="!event.hasMoreDetailsData" routerLink="/create_event/more_details" [class.active]="currentPage === 'details'"><span
-      class="ev-checkmark">3</span> More Details</a>
+    <a *ngIf="!event.hasMoreDetailsData" routerLink="/create_event/more_details" [class.active]="currentPage === 'details'">
+      <span class="ev-checkmark">3</span> More Details
+    </a>
 
-    <a *ngIf="event.hasTicketingData" routerLink="/edit_event/ticketing" [class.active]="currentPage === 'ticketing'"><span
-        class="ev-checkmark">4</span> Ticketing</a>
+    <a *ngIf="event.hasTicketingData" routerLink="/edit_event/ticketing" [class.active]="currentPage === 'ticketing'">
+      <span class="ev-checkmark">4</span> Ticketing
+    </a>
 
-    <a *ngIf="!event.hasTicketingData" routerLink="/create_event/ticketing" [class.active]="currentPage === 'ticketing'"><span
-        class="ev-checkmark">4</span> Ticketing</a>
+    <a *ngIf="!event.hasTicketingData" routerLink="/create_event/ticketing" [class.active]="currentPage === 'ticketing'">
+      <span class="ev-checkmark">4</span> Ticketing
+    </a>
 
-    <a *ngIf="event.hasPublishingData" routerLink="/edit_event/publishing" [class.active]="currentPage === 'publishing'"><span
-        class="ev-checkmark">5</span> Publishing</a>
+    <a *ngIf="event.hasPublishingData" routerLink="/edit_event/publishing" [class.active]="currentPage === 'publishing'">
+      <span class="ev-checkmark">5</span> Publishing
+    </a>
     
-    <a *ngIf="!event.hasPublishingData" routerLink="/create_event/publishing" [class.active]="currentPage === 'publishing'"><span
-      class="ev-checkmark">5</span> Publishing</a>
+    <a *ngIf="!event.hasPublishingData" routerLink="/create_event/publishing" [class.active]="currentPage === 'publishing'">
+      <span class="ev-checkmark">5</span> Publishing
+    </a>
   </ng-container>
 
   <ng-container *ngIf="event.recurring === '0'">
     <a routerLink="/edit_event/basic_info" [class.active]="currentPage === 'basic_info'">
       <span class="ev-checkmark"><i class="bi bi-check2"></i></span> Basic Info</a>
-    <!-- <a routerLink="/create_event/schedule" [class.active]="currentPage === 'schedule'"><span class="ev-checkmark">2</span> Schedule</a> -->
       <a *ngIf="event.hasMoreDetailsData" routerLink="/edit_event/more_details" [class.active]="currentPage === 'details'"><span
         class="ev-checkmark">2</span> More Details</a>
 
