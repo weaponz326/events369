@@ -34,7 +34,29 @@ export class CreateEventSideMenuComponent implements OnInit {
     };
     
     this.getCreatedEvent();
+    this.toggleAdvancedSettings();
    }
+
+  toggleAdvancedSettings() {
+    $(document).ready(function(){
+      var dropdown_shown: boolean = false
+      $('#advanced-dropdown').click(
+        function () {
+          //show its submenu
+          if (dropdown_shown) {
+            $('.sidenav').attr('style', 'overflow-y: hidden'); 
+            $('.dropdown-container').attr('style', 'display: none');  
+            dropdown_shown = false;
+          } 
+          else {
+            $('.sidenav').attr('style', 'overflow-y: scroll'); 
+            $('.dropdown-container').attr('style', 'display: block');  
+            dropdown_shown = true;
+          }  
+        }
+      );
+    });
+  }
 
   ngOnInit(): void {
     console.log(this.event.recurring);
