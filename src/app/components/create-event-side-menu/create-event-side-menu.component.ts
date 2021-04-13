@@ -17,6 +17,8 @@ export class CreateEventSideMenuComponent implements OnInit, AfterViewInit {
 
   dark_theme: boolean = false
 
+  dropdown_shown: boolean = false
+
   event : any = {
     recurring: 'Yes',
     title: '',
@@ -32,6 +34,29 @@ export class CreateEventSideMenuComponent implements OnInit, AfterViewInit {
   ) {
     
     this.getCreatedEvent()
+
+    $(document).ready(function(){
+        var dropdown_shown: boolean = false
+      $('#advanced-dropdown').click(
+        function () {
+            //show its submenu
+            if (dropdown_shown) {
+              $('.sidenav').attr('style', 'overflow-y: hidden'); 
+              $('.dropdown-container').attr('style', 'display: none');  
+              dropdown_shown = false;
+              } 
+            else {
+              $('.sidenav').attr('style', 'overflow-y: scroll'); 
+                $('.dropdown-container').attr('style', 'display: block');  
+                dropdown_shown = true;
+              }  
+        }
+    );
+
+    
+      });
+
+
    }
 
   ngOnInit(): void {
@@ -106,5 +131,6 @@ export class CreateEventSideMenuComponent implements OnInit, AfterViewInit {
       $('#side_bar').attr('class', 'sidenav slide-left');
     
   }
+
 
 }
