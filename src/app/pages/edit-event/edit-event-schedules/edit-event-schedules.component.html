@@ -46,6 +46,9 @@
     <div class="col-md-7 col-lg-5 col-sm-12">
       <!-- As a link -->
       <!-- <app-side-menu-toggle [eventTitle]="'A Chat With Rashida Jones'" [eventDate]="'Sat, May 8, 2021 7:00 PM'"></app-side-menu-toggle> -->
+      <!-- <ng-container *ngIf="schedules" *ngFor="let schedule of schedules">
+      </ng-container> -->
+
       <form class="form" [formGroup]="form" (ngSubmit)="edit()">
         <div class="divider mb-1 mt-5"></div>
 
@@ -114,7 +117,7 @@
             <!-- specificity -->
             <div *ngIf="isDaily == true" class="form-group mb-4">              
               <div class="form-floating">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" formControlName="days">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" formControlName="occurs_every">
                   <option value=null>Everyday</option>
                   <option value="1">Mon</option>
                   <option value="2">Tue</option>
