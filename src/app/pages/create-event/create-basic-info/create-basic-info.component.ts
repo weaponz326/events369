@@ -72,6 +72,7 @@ export class CreateBasicInfoComponent implements OnInit {
 
   create(): void {
     this.saved = true;
+    console.log(moment(this.f.start_time.value).format('hh:mm:ss'));
     if (this.form.valid) {
       console.log('form is valid');
       this.isLoading = true;
