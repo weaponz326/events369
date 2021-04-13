@@ -84,17 +84,17 @@
               <div class="row">
                 <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingType" aria-label="Floating label select example"
+                    <select class="form-select" id="floatingTick" aria-label="Floating label select example"
                       formControlName="ticketing" [ngClass]="{'is-invalid': saved && f.ticketing.errors, 'is-valid': !f.ticketing.errors}">
                       <option value="0">Paid</option>
                       <option value="1">Free</option>
                       <option value="2">Donations</option>
                     </select>
-                    <label for="floatingType">Ticketing</label>
+                    <label for="floatingTick">Ticketing</label>
+                    <small *ngIf="saved && f.ticketing.errors" id="titleHelp" class="form-text invalid-feedback">
+                      Ticketing is required.
+                    </small>
                   </div>
-                  <small *ngIf="saved && f.ticketing.errors" id="titleHelp" class="form-text invalid-feedback">
-                    Ticketing is required.
-                  </small>
                 </div>
                 <div class="col">
                   <div class="form-floating">
@@ -104,10 +104,10 @@
                       <option value="0">Private</option>
                     </select>
                     <label for="floatingType">Event Type</label>
+                    <small *ngIf="saved && f.type.errors" id="titleHelp" class="form-text invalid-feedback">
+                      Event type is required.
+                    </small>
                   </div>
-                  <small *ngIf="saved && f.type.errors" id="titleHelp" class="form-text invalid-feedback">
-                    Event type is required.
-                  </small>
                 </div>
               </div>
             </div>
@@ -123,10 +123,10 @@
                       <option *ngFor="let x of categoriesData" [value]=x.id>{{x.temp_name}}</option>
                     </select>
                     <label for="floatingSelect">Event Category</label>
+                    <small *ngIf="saved && f.category_id.errors" id="titleHelp" class="form-text invalid-feedback">
+                      Event category is required.
+                    </small>
                   </div>
-                  <small *ngIf="saved && f.category_id.errors" id="titleHelp" class="form-text invalid-feedback">
-                    Event category is required.
-                  </small>
                 </div>
                 <div class="col">
                   <div class="form-floating">
@@ -135,10 +135,10 @@
                       <option *ngFor="let x of subCategoriesData" [value]=x.id>{{x.name}}</option>
                     </select>
                     <label for="floatingSelect1">Event sub-category</label>
+                    <small *ngIf="saved && f.subcategory_id.errors" id="titleHelp" class="form-text invalid-feedback">
+                      Event sub-category type is required.
+                    </small>
                   </div>
-                  <small *ngIf="saved && f.subcategory_id.errors" id="titleHelp" class="form-text invalid-feedback">
-                    Event sub-category type is required.
-                  </small>
                 </div>
               </div>
             </div>
@@ -230,7 +230,7 @@
                 </p>
               </div>
             </div>
-            
+
             <!-- start & end date -->
             <div class="form-group mt-3">
               <div class="row">
