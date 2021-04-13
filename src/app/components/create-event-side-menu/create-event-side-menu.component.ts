@@ -16,6 +16,10 @@ export class CreateEventSideMenuComponent implements OnInit {
   @Input() currentPage: any;
   dark_theme: boolean = false;
 
+  dropdown_shown: boolean = false
+
+  _global_page_objects = this;
+
   constructor(
     private checkSessionEventData: EventSideMenuCheckService
   ) {
@@ -75,5 +79,6 @@ export class CreateEventSideMenuComponent implements OnInit {
   hideSideMenu() {
     $('#side_bar').attr('class', 'sidenav slide-left');
   }
+
 
 }
