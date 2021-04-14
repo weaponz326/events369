@@ -73,7 +73,7 @@ export class CreateEventDetailsComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
-      phone: ['', [Validators.minLength(13), Validators.maxLength(13)]],      
+      phone: ['', [Validators.minLength(12), Validators.maxLength(12)]],      
       hosted_on: [''],
       banner_image: [''],
       organizer: ['', Validators.required],
@@ -106,7 +106,12 @@ export class CreateEventDetailsComponent implements OnInit {
           if (res) {
             this.isLoading = false;
             this.getCreatedEvent(this.eventID);
-            this.router.navigateByUrl('/create_event/ticketing');
+            
+            this.saveCreatedEvent(this.eventID).then(
+              ok => {
+                if (ok) this.router.navigateByUrl('/create_event/ticketing');
+              }                               
+            );
           }
           else {
             this.isLoading = false;
@@ -187,6 +192,23 @@ export class CreateEventDetailsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  saveCreatedEvent(eventId: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.basicInfoService.getCreatedEvent(eventId).then(
+        res => {
+          console.log(res);
+          sessionStorage.removeItem('created_event');
+          sessionStorage.setItem('created_event', JSON.stringify(res));
+          resolve(true);
+        },
+        err => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
 }

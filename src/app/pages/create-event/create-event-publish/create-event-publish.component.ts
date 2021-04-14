@@ -16,6 +16,7 @@ export class CreateEventPublishComponent implements OnInit {
   eventDate: string = ''
 
   eventId: string = '';
+  eventBanner: string = '';
   eventDescription: string = '';
   eventStartDate: string = '';
   eventEndDate: string = '';
@@ -39,6 +40,7 @@ export class CreateEventPublishComponent implements OnInit {
     this.eventDate = data.event[0].start_date_time;
 
     this.eventId = data.event[0].id;
+    this.eventBanner = data.event[0].banner_image;
     this.eventDescription = data.event[0].description;    
     this.eventStartDate = data.event[0].start_date_time;    
     this.eventEndDate = data.event[0].end_date_time;   
@@ -60,6 +62,7 @@ export class CreateEventPublishComponent implements OnInit {
           if (res) {
             console.log(res);
             this.isLoading = false;
+            if(res.message == 'OK') this.router.navigateByUrl('/user_events');
           }
         },
         err => {
