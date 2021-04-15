@@ -52,7 +52,6 @@ export class CreateEventDetailsComponent implements OnInit {
     this.eventTitle = data.event[0].title;
     this.eventDate = data.event[0].start_date_time
     this.eventID = data.event[0].id
-    
   }
 
   previous() {
@@ -79,9 +78,13 @@ export class CreateEventDetailsComponent implements OnInit {
       organizer: ['', Validators.required],
       facebook_hosting: [''],
       zoom_hosting: [''],
+      zoom_hosting_id: [''],
+      zoom_hosting_password: [''],
       youtube_hosting: [''],
       meet_hosting: [''],
+      meet_hosting_password: [''],
       teams_hosting: [''],
+      teams_hosting_password: [''],
       facebook_checkbox: [''],
       zoom_checkbox: [''],
       youtube_checkbox: [''],
@@ -131,9 +134,6 @@ export class CreateEventDetailsComponent implements OnInit {
     if (file) {
       this.isBannerSet = true;
 
-      // const formData = new FormData();
-      // formData.append('thumbnail', file);
-
       this.f.banner_image.value = file;
 
       var reader = new FileReader();
@@ -147,10 +147,10 @@ export class CreateEventDetailsComponent implements OnInit {
   getFormData(): any {
     let hostedObject = [
       { 'id': 0, 'password': '', 'meeting_id': '', 'platform': 'Facebook', 'link': this.f.facebook_hosting.value },
-      { 'id': 0, 'password': '', 'meeting_id': '', 'platform': 'Zoom', 'link': this.f.zoom_hosting.value },
+      { 'id': 0, 'password': this.f.zoom_hosting_password.value, 'meeting_id': this.f.zoom_hosting_id.value, 'platform': 'Zoom', 'link': this.f.zoom_hosting.value },
       { 'id': 0, 'password': '', 'meeting_id': '', 'platform': 'Youtube', 'link': this.f.youtube_hosting.value },
-      { 'id': 0, 'password': '', 'meeting_id': '', 'platform': 'Meet', 'link': this.f.meet_hosting.value },
-      { 'id': 0, 'password': '', 'meeting_id': '', 'platform': 'Teams', 'link': this.f.teams_hosting.value }
+      { 'id': 0, 'password': this.f.meet_hosting_password.value, 'meeting_id': '', 'platform': 'Meet', 'link': this.f.meet_hosting.value },
+      { 'id': 0, 'password': this.f.teams_hosting_password.value, 'meeting_id': '', 'platform': 'Teams', 'link': this.f.teams_hosting.value }
     ]
 
     const data = {
