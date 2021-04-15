@@ -383,8 +383,12 @@
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" formControlName="venue">
+                        <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" 
+                          formControlName="venue" [ngClass]="{'is-invalid': saved && f.venue.errors, 'is-valid': !f.venue.errors && f.venue.value != ''}">
                         <label for="floatingVenue">Venue</label>
+                        <small *ngIf="saved && f.venue.errors" id="titleHelp" class="form-text invalid-feedback">
+                          Venue is required for physical events.
+                        </small>
                       </div>
                     </div>
                   </div>
@@ -392,8 +396,12 @@
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" formControlName="gps">
+                        <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" 
+                          formControlName="gps" [ngClass]="{'is-invalid': saved && f.gps.errors, 'is-valid': !f.gps.errors && f.gps.value != ''}">
                         <label for="floatingGps">GPS Cordinates</label>
+                        <small *ngIf="saved && f.gps.errors" id="titleHelp" class="form-text invalid-feedback">
+                          Cordinates is required for physical events.
+                        </small>
                       </div>
                     </div>
                   </div>

@@ -68,7 +68,9 @@ export class CreateBasicInfoComponent implements OnInit {
       venue_tobe_announced: [0],
       hosting: ['1']
     });
-  }
+
+    this.setHostingValidators();
+  }  
 
   create(): void {
     this.saved = true;
@@ -135,7 +137,26 @@ export class CreateBasicInfoComponent implements OnInit {
   }
 
   setHosting(value: any): void {
+    console.log(value);
     this.f.hosting.setValue(value);
+    this.setHostingValidators();
+  }
+
+  setHostingValidators() {
+    if (this.f.hosting.value == '1') {
+      console.log('...adding physical event validators');
+      this.f.venue.setValidators(Validators.required);
+      this.f.gps.setValidators(Validators.required);
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
+    }
+    else if (this.f.hosting.value == '0') {
+      console.log('...removing physical event validators');
+      this.f.venue.clearValidators();
+      this.f.gps.clearValidators();
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
+    }
   }
 
   toggleVenueView(): void {

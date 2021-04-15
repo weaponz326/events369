@@ -51,7 +51,6 @@ export class EditBasicInfoComponent implements OnInit {
     this.toggleVenueView();
     this.getCategories();
     this.disableSubcategory();
-    this.initEnableSubcategory();
 
     this.url = this.router.url
     var ind1 = this.url.indexOf('/');
@@ -88,10 +87,6 @@ export class EditBasicInfoComponent implements OnInit {
     };
   }
 
-  save(): void {
-    this.isLoading = true;
-  }
-
   public get f(): any {
     return this.form.controls;
   }
@@ -117,6 +112,8 @@ export class EditBasicInfoComponent implements OnInit {
       venue_tobe_announced: [0],
       hosting: [this.event.hosting]
     });
+
+    this.setHostingValidators();
   }
 
   edit(): void {
@@ -206,7 +203,7 @@ export class EditBasicInfoComponent implements OnInit {
     this.form.controls['hosting'].setValue(value);
     this.event.hosting = this.form.controls['hosting'].value
 
-    if(this.event.hosting == '0') {
+    if(this.event.hosting == '1') {
       var tab_active = document.getElementById('pills-home');
       if (tab_active) tab_active.className = "tab-pane fade active show";
 
@@ -218,6 +215,25 @@ export class EditBasicInfoComponent implements OnInit {
 
       var tab_inactive =  document.getElementById('pills-home');
       if (tab_inactive) tab_inactive.className = "tab-pane fade";
+    }
+
+    this.setHostingValidators();
+  }
+
+  setHostingValidators() {
+    if (this.f.hosting.value == '1') {
+      console.log('...adding physical event validators');
+      this.f.venue.setValidators(Validators.required);
+      this.f.gps.setValidators(Validators.required);
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
+    }
+    else if (this.f.hosting.value == '0') {
+      console.log('...removing physical event validators');
+      this.f.venue.clearValidators();
+      this.f.gps.clearValidators();
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
     }
   }
 
@@ -241,25 +257,18 @@ export class EditBasicInfoComponent implements OnInit {
     this.form.controls['subcategory_id'].disable();
   }
 
-  initEnableSubcategory(): void {
-    this.form.controls['category_id'].valueChanges.subscribe(change => {
-      console.log(change);
-      if (change != '') {
-        this.form.controls['subcategory_id'].enable();
-        this.form.controls['subcategory_id'].setValue('') ;
-        this.getSubsategories(this.f.category_id.value);
-      }
-    });
-  }
-
   populateSubCategory(): void {
     // this.form.controls['category_id'].valueChanges.subscribe(change => {
     //   console.log(change);
     //   if (change != '') {
       this.form.controls['subcategory_id'].enable();
-      this.getSubsategories(this.event.category);
+      this.getSubcategories();
       // }
     // });
+  }
+
+  enableSubcategory(): void {
+    this.f.subcategory_id.enable();
   }
 
   getCategories(): void {
@@ -274,9 +283,9 @@ export class EditBasicInfoComponent implements OnInit {
     );
   }
 
-  getSubsategories(id: any): void {
-    // this.f.category_id.value
-    this.basicInfoService.getSubcategories(id).then(
+  getSubcategories(): void {
+    this.enableSubcategory();
+    this.basicInfoService.getSubcategories(this.f.category_id.value).then(
       res => {
         console.log(res);
         this.subCategoriesData = res.sub_categories;

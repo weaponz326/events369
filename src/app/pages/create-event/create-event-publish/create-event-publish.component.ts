@@ -20,6 +20,7 @@ export class CreateEventPublishComponent implements OnInit {
   eventDescription: string = '';
   eventStartDate: string = '';
   eventEndDate: string = '';
+  eventOrganizer: string = '';
   eventContactEmail: string = '';
   eventContactPhone: string = '';
 
@@ -44,6 +45,7 @@ export class CreateEventPublishComponent implements OnInit {
     this.eventDescription = data.event[0].description;    
     this.eventStartDate = data.event[0].start_date_time;    
     this.eventEndDate = data.event[0].end_date_time;   
+    this.eventOrganizer = data.organizers[0]?.name;    
     this.eventContactEmail = data.event[0].contact_email;    
     this.eventContactPhone = data.event[0].contact_phone;
     
