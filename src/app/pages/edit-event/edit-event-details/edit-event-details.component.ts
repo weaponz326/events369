@@ -11,11 +11,21 @@ import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service
 })
 export class EditEventDetailsComponent implements OnInit {
 
+  eventTitle: string = ''
+  eventDate: string = ''
+  eventID: string = ''
+
   isLoading: boolean;
   isBannerSet: boolean;
   saved: boolean;
   form: FormGroup = new FormGroup({});
   imgSrc: string;
+
+  facebookVisibility: boolean;
+  zoomVisibility: boolean;
+  youtubeVisibility: boolean;
+  meetVisibility: boolean;
+  teamsVisibility: boolean;
 
   details: any = {
     banner_image: '',
@@ -32,9 +42,15 @@ export class EditEventDetailsComponent implements OnInit {
     private basicInfoService: BasicInfoService,
   ) {
     this.isLoading = false;
-    this.isBannerSet = false;
+    this.isBannerSet = true;
     this.saved = false;
     this.imgSrc = '../../../../assets/images/placeholder.png';
+
+    this.facebookVisibility = false;
+    this.zoomVisibility = false;
+    this.youtubeVisibility = false;
+    this.meetVisibility = false;
+    this.teamsVisibility = false;
   }
 
   ngOnInit(): void {
@@ -44,6 +60,16 @@ export class EditEventDetailsComponent implements OnInit {
     
     this.populateForm()
     this.initForm();
+
+    var data: any =  sessionStorage.getItem('created_event')
+    data = JSON.parse(data)
+    this.eventTitle = data.event[0].title;
+    this.eventDate = data.event[0].start_date_time
+    this.eventID = data.event[0].id
+  }
+
+  ngAfterViewInit(): void {
+    this.imgSrc = 'http://events369.logitall.biz/storage/banner/' + this.details.banner_image; 
   }
 
   previous() {
