@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs'
+import { EndpointService } from 'src/app/services/endpoints/endpoint.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  userAuthenticated: boolean = false;
+  userAuthenticated: boolean = false;  
 
-  constructor() { }
+  constructor(private http: HttpClient, private endpoint: EndpointService) { }
 
   ngOnInit(): void {
     this.checkIfUserAuthenticated()
@@ -90,5 +93,18 @@ export class NavbarComponent implements OnInit {
   // signUp() {
 
   // }
+
+  logout(e: any){
+    e.preventDefault();
+    const apiUrl = 'http://events369.logitall.biz/api/v1/';
+    this.http.get<any>(apiUrl + 'logout', { headers: this.endpoint.headers() }).subscribe(
+      res =>  {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
 
 }

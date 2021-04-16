@@ -318,6 +318,8 @@ export class EditBasicInfoComponent implements OnInit {
     for (var i = 0; i < chips.length; i++) {
       if (chips[i] != '')this.tagsList.unshift(chips[i]);
     }
+
+    this.tagsString = this.event.tags;
   }
 
   populateForm(): void {

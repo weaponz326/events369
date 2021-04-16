@@ -149,14 +149,19 @@
 
             <!-- tags -->
             <div class="form-group">
-              <div class="form-floating mb-3">
+              <div class="form-floating mb-2">
                 <input (keyup.enter)="addChip()" type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
                 <label for="floatingTags">Tags</label>
-              </div>
-              <div>
-                <span *ngFor="let tag of tagsList; let i = index" class="badge bg-primary rounded-pill mr-2 mb-1">
-                  {{tag}}<button type="button" class="btn-close btn-danger ml-1" aria-label="Close" (click)="deleteChip(i)"></button>
-                </span>
+              </div>              
+            </div>
+            <div class="form-group tags-view">
+              <div *ngFor="let tag of tagsList; let i = index" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#{{tag}}</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteChip(i)">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
               </div>
             </div>
             <!-- /.tags -->
