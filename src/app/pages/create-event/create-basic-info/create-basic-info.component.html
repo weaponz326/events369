@@ -76,6 +76,9 @@
                   Description is required.
                 </small>
               </div>
+              <small class="form-text text-muted">
+                Not more than 150 letters.
+              </small>
             </div>
             <!-- /.description-->
 
@@ -147,8 +150,13 @@
             <!-- tags -->
             <div class="form-group">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
+                <input (keyup.enter)="addChip()" type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
                 <label for="floatingTags">Tags</label>
+              </div>
+              <div>
+                <span *ngFor="let tag of tagsList; let i = index" class="badge bg-primary rounded-pill mr-2 mb-1">
+                  {{tag}}<button type="button" class="btn-close btn-danger ml-1" aria-label="Close" (click)="deleteChip(i)"></button>
+                </span>
               </div>
             </div>
             <!-- /.tags -->

@@ -26,7 +26,7 @@ export class EventPageComponent implements OnInit, AfterViewInit {
   sponsorsDisplay: Boolean = false;
 
   constructor(private http: HttpClient) { 
-    this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/17';
+    this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
   }
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class EventPageComponent implements OnInit, AfterViewInit {
           this.dataContent = res;
           this.eventContent = this.dataContent.event[0];
           this.speakersContent = this.dataContent.hosts;
-          this.scheduleContent = this.dataContent.sessions;
+          this.scheduleContent = this.dataContent.schedule;
           this.pricingContent = this.dataContent.tickets;
           this.organisersContent = this.dataContent.organizers;
           this.sponsorsContent = this.dataContent.sponsors;

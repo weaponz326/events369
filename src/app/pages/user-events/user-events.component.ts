@@ -43,6 +43,11 @@ export class UserEventsComponent implements OnInit {
     );
   }
 
+  gotoPreview(eventId: any) {
+    sessionStorage.setItem('preview_event_id', eventId);
+    this.router.navigateByUrl('/event_details');
+  }
+
   saveSelectedEvent(eventId: any): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.basicInfoService.getCreatedEvent(eventId).then(

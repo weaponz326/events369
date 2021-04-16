@@ -91,7 +91,7 @@ export class EditEventDetailsComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       email: [this.details.email, Validators.email],
-      phone: [this.details.phone, [Validators.minLength(12), Validators.maxLength(12)]],
+      phone: [this.details.phone, [Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
       hosted_on: [this.details.hosted_on],
       banner_image: [this.details.banner_image],
       organizer: [this.details.organizer, Validators.required],

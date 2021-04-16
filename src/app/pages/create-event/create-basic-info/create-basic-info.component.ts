@@ -19,6 +19,8 @@ export class CreateBasicInfoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   categoriesData: any[];
   subCategoriesData: any[];
+  tagsString: string;
+  tagsList: Array<any>;
   recurringStore: string;
 
   url: string = '';
@@ -34,6 +36,8 @@ export class CreateBasicInfoComponent implements OnInit {
     this.saved = false;
     this.categoriesData = [];
     this.subCategoriesData = [];
+    this.tagsString = '';
+    this.tagsList = [];
     this.recurringStore = '0';
   }
 
@@ -52,7 +56,7 @@ export class CreateBasicInfoComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
+      description: ['', [Validators.required, Validators.maxLength(150)]],
       venue: [''],
       gps: [''],
       start_date: ['', Validators.required],
@@ -124,7 +128,7 @@ export class CreateBasicInfoComponent implements OnInit {
       type: this.f.type.value,
       category_id: this.f.category_id.value,
       subcategory_id: this.f.subcategory_id.value,
-      tags: this.f.tags.value,
+      tags: this.tagsString,
       venue_tobe_announced: this.recurringStore,
       hosting: this.f.hosting.value,
       ticketing: this.f.ticketing.value
@@ -223,6 +227,26 @@ export class CreateBasicInfoComponent implements OnInit {
         }
       );
     });
+  }
+
+  addChip(){
+    this.tagsList.unshift(this.f.tags.value);
+
+    let input = this.f.tags.value + ',';
+    this.tagsString = this.tagsString + input;
+    console.log(this.tagsString);
+
+    this.f.tags.setValue('');
+  }
+
+  deleteChip(index: any){
+    console.log(index);
+    this.tagsList.splice(index, 1);
+    let delArray = this.tagsString.split(',')
+    let delString = delArray[index - 1];
+    delString = delString + ',';
+    this.tagsString = this.tagsString.replace(delString, '');
+    console.log(this.tagsString);
   }
 
 }
