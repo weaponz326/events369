@@ -22,6 +22,8 @@ export class EditBasicInfoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   categoriesData: any[];
   subCategoriesData: any[];
+  tagsString: string;
+  tagsList: Array<any>;
   recurringStore: string;
 
   url: string = '';
@@ -38,7 +40,9 @@ export class EditBasicInfoComponent implements OnInit {
     this.isLoading = false;
     this.saved = false;
     this.categoriesData = [];
-    this.subCategoriesData = [];
+    this.subCategoriesData = [];    
+    this.tagsString = '';
+    this.tagsList = [];
     this.recurringStore = '0';
 
     this.initVars();
@@ -96,7 +100,7 @@ export class EditBasicInfoComponent implements OnInit {
     console.log(this.event.start_date)
     this.form = this.formBuilder.group({
       title: [this.event.title, Validators.required],
-      description: [this.event.description, Validators.required],
+      description: [this.event.description, [Validators.required, Validators.maxLength(150)]],
       venue: [this.event.venue],
       gps: [this.event.gps],
       start_date: [this.event.start_date, Validators.required],
@@ -108,12 +112,13 @@ export class EditBasicInfoComponent implements OnInit {
       ticketing: [this.event.ticketing, Validators.required],
       category_id: [this.event.category, Validators.required],
       subcategory_id: [this.event.subcategory, Validators.required],
-      tags: [this.event.tags],
+      tags: '',
       venue_tobe_announced: [0],
       hosting: [this.event.hosting]
     });
 
     this.setHostingValidators();
+    this.setTagsChips();
   }
 
   edit(): void {
@@ -171,7 +176,7 @@ export class EditBasicInfoComponent implements OnInit {
       type: this.f.type.value,
       category_id: this.f.category_id.value,
       subcategory_id: this.f.subcategory_id.value,
-      tags: this.f.tags.value,
+      tags: this.tagsString,
       venue_tobe_announced: this.recurringStore,
       hosting: this.event.hosting,
       ticketing: this.f.ticketing.value
@@ -308,6 +313,13 @@ export class EditBasicInfoComponent implements OnInit {
     );
   }
 
+  setTagsChips() {
+    let chips: any[] = this.event.tags.split(',');
+    for (var i = 0; i < chips.length; i++) {
+      if (chips[i] != '')this.tagsList.unshift(chips[i]);
+    }
+  }
+
   populateForm(): void {
     var data: any =  sessionStorage.getItem('created_event');
     data = JSON.parse(data);
@@ -332,5 +344,24 @@ export class EditBasicInfoComponent implements OnInit {
     this.event.hosting = data.event[0].hosting;   
   }
 
+  addChip(){
+    this.tagsList.unshift(this.f.tags.value);
+
+    let input = this.f.tags.value + ',';
+    this.tagsString = this.tagsString + input;
+    console.log(this.tagsString);
+
+    this.f.tags.setValue('');
+  }
+
+  deleteChip(index: any){
+    console.log(index);
+    this.tagsList.splice(index, 1);
+    let delArray = this.tagsString.split(',')
+    let delString = delArray[index - 1];
+    delString = delString + ',';
+    this.tagsString = this.tagsString.replace(delString, '');
+    console.log(this.tagsString);
+  }
 
 }
