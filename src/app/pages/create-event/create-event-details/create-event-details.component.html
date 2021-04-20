@@ -214,85 +214,107 @@
 
           <div class="row" *ngIf="facebookVisibility==true">
             <div class="col">
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-facebook"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook_hosting">
-                  <label class="hosting-icon" for="floatingTitle">Facebook</label>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="form-floating">
+                    <div class="form-floating input-group">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-facebook"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook_hosting">
+                      <label class="hosting-icon" for="floatingTitle">Facebook</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="row" *ngIf="zoomVisibility==true">
             <div class="col">
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting">
-                  <label class="hosting-icon" for="floatingTitle">Zoom link</label>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="form-floating">
+                    <div class="form-floating input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting">
+                      <label class="hosting-icon" for="floatingTitle">Zoom web link</label>
+                    </div>
+                  </div>
+                  <div class="form-floating">
+                    <div class="form-floating input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting_id">
+                      <label class="hosting-icon" for="floatingTitle">Zoom ID</label>
+                    </div>
+                  </div>
+                  <div class="form-floating">
+                    <div class="form-floating input-group">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting_password">
+                      <label class="hosting-icon" for="floatingTitle">Zoom Password</label>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting_id">
-                  <label class="hosting-icon" for="floatingTitle">Zoom Meeting ID</label>
-                </div>
-              </div>
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
-                  <input type="password" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting_password">
-                  <label class="hosting-icon" for="floatingTitle">Zoom Passcode</label>
-                </div>
-              </div>
-            </div>
-              
-            <br>
+            </div>          
           </div>
+
           <div class="row" *ngIf="youtubeVisibility==true">
             <div class="col">
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-youtube"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="youtube_hosting">
-                  <label class="hosting-icon" for="floatingTitle">Youtube</label>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="form-floating">
+                    <div class="form-floating input-group">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-youtube"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="youtube_hosting">
+                      <label class="hosting-icon" for="floatingTitle">Youtube</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="row" *ngIf="meetVisibility==true">
             <div class="col">
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-google"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting">
-                  <label class="hosting-icon" for="floatingTitle">Google Meet</label>
-                </div>
-              </div>
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-google"></i></span>
-                  <input type="password" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting_password">
-                  <label class="hosting-icon" for="floatingTitle">Google Meet Password</label>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="form-floating">
+                    <div class="form-floating input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-google"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting">
+                      <label class="hosting-icon" for="floatingTitle">Google Meet</label>
+                    </div>
+                  </div>
+                  <div class="form-floating">
+                    <div class="form-floating input-group">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-google"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting_password">
+                      <label class="hosting-icon" for="floatingTitle">Google Meet Password</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="row" *ngIf="teamsVisibility==true">
             <div class="col">
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-people-fill"></i></span>
-                  <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting">
-                  <label class="hosting-icon" for="floatingTitle">Microsoft Teams</label>
-                </div>
-              </div>
-              <div class="form-floating">
-                <div class="form-floating input-group mb-3">
-                  <span class="input-group-text" id="basic-addon1"><i class="bi bi-people-fill"></i></span>
-                  <input type="password" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting_password">
-                  <label class="hosting-icon" for="floatingTitle">Microsoft Teams Password</label>
+              <div class="card mb-2">
+                <div class="card-body">
+                  <div class="form-floating">
+                    <div class="form-floating input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-people-fill"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting">
+                      <label class="hosting-icon" for="floatingTitle">Microsoft Teams</label>
+                    </div>
+                  </div>
+                  <div class="form-floating">
+                    <div class="form-floating input-group">
+                      <span class="input-group-text" id="basic-addon1"><i class="bi bi-people-fill"></i></span>
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting_password">
+                      <label class="hosting-icon" for="floatingTitle">Microsoft Teams Password</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

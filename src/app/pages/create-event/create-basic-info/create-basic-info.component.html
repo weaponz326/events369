@@ -76,6 +76,9 @@
                   Description is required.
                 </small>
               </div>
+              <small class="form-text text-muted">
+                Not more than 150 letters.
+              </small>
             </div>
             <!-- /.description-->
 
@@ -146,9 +149,19 @@
 
             <!-- tags -->
             <div class="form-group">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
+              <div class="form-floating mb-2">
+                <input (keyup.enter)="addChip()" type="text" class="form-control" id="floatingTags" aria-describedby="titleHelp" placeholder="Add keywords to help people easily find your event" formControlName="tags">
                 <label for="floatingTags">Tags</label>
+              </div>              
+            </div>
+            <div class="form-group tags-view">
+              <div *ngFor="let tag of tagsList; let i = index" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary pr-2">#{{tag}}</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteChip(i)">
+                    <i class="bi-trash"></i>
+                  </button>
+                </div>
               </div>
             </div>
             <!-- /.tags -->
@@ -383,8 +396,12 @@
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" formControlName="venue">
+                        <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" 
+                          formControlName="venue" [ngClass]="{'is-invalid': saved && f.venue.errors, 'is-valid': !f.venue.errors && f.venue.value != ''}">
                         <label for="floatingVenue">Venue</label>
+                        <small *ngIf="saved && f.venue.errors" id="titleHelp" class="form-text invalid-feedback">
+                          Venue is required for physical events.
+                        </small>
                       </div>
                     </div>
                   </div>
@@ -392,8 +409,12 @@
                   <div class="form-group">
                     <div class="form-floating">
                       <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" formControlName="gps">
+                        <input type="text" class="form-control" id="floatingGps" aria-describedby="titleHelp" placeholder="GPS cordinates" 
+                          formControlName="gps" [ngClass]="{'is-invalid': saved && f.gps.errors, 'is-valid': !f.gps.errors && f.gps.value != ''}">
                         <label for="floatingGps">GPS Cordinates</label>
+                        <small *ngIf="saved && f.gps.errors" id="titleHelp" class="form-text invalid-feedback">
+                          Cordinates is required for physical events.
+                        </small>
                       </div>
                     </div>
                   </div>

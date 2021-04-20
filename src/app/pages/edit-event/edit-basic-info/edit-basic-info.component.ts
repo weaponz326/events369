@@ -22,6 +22,8 @@ export class EditBasicInfoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   categoriesData: any[];
   subCategoriesData: any[];
+  tagsString: string;
+  tagsList: Array<any>;
   recurringStore: string;
 
   url: string = '';
@@ -38,7 +40,9 @@ export class EditBasicInfoComponent implements OnInit {
     this.isLoading = false;
     this.saved = false;
     this.categoriesData = [];
-    this.subCategoriesData = [];
+    this.subCategoriesData = [];    
+    this.tagsString = '';
+    this.tagsList = [];
     this.recurringStore = '0';
 
     this.initVars();
@@ -51,7 +55,6 @@ export class EditBasicInfoComponent implements OnInit {
     this.toggleVenueView();
     this.getCategories();
     this.disableSubcategory();
-    this.initEnableSubcategory();
 
     this.url = this.router.url
     var ind1 = this.url.indexOf('/');
@@ -88,10 +91,6 @@ export class EditBasicInfoComponent implements OnInit {
     };
   }
 
-  save(): void {
-    this.isLoading = true;
-  }
-
   public get f(): any {
     return this.form.controls;
   }
@@ -101,7 +100,7 @@ export class EditBasicInfoComponent implements OnInit {
     console.log(this.event.start_date)
     this.form = this.formBuilder.group({
       title: [this.event.title, Validators.required],
-      description: [this.event.description, Validators.required],
+      description: [this.event.description, [Validators.required, Validators.maxLength(150)]],
       venue: [this.event.venue],
       gps: [this.event.gps],
       start_date: [this.event.start_date, Validators.required],
@@ -113,10 +112,13 @@ export class EditBasicInfoComponent implements OnInit {
       ticketing: [this.event.ticketing, Validators.required],
       category_id: [this.event.category, Validators.required],
       subcategory_id: [this.event.subcategory, Validators.required],
-      tags: [this.event.tags],
+      tags: '',
       venue_tobe_announced: [0],
       hosting: [this.event.hosting]
     });
+
+    this.setHostingValidators();
+    this.setTagsChips();
   }
 
   edit(): void {
@@ -174,7 +176,7 @@ export class EditBasicInfoComponent implements OnInit {
       type: this.f.type.value,
       category_id: this.f.category_id.value,
       subcategory_id: this.f.subcategory_id.value,
-      tags: this.f.tags.value,
+      tags: this.tagsString,
       venue_tobe_announced: this.recurringStore,
       hosting: this.event.hosting,
       ticketing: this.f.ticketing.value
@@ -206,7 +208,7 @@ export class EditBasicInfoComponent implements OnInit {
     this.form.controls['hosting'].setValue(value);
     this.event.hosting = this.form.controls['hosting'].value
 
-    if(this.event.hosting == '0') {
+    if(this.event.hosting == '1') {
       var tab_active = document.getElementById('pills-home');
       if (tab_active) tab_active.className = "tab-pane fade active show";
 
@@ -218,6 +220,25 @@ export class EditBasicInfoComponent implements OnInit {
 
       var tab_inactive =  document.getElementById('pills-home');
       if (tab_inactive) tab_inactive.className = "tab-pane fade";
+    }
+
+    this.setHostingValidators();
+  }
+
+  setHostingValidators() {
+    if (this.f.hosting.value == '1') {
+      console.log('...adding physical event validators');
+      this.f.venue.setValidators(Validators.required);
+      this.f.gps.setValidators(Validators.required);
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
+    }
+    else if (this.f.hosting.value == '0') {
+      console.log('...removing physical event validators');
+      this.f.venue.clearValidators();
+      this.f.gps.clearValidators();
+      this.f.venue.updateValueAndValidity();
+      this.f.gps.updateValueAndValidity();
     }
   }
 
@@ -241,25 +262,18 @@ export class EditBasicInfoComponent implements OnInit {
     this.form.controls['subcategory_id'].disable();
   }
 
-  initEnableSubcategory(): void {
-    this.form.controls['category_id'].valueChanges.subscribe(change => {
-      console.log(change);
-      if (change != '') {
-        this.form.controls['subcategory_id'].enable();
-        this.form.controls['subcategory_id'].setValue('') ;
-        this.getSubsategories(this.f.category_id.value);
-      }
-    });
-  }
-
   populateSubCategory(): void {
     // this.form.controls['category_id'].valueChanges.subscribe(change => {
     //   console.log(change);
     //   if (change != '') {
       this.form.controls['subcategory_id'].enable();
-      this.getSubsategories(this.event.category);
+      this.getSubcategories();
       // }
     // });
+  }
+
+  enableSubcategory(): void {
+    this.f.subcategory_id.enable();
   }
 
   getCategories(): void {
@@ -274,9 +288,9 @@ export class EditBasicInfoComponent implements OnInit {
     );
   }
 
-  getSubsategories(id: any): void {
-    // this.f.category_id.value
-    this.basicInfoService.getSubcategories(id).then(
+  getSubcategories(): void {
+    this.enableSubcategory();
+    this.basicInfoService.getSubcategories(this.f.category_id.value).then(
       res => {
         console.log(res);
         this.subCategoriesData = res.sub_categories;
@@ -297,6 +311,15 @@ export class EditBasicInfoComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  setTagsChips() {
+    let chips: any[] = this.event.tags.split(',');
+    for (var i = 0; i < chips.length; i++) {
+      if (chips[i] != '')this.tagsList.unshift(chips[i]);
+    }
+
+    this.tagsString = this.event.tags;
   }
 
   populateForm(): void {
@@ -323,5 +346,24 @@ export class EditBasicInfoComponent implements OnInit {
     this.event.hosting = data.event[0].hosting;   
   }
 
+  addChip(){
+    this.tagsList.unshift(this.f.tags.value);
+
+    let input = this.f.tags.value + ',';
+    this.tagsString = this.tagsString + input;
+    console.log(this.tagsString);
+
+    this.f.tags.setValue('');
+  }
+
+  deleteChip(index: any){
+    console.log(index);
+    this.tagsList.splice(index, 1);
+    let delArray = this.tagsString.split(',')
+    let delString = delArray[index - 1];
+    delString = delString + ',';
+    this.tagsString = this.tagsString.replace(delString, '');
+    console.log(this.tagsString);
+  }
 
 }
