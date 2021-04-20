@@ -7,17 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LiveEventsComponent implements OnInit {
 
-  sliderOptions: any;
+  thumbsSliderOptions: any;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.sliderOptions = {
+    this.thumbsSliderOptions = {
       items: 1,
-      dots: true,
-      margin: 30,
-      center: true,
-      loop: true
     };
   }
 
