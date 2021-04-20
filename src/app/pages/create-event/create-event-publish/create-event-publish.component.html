@@ -58,8 +58,7 @@
               <div class="card mb-3">
                 <img *ngIf="eventBanner != null" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{eventBanner}}" height="300" alt="banner">
                 <img *ngIf="eventBanner == null" class="card-img-top" src="../../../../assets/images/placeholder.png" height="300" alt="banner">
-              </div>
-              <div class="card mb-3">
+                              
                 <div class="card-body">
                       <h5 class="card-title">{{eventTitle}}</h5>
                       <p class="card-text"><small class="text-muted">{{eventStartDate | date:'mediumDate'}}<i><b> to </b></i>{{eventEndDate | date:'mediumDate'}}</small></p>
@@ -71,9 +70,9 @@
                         <small><i class="bi-cash-stack"></i> {{ticket.currency}}{{ticket.price}} &nbsp; - &nbsp; <i class="bi-person"></i> {{ticket.max_quantity}}</small>
                       </p>
                       <p class="card-text" style="font-size: 12px;">
-                        By: {{eventOrganizer}} <br>
-                        Phone No.: {{eventContactPhone}} <br>
-                        Email: {{eventContactEmail}}
+                        <span>By: {{eventOrganizer}}</span> <br>
+                        <span *ngIf="eventContactPhone != null">Phone No.: {{eventContactPhone}}</span> <br>
+                        <span *ngIf="eventContactEmail != null">Email: {{eventContactEmail}}</span>
                       </p>
                     </div>
               </div>
