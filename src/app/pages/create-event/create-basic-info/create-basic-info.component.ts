@@ -114,6 +114,10 @@ export class CreateBasicInfoComponent implements OnInit {
         }
       );
     }
+    else{
+      console.log('scrolling to top');
+      window.scrollTo(0,0);
+    }
   }
 
   getFormData(): any {
@@ -247,6 +251,17 @@ export class CreateBasicInfoComponent implements OnInit {
     delString = delString + ',';
     this.tagsString = this.tagsString.replace(delString, '');
     console.log(this.tagsString);
+  }
+
+  scrollToTop() {
+    let scrollToTop = window.setInterval(() => {
+        let pos = window.pageYOffset;
+        if (pos > 0) {
+            window.scrollTo(0, pos - 200); // how far to scroll on each step
+        } else {
+            window.clearInterval(scrollToTop);
+        }
+    }, 16);
   }
 
 }

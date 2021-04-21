@@ -26,6 +26,7 @@ import { CreateEventOrganizersComponent } from './pages/create-event/create-even
 import { CreateEventSpeakersComponent } from './pages/create-event/create-event-speakers/create-event-speakers.component';
 import { CreateEventMediaComponent } from './pages/create-event/create-event-media/create-event-media.component';
 import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
+import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: SignupPageComponent
+  },
+  {
+    path: 'signup_email',
+    component: SignupEmailComponent
   },
   {
     path: 'email_confirmed',

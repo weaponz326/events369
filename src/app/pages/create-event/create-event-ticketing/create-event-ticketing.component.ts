@@ -113,6 +113,9 @@ export class CreateEventTicketingComponent implements OnInit {
         this.editTicket(this.selectedTicketId, this.selectedTicketIndex);
       }
     }
+    else{
+      window.scrollTo(0,0);
+    }
   }
 
   getFormData(): any {

@@ -127,6 +127,9 @@ export class CreateEventDetailsComponent implements OnInit {
         }
       );
     }
+    else{
+      window.scrollTo(0,0);
+    }
   }
 
   onFileSelected(e: any){

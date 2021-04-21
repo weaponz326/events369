@@ -112,6 +112,9 @@ export class CreateEventSchedulesComponent implements OnInit {
         }
       );
     }
+    else{
+      window.scrollTo(0,0);
+    }
   }
 
   getFormData(): any {
