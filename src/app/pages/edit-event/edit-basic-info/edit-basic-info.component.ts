@@ -100,7 +100,7 @@ export class EditBasicInfoComponent implements OnInit {
     console.log(this.event.start_date)
     this.form = this.formBuilder.group({
       title: [this.event.title, Validators.required],
-      description: [this.event.description, [Validators.required, Validators.maxLength(150)]],
+      description: [this.event.description, [Validators.required, Validators.maxLength(250)]],
       venue: [this.event.venue],
       gps: [this.event.gps],
       start_date: [this.event.start_date, Validators.required],
