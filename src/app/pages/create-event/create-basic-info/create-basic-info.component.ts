@@ -58,7 +58,7 @@ export class CreateBasicInfoComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', [Validators.required, Validators.maxLength(150)]],
+      description: ['', [Validators.required, Validators.maxLength(250)]],
       venue: [''],
       gps: [''],
       start_date: ['', Validators.required],
