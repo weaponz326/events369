@@ -31,4 +31,8 @@ export class UserAuthService {
     return this.http.post<any>(this.apiUrl + 'resetPassword', user);      
   }
 
+  singupEmail(email: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'registerIAM', email);      
+  }
+
 }

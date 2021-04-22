@@ -78,6 +78,8 @@ import { EditEventSponsorsComponent } from './pages/edit-event/edit-event-sponso
 import { EditEventTicketingComponent } from './pages/edit-event/edit-event-ticketing/edit-event-ticketing.component';
 import { EventsListPageComponent } from './pages/events-list-page/events-list-page.component';
 import { UserEventsComponent } from './pages/user-events/user-events.component';
+import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
+import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
 
 
 @NgModule({
@@ -140,6 +142,8 @@ import { UserEventsComponent } from './pages/user-events/user-events.component';
     EditEventTicketingComponent,
     EventsListPageComponent,
     UserEventsComponent,
+    SignupEmailComponent,
+    SignupMoreInfoComponent,
   ],
   imports: [
     BrowserModule,
