@@ -89,20 +89,22 @@ export class EditEventDetailsComponent implements OnInit {
   }
 
   initForm(): void {
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+
     this.form = this.formBuilder.group({
       email: [this.details.email, Validators.email],
       phone: [this.details.phone, [Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
       hosted_on: [this.details.hosted_on],
       banner_image: [this.details.banner_image],
       organizer: [this.details.organizer, Validators.required],
-      facebook_hosting: [this.details.hosted_on[0].link],
-      zoom_hosting: [this.details.hosted_on[1].link],
+      facebook_hosting: [this.details.hosted_on[0].link, Validators.pattern(urlRegex)],
+      zoom_hosting: [this.details.hosted_on[1].link, Validators.pattern(urlRegex)],
       zoom_hosting_id: [this.details.hosted_on[1].meeting_id],
-      zoom_hosting_password: [this.details.hosted_on[1].password],
-      youtube_hosting: [this.details.hosted_on[2].link],
+      zoom_hosting_password: [this.details.hosted_on[1].password, Validators.pattern(urlRegex)],
+      youtube_hosting: [this.details.hosted_on[2].link, Validators.pattern(urlRegex)],
       meet_hosting: [this.details.hosted_on[3].link],
       meet_hosting_password: [this.details.hosted_on[3].password],
-      teams_hosting: [this.details.hosted_on[4].link],
+      teams_hosting: [this.details.hosted_on[4].link, Validators.pattern(urlRegex)],
       teams_hosting_password: [this.details.hosted_on[4].password],
       facebook_checkbox: [],
       zoom_checkbox: [],

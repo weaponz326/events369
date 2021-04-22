@@ -70,20 +70,22 @@ export class CreateEventDetailsComponent implements OnInit {
   }
 
   initForm(): void {
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+
     this.form = this.formBuilder.group({
       email: ['', Validators.email],
       phone: ['', [Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],      
       hosted_on: [''],
       banner_image: [''],
       organizer: ['', Validators.required],
-      facebook_hosting: [''],
-      zoom_hosting: [''],
+      facebook_hosting: ['', Validators.pattern(urlRegex)],
+      zoom_hosting: ['', Validators.pattern(urlRegex)],
       zoom_hosting_id: [''],
       zoom_hosting_password: [''],
-      youtube_hosting: [''],
-      meet_hosting: [''],
+      youtube_hosting: ['', Validators.pattern(urlRegex)],
+      meet_hosting: ['', Validators.pattern(urlRegex)],
       meet_hosting_password: [''],
-      teams_hosting: [''],
+      teams_hosting: ['', Validators.pattern(urlRegex)],
       teams_hosting_password: [''],
       facebook_checkbox: [''],
       zoom_checkbox: [''],

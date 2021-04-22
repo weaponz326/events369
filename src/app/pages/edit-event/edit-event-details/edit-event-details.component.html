@@ -219,7 +219,8 @@
                   <div class="form-floating">
                     <div class="form-floating input-group">
                       <span class="input-group-text" id="basic-addon1"><i class="bi bi-facebook"></i></span>
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook_hosting">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook_hosting"
+                        [ngClass]="{'is-invalid': saved && f.facebook_hosting.errors, 'is-valid': f.facebook_hosting.value!='' && !f.facebook_hosting.errors}">
                       <label class="hosting-icon" for="floatingTitle">Facebook</label>
                     </div>
                   </div>
@@ -235,7 +236,8 @@
                   <div class="form-floating">
                     <div class="form-floating input-group mb-3">
                       <span class="input-group-text" id="basic-addon1"><i class="bi bi-camera-video-fill"></i></span>
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="zoom_hosting"
+                        [ngClass]="{'is-invalid': saved && f.zoom_hosting.errors, 'is-valid': f.zoom_hosting.value!='' && !f.zoom_hosting.errors}">
                       <label class="hosting-icon" for="floatingTitle">Zoom web link</label>
                     </div>
                   </div>
@@ -265,7 +267,8 @@
                   <div class="form-floating">
                     <div class="form-floating input-group">
                       <span class="input-group-text" id="basic-addon1"><i class="bi bi-youtube"></i></span>
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="youtube_hosting">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="youtube_hosting"
+                        [ngClass]="{'is-invalid': saved && f.youtube_hosting.errors, 'is-valid': f.youtube_hosting.value!='' && !f.youtube_hosting.errors}">
                       <label class="hosting-icon" for="floatingTitle">Youtube</label>
                     </div>
                   </div>
@@ -281,7 +284,8 @@
                   <div class="form-floating">
                     <div class="form-floating input-group mb-3">
                       <span class="input-group-text" id="basic-addon1"><i class="bi bi-google"></i></span>
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="meet_hosting"
+                        [ngClass]="{'is-invalid': saved && f.meet_hosting.errors, 'is-valid': f.meet_hosting.value!='' && !f.meet_hosting.errors}">
                       <label class="hosting-icon" for="floatingTitle">Google Meet</label>
                     </div>
                   </div>
@@ -304,7 +308,8 @@
                   <div class="form-floating">
                     <div class="form-floating input-group mb-3">
                       <span class="input-group-text" id="basic-addon1"><i class="bi bi-people-fill"></i></span>
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting">
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="teams_hosting"
+                        [ngClass]="{'is-invalid': saved && f.teams_hosting.errors, 'is-valid': f.teams_hosting.value!='' && !f.teams_hosting.errors}">
                       <label class="hosting-icon" for="floatingTitle">Microsoft Teams</label>
                     </div>
                   </div>

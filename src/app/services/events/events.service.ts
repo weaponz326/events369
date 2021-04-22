@@ -19,7 +19,7 @@ export class EventsService {
     this.headers = this.endpoint.headers();
     this.getUserEventsUrl = this.endpoint.apiHost + '/v1/get_user_events_by_status/';
     this.getCategoriesUrl = this.endpoint.apiHost + '/view_categories';
-    this.getAllEventsUrl = this.endpoint.apiHost + '/get_events_by_type/1';
+    this.getAllEventsUrl = this.endpoint.apiHost + '/v1/get_all_user_events/';
     this.getCategoryEventsUrl = this.endpoint.apiHost + '/get_events_by_category/';
   }
 
@@ -45,7 +45,8 @@ export class EventsService {
   getAllEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let events: any[] = [];
-      const url = this.getAllEventsUrl;
+      var userId = sessionStorage.getItem('events_user_id');
+      const url = this.getAllEventsUrl + userId;
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
           console.log('get_all_events_ok: ', res);
