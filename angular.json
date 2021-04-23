@@ -41,12 +41,14 @@
               "node_modules/owl.carousel/dist/assets/owl.carousel.css",
               "node_modules/owl.carousel/dist/assets/owl.theme.default.css",
               "src/styles.scss",
-              "src/app/themes/app.scss"
+              "src/app/themes/app.scss",
+              "src/assets/css/slick/slick.css",
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/owl.carousel/dist/owl.carousel.js"
+              "node_modules/owl.carousel/dist/owl.carousel.js",
+              "src/assets/js/slick/slick.min.js"
             ]
           },
           "configurations": {

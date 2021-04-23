@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PublishingService } from 'src/app/services/publishing/publishing.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
+import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
 
 @Component({
   selector: 'app-create-event-publish',
@@ -30,6 +31,7 @@ export class CreateEventPublishComponent implements OnInit {
     private router: Router, 
     private publishingService: PublishingService,
     private ticketService: TicketsService,
+    private basicInfoService: BasicInfoService
   ) {
     this.isLoading = false;
   }
@@ -64,7 +66,15 @@ export class CreateEventPublishComponent implements OnInit {
           if (res) {
             console.log(res);
             this.isLoading = false;
-            if(res.message == 'OK') this.router.navigateByUrl('/user_events');
+            if(res.message == 'OK') {
+
+              this.saveCreatedEvent(this.eventId).then(
+              ok => {
+                if (ok) this.router.navigateByUrl('/user_events');;
+              }                               
+            );
+              
+            }
           }
         },
         err => {
@@ -85,6 +95,23 @@ export class CreateEventPublishComponent implements OnInit {
         // });
       }
     );
+  }
+
+  saveCreatedEvent(eventId: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.basicInfoService.getCreatedEvent(eventId).then(
+        res => {
+          console.log(res);
+          sessionStorage.removeItem('created_event');
+          sessionStorage.setItem('created_event', JSON.stringify(res));
+          resolve(true);
+        },
+        err => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
 }

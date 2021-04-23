@@ -28,7 +28,7 @@ export class AdBannerComponent implements OnInit {
       margin: 30,
       center: true,
       loop: true,
-      autoplay: true
+      autoplay: false
     };
 
  }
