@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 import moment from 'moment';
+import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
 
 @Component({
   selector: 'app-create-event-ticketing',
@@ -29,7 +30,8 @@ export class CreateEventTicketingComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private ticketService: TicketsService
+    private ticketService: TicketsService,
+    private basicInfoService: BasicInfoService
   ) {
     this.isLoading = false;
     this.saved = false;
@@ -179,6 +181,13 @@ export class CreateEventTicketingComponent implements OnInit {
           else { 
             const createdTicket = this.getCreatedTicketData(ticketId);
             this.createdTicketList.unshift(createdTicket);
+
+            this.saveCreatedEvent(this.eventId).then(
+              ok => {
+                if (ok) console.log('saved created event to session');
+              }                               
+            );
+
             resolve(true);
           }
         },
@@ -253,6 +262,23 @@ export class CreateEventTicketingComponent implements OnInit {
     this.f.quantity.setValue('');
     this.f.salesEndDate.setValue('');
     this.f.salesStartDate.setValue('');
+  }
+
+  saveCreatedEvent(eventId: any): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.basicInfoService.getCreatedEvent(eventId).then(
+        res => {
+          console.log(res);
+          sessionStorage.removeItem('created_event');
+          sessionStorage.setItem('created_event', JSON.stringify(res));
+          resolve(true);
+        },
+        err => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
 }

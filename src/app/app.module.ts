@@ -81,6 +81,8 @@ import { UserEventsComponent } from './pages/user-events/user-events.component';
 import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
 import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
 
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+
 
 @NgModule({
   declarations: [
@@ -164,6 +166,7 @@ import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/sign
     NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    SlickCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
