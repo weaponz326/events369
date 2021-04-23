@@ -18,8 +18,8 @@ export class OrganizersService {
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
     this.editOrganizerUrl = this.endpoint.apiHost + '/v1/edit_organizer/';
-    this.getOrganizerUrl = this.endpoint.apiHost + '/get_events_organizers/';
-    this.createOrganizerUrtl = this.endpoint.apiHost + '/v1/create_organizer';
+    this.getOrganizerUrl = this.endpoint.apiHost + '/v1/get_organizers/';
+    this.createOrganizerUrtl = this.endpoint.apiHost + '/v1/create_organizer/';
     this.hasOrganizerUrl = this.endpoint.apiHost + '/v1/hasOrganizer/';
     this.deleteOrganizerUrl = this.endpoint.apiHost + '/v1/delete_organizer/';
   }
@@ -33,7 +33,6 @@ export class OrganizersService {
     console.log(this.createOrganizerUrtl);
     return new Promise((resolve, reject) => {
       const body = {
-        'event_id': organizer.eventId,
         'organizer': organizer.organizer,
         'bio': organizer.bio,
         'facebook': organizer.facebook,
@@ -43,12 +42,12 @@ export class OrganizersService {
       };
 
       console.log(body);
-
-      this.http.post<any>(this.createOrganizerUrtl, JSON.stringify(body), { headers: this.headers}).subscribe(
+      const url = this.createOrganizerUrtl + organizer.event_id;
+      this.http.post<any>(url, JSON.stringify(body), { headers: this.headers}).subscribe(
         res => {
           console.log('create_organizer_ok: ', res);
           if (_.toLower(res.message) == 'ok') {
-            resolve(res.id);
+            resolve(res.message);
           }
           else {
             resolve(0);
