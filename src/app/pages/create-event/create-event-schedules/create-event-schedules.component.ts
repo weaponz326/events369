@@ -85,6 +85,7 @@ export class CreateEventSchedulesComponent implements OnInit {
     this.saved = true;
     if (this.form.valid) {
       console.log('form is valid');
+      console.log(this.getFormData());
       this.isLoading = true;
       this.schedulingService.createSchedule(this.getFormData()).then(
         res => {
@@ -121,7 +122,7 @@ export class CreateEventSchedulesComponent implements OnInit {
     const data = {
       event_id: this.eventId,
       recurs: this.f.recurs.value,
-      occurs_every: this.f.recurs.daily,
+      occurs_every: this.f.days.value,
     };
     return data;
   } 

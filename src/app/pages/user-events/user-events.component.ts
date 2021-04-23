@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 export class UserEventsComponent implements OnInit {
 
   userEvents: any;
+  createdEvents: any;
+  publishedEvents: any;
+  archivedEvents: any;
 
   constructor(
     private router: Router,
@@ -19,17 +22,35 @@ export class UserEventsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {    
-    this.getUserEvents();
+    this.getAllEvents();
+    this.getUserEvents(0)
+    this.getUserEvents(2)
+    this.getUserEvents(3)
   }
 
-  getUserEvents(): void {
-    this.eventsService.getUserEvents(0).then(
+  getAllEvents(): void {
+    this.eventsService.getAllEvents().then(
       res => {
         console.log(res);
         this.userEvents = res.all_events.data;
       },
       err => {
         console.log(err);
+      }
+    );
+  }
+
+  getUserEvents(eventStatus: any): void {
+    this.eventsService.getUserEvents(eventStatus).then(
+      res => {
+        console.log(res);
+        if (eventStatus == 0) this.createdEvents = res.all_events.data;
+        if (eventStatus == 2) this.publishedEvents = res.all_events.data;
+        if (eventStatus == 3) this.archivedEvents = res.all_events.data;
+      },
+      err => {
+        console.log(err);
+        return null;
       }
     );
   }
