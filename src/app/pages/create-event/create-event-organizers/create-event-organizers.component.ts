@@ -17,6 +17,8 @@ export class CreateEventOrganizersComponent implements OnInit {
 
   isLoading: boolean;
   saved: boolean;
+  isImageSet: boolean;
+  imgSrc: string;
   eventId: string;
   isEditMode: boolean;
   isSaving: boolean;
@@ -37,6 +39,8 @@ export class CreateEventOrganizersComponent implements OnInit {
     this.isSaving = false;
     this.isEditMode = false;
     this.isLoadingOrganizers = false;
+    this.isImageSet = false;
+    this.imgSrc = '../../../../assets/images/placeholder.png';
     this.createdOrganizerList = [];
     this.selectedOrganizerIndex = -1;
     this.selectedOrganizerId = '';
@@ -52,7 +56,6 @@ export class CreateEventOrganizersComponent implements OnInit {
     data = JSON.parse(data)
     this.eventTitle = data.event[0].title;
     this.eventDate = data.event[0].start_date_time
-    
   }
 
   
@@ -64,6 +67,7 @@ export class CreateEventOrganizersComponent implements OnInit {
   initForm(): void {
     this.form = this.formBuilder.group({
       organizer: ['', Validators.required],
+      profile_image: [''],
       bio: [''],
       facebook: [''],
       twitter: [''],
@@ -110,6 +114,7 @@ export class CreateEventOrganizersComponent implements OnInit {
 
   getFormData(): any {
     const data = {
+      event_id: this.eventId,
       organizer: this.f.organizer.value,
       bio: this.f.bio.value,
       facebook: this.f.facebook.value,
@@ -150,15 +155,10 @@ export class CreateEventOrganizersComponent implements OnInit {
     return new Promise((resolve, reject) => {
       const organizerData = this.getFormData();
       this.organizerService.createOrganizer(organizerData).then(
-        organizerId => {
-          if (organizerId == 0) {
-            resolve(false);
-          }
-          else { 
+        organizerId => {          
             const createdOrganizer = this.getCreatedOrganizerData(organizerId);
             this.createdOrganizerList.unshift(createdOrganizer);
             resolve(true);
-          }
         },
         err => {
           console.log(err);
@@ -168,9 +168,24 @@ export class CreateEventOrganizersComponent implements OnInit {
     });
   }
 
+  onFileSelected(e: any){
+    const file:File = e.target.files[0];
+    if (file) {
+      this.isImageSet = true;
+
+      this.f.profile_image.value = file;
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e: any) => {
+        this.imgSrc = e.target.result;
+      }
+    }
+  }
+  
   edit(organizer: any, index: number): void {
     this.isEditMode = true;
-    this.f.organizer.setValue(organizer.organizer);
+    this.f.organizer.setValue(organizer.name);
     this.f.bio.setValue(organizer.bio);
     this.f.facebook.setValue(organizer.facebook);
     this.f.linkedin.setValue(organizer.linkedin);
@@ -190,12 +205,12 @@ export class CreateEventOrganizersComponent implements OnInit {
           this.isSaving = false;
           this.isEditMode = false;
           const editedOrganizer = this.createdOrganizerList[index];
-          editedOrganizer.name = organizer.name;
-          editedOrganizer.max_quantity = organizer.quantity;
-          editedOrganizer.price = organizer.price,
-          editedOrganizer.sales_enddate_time = organizer.salesEndDate,
-          editedOrganizer.sales_startdate_time = organizer.salesStartDate,
-          editedOrganizer.currency = organizer.currency;
+          editedOrganizer.organizer = organizer.organizer;
+          editedOrganizer.bio = organizer.bio;
+          editedOrganizer.facebook = organizer.facebook,
+          editedOrganizer.linkedin = organizer.linkedin,
+          editedOrganizer.twitter = organizer.twitter,
+          editedOrganizer.instagram = organizer.instagram;
         }
       },
       err => {}
