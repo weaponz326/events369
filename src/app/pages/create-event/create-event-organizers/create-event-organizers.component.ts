@@ -18,7 +18,8 @@ export class CreateEventOrganizersComponent implements OnInit {
   isLoading: boolean;
   saved: boolean;
   isImageSet: boolean;
-  imgSrc: string;
+  imgSrcList: any[];
+  createdImgSrc: string;
   eventId: string;
   isEditMode: boolean;
   isSaving: boolean;
@@ -40,7 +41,8 @@ export class CreateEventOrganizersComponent implements OnInit {
     this.isEditMode = false;
     this.isLoadingOrganizers = false;
     this.isImageSet = false;
-    this.imgSrc = '../../../../assets/images/placeholder.png';
+    this.imgSrcList = [];
+    this.createdImgSrc = '';
     this.createdOrganizerList = [];
     this.selectedOrganizerIndex = -1;
     this.selectedOrganizerId = '';
@@ -66,7 +68,7 @@ export class CreateEventOrganizersComponent implements OnInit {
 
   initForm(): void {
     this.form = this.formBuilder.group({
-      organizer: ['', Validators.required],
+      name: ['', Validators.required],
       profile_image: [''],
       bio: [''],
       facebook: [''],
@@ -115,7 +117,8 @@ export class CreateEventOrganizersComponent implements OnInit {
   getFormData(): any {
     const data = {
       event_id: this.eventId,
-      organizer: this.f.organizer.value,
+      name: this.f.name.value,
+      profile_image: this.f.profile_image,
       bio: this.f.bio.value,
       facebook: this.f.facebook.value,
       twitter: this.f.twitter.value,
@@ -129,13 +132,15 @@ export class CreateEventOrganizersComponent implements OnInit {
     const organizer = this.getFormData();
     const data = {
       organizerId: organizerId,
-      organizer: organizer.organizer,
+      name: organizer.name,
       bio: organizer.bio,
+      profile_image: this.createdImgSrc,
       facebook: organizer.facebook,
       twitter: organizer.twitter,
       linkedin: organizer.linkedin,
       instagram: organizer.instagram,
     };
+    console.log(data);
     return data;
   }
 
@@ -153,11 +158,13 @@ export class CreateEventOrganizersComponent implements OnInit {
 
   async createOrganizer(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      const organizerData = this.getFormData();
-      this.organizerService.createOrganizer(organizerData).then(
+      var organizerData = this.getFormData();
+      var image = this.f.profile_image.value;
+      this.organizerService.createOrganizer(organizerData, image, this.eventId).then(
         organizerId => {          
             const createdOrganizer = this.getCreatedOrganizerData(organizerId);
             this.createdOrganizerList.unshift(createdOrganizer);
+            this.imgSrcList.unshift(this.createdImgSrc)
             resolve(true);
         },
         err => {
@@ -178,14 +185,14 @@ export class CreateEventOrganizersComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e: any) => {
-        this.imgSrc = e.target.result;
+        this.createdImgSrc = e.target.result;
       }
     }
   }
   
   edit(organizer: any, index: number): void {
     this.isEditMode = true;
-    this.f.organizer.setValue(organizer.name);
+    this.f.name.setValue(organizer.name);
     this.f.bio.setValue(organizer.bio);
     this.f.facebook.setValue(organizer.facebook);
     this.f.linkedin.setValue(organizer.linkedin);
@@ -205,7 +212,7 @@ export class CreateEventOrganizersComponent implements OnInit {
           this.isSaving = false;
           this.isEditMode = false;
           const editedOrganizer = this.createdOrganizerList[index];
-          editedOrganizer.organizer = organizer.organizer;
+          editedOrganizer.name = organizer.name;
           editedOrganizer.bio = organizer.bio;
           editedOrganizer.facebook = organizer.facebook,
           editedOrganizer.linkedin = organizer.linkedin,

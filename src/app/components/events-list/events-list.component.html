@@ -14,11 +14,11 @@
       </ul>
       <div class="tab-content pt-3" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <!-- Upcoming Events -->
+          <!-- All Events -->
           <div class="row mb-4">
             <div class="col-12 ev-padlr-0">
               <h3 class="display-6 ev-head-padl ev-display-only-mobile">
-                <i class="bi-alarm"></i> &nbsp; Upcoming
+                <i class="bi bi-card-list"></i> &nbsp; All Events
                 
                   <!--Controls-->
                 <div style="float: right;" class="controls-top">
@@ -28,85 +28,154 @@
                 <!--/.Controls-->
               </h3>
               <h3 class="display-6 ev-head-padl ev-display-only-non-mobile">
-                <i class="bi-alarm"></i> &nbsp; Starting in 6 Hours 
+                <i class="bi bi-card-list"></i> &nbsp; All Events
                 
                   <!--Controls-->
-                <!-- <div style="float: right;" class="controls-top">
+                <div style="float: right;" class="controls-top">
                   <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="bi bi-chevron-left"></i></a>
                   <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="bi bi-chevron-right"></i></a>
-                </div> -->
+                </div>
                 <!--/.Controls-->
               </h3>
             </div>
           </div>
           
-          <div class="row">
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
+          
+          <owl-carousel [options]="thumbsSliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">            
+            <!-- <div *ngFor="let event of allEvents" class="items">              
+              <div class="card mb-5">
+                <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">{{event.title}}</span>
+                    <br>
+                    <span class="lead">{{event.start_date_time | date:'long'}}</span>
+                  </p>
+                </div>
+              </div>
+            </div> -->
+            <div class="items">
+              <div class="card mb-5">
                 <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <span class="bold">dfgdfdfgdfgdgf</span>
                     <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                    <span class="lead">02 1550 589 0588</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
+            <div class="items">
+              <div class="card mb-5">
                 <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <span class="bold">dfgdfdfgdfgdgf</span>
                     <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                    <span class="lead">02 1550 589 0588</span>
                   </p>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
                 <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <span class="bold">dfgdfdfgdfgdgf</span>
                     <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                    <span class="lead">02 1550 589 0588</span>
                   </p>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
                 <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <span class="bold">dfgdfdfgdfgdgf</span>
                     <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                    <span class="lead">02 1550 589 0588</span>
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex flex-row justify-content-end p-1">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi-arrow-left"></i>
-                  </button>
-                  <button type="button" class="btn btn-outline-primary">
-                    <i class="bi-arrow-right"></i>
-                  </button>
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
                 </div>
               </div>
-            </div>
-          </div>
-          <!-- /.Upcoming end -->
-
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
+                </div>
+              </div>
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
+                </div>
+              </div>
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
+                </div>
+              </div>
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
+                </div>
+              </div>
+            </div>     
+            <div class="items">
+              <div class="card mb-5">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">dfgdfdfgdfgdgf</span>
+                    <br>
+                    <span class="lead">02 1550 589 0588</span>
+                  </p>
+                </div>
+              </div>
+            </div>            
+          </owl-carousel>
+                  
           <!-- Popular Events -->
           <div class="row mb-4 ev-martop-5 ev-padlr-0">
             <div class="col-12  ev-padlr-0">

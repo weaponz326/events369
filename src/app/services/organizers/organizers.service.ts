@@ -29,21 +29,20 @@ export class OrganizersService {
    * @param organizer Organizer
    * @returns 
    */
-  createOrganizer(organizer: any): Promise<any> {
+  createOrganizer(organizer: any, image: File, eventId: any): Promise<any> {
     console.log(this.createOrganizerUrtl);
     return new Promise((resolve, reject) => {
-      const body = {
-        'organizer': organizer.organizer,
-        'bio': organizer.bio,
-        'facebook': organizer.facebook,
-        'twitter': organizer.twitter,
-        'linkedin': organizer.linkedin,
-        'instagram': organizer.instagram
-      };
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('name', organizer.name);
+      formData.append('bio', organizer.bio);
+      formData.append('facebook', organizer.facebook);      
+      formData.append('twitter', organizer.twitter);      
+      formData.append('linkedin', organizer.linkedin);      
+      formData.append('instagram', organizer.instagram);      
 
-      console.log(body);
-      const url = this.createOrganizerUrtl + organizer.event_id;
-      this.http.post<any>(url, JSON.stringify(body), { headers: this.headers}).subscribe(
+      const url = this.createOrganizerUrtl + eventId;
+      this.http.post<any>(url, formData, { headers: this.headers}).subscribe(
         res => {
           console.log('create_organizer_ok: ', res);
           if (_.toLower(res.message) == 'ok') {

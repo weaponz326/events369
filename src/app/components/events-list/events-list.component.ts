@@ -20,7 +20,9 @@ export class EventsListComponent implements OnInit {
     this.getCategories();
 
     this.thumbsSliderOptions = {
-      items: 1,
+      items: 4,
+      dots: false,
+      margin: 30,
     };
   }
 
@@ -46,7 +48,7 @@ export class EventsListComponent implements OnInit {
     this.eventsService.getAllEvents().then(
       res => {
         console.log(res);
-        this.allEvents = res.events;
+        this.allEvents = res.all_events.data;
       },
       err => {
         console.log(err);
