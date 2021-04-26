@@ -48,4 +48,32 @@
     width: 8px; 
     height: 8px;
   }
+
+  .ev-display-only-non-mobile {
+    display: none;
+  }
+  .ev-display-only-mobile {
+    display: none;
+  }
+  
+  
+  @media (max-width: 576px) {
+    .ev-display-only-non-mobile {
+      display: none;
+    }
+    .ev-display-only-mobile {
+      display: block;
+    }
+  }
+  
+  @media (min-width: 577px) {
+    .ev-display-only-non-mobile {
+      display: block;
+    }
+    .ev-display-only-mobile {
+      display: none;
+    }
+  }
+
+  
 }
