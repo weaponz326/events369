@@ -80,6 +80,9 @@ import { EventsListPageComponent } from './pages/events-list-page/events-list-pa
 import { UserEventsComponent } from './pages/user-events/user-events.component';
 import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
 import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
+import { HappeningNowComponent } from './pages/happening-now/happening-now.component';
+import { LearnMoreComponent } from './pages/learn-more/learn-more.component';
+import { LiveEventsPageComponent } from './components/live-events-page/live-events-page.component';
 
 
 
@@ -145,6 +148,9 @@ import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/sign
     UserEventsComponent,
     SignupEmailComponent,
     SignupMoreInfoComponent,
+    HappeningNowComponent,
+    LearnMoreComponent,
+    LiveEventsPageComponent,
   ],
   imports: [
     BrowserModule,

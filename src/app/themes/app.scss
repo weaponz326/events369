@@ -7,6 +7,9 @@
   --ev-background: #fff !important;
   --ev-create-event-nav-background: #1e1e2e !important;
   --ev-create-event-side-menu-background: #f9f9f9;
+  --ev-brandname-darkblue: #1e0a3c;
+  --ev-brandname-orange: #f05537;
+
 
   .dark-theme {
     --primary-color: #fff;
@@ -42,8 +45,8 @@
   }
 
   .ev-spinner {
-    position: relative;
-    left: 48%;
+    // position: relative;
+    // left: 48%;
     margin: 1vh;
     width: 8px; 
     height: 8px;

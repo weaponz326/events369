@@ -15,8 +15,8 @@
         <div class="happening_now_show_more">
           <!-- aria-label="Happening Now; Show {{eventsToday?.data.length - 1}}+ more" -->
             <a *ngIf="eventsToday"
-                
-                href=""
+                target="_blank"
+                href="/events/live/"
                 class="happening_now_show_more_link ev-display-only-non-mobile"
             >
                 Show {{eventsToday?.length - 1}}+ more
@@ -62,9 +62,14 @@
     </div>
     
   <ng-containrer *ngIf="!eventsToday">
-    <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
-    <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
-    <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+    <div class="d-flex justify-content-center">
+      <!-- <div class="spinner-grow" role="status">  -->
+        <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+        <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+        <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+       
+      <!-- </div> -->
+    </div>
     
   </ng-containrer>
   <div class="slider">

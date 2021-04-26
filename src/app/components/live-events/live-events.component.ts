@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
 
 declare var $: any;
-
+ 
 @Component({
   selector: 'app-live-events',
   templateUrl: './live-events.component.html',

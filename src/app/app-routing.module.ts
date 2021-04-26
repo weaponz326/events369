@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EventPageComponent } from './pages/event-page/event-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { LearnMoreComponent } from './pages/learn-more/learn-more.component';
+import { HappeningNowComponent } from './pages/happening-now/happening-now.component';
 import { LoginPageComponent } from './pages/user-auth/login-page/login-page.component';
 import { SignupPageComponent } from './pages/user-auth/signup-page/signup-page.component';
 
@@ -28,6 +30,7 @@ import { CreateEventMediaComponent } from './pages/create-event/create-event-med
 import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
 import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
 import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
+import { HappeningNowService } from './services/happening-now/happening-now.service';
 
 
 const routes: Routes = [
@@ -163,6 +166,19 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'events',
+    children: [
+      {
+        path: 'learn-more',
+        component: LearnMoreComponent
+      },
+      {
+        path: 'live',
+        component: HappeningNowComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

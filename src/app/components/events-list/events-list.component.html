@@ -6,7 +6,7 @@
           <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">All</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="pills-foryou-tab" data-toggle="pill" href="#pills-foryou" role="tab" aria-controls="pills-profile" aria-selected="false">For You</a>
+          <a class="nav-link" id="pills-foryou-tab" data-toggle="pill" href="#pills-foryou" role="tab" aria-controls="pills-profile" aria-selected="false">Your Favorites</a>
         </li>
         <li *ngFor="let x of categories" class="nav-item" role="presentation">
           <a class="nav-link" id="pills-profile-tab" data-toggle="pill" [href]="formatTabPaneId(x.temp_name)" role="tab" aria-controls="pills-profile" aria-selected="false">{{x.temp_name}}</a>
@@ -274,7 +274,37 @@
           <!-- /.New events end -->
         </div>
 
-        <div class="tab-pane fade" id="pills-foryou" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+        <div class="tab-pane fade" id="pills-foryou" role="tabpanel" aria-labelledby="pills-profile-tab">
+          
+          <!-- Your favorites tab  -->
+          <div class="row" *ngIf="userFavorites">
+            <div class="col-sm-12 col-md-3 col-lg-3" *ngFor="let favorites of userFavorites">
+              <div class="card mb-2">
+                <img src="http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">{{favorites.title}}</span>
+                    <br>
+                    <span class="lead">{{getEventStartDateFormatted(favorites.start_date_time)}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="row" *ngIf="!userFavorites || userFavorites.length == 0">
+              <div style="height: 90%;width: 100%;padding-bottom: 10%;">
+                <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 10%;">
+                  <i class="bi bi-people-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                  <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Follow your favorite organizers</span>
+                  <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                    See their latest events here
+                </p>
+              </div>
+
+            </div>
+
+        </div>
         
         <div *ngFor="let x of categories; index as i" class="tab-pane fade" [id]="toCamelCase(x.temp_name)" role="tabpanel" aria-labelledby="pills-profile-tab">
           <div class="row">
