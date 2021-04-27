@@ -42,7 +42,7 @@
               "node_modules/owl.carousel/dist/assets/owl.theme.default.css",
               "src/styles.scss",
               "src/app/themes/app.scss",
-              "src/assets/css/slick/slick.css",
+              "src/assets/css/slick/slick.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

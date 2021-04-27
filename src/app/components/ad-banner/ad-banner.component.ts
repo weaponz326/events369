@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerAdsService } from 'src/app/services/banner-ads/banner-ads.service';
+declare var $: any;
 
 @Component({
   selector: 'app-ad-banner',
@@ -16,6 +17,15 @@ export class AdBannerComponent implements OnInit {
   )
   { 
     // this.bannerAdsData = [];
+    // $(document).ready(function(){
+    //   $('.onzoom-homepage-total').slick({
+    //     dots: true,
+    //     autoplay: true,
+    //     // nextArrow: $('.next'),
+    //     // prevArrow: $('.prev'),
+    //   });
+    // });
+
   }
 
   ngOnInit(): void {
