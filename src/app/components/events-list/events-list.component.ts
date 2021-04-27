@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventsService } from 'src/app/services/events/events.service';
 import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
 import moment from 'moment';
+import { OwlCarousel } from 'ngx-owl-carousel';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-events-list',
@@ -13,30 +16,40 @@ export class EventsListComponent implements OnInit {
   categories: any;
   allEvents: any;
   categoryEvents: any[] = [];
-  thumbsSliderOptions: any;
+  slideConfig: any;
 
   userFavorites: any = []
   userID: string = '';
+  sliderOptions: any;
+
+  @ViewChild('allSlider') allSlider: OwlCarousel | undefined;
 
   constructor(
+    private router: Router,
     private eventsService: EventsService,
     private userFavoriteService: UsersFavoritesService
-    ) { }
+    ) { 
+      this.getAllEvents();
+    }
 
   ngOnInit(): void {
     var user_id: any =  sessionStorage.getItem('user_id')
     // user_id = JSON.parse(user_id)
     console.log(user_id)
     this.userID = user_id;
-
-    this.getAllEvents();
+   
     this.getCategories();
-    this.getUsersFavorites()
+    this.getUsersFavorites()    
 
-    this.thumbsSliderOptions = {
-      items: 4,
-      dots: false,
-      margin: 30,
+    this.sliderOptions = {
+      items: 5,
+      margin: 15,
+      dots: false,      
+      responsive:{        
+        450: { items:2 },
+        600: { items:3 },
+        900: { items:5 }
+      }
     };
   }
 
@@ -58,11 +71,24 @@ export class EventsListComponent implements OnInit {
     return id;
   }
 
+  allSliderNext(){
+    this.allSlider?.trigger('next.owl.carousel');
+  }
+
+  allSliderPrev(){
+    this.allSlider?.trigger('prev.owl.carousel');
+  }
+
+  gotoPreview(eventId: any) {
+    sessionStorage.setItem('preview_event_id', eventId);
+    this.router.navigateByUrl('/event_details');
+  }
+  
   getAllEvents(): void {
     this.eventsService.getAllEvents().then(
       res => {
         console.log(res);
-        this.allEvents = res.all_events.data;
+        this.allEvents = res.events.data;
       },
       err => {
         console.log(err);
