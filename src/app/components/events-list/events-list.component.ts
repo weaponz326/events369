@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events/events.service';
+import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-events-list',
@@ -13,11 +15,23 @@ export class EventsListComponent implements OnInit {
   categoryEvents: any[] = [];
   thumbsSliderOptions: any;
 
-  constructor(private eventsService: EventsService,) { }
+  userFavorites: any = []
+  userID: string = '';
+
+  constructor(
+    private eventsService: EventsService,
+    private userFavoriteService: UsersFavoritesService
+    ) { }
 
   ngOnInit(): void {
+    var user_id: any =  sessionStorage.getItem('user_id')
+    // user_id = JSON.parse(user_id)
+    console.log(user_id)
+    this.userID = user_id;
+
     this.getAllEvents();
     this.getCategories();
+    this.getUsersFavorites()
 
     this.thumbsSliderOptions = {
       items: 1,
@@ -81,6 +95,23 @@ export class EventsListComponent implements OnInit {
         }
       );
     }
+  }
+
+  getUsersFavorites (){
+    this.userID = ((this.userID == null)? '20' : this.userID)
+    this.userFavoriteService.getUserFavorites(this.userID).then(
+      res => {
+        console.log(res);
+        this.userFavorites = res.favourites.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getEventStartDateFormatted(date: any) {
+    return moment(date).format('ddd, MMM D, YYYY h:mm A');
   }
 
 }

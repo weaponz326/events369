@@ -98,6 +98,9 @@ p.card-text {
   .ev-display-only-mobile {
     display: block;
   }
+  ._1l5hkr1 {
+    width: 50% !important;
+  }
 }
 
 @media (min-width: 577px) {
@@ -106,6 +109,30 @@ p.card-text {
   }
   .ev-display-only-mobile {
     display: none;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .only-non-mobile {
+    display: none;
+    visibility: hidden;
+  }
+  .only-mobile {
+    display: block;
+    visibility: visible;
+  }
+}
+
+// breakpoint at 780px at first
+@media (min-width: 1024px) {
+  .only-mobile {
+    display: none;
+    visibility: hidden;
+  }
+  .only-non-mobile {
+    display: block;
+    visibility: visible;
   }
 }
 
@@ -228,6 +255,22 @@ p.card-text {
 .happening_now_slider_empty_span {
   margin-left: 8px !important;
 }
+
+.slider_items {
+  width: auto !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+}
+
+.slick-slider {
+  // height: 290px !important;
+  display: flex !important;
+}
+
+
+
+
+//      class names to be changed
 
 
 
@@ -522,7 +565,8 @@ p.card-text {
   }
   @media (min-width: 880px) and (max-width: 1059px) {
     ._ruj4s90 {
-      width: 25% !important;
+      // formally 25%
+      width: 100% !important;
     }
   }
   
@@ -551,4 +595,138 @@ p.card-text {
     right: 0px;
     z-index: 8;
   }
+
+  // .col-md-12 .slider {
+  //   max-height: 350px;
+  // }
+  
+  @media (max-width: 576px) {
+    ._ruj4s90 {
+      margin: auto 8px !important;
+    }
+    ._1l5hkr1 {
+      font-size: 13px !important;
+      min-width: 133px !important;
+      max-width: 133px !important;
+    }
+    ._1gartvrn {
+      font-size: 11px !important;
+    }
+    .slider_items {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+    
+    .slick-slider {
+      height: 290px !important;
+      display: flex !important;
+    }
+  }
+
+  @media (min-width: 576px) and (max-width: 768px){
+    ._ruj4s90 {
+      margin: auto 8px !important;
+    }
+    ._1l5hkr1 {
+      font-size: 14px !important;
+      min-width: 153px !important;
+      max-width: 153px !important;
+    }
+    ._1gartvrn {
+      font-size: 12px !important;
+    }
+    .slider_items {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+    
+    .slick-slider {
+      height: 310px !important;
+      display: flex !important;
+    }
+    ._1l5hkr1 {
+      width: 210px !important;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 992px){
+    ._ruj4s90 {
+      margin: auto 1px !important;
+    }
+    ._1l5hkr1 {
+      font-size: 15px !important;
+      min-width: 170px !important;
+      max-width: 170px !important;
+    }
+    ._1gartvrn {
+      font-size: 13px !important;
+    }
+    .slider_items {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+    
+    .slick-slider {
+      height: 330px !important;
+      display: flex !important;
+    }
+    ._1l5hkr1 {
+      width: 220px !important;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1200px){
+    ._ruj4s90 {
+      margin: auto 2px !important;
+    }
+    ._1l5hkr1 {
+      font-size: 15px !important;
+      min-width: 160px !important;
+      max-width: 160px !important;
+    }
+    ._1gartvrn {
+      font-size: 13px !important;
+    }
+    .slider_items {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+    
+    .slick-slider {
+      height: 320px !important;
+      display: flex !important;
+    }
+    ._1l5hkr1 {
+      width: 220px !important;
+    }
+  }
+
+  @media (min-width: 1200){
+    ._ruj4s90 {
+      margin: auto 8px !important;
+    }
+    ._1l5hkr1 {
+      font-size: 15px !important;
+      min-width: 160px !important;
+      max-width: 160px !important;
+    }
+    ._1gartvrn {
+      font-size: 13px !important;
+    }
+    .slider_items {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+    
+    .slick-slider {
+      height: 320px !important;
+      display: flex !important;
+    }
+    ._1l5hkr1 {
+      width: 220px !important;
+    }
+  }
+
+  
+  
 

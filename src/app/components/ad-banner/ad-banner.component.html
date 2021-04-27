@@ -1,10 +1,14 @@
 <div class="container mt-5 pt-5 bg-white">
   <div class="onzoom-homepage-total" style="margin-top: 0rem;">
     <ng-containrer *ngIf="!bannerAdsData">
-      <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
-      <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
-      <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
-      
+      <div class="d-flex justify-content-center">
+        <!-- <div class="spinner-grow" role="status">  -->
+          <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+          <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+          <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+         
+        <!-- </div> -->
+      </div>
     </ng-containrer>
   <owl-carousel [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="bannerAdsData">
     <!-- <div *ngFor="let banner of bannerAdsData" class="items">
@@ -43,7 +47,7 @@
                       <span class="home-banner-link">You.</span></span>
                     </div> -->
                     <hr class="my-4">
-                    <a class="btn btn-primary btn-lg btn-md-sm" href="#" role="button">Learn more
+                    <a class="btn btn-primary btn-lg"target="_blank" href="/events/learn-more/" role="button">Learn more
                       <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -72,8 +76,8 @@
                 <!-- <div class="home-banner-subtitle home-banner-weight-light"><span><span>Zoom for</span> 
                   <span class="home-banner-link">You.</span></span>
                 </div> -->
-                <hr class="my-4">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more
+                <!-- <hr class="my-4"> -->
+                <a class="btn btn-primary btn-lg" target="_blank" href="/events/learn-more/" role="button">Learn more
                   <i class="bi bi-arrow-right"></i>
                 </a>
               </div>
