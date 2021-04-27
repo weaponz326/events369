@@ -34,8 +34,8 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
+                                    <!-- <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button> -->
                                 </div>
                             </div>
                         </div>                       
@@ -59,8 +59,9 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
+                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning px-4 mx-1">Archive</button>
                                 </div>
                             </div>
                         </div>                       
@@ -109,8 +110,8 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
+                                    <button (click)="recoverEvent(event.id)" class="btn btn-success px-4 mx-1">Recover</button>
                                 </div>
                             </div>
                         </div>                       
