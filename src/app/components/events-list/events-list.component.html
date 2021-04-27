@@ -17,165 +17,74 @@
           <!-- All Events -->
           <div class="row mb-4">
             <div class="col-12 ev-padlr-0">
-              <h3 class="display-6 ev-head-padl ev-display-only-mobile">
-                <i class="bi bi-card-list"></i> &nbsp; All Events
-                
-                  <!--Controls-->
-                <div style="float: right;" class="controls-top">
-                  <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="bi bi-chevron-left"></i></a>
-                  <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="bi bi-chevron-right"></i></a>
-                </div>
-                <!--/.Controls--> 
-              </h3>
+              
               <h3 class="display-6 ev-head-padl ev-display-only-non-mobile">
                 <i class="bi bi-card-list"></i> &nbsp; All Events
                 
-                  <!--Controls-->
+                <!--Controls-->
                 <div style="float: right;" class="controls-top">
-                  <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="bi bi-chevron-left"></i></a>
-                  <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="bi bi-chevron-right"></i></a>
+                  <div class="happening_now_show_more">                   
+                      <span class="happening_now_span_1"></span>
+                      <div aria-hidden="false" class="happening_now_slider">
+                          <div class="happening_now_slider_core">
+                              <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="allSliderPrev()">
+                                  <span class="happening_now_slider_button_core">
+                                      <span class="happening_now_slider_button_core_inner">_</span>
+                                      <svg
+                                          viewBox="0 0 32 32"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 4px; overflow: visible;"
+                                          aria-hidden="true"
+                                          role="presentation"
+                                          focusable="false"
+                                      >
+                                          <g fill="none"><path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"></path></g>
+                                      </svg>
+                                  </span>
+                              </button>
+                              <span class="happening_now_slider_empty_span"></span>
+                              <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="allSliderNext()">
+                                  <span class="happening_now_slider_button_core">
+                                      <span class="happening_now_slider_button_core_inner">_</span>
+                                      <svg
+                                          viewBox="0 0 32 32"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 4px; overflow: visible;"
+                                          aria-hidden="true"
+                                          role="presentation"
+                                          focusable="false"
+                                      >
+                                          <g fill="none"><path d="m12 4 11.2928932 11.2928932c.3905243.3905243.3905243 1.0236893 0 1.4142136l-11.2928932 11.2928932"></path></g>
+                                      </svg>
+                                      <!-- <i class="bi bi-chevron-right"></i> -->
+                                  </span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
                 </div>
                 <!--/.Controls-->
               </h3>
             </div>
-          </div>
+          </div>         
           
-          
-          <owl-carousel [options]="thumbsSliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']">            
-            <!-- <div *ngFor="let event of allEvents" class="items">              
-              <div class="card mb-5">
+          <!-- <div class="all-slider" *ngIf="allEvents"> -->
+          <owl-carousel #allSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="allEvents">
+            <div *ngFor="let event of allEvents">              
+              <div class="card mb-5 event-card" (click)="gotoPreview(event.id)">
                 <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">{{event.title}}</span>
-                    <br>
+                    <span class="bold card-title">{{event.title}}</span>
+                    <span class="lead text-muted">By: {{event.created_by}}</span><br>
                     <span class="lead">{{event.start_date_time | date:'long'}}</span>
                   </p>
                 </div>
               </div>
-            </div> -->
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>     
-            <div class="items">
-              <div class="card mb-5">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">dfgdfdfgdfgdgf</span>
-                    <br>
-                    <span class="lead">02 1550 589 0588</span>
-                  </p>
-                </div>
-              </div>
-            </div>            
+            </div>             
           </owl-carousel>
-                  
+          <!-- </div> -->
+            
           <!-- Popular Events -->
           <div class="row mb-4 ev-martop-5 ev-padlr-0">
             <div class="col-12  ev-padlr-0">
