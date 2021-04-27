@@ -22,14 +22,14 @@ export class UserEventsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {    
-    this.getAllEvents();
+    this.getAllUserEvents();
     this.getUserEvents(0)
     this.getUserEvents(2)
     this.getUserEvents(3)
   }
 
-  getAllEvents(): void {
-    this.eventsService.getAllEvents().then(
+  getAllUserEvents(): void {
+    this.eventsService.getAllUserEvents().then(
       res => {
         console.log(res);
         this.userEvents = res.all_events.data;

@@ -13,9 +13,10 @@ export class EventsService {
   archiveEventUrl: string;
   recoverEventUrl: string;
   getUserEventsUrl: string;
-  getAllEventsUrl: string;
+  getAllUserEventsUrl: string;
   getCategoriesUrl: string;
   getCategoryEventsUrl: string;
+  getAllEventsUrl: string;
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -23,8 +24,9 @@ export class EventsService {
     this.recoverEventUrl = this.endpoint.apiHost + '/v1/recover_event/';
     this.getUserEventsUrl = this.endpoint.apiHost + '/v1/get_user_events_by_status/';
     this.getCategoriesUrl = this.endpoint.apiHost + '/view_categories';
-    this.getAllEventsUrl = this.endpoint.apiHost + '/v1/get_all_user_events/';
+    this.getAllUserEventsUrl = this.endpoint.apiHost + '/v1/get_all_user_events/';
     this.getCategoryEventsUrl = this.endpoint.apiHost + '/get_events_by_category/';
+    this.getAllEventsUrl = this.endpoint.apiHost + '/get_events_by_type/1';
   }
 
   archiveEvent(eventId: any): Promise<any> {    
@@ -88,11 +90,11 @@ export class EventsService {
     });
   }
 
-  getAllEvents(): Promise<any> {
+  getAllUserEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let events: any[] = [];
       var userId = sessionStorage.getItem('events_user_id');
-      const url = this.getAllEventsUrl + userId;
+      const url = this.getAllUserEventsUrl + userId;
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
           console.log('get_all_events_ok: ', res);
@@ -137,6 +139,23 @@ export class EventsService {
         },
         err => {
           console.log('get_all_category_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getAllEvents(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      this.http.get<any>(this.getAllEventsUrl, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_all_events_ok: ', res);
+          events = res;
+          resolve(events);
+        },
+        err => {
+          console.log('get_all_events_error: ', err);
           reject(err);
         }
       );
