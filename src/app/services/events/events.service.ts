@@ -16,11 +16,8 @@ export class EventsService {
   getAllUserEventsUrl: string;
   getCategoriesUrl: string;
   getCategoryEventsUrl: string;
-<<<<<<< HEAD
   getEventsByTypeUrl: string
-=======
   getAllEventsUrl: string;
->>>>>>> e0bc5ecbf8f06d12f9cbe423c8c8abf531214974
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -30,11 +27,8 @@ export class EventsService {
     this.getCategoriesUrl = this.endpoint.apiHost + '/view_categories';
     this.getAllUserEventsUrl = this.endpoint.apiHost + '/v1/get_all_user_events/';
     this.getCategoryEventsUrl = this.endpoint.apiHost + '/get_events_by_category/';
-<<<<<<< HEAD
     this.getEventsByTypeUrl = this.endpoint.apiHost + '/get_events_by_type/';
-=======
     this.getAllEventsUrl = this.endpoint.apiHost + '/get_events_by_type/1';
->>>>>>> e0bc5ecbf8f06d12f9cbe423c8c8abf531214974
   }
 
   archiveEvent(eventId: any): Promise<any> {    
@@ -153,7 +147,6 @@ export class EventsService {
     });
   }
 
-<<<<<<< HEAD
   getEventsByType(category: any): Promise<any> {
     return new Promise((resolve, reject) => {
       let events: any[] = [];
@@ -161,27 +154,34 @@ export class EventsService {
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
           console.log('get_events_by_type_ok: ', res);
-=======
+          events = res;
+          resolve(events);
+        },
+        err => {
+          console.log('get_events_by_type_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+
   getAllEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let events: any[] = [];
       this.http.get<any>(this.getAllEventsUrl, { headers: this.headers}).subscribe(
         res => {
           console.log('get_all_events_ok: ', res);
->>>>>>> e0bc5ecbf8f06d12f9cbe423c8c8abf531214974
           events = res;
           resolve(events);
         },
         err => {
-<<<<<<< HEAD
           console.log('get_events_by_type_error: ', err);
-=======
-          console.log('get_all_events_error: ', err);
->>>>>>> e0bc5ecbf8f06d12f9cbe423c8c8abf531214974
           reject(err);
         }
       );
     });
   }
+   
 
 }
