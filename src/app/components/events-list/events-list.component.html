@@ -362,15 +362,21 @@
             </div>
 
             <div class="row" *ngIf="!userFavorites || userFavorites.length == 0">
-              <div style="height: 90%;width: 100%;padding-bottom: 10%;">
-                <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 10%;">
+              <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
                   <i class="bi bi-people-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
                   <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Follow your favorite organizers</span>
                   <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
                     See their latest events here
+
                 </p>
               </div>
 
+            </div>
+            
+            
+            <div class="d-flex justify-content-center" style="margin-top: -15vh;">
+              <a href="/login" *ngIf="userID == null" class="btn btn-dark btn-lg">Login</a>
             </div>
 
         </div>

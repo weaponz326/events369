@@ -161,3 +161,16 @@ p.card-text {
 .card {
   border-radius: 12px;
 }
+
+.btn-dark {
+  background-color: #a1949c !important;
+  border-color: #a1949c !important;
+}
+
+ul.nav {
+  display: flex !important;overflow-x: auto;flex-direction: row; width: max-content !important;
+}
+
+.nav-item {
+  display: inline-flex !important;
+}

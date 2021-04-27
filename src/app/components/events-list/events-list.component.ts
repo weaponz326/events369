@@ -100,16 +100,20 @@ export class EventsListComponent implements OnInit {
   }
 
   getUsersFavorites (){
-    this.userID = ((this.userID == null)? '20' : this.userID)
-    this.userFavoriteService.getUserFavorites(this.userID).then(
-      res => {
-        console.log(res);
-        this.userFavorites = res.favourites.data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // this.userID = ((this.userID == null)? '20' : this.userID)
+
+    if(this.userID !== '') {
+      this.userFavoriteService.getUserFavorites(this.userID).then(
+        res => {
+          console.log(res);
+          this.userFavorites = res.favourites.data;
+        },
+        err => {
+          console.log(err);
+        }
+      );
+
+    }
   }
 
   getEventStartDateFormatted(date: any) {

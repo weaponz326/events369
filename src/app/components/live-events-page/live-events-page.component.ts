@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
+import { EventsService } from 'src/app/services/events/events.service';
 
 declare var $: any;
 
@@ -8,7 +9,7 @@ declare var $: any;
   templateUrl: './live-events-page.component.html',
   styleUrls: ['./live-events-page.component.scss']
 })
-export class LiveEventsPageComponent implements OnInit {
+export class LiveEventsPageComponent implements OnInit, AfterViewChecked {
   thumbsSliderOptions: any;
 
   event: any = {
@@ -52,9 +53,10 @@ export class LiveEventsPageComponent implements OnInit {
   _x = this;
 
   constructor(
-    private eventsHappeningNow: HappeningNowService
+    private eventsHappeningNow: HappeningNowService,
+    private eventService: EventsService
   ) { 
-      var _x = this
+      
       $(document).ready(function(){
         // $('.slider').slick({
         //   infinite: true,
@@ -68,7 +70,47 @@ export class LiveEventsPageComponent implements OnInit {
         //   slidesPerRow: 5,
         // });
 
-        $("._1g2tewe5").on("mouseover", function(this: HTMLDivElement) {
+       
+      });
+
+      
+  }
+
+  ngOnInit(): void {
+    // this.getEventsHappeningNow()
+    this.eventsToday =  [];
+    this.loadIndex = 5
+    
+    // for (let i = 0; i < 20; i++) {
+    //   // const element = array[i];
+    //   this.eventsToday.push(this.event)
+      
+    // }
+
+    this.eventService.getEventsByType(1).then(
+      res => {
+        console.log(res);
+        this.eventsToday = res.events.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+    
+    
+    
+
+    this.thumbsSliderOptions = {
+      items: 1,
+    };
+  }
+
+  ngAfterViewChecked() {
+    try {
+      if(this.eventsToday?.length) {
+
+        var _x = this
+        $(".live_event_presentation_div").on("mouseover", function(this: HTMLDivElement) {
           
           $(this).find('video').get(0).style.setProperty('display', 'block')
   
@@ -99,28 +141,14 @@ export class LiveEventsPageComponent implements OnInit {
         });
         
 
-      });
-
+      }
       
-  }
-
-  ngOnInit(): void {
-    // this.getEventsHappeningNow()
-    this.eventsToday =  [];
-    this.loadIndex = 10
-    
-    for (let i = 0; i < 20; i++) {
-      // const element = array[i];
-      this.eventsToday.push(this.event)
+    } catch (error) {
       
     }
-    
-    
-
-    this.thumbsSliderOptions = {
-      items: 1,
-    };
   }
+
+
  
   getEventsHappeningNow(): void {
     this.eventsHappeningNow.getTodaysEvents().then(
@@ -143,7 +171,6 @@ export class LiveEventsPageComponent implements OnInit {
   }
 
   pauseVideo(video_id: any) {
-    console.log(video_id)
     document.getElementById('video-pause-'+video_id)?.style.setProperty('display', 'none')
     
     $('#video-'+video_id).get(0).pause()
@@ -158,13 +185,14 @@ export class LiveEventsPageComponent implements OnInit {
 
   playVideo(video_id: any) {
     // hide play control
+    console.log(video_id)
     document.getElementById('video-play-'+video_id)?.style.setProperty('display', 'none')
     
     $('#video-'+video_id).get(0).play()
     this.watched_videos = $.grep(this._x.watched_videos, function(value: any) {
       return value != $('#video-'+video_id).get(0).id;
     });
-
+  console.log(this.watched_videos)
     // show pause control
     document.getElementById('video-pause-'+video_id)?.style.setProperty('display', 'block')
     
@@ -173,7 +201,7 @@ export class LiveEventsPageComponent implements OnInit {
   loadMore() {
     this.loading = true
     if(this.loadIndex < this.eventsToday.length) {
-      this.loadIndex += 10
+      this.loadIndex += 5
     }
     
     this.loading = false
@@ -181,8 +209,8 @@ export class LiveEventsPageComponent implements OnInit {
 
   loadLess() {
     this.loading = true
-    if(this.loadIndex > 10) {
-      this.loadIndex -= 10
+    if(this.loadIndex > 5) {
+      this.loadIndex -= 5
     }
     
     this.loading = false
