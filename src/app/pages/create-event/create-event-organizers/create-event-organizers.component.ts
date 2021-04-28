@@ -99,6 +99,8 @@ export class CreateEventOrganizersComponent implements OnInit {
               this.isSaving = false;
               this.saved = false;
               this.form.reset();
+              this.createdImgSrc = '';
+              this.isImageSet = false;
             }
             else {
               this.isSaving = false;
@@ -149,8 +151,9 @@ export class CreateEventOrganizersComponent implements OnInit {
     this.organizerService.getOrganizers(this.eventId).then(
       organizers => {
         this.isLoadingOrganizers = false;
-        _.forEach(organizers, (organizer) => {
+        _.forEach(organizers, (organizer, i) => {
           this.createdOrganizerList.push(organizer);
+          this.imgSrcList[i] = organizers[i].image;
         });
       }
     );
@@ -206,11 +209,11 @@ export class CreateEventOrganizersComponent implements OnInit {
   editOrganizer(organizerId: string, index: number): void {
     this.isSaving = true;
     const organizer = this.getFormData();
-    this.organizerService.editOrganizer(organizerId, organizer).then(
+    var image = this.f.profile_image.value;
+    console.log(organizer);
+    this.organizerService.editOrganizer(organizerId, organizer, image).then(
       ok => {
-        if (ok) {
-          this.isSaving = false;
-          this.isEditMode = false;
+        if (ok) {          
           const editedOrganizer = this.createdOrganizerList[index];
           editedOrganizer.name = organizer.name;
           editedOrganizer.bio = organizer.bio;
@@ -218,6 +221,13 @@ export class CreateEventOrganizersComponent implements OnInit {
           editedOrganizer.linkedin = organizer.linkedin,
           editedOrganizer.twitter = organizer.twitter,
           editedOrganizer.instagram = organizer.instagram;
+          this.imgSrcList[index] = this.createdImgSrc;
+
+          this.isSaving = false;
+          this.isEditMode = false;
+          this.form.reset();
+          this.createdImgSrc = '';
+          this.isImageSet = false;
         }
       },
       err => {}
@@ -237,6 +247,14 @@ export class CreateEventOrganizersComponent implements OnInit {
       },
       err => {}
     );
+  }
+  
+  previous(): void {
+    this.router.navigateByUrl('/edit_event/basic_info');
+  }
+
+  save(): void {
+    this.router.navigateByUrl('/create_advanced/speakers');
   }
   
 }
