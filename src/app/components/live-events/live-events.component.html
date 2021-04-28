@@ -15,7 +15,6 @@
         <div class="happening_now_show_more">
           <!-- aria-label="Happening Now; Show {{eventsToday?.data.length - 1}}+ more" -->
             <a *ngIf="eventsToday"
-                target="_blank"
                 href="/events/live/"
                 class="happening_now_show_more_link ev-display-only-non-mobile"
             >
@@ -61,7 +60,7 @@
         </div>
     </div>
     
-  <ng-containrer *ngIf="!eventsToday">
+  <ng-container *ngIf="!eventsToday">
     <div class="d-flex justify-content-center">
       <!-- <div class="spinner-grow" role="status">  -->
         <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
@@ -71,32 +70,31 @@
       <!-- </div> -->
     </div>
     
-  </ng-containrer>
+  </ng-container>
   <div class="slider">
     <div class="slider_items" *ngFor="let product of eventsToday">
-                  <div class="_ruj4s90">
-                                    <div class="_1ilrlnv">
+                  <div class="live_event_slide_item">
+                                    <div class="live_event_core">
                                         <div>
                                             <div>
                                                 <div itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                                                    <meta content="The Secrets of Chiang Mai" itemprop="name" /><meta content="2" itemprop="position" /><meta content="https://www.airbnb.com/experiences/1438610?salt=c21ca735-0cce-42ca-aefc-09e417807de7" itemprop="url" />
-                                                    <div class="_1g2tewe5" role="presentation">
+                                                    <meta content="{{product.title}}" itemprop="name" /><meta content="2" itemprop="position" /><meta content="{{product.event_url}}" itemprop="url" />
+                                                    <div class="live_event_presentation_div" id="live_event_presentation_div_1" role="presentation">
                                                         <div>
                                                             <a
-                                                                class="_sqvp1j"
-                                                                aria-label="The Secrets of Chiang Mai"
+                                                                class="live_event_link"
                                                                 data-check-info-section="true"
                                                                 href="{{product.event_url}}"
                                                                 rel="noopener noreferrer"
                                                                 target="_blank"
                                                             ></a>
-                                                            <div class="_1m7vxij">
-                                                                <div class="_h22hons">
-                                                                    <div class="_e296pg">
-                                                                        <div class="_o0ru31q" style="--dls-liteimage-aspect-ratio: 100 / 133.33; --dls-liteimage-padding-top: 133.3333%;">
-                                                                            <div class="_4626ulj">
+                                                            <div class="live_event_image_video_div_container">
+                                                                <div class="live_event_image_video_div_container_core">
+                                                                    <div class="live_event_position_element_relative">
+                                                                        <div class="live_event_image_video_div_container_minor" style="--dls-liteimage-aspect-ratio: 100 / 133.33; --dls-liteimage-padding-top: 133.3333%;">
+                                                                            <div class="live_event_image_video_div">
                                                                                 <img
-                                                                                    class="_91slf2a"
+                                                                                    class="live_event_image"
                                                                                     style="object-fit: cover;"
                                                                                     aria-hidden="true"
                                                                                     alt=""
@@ -106,12 +104,12 @@
                                                                                 />
 
                                                                                 <!-- *ngIf="product.video" -->
-                                                                                <video class="live_videos" id="video-{{product.id}}" style="border-radius: 6px;display: none;" width="200" height="300" loop="loop" poster="http://events369.logitall.biz/storage/banner/{{product.banner_image}}" preload="true">
+                                                                                <video class="live_videos" id="video-{{product.id}}" style="border-radius: 6px;display: none;" width="800" height="1000" loop="loop" poster="http://events369.logitall.biz/storage/banner/{{product.banner_image}}" preload="true">
                                                                                     <!-- <source [src]="product.video_src" type="video/mp4" /> -->
                                                                                     <source src="https://firebasestorage.googleapis.com/v0/b/semagh-987db.appspot.com/o/Work%2FEvents369%2Fcustomer%20App%2Fvideo%2Fpexels-rodnae-productions-6193112.mp4?alt=media&token=49f3ece0-2867-471c-82f4-75c430a7fdde" type="video/mp4" />
                                                                                 </video>
                                                                                 <div
-                                                                                    class="_10xjrv2u"
+                                                                                    class="live_event_background_image"
                                                                                     style="
                                                                                         background-image: url(http://events369.logitall.biz/storage/banner/{{product.banner_image}});
                                                                                         background-size: cover;
@@ -120,12 +118,12 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="_1h4dy6i"></div>
-                                                                    <div class="_5ogqp7">
-                                                                        <div class="_zjunba" style="padding: 8px;">
+                                                                    <div class="live_event_bottom_linear_gradient_div"></div>
+                                                                    <div class="live_event_image_card_footer">
+                                                                        <div class="save_live_event_div_container" style="padding: 8px;">
                                                                             <div></div>
-                                                                            <div class="_1gehwvz" style="visibility: hidden !important;">
-                                                                                <button aria-label="Save this Experience" type="button" class="_1hqqufku">
+                                                                            <div class="save_live_event_div" style="visibility: visible !important;">
+                                                                                <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(product.id)" class="save_live_event_button">
                                                                                     <svg
                                                                                         viewBox="0 0 32 32"
                                                                                         xmlns="http://www.w3.org/2000/svg"
@@ -147,16 +145,16 @@
                                                                     
         
                                                                         <!-- if event card not hovered  -->
-                                                                        <div class="_1f9gmzu">
-                                                                            <button id="video-pause-{{product.id}}" aria-label="Pause" (click)="pauseVideo(product.id)" type="button" class="_1u0x8x0">
-                                                                                <span class="_e296pg">
+                                                                        <div class="video_controls_div">
+                                                                            <button id="video-pause-{{product.id}}" aria-label="Pause" (click)="pauseVideo(product.id)" type="button" class="video_control_buttons">
+                                                                                <span class="live_event_position_element_relative">
                                                                                     <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" style="display: block; height: 14px; width: 14px; fill: #ffffff;" aria-hidden="true" role="presentation" focusable="false">
                                                                                         <path d="M13 1v14H9V1zM7 1v14H3V1z"></path>
                                                                                     </svg>
                                                                                 </span>
                                                                             </button>
-                                                                            <button id="video-play-{{product.id}}" style="display: none;" aria-label="Play" (click)="playVideo(product.id)" type="button" class="_1u0x8x0">
-                                                                                    <span class="_e296pg">
+                                                                            <button id="video-play-{{product.id}}" style="display: none;" aria-label="Play" (click)="playVideo(product.id)" type="button" class="video_control_buttons">
+                                                                                    <span class="live_event_position_element_relative">
                                                                                         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="display: block; height: 14px; width: 14px; fill: rgb(255, 255, 255);" aria-hidden="true" role="presentation" focusable="false">
                                                                                             <path d="M27.024 14.273L6.008 2.013c-.461-.268-1-.342-1.517-.206A2 2 0 0 0 3 3.741V28.26a2.002 2.002 0 0 0 3.008 1.728l21.015-12.26a2.003 2.003 0 0 0 .001-3.454z"></path>
                                                                                         </svg>
@@ -168,31 +166,31 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="_1tanv1h">
-                                                                <span class="_18khxk1" aria-label="Rating 4.95 out of 5; 107 reviews" role="img">
-                                                                    <span class="_5g1etn">
-                                                                        <ion-icon style="font-size: 18px;color: orangered;" name="time-outline"></ion-icon>
+                                                            <div class="live_event_minor_text_description">
+                                                                <span class="live_event_time_information" aria-label="Rating 4.95 out of 5; 107 reviews" role="img">
+                                                                    <span class="clock_icon_span">
+                                                                        <i class="bi bi-clock" style="font-size: 18px;color: orangered;"></i>
                                                                         <!-- <svg viewBox="0 0 1000 1000" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; fill: currentColor;">
                                                                             <path
                                                                                 d="M972 380c9 28 2 50-20 67L725 619l87 280c11 39-18 75-54 75-12 0-23-4-33-12L499 790 273 962a58 58 0 0 1-78-12 50 50 0 0 1-8-51l86-278L46 447c-21-17-28-39-19-67 8-24 29-40 52-40h280l87-279c7-23 28-39 52-39 25 0 47 17 54 41l87 277h280c24 0 45 16 53 40z"
                                                                             ></path>
                                                                         </svg> -->
                                                                     </span>
-                                                                    <span class="_11ry7lz" aria-hidden="true">3s ago</span>
+                                                                    <span class="time_ago_span" aria-hidden="true">3s ago</span>
                                                                     <!-- <span class="_a7a5sx" aria-hidden="true">&nbsp;(107)</span> -->
                                                                 </span>
-                                                                <div class="_rfydcb" aria-hidden="true">·</div>
-                                                                <div class="_ot9e1j">Accra</div>
+                                                                <div class="html_dot" aria-hidden="true">·</div>
+                                                                <div class="live_event_location_div">Accra</div>
                                                             </div>
-                                                            <div class="_1l5hkr1" style="min-width: 200px; max-width: 200px;text-align: left; line-height: 20px; max-height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-top: 7px;">
+                                                            <div class="live_event_title" style="min-width: 200px; max-width: 200px;text-align: left; line-height: 20px; max-height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-top: 7px;">
                                                                {{product.title}}
                                                                 
                                                             </div>
-                                                            <div class="_1gartvrn" style="margin-top: 6px;">
+                                                            <div class="live_event_number_participating_div" style="margin-top: 6px;">
                                                                 <span style="color: gray;">
-                                                                    <span class="_1p7iugi" style="font-weight: 300;font-size: 13px;color: gray;">
+                                                                    <span class="live_event_number_participating_span" style="font-weight: 300;font-size: 13px;color: gray;">
                                                                         <!-- From -->
-                                                                         <span class="_1p7iugi" style="font-weight: 600 !important;font-size: 13px;color: gray;"><span class="_krjbj">Price:</span>{{product.watching}} </span>
+                                                                         <span class="live_event_number_participating_span" style="font-weight: 600 !important;font-size: 13px;color: gray;"><span class="live_event_participating_text">Joined:</span>{{product.watching}} </span>
                                                                     </span>
                                                                    232 participating
                                                                     <!-- / person -->

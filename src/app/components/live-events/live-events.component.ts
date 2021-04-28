@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
+import { EventsService } from 'src/app/services/events/events.service';
+import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
  
@@ -8,7 +11,7 @@ declare var $: any;
   templateUrl: './live-events.component.html',
   styleUrls: ['./live-events.component.scss']
 })
-export class LiveEventsComponent implements OnInit {
+export class LiveEventsComponent implements OnInit, AfterViewChecked {
 
   thumbsSliderOptions: any;
   
@@ -17,11 +20,28 @@ export class LiveEventsComponent implements OnInit {
   watched_videos:any = []
   _x = this;
 
+  userID: string = ''
+
   constructor(
-    private eventsHappeningNow: HappeningNowService
+    private eventsHappeningNow: HappeningNowService,
+    private eventService: EventsService,
+    private userFavoriteService: UsersFavoritesService,
+    private router: Router
   ) { 
-      var _x = this
-      $(document).ready(function(){
+      
+
+      // $(document).ready(function(){        
+
+        
+
+      // });
+
+      
+  }
+
+  ngAfterViewChecked() {
+    try {
+      if(this.eventsToday?.length) {
         $('.slider').slick({
           infinite: true,
           slidesToShow: 5,
@@ -34,8 +54,10 @@ export class LiveEventsComponent implements OnInit {
           slidesPerRow: 5,
         });
 
-        $("._1g2tewe5").on("mouseover", function(this: HTMLDivElement) {
+        var _x = this 
+        $(".live_event_presentation_div").on("mouseover", function(this: HTMLDivElement) {
           
+          // alert('Here')
           $(this).find('video').get(0).style.setProperty('display', 'block')
   
           if(_x.watched_videos.length > 0) {
@@ -64,266 +86,66 @@ export class LiveEventsComponent implements OnInit {
       
         });
         
-
-      });
-
+      }  
+    } catch (error) {
       
+    }
+    
   }
 
   ngOnInit(): void {
-    // this.getEventsHappeningNow()
-    this.eventsToday = 
+    // this.getEventsHappeningNow() http://events369.logitall.biz/api/get_events_by_type/1
+    this.eventService.getEventsByType(1).then(
+      res => {
+        console.log(res);
+        this.eventsToday = res.events.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
 
-    [
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        },
-        {
-          "id": 18,
-          "user_id": 20,
-          "created_by": "Kofi Ahen",
-          "rating": "3.9",
-          "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
-          "status": "Published",
-          "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
-          "venue": "AH Hotel and conference",
-          "gps": "5.65255,-0.15018",
-          "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
-          "contact_email": "warihana123@gmail.com",
-          "contact_phone": "233501879144",
-          "start_date_time": "2021-03-17 12:00:00",
-          "end_date_time": "2021-03-17 18:00:00",
-          "recurring": "No",
-          "drop_in": "No",
-          "type": "Public",
-          "Category": "Corporate Events",
-          "sub_category": "Trade Shows",
-          "tags": "conference,seminars,event,money,savings",
-          "ticketing": "Free",
-          "currency": "$",
-          "price": 0,
-          "ticket_sales_end_date": "2021-03-14 06:00:00",
-          "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
-          "hosting": "Physical",
-          "hosted_on_link": null,
-          "created_at": "2021-02-23 17:12:49",
-          "updated_at": null
-        }
-      ]
+    
+    var user_id: any =  sessionStorage.getItem('user_id')
+    // user_id = JSON.parse(user_id)
+    console.log(user_id)
+    this.userID = user_id;
+    
+    // this.eventsToday = 
+
+    // [
+    //     {
+    //       "id": 18,
+    //       "user_id": 20,
+    //       "created_by": "Kofi Ahen",
+    //       "rating": "3.9",
+    //       "title": "How to Master Your Money Mindset in 2021: The Art of Saving",
+    //       "status": "Published",
+    //       "description": "Have you ever wondered why you think about or deal with money the way you do? Ever get the feeling that your thinking and psychology sometimes push you to make choices that aren’t really the best for you? Do you want to change things up but not sure where to start?",
+    //       "venue": "AH Hotel and conference",
+    //       "gps": "5.65255,-0.15018",
+    //       "event_url": "http://127.0.0.1:8000/api/view_event/%242y%2410%246UskjmNNdhwpPODzrrj1..j2B3fVVqTkcXjiTOQ8C/glhtswTPnLW?signature=9e5cf956e8509cc6d5f8d5acde08384bc637e77bddf8d13c4dc0242143cdd1e9",
+    //       "contact_email": "warihana123@gmail.com",
+    //       "contact_phone": "233501879144",
+    //       "start_date_time": "2021-03-17 12:00:00",
+    //       "end_date_time": "2021-03-17 18:00:00",
+    //       "recurring": "No",
+    //       "drop_in": "No",
+    //       "type": "Public",
+    //       "Category": "Corporate Events",
+    //       "sub_category": "Trade Shows",
+    //       "tags": "conference,seminars,event,money,savings",
+    //       "ticketing": "Free",
+    //       "currency": "$",
+    //       "price": 0,
+    //       "ticket_sales_end_date": "2021-03-14 06:00:00",
+    //       "banner_image": "phpFAD6.tmp_2021-02-23 17_12_49.jpg",
+    //       "hosting": "Physical",
+    //       "hosted_on_link": null,
+    //       "created_at": "2021-02-23 17:12:49",
+    //       "updated_at": null
+    //     },
+    //    ]
     
     
     
@@ -378,6 +200,33 @@ export class LiveEventsComponent implements OnInit {
 
     // show pause control
     document.getElementById('video-pause-'+video_id)?.style.setProperty('display', 'block')
+    
+  }
+
+  saveEventAsFavorite(event_id: any): void {
+    if(this.userID == null) {
+      this.router.navigateByUrl('/login')
+      
+    } else {
+
+      this.userFavoriteService.addFavoriteEvent(event_id, this.userID).then(
+        res => {
+          if (res) {
+            console.log(res);
+  
+            
+          }
+          else {
+            console.log('didnt add to favorites');
+          }
+        },
+        err => {
+          console.log(err);
+          // this.isLoading = false;
+        }
+      );
+      
+    }
     
   }
 

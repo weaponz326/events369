@@ -20,7 +20,7 @@ export class UsersFavoritesService {
     {
 
     this.headers = this.endpoint.headers();
-    this.addToFavoritesUrl = this.endpoint.apiHost + '/v1/add_to_favourites/';
+    this.addToFavoritesUrl = this.endpoint.apiHost + '/v1/add_to_favourites';
     this.removeFromFavoritesUrl = this.endpoint.apiHost + '/v1/delete_favourite/';
     this.getUserFavoritesUrl = this.endpoint.apiHost + '/v1/get_favourites/'; 
     
@@ -43,5 +43,39 @@ export class UsersFavoritesService {
       );
     });
   }
+
+  /**
+   * Add a new favorite event for a user.
+   * @param favorite Favorite
+   * @returns 
+   */
+  addFavoriteEvent(event_id: any, user_id: any): Promise<any> {
+    console.log(this.addToFavoritesUrl);
+    return new Promise((resolve, reject) => {
+      const body = {
+        'event_id': event_id,
+        'user_id': user_id,
+      };
+
+      console.log(body);
+
+      this.http.post<any>(this.addToFavoritesUrl, JSON.stringify(body), { headers: this.headers}).subscribe(
+        res => {
+          console.log('added_favorite_ok: ', res);
+          if (res.message == 'Ok') {
+            resolve(true);
+          }
+          else {
+            resolve(false);
+          }
+        },
+        err => {
+          console.error('add_favorite_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
 
 }

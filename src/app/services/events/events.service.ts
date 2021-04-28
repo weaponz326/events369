@@ -16,6 +16,7 @@ export class EventsService {
   getAllUserEventsUrl: string;
   getCategoriesUrl: string;
   getCategoryEventsUrl: string;
+  getEventsByTypeUrl: string
   getAllEventsUrl: string;
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
@@ -26,6 +27,7 @@ export class EventsService {
     this.getCategoriesUrl = this.endpoint.apiHost + '/view_categories';
     this.getAllUserEventsUrl = this.endpoint.apiHost + '/v1/get_all_user_events/';
     this.getCategoryEventsUrl = this.endpoint.apiHost + '/get_events_by_category/';
+    this.getEventsByTypeUrl = this.endpoint.apiHost + '/get_events_by_type/';
     this.getAllEventsUrl = this.endpoint.apiHost + '/get_events_by_type/1';
   }
 
@@ -145,6 +147,25 @@ export class EventsService {
     });
   }
 
+  getEventsByType(category: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      const url = this.getEventsByTypeUrl + category;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_events_by_type_ok: ', res);
+          events = res;
+          resolve(events);
+        },
+        err => {
+          console.log('get_events_by_type_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+
   getAllEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let events: any[] = [];
@@ -155,11 +176,12 @@ export class EventsService {
           resolve(events);
         },
         err => {
-          console.log('get_all_events_error: ', err);
+          console.log('get_events_by_type_error: ', err);
           reject(err);
         }
       );
     });
   }
+   
 
 }

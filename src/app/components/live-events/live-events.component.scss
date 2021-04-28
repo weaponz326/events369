@@ -274,23 +274,23 @@ p.card-text {
 
 
 
-._ruj4s90 {
+.live_event_slide_item {
     display: inline-block !important;
     vertical-align: top !important;
     white-space: normal !important;
   }
-  ._1ilrlnv {
+  .live_event_core {
     width: 100% !important;
     height: 100% !important;
   }
-  ._1g2tewe5 {
+  .live_event_presentation_div {
     font-weight: 400 !important;
     color: rgb(34, 34, 34) !important;
     position: relative !important;
     --card-typography-color-primary: #222222 !important;
     --card-typography-color-secondary: #717171 !important;
   }
-  ._sqvp1j {
+  .live_event_link {
     display: block;
     height: 100% !important;
     left: 0px !important;
@@ -300,10 +300,10 @@ p.card-text {
     border-radius: 12px !important;
 
   }
-  ._1m7vxij {
+  .live_event_image_video_div_container {
     margin-bottom: 10px !important;
   }
-  ._h22hons {
+  .live_event_image_video_div_container_core {
     overflow: hidden;
     position: relative !important;
     mask-image: -webkit-radial-gradient(white, black) !important;
@@ -312,7 +312,7 @@ p.card-text {
     pointer-events: none !important;
     // border: 1px solid #e1e1e1;
   }
-  ._h22hons::after {
+  .live_event_image_video_div_container_core::after {
     content: "" !important;
     position: absolute !important;
     inset: 0px !important;
@@ -320,16 +320,16 @@ p.card-text {
     border-radius: inherit !important;
     pointer-events: none !important;
   }
-  ._e296pg {
+  .live_event_position_element_relative {
     position: relative !important;
   }
-  ._o0ru31q {
+  .live_event_image_video_div_container_minor {
     padding-top: var(--dls-liteimage-padding-top) !important;
     position: relative !important;
     background-position: 50% 50% !important;
     background-repeat: no-repeat !important;
   }
-  ._4626ulj {
+  .live_event_image_video_div {
     -moz-box-pack: center !important;
     -moz-box-align: center !important;
     position: absolute !important;
@@ -338,17 +338,17 @@ p.card-text {
     align-items: center !important;
     justify-content: center !important;
   }
-  ._91slf2a {
+  .live_event_image {
     height: 100% !important;
     width: 100% !important;
     position: static !important;
     inset: 0px !important;
   }
-  ._10xjrv2u {
+  .live_event_background_image {
     display: none !important;
     background-image: none !important;
   }
-  ._10xjrv2u {
+  .live_event_background_image {
     // display: inline-block !important;
     vertical-align: bottom !important;
     height: 100% !important;
@@ -359,7 +359,7 @@ p.card-text {
     background-repeat: no-repeat !important;
 
   }
-  ._5ogqp7 {
+  .live_event_image_card_footer {
     -moz-box-pack: justify !important;
     -moz-box-direction: normal !important;
     -moz-box-orient: vertical !important;
@@ -370,17 +370,17 @@ p.card-text {
     justify-content: space-between !important;
     pointer-events: none !important;
   }
-  ._zjunba {
+  .save_live_event_div_container {
     -moz-box-pack: justify !important;
     display: flex !important;
     justify-content: space-between !important;
   }
-  ._1gehwvz {
+  .save_live_event_div {
     pointer-events: auto !important;
     margin-top: -5px !important;
     margin-right: -3px !important;
   }
-  ._1hqqufku {
+  .save_live_event_button {
     -moz-box-pack: center !important;
     -moz-box-align: center !important;
     cursor: pointer !important;
@@ -406,12 +406,12 @@ p.card-text {
     width: 32px !important;
     height: 32px !important;
   }
-  ._1f9gmzu {
+  .video_controls_div {
     padding: 10px 15px !important;
     visibility: hidden !important;
     // transition: visibility 0.5s;
   }
-  ._1g2tewe5:hover ._1f9gmzu {
+  .live_event_presentation_div:hover .video_controls_div {
     padding: 10px 15px !important;
     animation-duration: 0.3s !important;
     // animation-name: keyframe_18jn58a !important;
@@ -419,10 +419,10 @@ p.card-text {
     visibility: visible !important;
 
   }
-  ._1g2tewe5:hover ._1h4dy6i {
+  .live_event_presentation_div:hover .live_event_bottom_linear_gradient_div {
     visibility: visible !important;
   }
-  ._1u0x8x0 {
+  .video_control_buttons {
     appearance: none !important;
     display: inline-block;
     border-radius: 50% !important;
@@ -439,10 +439,10 @@ p.card-text {
     pointer-events: all !important;
     
   }
-  ._e296pg {
+  .live_event_position_element_relative {
     position: relative !important;
   }
-  ._1tanv1h {
+  .live_event_minor_text_description {
     -moz-box-align: center !important;
     font-size: 14px !important;
     line-height: 18px !important;
@@ -450,14 +450,14 @@ p.card-text {
     display: flex !important;
     width: 100% !important;
   }
-  ._18khxk1 {
+  .live_event_time_information {
     -moz-box-align: center !important;
     align-items: center !important;
     display: flex !important;
     font-size: 14px !important;
     line-height: 18px !important;
   }
-  ._5g1etn {
+  .clock_icon_span {
     -moz-box-align: center !important;
     align-items: center !important;
     display: flex !important;
@@ -465,18 +465,18 @@ p.card-text {
     color: orangered !important;
 
   }
-  ._11ry7lz {
+  .time_ago_span {
     color: rgb(34, 34, 34) !important;
   }
   ._a7a5sx {
     color: rgb(113, 113, 113) !important;
   }
-  ._rfydcb {
+  .html_dot {
     color: var(--card-typography-color-secondary, #717171) !important;
     margin-left: 4px !important;
     margin-right: 4px !important;
   }
-  ._ot9e1j {
+  .live_event_location_div {
     color: var(--card-typography-color-secondary, #717171) !important;
     line-height: 18px !important;
     max-height: 18px !important;
@@ -486,13 +486,13 @@ p.card-text {
     -webkit-line-clamp: 1 !important;
     -moz-box-orient: vertical !important;
   }
-  ._1l5hkr1 {
+  .live_event_title {
     font-weight: 400 !important;
     color: var(--card-typography-color-primary, #222222) !important;
     font-size: 16px !important;
     line-height: 20px !important;
   }
-  ._1gartvrn {
+  .live_event_number_participating_div {
     -moz-box-align: center !important;
     color: var(--card-typography-color-primary, #222222) !important;
     display: flex !important;
@@ -500,10 +500,10 @@ p.card-text {
     font-size: 16px !important;
     line-height: 20px !important;
   }
-  ._1p7iugi {
+  .live_event_number_participating_span {
     font-weight: 800 !important;
   }
-  ._krjbj {
+  .live_event_participating_text {
     border: 0px none !important;
     clip: rect(0px, 0px, 0px, 0px) !important;
     clip-path: inset(100%) !important;
@@ -514,7 +514,7 @@ p.card-text {
     white-space: nowrap !important;
     width: 1px !important;
   }
-  ._1h4dy6i {
+  .live_event_bottom_linear_gradient_div {
     position: absolute !important;
     left: 0px !important;
     bottom: 0px !important;
@@ -523,21 +523,21 @@ p.card-text {
     background: rgba(0,0,0,0) linear-gradient(360deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%) repeat scroll 0% 0% !important;
     visibility: hidden !important;
   }
-  ._knfj6p {
-    padding: 10px 15px !important;
-    animation-duration: 0.3s !important;
-    animation-name: keyframe_18jn58a !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
+  // ._knfj6p {
+  //   padding: 10px 15px !important;
+  //   animation-duration: 0.3s !important;
+  //   animation-name: keyframe_18jn58a !important;
+  //   opacity: 1 !important;
+  //   visibility: visible !important;
+  // }
 
-  ._1u0x8x0:hover {
+  .video_control_buttons:hover {
     color: rgb(255, 255, 255) !important;
   }
-  ._1u0x8x0:hover::before {
+  .video_control_buttons:hover::before {
     background: rgb(255, 255, 255, 0.16) none repeat scroll 0% 0% !important;
   }
-  ._1u0x8x0::before {
+  .video_control_buttons::before {
     content: "" !important;
     display: block !important;
     position: absolute !important;
@@ -552,19 +552,19 @@ p.card-text {
 
 
   @media (min-width: 744px) {
-    ._1ilrlnv {
+    .live_event_core {
       padding-left: 8px !important;
       padding-right: 8px !important;
     }
-    ._sqvp1j {
+    .live_event_link {
       border-radius: 8px !important;
     }
-    ._h22hons {
+    .live_event_image_video_div_container_core {
       border-radius: 8px !important;
     }
   }
   @media (min-width: 880px) and (max-width: 1059px) {
-    ._ruj4s90 {
+    .live_event_slide_item {
       // formally 25%
       width: 100% !important;
     }
@@ -601,15 +601,15 @@ p.card-text {
   // }
   
   @media (max-width: 576px) {
-    ._ruj4s90 {
+    .live_event_slide_item {
       margin: auto 8px !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       font-size: 13px !important;
       min-width: 133px !important;
       max-width: 133px !important;
     }
-    ._1gartvrn {
+    .live_event_number_participating_div {
       font-size: 11px !important;
     }
     .slider_items {
@@ -624,15 +624,15 @@ p.card-text {
   }
 
   @media (min-width: 576px) and (max-width: 768px){
-    ._ruj4s90 {
+    .live_event_slide_item {
       margin: auto 8px !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       font-size: 14px !important;
       min-width: 153px !important;
       max-width: 153px !important;
     }
-    ._1gartvrn {
+    .live_event_number_participating_div {
       font-size: 12px !important;
     }
     .slider_items {
@@ -644,21 +644,21 @@ p.card-text {
       height: 310px !important;
       display: flex !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       width: 210px !important;
     }
   }
 
   @media (min-width: 768px) and (max-width: 992px){
-    ._ruj4s90 {
+    .live_event_slide_item {
       margin: auto 1px !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       font-size: 15px !important;
       min-width: 170px !important;
       max-width: 170px !important;
     }
-    ._1gartvrn {
+    .live_event_number_participating_div {
       font-size: 13px !important;
     }
     .slider_items {
@@ -670,21 +670,21 @@ p.card-text {
       height: 330px !important;
       display: flex !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       width: 220px !important;
     }
   }
 
   @media (min-width: 992px) and (max-width: 1200px){
-    ._ruj4s90 {
+    .live_event_slide_item {
       margin: auto 2px !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       font-size: 15px !important;
       min-width: 160px !important;
       max-width: 160px !important;
     }
-    ._1gartvrn {
+    .live_event_number_participating_div {
       font-size: 13px !important;
     }
     .slider_items {
@@ -696,21 +696,21 @@ p.card-text {
       height: 320px !important;
       display: flex !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       width: 220px !important;
     }
   }
 
   @media (min-width: 1200){
-    ._ruj4s90 {
+    .live_event_slide_item {
       margin: auto 8px !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       font-size: 15px !important;
       min-width: 160px !important;
       max-width: 160px !important;
     }
-    ._1gartvrn {
+    .live_event_number_participating_div {
       font-size: 13px !important;
     }
     .slider_items {
@@ -722,7 +722,7 @@ p.card-text {
       height: 320px !important;
       display: flex !important;
     }
-    ._1l5hkr1 {
+    .live_event_title {
       width: 220px !important;
     }
   }
