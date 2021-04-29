@@ -77,5 +77,36 @@ export class UsersFavoritesService {
     });
   }
 
+  /**
+   * Remove an existing event from user's favorites.
+   * @param favorite Favorite
+   * @returns 
+   */
+  removeEventFromFavorite(favorite_id: any): Promise<boolean> {
+
+    
+
+    return new Promise((resolve, reject) => {
+      const url = this.removeFromFavoritesUrl + favorite_id
+      console.log(url);
+
+      this.http.post<any>(url, {}, { headers: this.headers}).subscribe(
+        res => {
+          console.log('removed_favorite_ok: ', res);
+          if (res.message == 'Ok') {
+            resolve(true);
+          }
+          else {
+            resolve(false);
+          }
+        },
+        err => {
+          console.error('removed_favorite_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
 
 }

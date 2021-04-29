@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import { EventsService } from 'src/app/services/events/events.service';
 import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
 import moment from 'moment';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.scss']
 })
-export class EventsListComponent implements OnInit {
+export class EventsListComponent implements OnInit, AfterViewChecked {
 
   categories: any;
   allEvents: any;
@@ -21,6 +21,7 @@ export class EventsListComponent implements OnInit {
   userFavorites: any = []
   userID: string = '';
   sliderOptions: any;
+  users_favorite_event_ids: any = []
 
   @ViewChild('allSlider') allSlider: OwlCarousel | undefined;
 
@@ -30,6 +31,7 @@ export class EventsListComponent implements OnInit {
     private userFavoriteService: UsersFavoritesService
     ) { 
       this.getAllEvents();
+      this.getUsersFavorites();
     }
 
   ngOnInit(): void {
@@ -39,7 +41,8 @@ export class EventsListComponent implements OnInit {
     this.userID = user_id;
    
     this.getCategories();
-    this.getUsersFavorites()    
+    this.getUsersFavorites()  
+    console.log(this.users_favorite_event_ids)  
 
     this.sliderOptions = {
       items: 5,
@@ -51,6 +54,15 @@ export class EventsListComponent implements OnInit {
         900: { items:5 }
       }
     };
+  }
+
+  ngAfterViewChecked() {
+    try {
+      // this.getUsersFavorites()
+      
+    } catch (error) {
+      
+    }
   }
 
   toCamelCase(sentenceCase: any) {
@@ -126,13 +138,12 @@ export class EventsListComponent implements OnInit {
   }
 
   getUsersFavorites (){
-    // this.userID = ((this.userID == null)? '20' : this.userID)
 
     if(this.userID !== '') {
       this.userFavoriteService.getUserFavorites(this.userID).then(
         res => {
           console.log(res);
-          this.userFavorites = res.favourites.data;
+          this.userFavorites = res.event.data;
         },
         err => {
           console.log(err);
@@ -140,10 +151,20 @@ export class EventsListComponent implements OnInit {
       );
 
     }
+
+
+    for (let i = 0; i < this.userFavorites.length; i++) {
+      this.users_favorite_event_ids.push(this.userFavorites[i].id)
+      
+    }
   }
 
   getEventStartDateFormatted(date: any) {
     return moment(date).format('ddd, MMM D, YYYY h:mm A');
+  }
+
+  hasBeenAddedToFavorites(event_id: any) {
+    return this.users_favorite_event_ids.includes(event_id)
   }
 
 }
