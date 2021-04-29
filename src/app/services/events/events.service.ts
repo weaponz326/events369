@@ -18,6 +18,10 @@ export class EventsService {
   getCategoryEventsUrl: string;
   getEventsByTypeUrl: string
   getAllEventsUrl: string;
+  getTodaysEventsUrl: string;
+  getEventsInSixHoursUrl: string; // upcoming events
+  getPopularEventsUrl: string;
+  getNewEventsUrl: string;
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -29,6 +33,10 @@ export class EventsService {
     this.getCategoryEventsUrl = this.endpoint.apiHost + '/get_events_by_category/';
     this.getEventsByTypeUrl = this.endpoint.apiHost + '/get_events_by_type/';
     this.getAllEventsUrl = this.endpoint.apiHost + '/get_events_by_type/1';
+    this.getTodaysEventsUrl =  this.endpoint.apiHost + '/get_todays_events';
+    this.getEventsInSixHoursUrl = this.endpoint.apiHost + '/events_six_hours';
+    this.getPopularEventsUrl = this.endpoint.apiHost + '/get_popular_events';
+    this.getNewEventsUrl = this.endpoint.apiHost + '/get_new_events';
   }
 
   archiveEvent(eventId: any): Promise<any> {    
@@ -182,6 +190,80 @@ export class EventsService {
       );
     });
   }
+
+  getTodaysEvents(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let todays_events: any[] = [];
+      const url = this.getTodaysEventsUrl;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_today_events_ok: ', res);
+          todays_events = res;
+          resolve(todays_events);
+        },
+        err => {
+          console.log('get_todays_events_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getEventsInSixHours(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events_in_six_hrs: any[] = [];
+      const url = this.getEventsInSixHoursUrl;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_events_in_six_hrs_ok: ', res);
+          events_in_six_hrs = res;
+          resolve(events_in_six_hrs);
+        },
+        err => {
+          console.log('get_events_in_six_hrs_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getPopularEvents(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let popular_events: any[] = [];
+      const url = this.getPopularEventsUrl;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_popular_events_ok: ', res);
+          popular_events = res;
+          resolve(popular_events);
+        },
+        err => {
+          console.log('get_popular_events_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getNewEvents(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let new_events: any[] = [];
+      const url = this.getNewEventsUrl;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_new_events_ok: ', res);
+          new_events = res;
+          resolve(new_events);
+        },
+        err => {
+          console.log('get_new_events_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+
    
 
 }

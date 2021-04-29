@@ -132,7 +132,17 @@
                                                         <!-- <span class="_a7a5sx" aria-hidden="true">&nbsp;(107)</span> -->
                                                     </span>
                                                     <div class="html_dot" aria-hidden="true">·</div>
-                                                    <div class="live_event_location_div">Accra</div>
+                                                    <div class="live_event_location_div" style="min-width: 80px; max-width: 80px;text-overflow: ellipsis;overflow: hidden;">
+                                                      <ng-container *ngIf="event.venue">
+                                                        {{event.venue}}
+                                                      </ng-container>
+                                                      <ng-container *ngIf="event.hosting == '0'">
+                                                        Online Event
+                                                      </ng-container>
+                                                      <ng-container *ngIf="event.venue_tobe_announced">
+                                                        TBA
+                                                      </ng-container>
+                                                    </div>
                                                 </div>
                                                 <div class="live_event_title" style="min-width: 200px; max-width: 200px;text-align: left; line-height: 20px; max-height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-top: 7px;">
                                                    {{product.title}}
