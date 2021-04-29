@@ -83,6 +83,12 @@ import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/sign
 import { HappeningNowComponent } from './pages/happening-now/happening-now.component';
 import { LearnMoreComponent } from './pages/learn-more/learn-more.component';
 import { LiveEventsPageComponent } from './components/live-events-page/live-events-page.component';
+import { UpcomingEventsComponent } from './components/upcoming-events/upcoming-events.component';
+import { UpcomingEventsPageComponent } from './pages/upcoming-events-page/upcoming-events-page.component';
+import { PopularEventsPageComponent } from './pages/popular-events-page/popular-events-page.component';
+import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.component';
+import { NewEventsComponent } from './components/new-events/new-events.component';
+import { PopularEventsComponent } from './components/popular-events/popular-events.component';
 
 
 
@@ -151,6 +157,12 @@ import { LiveEventsPageComponent } from './components/live-events-page/live-even
     HappeningNowComponent,
     LearnMoreComponent,
     LiveEventsPageComponent,
+    UpcomingEventsComponent,
+    UpcomingEventsPageComponent,
+    PopularEventsPageComponent,
+    NewEventsPageComponent,
+    NewEventsComponent,
+    PopularEventsComponent,
   ],
   imports: [
     BrowserModule,

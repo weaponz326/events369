@@ -42,7 +42,7 @@
       </ng-container>
       <ng-container *ngIf="userAuthenticated">
         <li class="nav-item">
-          <a class="nav-link" style="color: var(--blue);" routerLink="/create_event/basic_info">Host an event <span class="sr-only">(current)</span></a>
+          <a [class.ev-color-orange]="userAuthenticated === true" class="nav-link ev-color-blue"  routerLink="/create_event/basic_info">Host an event <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item only-mobile">
           <a class="nav-link" routerLink="/account/user">Account</a>

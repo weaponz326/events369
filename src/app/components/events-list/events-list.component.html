@@ -27,7 +27,7 @@
                 <div style="float: right;" class="controls-top">
                   <div class="happening_now_show_more" *ngIf="events_in_six_hrs.length > 5">   
                     <a *ngIf="events_in_six_hrs.length  > 5"
-                        href="/events/live/"
+                        href="/events/upcoming/"
                         class="happening_now_show_more_link ev-display-only-non-mobile"
                     >
                         Show {{events_in_six_hrs?.length - 5}}+ more
@@ -77,7 +77,7 @@
           </div>         
           
           
-          <ng-container *ngIf="!events_in_six_hrs">
+          <ng-container *ngIf="!events_in_six_hrs.length">
             <div class="d-flex justify-content-center">
               <!-- <div class="spinner-grow" role="status">  -->
                 <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
@@ -87,7 +87,8 @@
               <!-- </div> -->
             </div>
             </ng-container>
-            <div class="row" *ngIf="events_in_six_hrs.length == 0">
+
+            <div class="row" *ngIf="events_events_in_six_hrs_empty">
               <div style="height: 50%;width: 100%;padding-bottom: 10%;">
                 <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
                   <i class="bi bi-clock-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
@@ -168,7 +169,7 @@
                   <div style="float: right;" class="controls-top">
                     <div class="happening_now_show_more" *ngIf="popularEvents.length > 5">  
                       <a *ngIf="popularEvents.length > 5"
-                          href="/events/live/"
+                          href="/events/popular/"
                           class="happening_now_show_more_link ev-display-only-non-mobile"
                       >
                           Show {{popularEvents?.length - 5}}+ more
@@ -222,6 +223,18 @@
           </div>
 
           <div class="row">
+            
+          <ng-container *ngIf="!popularEvents.length">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-grow" role="status">  -->
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+              
+              <!-- </div> -->
+            </div>
+            </ng-container>
+
             <owl-carousel #popularSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="popularEvents.length">
               <div *ngFor="let event of popularEvents">              
                 <div class="card mb-5 event-card" (click)="gotoPreview(event.id)">
@@ -304,7 +317,7 @@
                   <div style="float: right;" class="controls-top">
                     <div class="happening_now_show_more"  *ngIf="newEvents.length > 5">  
                       <a *ngIf="newEvents.length > 5"
-                          href="/events/live/"
+                          href="/events/new/"
                           class="happening_now_show_more_link ev-display-only-non-mobile"
                       >
                           Show {{newEvents?.length - 5}}+ more
@@ -358,6 +371,18 @@
           </div>
 
           <div class="row">
+            
+          <ng-container *ngIf="!newEvents.length">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-grow" role="status">  -->
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+              
+              <!-- </div> -->
+            </div>
+            </ng-container>
+
             <owl-carousel #newSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="newEvents.length">
               <div *ngFor="let event of newEvents"> 
                 <div class="save_live_event_div_container" style="padding: 8px;">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsService } from 'src/app/services/events/events.service';
 import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
 @Component({
   selector: 'app-user-events',
@@ -116,6 +117,11 @@ export class UserEventsComponent implements OnInit {
         }
       );
     });
+  }
+
+  getEventDateFormatted(date: any) {
+    // return moment(date).format('ddd, MMM D, YYYY h:mm A');
+    return moment(date).format('MMM d, YYYY');
   }
 
 }

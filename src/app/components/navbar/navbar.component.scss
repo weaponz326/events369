@@ -242,6 +242,23 @@ nav {
   color: #fff !important;
 }
 
+.ev-color-orange {
+  font-weight: 800 !important;
+  color: var(--ev-brandname-orange) !important;
+}
+
+.ev-color-white:hover {
+  background-color: inherit !important;
+}
+
+.ev-color-orange:hover {
+  background-color: inherit !important;
+}
+
+.ev-color-blue {
+  color: var(--blue);
+}
+
 .ev-avatar-border {
   display: flex;border: 1px solid #d7d7d7;padding: 3px 10px;border-radius: 30px;
 }

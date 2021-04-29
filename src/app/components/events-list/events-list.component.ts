@@ -21,6 +21,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
   eventsToday: any = []
   events_in_six_hrs: any = []
+  events_events_in_six_hrs_empty: boolean = false
   popularEvents: any = []
   newEvents: any = []
 
@@ -217,6 +218,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       res => {
         console.log(res);
         this.events_in_six_hrs = res.events.data;
+        this.events_events_in_six_hrs_empty = ((this.events_in_six_hrs.length > 0)? false: true)
         this.events_in_six_hrs.sort(function(a: any, b:any){
           // Turn your strings into dates, and then subtract them
           // to get a value that is either negative, positive, or zero.
