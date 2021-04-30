@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MediaService } from 'src/app/services/media/media.service';
+import _ from 'lodash';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class CreateEventMediaComponent implements OnInit {
     this.createdImgSrc = '';
 
     this.getEventDetails();
+    this.getExistingImages();
   }
 
   ngOnInit(): void {
@@ -58,26 +60,37 @@ export class CreateEventMediaComponent implements OnInit {
   }
 
   create(): void {  
-    this.isLoading = false;
-    this.imgSrcList.unshift(this.createdImgSrc)
-    this.isImageSet = false;
-    // this.mediaService.storeImage(this.f.event_image.value, this.eventId).then(
-    //   res => {
-    //     if (res) {
-    //       this.isLoading = false;
-    //       this.imgSrcList.unshift(this.createdImgSrc)
-    //       this.isImageSet = false;
-    //     }
-    //     else {
-    //       this.isLoading = false;
-    //       alert('oops, didn\'t create');
-    //     }
-    //   },
-    //   err => {
-    //     console.log(err);
-    //     this.isLoading = false;
-    //   }
-    // );  
+    // this.isLoading = false;
+    // this.imgSrcList.unshift(this.createdImgSrc)
+    // this.isImageSet = false;
+    this.mediaService.storeImage(this.f.event_image.value, this.eventId).then(
+      res => {
+        if (res) {
+          this.isLoading = false;
+          this.imgSrcList.unshift(this.createdImgSrc)
+          this.isImageSet = false;
+        }
+        else {
+          this.isLoading = false;
+          alert('oops, didn\'t create');
+        }
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );  
+  }
+
+  getExistingImages(): any {
+    this.mediaService.getImages(this.eventId).then(
+      images => {
+        _.forEach(images, (image, i) => {
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_image/' + images[i].url;
+          console.log(this.imgSrcList[i]);
+        });
+      }
+    );
   }
 
   onImageSelected(e: any){
