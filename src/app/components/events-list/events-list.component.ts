@@ -21,13 +21,21 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
   eventsToday: any = []
   events_in_six_hrs: any = []
+  events_events_in_six_hrs_empty: boolean = false
   popularEvents: any = []
   newEvents: any = []
 
   userFavorites: any = []
   userID: string = '';
   sliderOptions: any;
+  
   users_favorite_event_ids: any = []
+
+  loading: boolean = true;
+  loadIndex = [5, 5, 5]
+
+  
+  users_favorite_event_id_and_fav_id: any = []
 
   @ViewChild('upcomingSlider') upcomingSlider: OwlCarousel | undefined;
   @ViewChild('popularSlider') popularSlider: OwlCarousel | undefined;
@@ -158,6 +166,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
         res => {
           console.log(res);
           this.categoryEvents[i] = res.event.data;
+          this.loadIndex[i] = 5
         },
         err => {
           console.log(err);
@@ -213,6 +222,13 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       res => {
         console.log(res);
         this.events_in_six_hrs = res.events.data;
+        this.events_events_in_six_hrs_empty = ((this.events_in_six_hrs.length > 0)? false: true)
+        this.events_in_six_hrs.sort(function(a: any, b:any){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+
       },
       err => {
         console.log(err);
@@ -243,5 +259,78 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+
+  saveEventAsFavorite(event_id: any): void {
+    if(this.userID == null) {
+      this.router.navigateByUrl('/login')
+      
+    } else {
+
+      this.userFavoriteService.addFavoriteEvent(event_id, this.userID).then(
+        res => {
+          if (res) {
+            console.log(res);
+  
+            
+          }
+          else {
+            console.log('didnt add to favorites');
+          }
+        },
+        err => {
+          console.log(err);
+          // this.isLoading = false;
+        }
+      );
+      
+    }
+    
+  }
+
+  removeEventFromFavorites(event_id: any): void { 
+    console.log(event_id)
+    
+    let favorite_id: any = ''
+
+    for (let i = 0; i < this.users_favorite_event_id_and_fav_id.length; i++) {
+
+      if(this.users_favorite_event_id_and_fav_id[i].event_id == event_id) {
+          favorite_id = this.users_favorite_event_id_and_fav_id[i].fav_id
+      }
+      
+    }
+    console.log(this.users_favorite_event_id_and_fav_id)
+      console.log(favorite_id)
+
+      this.userFavoriteService.removeEventFromFavorite(favorite_id).then(
+        res => {
+          if (res) {
+            console.log(res); 
+            
+          }
+          else {
+            console.log('didnt remove to favorites');
+          }
+        },
+        err => {
+          console.log(err);
+          // this.isLoading = false;
+        }
+      );
+    
+  }
+
+  
+  loadMore(categoryId: any) {
+
+    this.loading = true
+    if(this.loadIndex[categoryId] < this.events_in_six_hrs.length) {
+      this.loadIndex[categoryId] += 5
+    }
+    
+    this.loading = false
+  }
+
+
 
 }
