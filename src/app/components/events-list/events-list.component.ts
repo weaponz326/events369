@@ -31,6 +31,9 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   
   users_favorite_event_ids: any = []
 
+  loading: boolean = true;
+  loadIndex = [5, 5, 5]
+
   
   users_favorite_event_id_and_fav_id: any = []
 
@@ -163,6 +166,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
         res => {
           console.log(res);
           this.categoryEvents[i] = res.event.data;
+          this.loadIndex[i] = 5
         },
         err => {
           console.log(err);
@@ -314,6 +318,17 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
         }
       );
     
+  }
+
+  
+  loadMore(categoryId: any) {
+
+    this.loading = true
+    if(this.loadIndex[categoryId] < this.events_in_six_hrs.length) {
+      this.loadIndex[categoryId] += 5
+    }
+    
+    this.loading = false
   }
 
 

@@ -16,6 +16,9 @@ export class UserEventsComponent implements OnInit {
   publishedEvents: any;
   archivedEvents: any;
 
+  loading: boolean = false
+  loadIndex = 20
+
   constructor(
     private router: Router,
     private eventsService: EventsService, 
@@ -122,6 +125,16 @@ export class UserEventsComponent implements OnInit {
   getEventDateFormatted(date: any) {
     // return moment(date).format('ddd, MMM D, YYYY h:mm A');
     return moment(date).format('MMM d, YYYY');
+  }
+
+  
+  loadMore() {
+    this.loading = true
+    if(this.loadIndex < this.userEvents.length) {
+      this.loadIndex += 5
+    }
+    
+    this.loading = false
   }
 
 }
