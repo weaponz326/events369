@@ -33,6 +33,8 @@ export class CreateEventMediaComponent implements OnInit {
     this.isImageSet = false;
     this.imgSrcList = [];
     this.createdImgSrc = '';
+
+    this.getEventDetails();
   }
 
   ngOnInit(): void {
@@ -56,22 +58,41 @@ export class CreateEventMediaComponent implements OnInit {
   }
 
   create(): void {  
-    this.mediaService.storeImage(this.f.event_image.value, this.eventId).then(
-      res => {
-        if (res) {
-          this.isLoading = false;
-          this.imgSrcList.unshift(this.createdImgSrc)
-        }
-        else {
-          this.isLoading = false;
-          alert('oops, didn\'t create');
-        }
-      },
-      err => {
-        console.log(err);
-        this.isLoading = false;
+    this.isLoading = false;
+    this.imgSrcList.unshift(this.createdImgSrc)
+    this.isImageSet = false;
+    // this.mediaService.storeImage(this.f.event_image.value, this.eventId).then(
+    //   res => {
+    //     if (res) {
+    //       this.isLoading = false;
+    //       this.imgSrcList.unshift(this.createdImgSrc)
+    //       this.isImageSet = false;
+    //     }
+    //     else {
+    //       this.isLoading = false;
+    //       alert('oops, didn\'t create');
+    //     }
+    //   },
+    //   err => {
+    //     console.log(err);
+    //     this.isLoading = false;
+    //   }
+    // );  
+  }
+
+  onImageSelected(e: any){
+    const file:File = e.target.files[0];
+    if (file) {
+      this.isImageSet = true;
+
+      this.f.event_image.value = file;
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e: any) => {
+        this.createdImgSrc = e.target.result;
       }
-    );  
+    }
   }
 
 }

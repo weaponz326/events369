@@ -25,6 +25,7 @@ export class MediaService {
 
   storeImage(image: File, eventId: any): Promise<any> {
     console.log(this.storeImageUrl);
+    console.log(eventId);
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('image', image);
@@ -32,7 +33,7 @@ export class MediaService {
 
       this.http.post<any>(this.storeImageUrl, formData, { headers: this.formHeaders }).subscribe(
         res => {
-          console.log('create_organizer_ok: ', res);
+          console.log('store_image_ok: ', res);
           if (_.toLower(res.message) == 'ok') {
             resolve(res.message);
           }
@@ -41,7 +42,7 @@ export class MediaService {
           }
         },
         err => {
-          console.error('create_organizer_error: ', err);
+          console.error('store_image_error: ', err);
           reject(err);
         }
       );
