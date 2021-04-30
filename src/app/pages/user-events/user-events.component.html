@@ -23,39 +23,71 @@
         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
             <div class="row">                
 
-                <div *ngFor="let event of userEvents" class="col-lg-4 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner">
+                <div *ngFor="let event of userEvents; let i = index" class="col-lg-4 mb-4">
+                    <div class="card" *ngIf="i < loadIndex">
+                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="180px" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" height="180px" alt="{{event.title}}">
+              
+                        <!-- <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner"> -->
                         <div class="card-body">                          
                             <div class="col">
                                 <h4 class="card-title">{{event.title}}</h4>
-                                <hr>
-                                <p class="card-text">{{event.description}}</p>
-                                <p>
-                                    <!-- <small class="text-muted">Date : {{event.start_date_time | date:'mediumDate'}} to {{event.start_date_time | date:'mediumDate'}}</small><br> -->
-                                    <small class="text-muted">Date : {{getEventDateFormatted(event.start_date_time)}} to {{getEventDateFormatted(event.end_date_time)}}</small><br>
-                                    <!-- getEventStartDateFormatted(favorites.start_date_time) -->
-                                    <small class="text-muted">Category : {{event.Category}}</small><br>
-                                </p>
-                                <hr>
-                                <div class="text-center">
-                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
-                                    <!-- <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button> -->
-                                </div>
+                                <span id="dots-{{event.id}}" style="color: #fff;">...</span>
+                                <span id="more-{{event.id}}" style="display: none;">
+
+                                    <hr>
+                                    <p class="card-text">{{event.description}}</p>
+                                    <p>
+                                        <!-- <small class="text-muted">Date : {{event.start_date_time | date:'mediumDate'}} to {{event.start_date_time | date:'mediumDate'}}</small><br> -->
+                                        <small class="text-muted">Date : {{getEventDateFormatted(event.start_date_time)}} to {{getEventDateFormatted(event.end_date_time)}}</small><br>
+                                        <!-- getEventStartDateFormatted(favorites.start_date_time) -->
+                                        <small class="text-muted">Category : {{event.Category}}</small><br>
+                                    </p>
+                                    <hr>
+                                    <div class="text-center">
+                                        <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
+                                        <!-- <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button> -->
+                                    </div>
+                                    
+                                </span>
+
+                                <span id="myBtn-{{event.id}}" (click)="showHideMore(event.id)">See More</span>
+                                
                             </div>
                         </div>                       
                     </div>
-                </div>                
+                </div> 
+                
+                
+                <br><br><br>
+                <div class="d-flex justify-content-center">
+                    <button  *ngIf="loadIndex < userEvents.length" class="btn btn-dark btn-lg" (click)="loadMore()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Load more
+                    </button>
+
+                    <button  *ngIf="loadIndex >= userEvents.length" class="btn btn-dark btn-lg" (click)="loadLess()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show less
+                    </button>
+                <br><br><br>
+                </div>
+
             </div>
         </div>
         <div class="tab-pane fade" id="pills-published" role="tabpanel" aria-labelledby="pills-published-tab">
             <div class="row">
                 <div *ngFor="let event of publishedEvents" class="col-lg-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner">
+                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                        
                         <div class="card-body">                          
                             <div class="col">
                                 <h4 class="card-title">{{event.title}}</h4>
+                                <span id="published-dots-{{event.id}}" style="color: #fff;">...</span>
+                                <span id="published-more-{{event.id}}" style="display: none;">
+
                                 <hr>
                                 <p class="card-text">{{event.description}}</p>
                                 <p>
@@ -64,10 +96,15 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
-                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
-                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning px-4 mx-1">Archive</button>
+                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary mb-1 px-4 mx-1">Preview</button>
+                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary mb-1 px-4 mx-1">Edit</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Archive</button>
                                 </div>
+
+                                </span>
+
+                                <span id="published-myBtn-{{event.id}}" (click)="showHideMorePublished(event.id)">See More</span>
+                                
                             </div>
                         </div>                       
                     </div>
@@ -78,10 +115,16 @@
             <div class="row">
                 <div *ngFor="let event of createdEvents" class="col-lg-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner">
+                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                        
                         <div class="card-body">                          
                             <div class="col">
                                 <h4 class="card-title">{{event.title}}</h4>
+                                
+                                <span id="draft-dots-{{event.id}}" style="color: #fff;">...</span>
+                                <span id="draft-more-{{event.id}}" style="display: none;">
+
                                 <hr>
                                 <p class="card-text">{{event.description}}</p>
                                 <p>
@@ -90,9 +133,14 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mx-1">Edit</button>
-                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
+                                    <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mb-1 mx-1">Edit</button>
+                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mb-1 mx-1">Preview</button>
                                 </div>
+
+                                </span>
+
+                                <span id="draft-myBtn-{{event.id}}" (click)="showHideMoreDraft(event.id)">See More</span>
+                                
                             </div>
                         </div>                       
                     </div>
@@ -103,10 +151,16 @@
             <div class="row">
                 <div *ngFor="let event of archivedEvents" class="col-lg-4 mb-4">
                     <div class="card">
-                        <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner">
+                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+              
                         <div class="card-body">                          
                             <div class="col">
                                 <h4 class="card-title">{{event.title}}</h4>
+
+                                <span id="archived-dots-{{event.id}}" style="color: #fff;">...</span>
+                                <span id="archived-more-{{event.id}}" style="display: none;">
+
                                 <hr>
                                 <p class="card-text">{{event.description}}</p>
                                 <p>
@@ -115,9 +169,14 @@
                                 </p>
                                 <hr>
                                 <div class="text-center">
-                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mx-1">Preview</button>
-                                    <button (click)="recoverEvent(event.id)" class="btn btn-success px-4 mx-1">Recover</button>
+                                    <button (click)="gotoPreview(event.id)" class="btn btn-primary mb-1 px-4 mx-1">Preview</button>
+                                    <button (click)="recoverEvent(event.id)" class="btn btn-success mb-1 px-4 mx-1">Recover</button>
                                 </div>
+
+                                </span>
+
+                                <span id="archived-myBtn-{{event.id}}" (click)="showHideMoreArchived(event.id)">See More</span>
+                                
                             </div>
                         </div>                       
                     </div>
@@ -140,3 +199,4 @@
 </div> -->
 </div>
 </div>
+<app-footer></app-footer>
