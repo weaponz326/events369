@@ -9,6 +9,8 @@ import _ from 'lodash';
 export class OrganizersService {
 
   private headers: HttpHeaders;
+  private formHeaders: HttpHeaders;
+  
   private getOrganizerUrl: string;
   private hasOrganizerUrl: string;
   private deleteOrganizerUrl: string;
@@ -17,6 +19,7 @@ export class OrganizersService {
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
+    this.formHeaders = this.endpoint.headers(true);
     this.editOrganizerUrl = this.endpoint.apiHost + '/v1/edit_organizer/';
     this.getOrganizerUrl = this.endpoint.apiHost + '/v1/get_organizers/';
     this.createOrganizerUrtl = this.endpoint.apiHost + '/v1/create_organizer/';
@@ -31,6 +34,7 @@ export class OrganizersService {
    */
   createOrganizer(organizer: any, image: File, eventId: any): Promise<any> {
     console.log(this.createOrganizerUrtl);
+    console.log(organizer);
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append('image', image);
@@ -42,7 +46,7 @@ export class OrganizersService {
       formData.append('instagram', organizer.instagram);      
 
       const url = this.createOrganizerUrtl + eventId;
-      this.http.post<any>(url, formData, { headers: this.headers}).subscribe(
+      this.http.post<any>(url, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('create_organizer_ok: ', res);
           if (_.toLower(res.message) == 'ok') {
@@ -66,19 +70,19 @@ export class OrganizersService {
    * @param organizer Organizer
    * @returns 
    */ 
-  editOrganizer(organizerId: string, organizer: any): Promise<boolean> {
+  editOrganizer(organizerId: string, organizer: any, image: File): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const url = this.editOrganizerUrl + organizerId;
-      const body = {
-        'organizer': organizer.quantity,
-        'bio': organizer.price,
-        'facebook': organizer.facebook,
-        'twitter': organizer.twitter,
-        'linkedin': organizer.linkedin,
-        'instagram': organizer.instagram
-      };
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('organizer', organizer.name);
+      formData.append('bio', organizer.bio);
+      formData.append('facebook', organizer.facebook);      
+      formData.append('twitter', organizer.twitter);      
+      formData.append('linkedin', organizer.linkedin);      
+      formData.append('instagram', organizer.instagram);
 
-      this.http.post<any>(url, JSON.stringify(body), { headers: this.headers }).subscribe(
+      this.http.post<any>(url, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('edit_organizer_ok: ', res);
           if (_.toLower(res.message) == 'ok') {
