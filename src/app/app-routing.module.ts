@@ -7,6 +7,9 @@ import { LearnMoreComponent } from './pages/learn-more/learn-more.component';
 import { HappeningNowComponent } from './pages/happening-now/happening-now.component';
 import { LoginPageComponent } from './pages/user-auth/login-page/login-page.component';
 import { SignupPageComponent } from './pages/user-auth/signup-page/signup-page.component';
+import { UpcomingEventsPageComponent } from "./pages/upcoming-events-page/upcoming-events-page.component";
+import { PopularEventsPageComponent } from "./pages/popular-events-page/popular-events-page.component";
+import { NewEventsPageComponent } from "./pages/new-events-page/new-events-page.component";
 
 import { CreateBasicInfoComponent } from './pages/create-event/create-basic-info/create-basic-info.component';
 import { CreateEventSchedulesComponent } from './pages/create-event/create-event-schedules/create-event-schedules.component';
@@ -176,6 +179,18 @@ const routes: Routes = [
       {
         path: 'live',
         component: HappeningNowComponent
+      },
+      {
+        path: 'upcoming',
+        component: UpcomingEventsPageComponent
+      },
+      {
+        path: 'popular',
+        component: PopularEventsPageComponent
+      },
+      {
+        path: 'new',
+        component: NewEventsPageComponent
       }
     ]
   }

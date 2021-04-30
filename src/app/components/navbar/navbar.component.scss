@@ -212,6 +212,17 @@ nav {
   color: var(--primary-color);
 }
 
+.ev-navbar-authenticated {
+  background-color: var(--ev-create-event-nav-background) !important;
+  color: var(--primary-color) !important;
+  border: solid 1px var(--ev-create-event-nav-background) !important;
+  border-bottom: 1px solid var(--ev-create-event-nav-background) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+  
+}
+
+
+
 .ev-brandname-orange {
   color: #f05537;
   font-size: 24px;
@@ -220,6 +231,40 @@ nav {
 .ev-brandname-darkblue {
   color: #1e0a3c;
   font-size: 24px;
+}
+
+.ev-brandname-white {
+  color: #fff;
+  font-size: 24px;
+}
+
+.ev-color-white {
+  color: #fff !important;
+}
+
+.ev-color-orange {
+  font-weight: 800 !important;
+  color: var(--ev-brandname-orange) !important;
+}
+
+.ev-color-white:hover {
+  background-color: inherit !important;
+}
+
+.ev-color-orange:hover {
+  background-color: inherit !important;
+}
+
+.ev-color-blue {
+  color: var(--blue);
+}
+
+.ev-avatar-border {
+  display: flex;border: 1px solid #d7d7d7;padding: 3px 10px;border-radius: 30px;
+}
+
+.ev-border-authenticated {
+  border: 1px solid #3f3c5b !important;
 }
 
 .ev-nav-searchbar-input {
@@ -325,6 +370,8 @@ ev-avatar img {
 
   img {
     border: 2px solid var(--ion-color-step-100);border-radius: 50%;height: inherit;
+    max-width: inherit !important;
+    margin-top: .5vh !important;
   }
 }
 

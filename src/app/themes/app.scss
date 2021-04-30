@@ -78,5 +78,12 @@
     }
   }
 
+  .ev-navbar {
+    width: 100%;
+    z-index: 99999;
+    background-color: var(--ev-create-event-nav-background) !important;
+    color: var(--primary-color);
+  }
+
   
 }

@@ -21,21 +21,21 @@
             <div class="col-12 ev-padlr-0">
               
               <h3 class="display-6 ev-head-padl ev-display-only-non-mobile">
-                <i class="bi bi-card-list"></i> &nbsp; All Events
+                <i class="bi bi-clock"></i> &nbsp; Upcoming
                 
                 <!--Controls-->
                 <div style="float: right;" class="controls-top">
-                  <div class="happening_now_show_more">   
-                    <a *ngIf="allEvents"
-                        href="/events/live/"
+                  <div class="happening_now_show_more" *ngIf="events_in_six_hrs.length > 5">   
+                    <a *ngIf="events_in_six_hrs.length  > 5"
+                        href="/events/upcoming/"
                         class="happening_now_show_more_link ev-display-only-non-mobile"
                     >
-                        Show {{allEvents?.length - 1}}+ more
+                        Show {{events_in_six_hrs?.length - 5}}+ more
                     </a>                
                       <span class="happening_now_span_1"></span>
                       <div aria-hidden="false" class="happening_now_slider">
                           <div class="happening_now_slider_core">
-                              <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="allSliderPrev()">
+                              <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="upcomingSliderPrev()">
                                   <span class="happening_now_slider_button_core">
                                       <span class="happening_now_slider_button_core_inner">_</span>
                                       <svg
@@ -51,7 +51,7 @@
                                   </span>
                               </button>
                               <span class="happening_now_slider_empty_span"></span>
-                              <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="allSliderNext()">
+                              <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="upcomingSliderNext()">
                                   <span class="happening_now_slider_button_core">
                                       <span class="happening_now_slider_button_core_inner">_</span>
                                       <svg
@@ -77,7 +77,7 @@
           </div>         
           
           
-          <ng-container *ngIf="!allEvents">
+          <ng-container *ngIf="!events_in_six_hrs.length">
             <div class="d-flex justify-content-center">
               <!-- <div class="spinner-grow" role="status">  -->
                 <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
@@ -87,20 +87,75 @@
               <!-- </div> -->
             </div>
             </ng-container>
+
+            <div class="row" *ngIf="events_events_in_six_hrs_empty">
+              <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
+                  <i class="bi bi-clock-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                  <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Please check in later</span>
+                  <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                    There are no upcoming events to show now
+
+                </p>
+              </div>
+
+            </div>
           <!-- <div class="all-slider" *ngIf="allEvents"> -->
-          <owl-carousel #allSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="allEvents">
-            <div *ngFor="let event of allEvents">              
+          <owl-carousel #upcomingSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="events_in_six_hrs.length">
+            <div *ngFor="let event of events_in_six_hrs">              
               <div class="card mb-5 event-card" (click)="gotoPreview(event.id)">
-                <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
+                <div class="save_live_event_div_container" style="padding: 8px;">
+                  <div></div>
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                      <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
+                          <svg
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              aria-hidden="true"
+                              role="presentation"
+                              focusable="false"
+                          >
+                              <path
+                                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                              ></path>
+                          </svg>
+                      </button>
+                      
+                      
+                  </div>
+
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                        >
+                            <path
+                                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                    
+                </div>
+              </div>
+                <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="{{event.title}}">
                 <div class="card-body">
                   <p class="card-text">
                     <span class="bold card-title">{{event.title}}</span>
                     <span class="lead text-muted">By: {{event.created_by}}</span><br>
-                    <span class="lead">{{event.start_date_time | date:'long'}}</span>
+                    <span class="lead">{{getEventStartDateFormatted(event.start_date_time)}}</span>
+                    <!-- event.start_date_time | date:'long' -->
                   </p>
                 </div>
               </div>
             </div>             
+            
           </owl-carousel>
           <!-- </div> -->
             
@@ -112,17 +167,17 @@
                 
                   <!--Controls-->
                   <div style="float: right;" class="controls-top">
-                    <div class="happening_now_show_more">  
-                      <a *ngIf="1 > 0"
-                          href="/events/live/"
+                    <div class="happening_now_show_more" *ngIf="popularEvents.length > 5">  
+                      <a *ngIf="popularEvents.length > 5"
+                          href="/events/popular/"
                           class="happening_now_show_more_link ev-display-only-non-mobile"
                       >
-                          Show {{allEvents?.length - 1}}+ more
+                          Show {{popularEvents?.length - 5}}+ more
                       </a>                  
                         <span class="happening_now_span_1"></span>
                         <div aria-hidden="false" class="happening_now_slider">
                             <div class="happening_now_slider_core">
-                                <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="allSliderPrev()">
+                                <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="popularSliderPrev()">
                                     <span class="happening_now_slider_button_core">
                                         <span class="happening_now_slider_button_core_inner">_</span>
                                         <svg
@@ -138,7 +193,7 @@
                                     </span>
                                 </button>
                                 <span class="happening_now_slider_empty_span"></span>
-                                <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="allSliderNext()">
+                                <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="popularSliderNext()">
                                     <span class="happening_now_slider_button_core">
                                         <span class="happening_now_slider_button_core_inner">_</span>
                                         <svg
@@ -168,54 +223,72 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
-                </div>
-              </div>
+            
+          <ng-container *ngIf="!popularEvents.length">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-grow" role="status">  -->
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+              
+              <!-- </div> -->
             </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
+            </ng-container>
+
+            <owl-carousel #popularSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="popularEvents.length">
+              <div *ngFor="let event of popularEvents">              
+                <div class="card mb-5 event-card" (click)="gotoPreview(event.id)">
+                  <div class="save_live_event_div_container" style="padding: 8px;">
+                    <div></div>
+                    <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                        <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
+                            <svg
+                                viewBox="0 0 32 32"
+                                xmlns="http://www.w3.org/2000/svg"
+                                style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                                aria-hidden="true"
+                                role="presentation"
+                                focusable="false"
+                            >
+                                <path
+                                    d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                                ></path>
+                            </svg>
+                        </button>
+                        
+                        
+                    </div>
+  
+                    <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                      <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                          <svg
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              aria-hidden="true"
+                              role="presentation"
+                              focusable="false"
+                          >
+                              <path
+                                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                              ></path>
+                          </svg>
+                      </button>
+                      
+                      
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
+                  <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="{{event.title}}">
+                  <div class="card-body">
+                    <p class="card-text">
+                      <span class="bold card-title">{{event.title}}</span>
+                      <span class="lead text-muted">By: {{event.created_by}}</span><br>
+                      <span class="lead">{{getEventStartDateFormatted(event.start_date_time)}}</span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+              </div>             
+            </owl-carousel>
           </div>
 
           <!-- <div class="row">
@@ -242,17 +315,17 @@
                 
                   <!--Controls-->
                   <div style="float: right;" class="controls-top">
-                    <div class="happening_now_show_more">  
-                      <a *ngIf="1 > 0"
-                          href="/events/live/"
+                    <div class="happening_now_show_more"  *ngIf="newEvents.length > 5">  
+                      <a *ngIf="newEvents.length > 5"
+                          href="/events/new/"
                           class="happening_now_show_more_link ev-display-only-non-mobile"
                       >
-                          Show {{allEvents?.length - 1}}+ more
+                          Show {{newEvents?.length - 5}}+ more
                       </a>                 
                         <span class="happening_now_span_1"></span>
                         <div aria-hidden="false" class="happening_now_slider">
                             <div class="happening_now_slider_core">
-                                <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="allSliderPrev()">
+                                <button aria-label="Previous"  type="button" class="happening_now_slider_button" (click)="newSliderPrev()">
                                     <span class="happening_now_slider_button_core">
                                         <span class="happening_now_slider_button_core_inner">_</span>
                                         <svg
@@ -268,7 +341,7 @@
                                     </span>
                                 </button>
                                 <span class="happening_now_slider_empty_span"></span>
-                                <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="allSliderNext()">
+                                <button aria-label="Next"  type="button" class="happening_now_slider_button" (click)="newSliderNext()">
                                     <span class="happening_now_slider_button_core">
                                         <span class="happening_now_slider_button_core_inner">_</span>
                                         <svg
@@ -298,54 +371,72 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
-                </div>
-              </div>
+            
+          <ng-container *ngIf="!newEvents.length">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-grow" role="status">  -->
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+              
+              <!-- </div> -->
             </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
+            </ng-container>
+
+            <owl-carousel #newSlider [options]="sliderOptions" [carouselClasses]="['owl-theme', 'row', 'sliding']" *ngIf="newEvents.length">
+              <div *ngFor="let event of newEvents"> 
+                <div class="save_live_event_div_container" style="padding: 8px;">
+                  <div></div>
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                      <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
+                          <svg
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              aria-hidden="true"
+                              role="presentation"
+                              focusable="false"
+                          >
+                              <path
+                                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                              ></path>
+                          </svg>
+                      </button>
+                      
+                      
+                  </div>
+
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                        >
+                            <path
+                                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                    
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
+              </div>             
+                <div class="card mb-5 event-card" (click)="gotoPreview(event.id)">
+                  <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text">
+                      <span class="bold card-title">{{event.title}}</span>
+                      <span class="lead text-muted">By: {{event.created_by}}</span><br>
+                      <span class="lead">{{getEventStartDateFormatted(event.start_date_time)}}</span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-2">
-                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">
-                    <span class="bold">Emy's Techpreneur SDG Conference</span>
-                    <br>
-                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
-                  </p>
-                </div>
-              </div>
-            </div>
+              </div>             
+            </owl-carousel>
           </div>
             
           <!-- <div class="row">
@@ -371,6 +462,46 @@
           <div class="row" style="margin-bottom: 12%;" *ngIf="userFavorites">
             <div class="col-sm-12 col-md-3 col-lg-3" *ngFor="let favorites of userFavorites">
               <div class="card mb-2">
+                <div class="save_live_event_div_container" style="padding: 8px;">
+                  <div></div>
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(favorites.id)" style="visibility: visible !important;">
+                      <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(favorites.id)" class="save_live_event_button">
+                          <svg
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              aria-hidden="true"
+                              role="presentation"
+                              focusable="false"
+                          >
+                              <path
+                                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                              ></path>
+                          </svg>
+                      </button>
+                      
+                      
+                  </div>
+
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(favorites.id)" style="visibility: visible !important;">
+                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(favorites.id)" class="save_live_event_button">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                        >
+                            <path
+                                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                    
+                </div>
+              </div>
                 <img src="http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
@@ -387,9 +518,9 @@
               <div style="height: 50%;width: 100%;padding-bottom: 10%;">
                 <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
                   <i class="bi bi-people-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
-                  <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Follow your favorite organizers</span>
+                  <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Like your favorite events</span>
                   <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
-                    See their latest events here
+                    See them here
 
                 </p>
               </div>
@@ -405,21 +536,222 @@
         <br><br><br><br>
         <div *ngFor="let x of categories; index as i" class="tab-pane fade" [id]="toCamelCase(x.temp_name)" role="tabpanel" aria-labelledby="pills-profile-tab">
           <div class="row">
-            <div *ngFor="let event of categoryEvents[i]" class="col-sm-12 col-md-3 col-lg-3">
-              <div class="card mb-5">
+            <div *ngFor="let event of categoryEvents[i];  let i = index" class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-5"  *ngIf="i < loadIndex[i]">
+                <div class="save_live_event_div_container" style="padding: 8px;">
+                  <div></div>
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                      <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
+                          <svg
+                              viewBox="0 0 32 32"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              aria-hidden="true"
+                              role="presentation"
+                              focusable="false"
+                          >
+                              <path
+                                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                              ></path>
+                          </svg>
+                      </button>
+                      
+                      
+                  </div>
+
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                        <svg
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                        >
+                            <path
+                                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                    
+                </div>
+              </div>
                 <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
                     <span class="bold">{{event.title}}</span>
                     <br>
-                    <span class="lead">{{event.start_date_time | date:'long'}}</span>
+                    <span class="lead">{{getEventStartDateFormatted(event.start_date_time)}}</span>
                   </p>
                 </div>
               </div>
+
+              
+            <!-- <br><br><br>
+            <div class="d-flex justify-content-center">
+              <button  *ngIf="loadIndex[i] < categoryEvents[i].length" class="btn btn-dark btn-lg" (click)="loadMore(i)" type="button">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Load more
+                </button>
+
+                <a href="/" *ngIf="loadIndex >= categoryEvents[i].length" class="btn btn-dark btn-lg">Show all events</a>
+            </div> -->
+
             </div>
+
+            
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div><div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div><div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div><div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div><div class="col-sm-12 col-md-3 col-lg-3">
+              <div class="card mb-2">
+                <img src="https://blogmedia.evbstatic.com/wp-content/uploads/wpmulti/sites/3/2018/11/event-speaker-template-1.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">
+                    <span class="bold">Emy's Techpreneur SDG Conference</span>
+                    <br>
+                    <span class="lead">Mon, Apr 19, 2021 3:00PM (GMT)</span>
+                  </p>
+                </div>
+              </div>
+            </div> -->

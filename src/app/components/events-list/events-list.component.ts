@@ -4,6 +4,7 @@ import { UsersFavoritesService } from 'src/app/services/users-favorites/users-fa
 import moment from 'moment';
 import { OwlCarousel } from 'ngx-owl-carousel';
 import { Router } from '@angular/router';
+import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
 
 
 @Component({
@@ -18,18 +19,38 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   categoryEvents: any[] = [];
   slideConfig: any;
 
+  eventsToday: any = []
+  events_in_six_hrs: any = []
+  events_events_in_six_hrs_empty: boolean = false
+  popularEvents: any = []
+  newEvents: any = []
+
   userFavorites: any = []
   userID: string = '';
   sliderOptions: any;
+  
   users_favorite_event_ids: any = []
 
-  @ViewChild('allSlider') allSlider: OwlCarousel | undefined;
+  loading: boolean = true;
+  loadIndex = [5, 5, 5]
+
+  
+  users_favorite_event_id_and_fav_id: any = []
+
+  @ViewChild('upcomingSlider') upcomingSlider: OwlCarousel | undefined;
+  @ViewChild('popularSlider') popularSlider: OwlCarousel | undefined;
+  @ViewChild('newSlider') newSlider: OwlCarousel | undefined;
 
   constructor(
     private router: Router,
     private eventsService: EventsService,
-    private userFavoriteService: UsersFavoritesService
+    private userFavoriteService: UsersFavoritesService,
+    private eventsHappeningNow: HappeningNowService,
     ) { 
+      this.getEventsInSixHrs();
+      this.getPopularEvents();
+      this.getNewEvents();
+      this.getTodaysEvents();
       this.getAllEvents();
       this.getUsersFavorites();
     }
@@ -83,12 +104,28 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     return id;
   }
 
-  allSliderNext(){
-    this.allSlider?.trigger('next.owl.carousel');
+  upcomingSliderNext(){
+    this.upcomingSlider?.trigger('next.owl.carousel');
   }
 
-  allSliderPrev(){
-    this.allSlider?.trigger('prev.owl.carousel');
+  upcomingSliderPrev(){
+    this.upcomingSlider?.trigger('prev.owl.carousel');
+  }
+
+  popularSliderNext(){
+    this.popularSlider?.trigger('next.owl.carousel');
+  }
+
+  popularSliderPrev(){
+    this.popularSlider?.trigger('prev.owl.carousel');
+  }
+
+  newSliderNext(){
+    this.newSlider?.trigger('next.owl.carousel');
+  }
+
+  newSliderPrev(){
+    this.newSlider?.trigger('prev.owl.carousel');
   }
 
   gotoPreview(eventId: any) {
@@ -129,6 +166,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
         res => {
           console.log(res);
           this.categoryEvents[i] = res.event.data;
+          this.loadIndex[i] = 5
         },
         err => {
           console.log(err);
@@ -166,5 +204,133 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   hasBeenAddedToFavorites(event_id: any) {
     return this.users_favorite_event_ids.includes(event_id)
   }
+
+  getTodaysEvents(): void {
+    this.eventsHappeningNow.getTodaysEvents().then(
+      res => {
+        console.log(res);
+        this.eventsToday = res.event.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getEventsInSixHrs(): void {
+    this.eventsService.getEventsInSixHours().then(
+      res => {
+        console.log(res);
+        this.events_in_six_hrs = res.events.data;
+        this.events_events_in_six_hrs_empty = ((this.events_in_six_hrs.length > 0)? false: true)
+        this.events_in_six_hrs.sort(function(a: any, b:any){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getPopularEvents(): void {
+    this.eventsService.getPopularEvents().then(
+      res => {
+        console.log(res);
+        this.popularEvents = res.event.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getNewEvents(): void {
+    this.eventsService.getNewEvents().then(
+      res => {
+        console.log(res);
+        this.newEvents = res.events.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  saveEventAsFavorite(event_id: any): void {
+    if(this.userID == null) {
+      this.router.navigateByUrl('/login')
+      
+    } else {
+
+      this.userFavoriteService.addFavoriteEvent(event_id, this.userID).then(
+        res => {
+          if (res) {
+            console.log(res);
+  
+            
+          }
+          else {
+            console.log('didnt add to favorites');
+          }
+        },
+        err => {
+          console.log(err);
+          // this.isLoading = false;
+        }
+      );
+      
+    }
+    
+  }
+
+  removeEventFromFavorites(event_id: any): void { 
+    console.log(event_id)
+    
+    let favorite_id: any = ''
+
+    for (let i = 0; i < this.users_favorite_event_id_and_fav_id.length; i++) {
+
+      if(this.users_favorite_event_id_and_fav_id[i].event_id == event_id) {
+          favorite_id = this.users_favorite_event_id_and_fav_id[i].fav_id
+      }
+      
+    }
+    console.log(this.users_favorite_event_id_and_fav_id)
+      console.log(favorite_id)
+
+      this.userFavoriteService.removeEventFromFavorite(favorite_id).then(
+        res => {
+          if (res) {
+            console.log(res); 
+            
+          }
+          else {
+            console.log('didnt remove to favorites');
+          }
+        },
+        err => {
+          console.log(err);
+          // this.isLoading = false;
+        }
+      );
+    
+  }
+
+  
+  loadMore(categoryId: any) {
+
+    this.loading = true
+    if(this.loadIndex[categoryId] < this.events_in_six_hrs.length) {
+      this.loadIndex[categoryId] += 5
+    }
+    
+    this.loading = false
+  }
+
+
 
 }
