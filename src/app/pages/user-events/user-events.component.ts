@@ -22,6 +22,8 @@ export class UserEventsComponent implements OnInit {
   published_loadIndex = 6
   archived_loadIndex = 6
 
+  
+
   constructor(
     private router: Router,
     private eventsService: EventsService, 
