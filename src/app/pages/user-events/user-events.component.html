@@ -25,8 +25,8 @@
 
                 <div *ngFor="let event of userEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" *ngIf="i < loadIndex">
-                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="180px" alt="{{event.title}}">
-                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" height="180px" alt="{{event.title}}">
+                        <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250px" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" height="250px" alt="{{event.title}}">
               
                         <!-- <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner"> -->
                         <div class="card-body">                          
@@ -63,10 +63,10 @@
                 <div class="d-flex justify-content-center">
                     <button  *ngIf="loadIndex < userEvents.length" class="btn btn-dark btn-lg" (click)="loadMore()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Load more
+                        Show more
                     </button>
 
-                    <button  *ngIf="loadIndex >= userEvents.length" class="btn btn-dark btn-lg" (click)="loadLess()" type="button">
+                    <button  *ngIf="(loadIndex >= userEvents.length) && (userEvents.length >= 6)" class="btn btn-dark btn-lg" (click)="loadLess()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Show less
                     </button>
@@ -108,13 +108,30 @@
                             </div>
                         </div>                       
                     </div>
-                </div>                
+                </div>  
+                
+                
+                <br><br><br>
+                <div class="d-flex justify-content-center">
+                    <button  *ngIf="published_loadIndex < publishedEvents.length" class="btn btn-dark btn-lg" (click)="loadMorePublished()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show more
+                    </button>
+
+                    <button  *ngIf="(published_loadIndex >= publishedEvents.length) && (publishedEvents.length >= 6)" class="btn btn-dark btn-lg" (click)="loadLessPublished()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show less
+                    </button>
+                <br><br><br>
+                </div>
+
+
             </div>
         </div>
         <div class="tab-pane fade" id="pills-drafts" role="tabpanel" aria-labelledby="pills-drafts-tab">
             <div class="row">
-                <div *ngFor="let event of createdEvents" class="col-lg-4 mb-4">
-                    <div class="card">
+                <div *ngFor="let event of createdEvents; let i = index" class="col-lg-4 mb-4">
+                    <div class="card" *ngIf="i < draft_loadIndex">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
                         <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
                         
@@ -144,7 +161,22 @@
                             </div>
                         </div>                       
                     </div>
-                </div>                
+                </div>     
+                
+                <br><br><br>
+                <div class="d-flex justify-content-center">
+                    <button  *ngIf="draft_loadIndex < createdEvents.length" class="btn btn-dark btn-lg" (click)="loadMoreDrafts()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show more
+                    </button>
+
+                    <button  *ngIf="(draft_loadIndex >= createdEvents.length) && (createdEvents.length >= 6)" class="btn btn-dark btn-lg" (click)="loadLessDrafts()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show less
+                    </button>
+                <br><br><br>
+                </div>
+
             </div>
         </div>
         <div class="tab-pane fade" id="pills-archived" role="tabpanel" aria-labelledby="pills-archived-tab">
@@ -180,7 +212,23 @@
                             </div>
                         </div>                       
                     </div>
-                </div>                
+                </div>  
+                
+                
+                <br><br><br>
+                <div class="d-flex justify-content-center">
+                    <button  *ngIf="archived_loadIndex < archivedEvents.length" class="btn btn-dark btn-lg" (click)="loadMoreArchived()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show more
+                    </button>
+
+                    <button  *ngIf="(archived_loadIndex >= archivedEvents.length) && (archivedEvents.length >= 6)" class="btn btn-dark btn-lg" (click)="loadLessArchived()" type="button">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Show less
+                    </button>
+                <br><br><br>
+                </div>
+
             </div>
         </div>
     </div>

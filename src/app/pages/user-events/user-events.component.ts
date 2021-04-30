@@ -11,13 +11,16 @@ import moment from 'moment';
 })
 export class UserEventsComponent implements OnInit {
 
-  userEvents: any;
-  createdEvents: any;
-  publishedEvents: any;
-  archivedEvents: any;
+  userEvents: any = [];
+  createdEvents: any = [];
+  publishedEvents: any = [];
+  archivedEvents: any = [];
 
   loading: boolean = false
   loadIndex = 6
+  draft_loadIndex = 6
+  published_loadIndex = 6
+  archived_loadIndex = 6
 
   constructor(
     private router: Router,
@@ -159,6 +162,62 @@ export class UserEventsComponent implements OnInit {
     this.loading = true
     if(this.loadIndex >= this.userEvents.length) {
       this.loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  
+  loadMoreDrafts() {
+    this.loading = true
+    if(this.draft_loadIndex < this.createdEvents.length) {
+      this.draft_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessDrafts() {
+    this.loading = true
+    if(this.draft_loadIndex >= this.createdEvents.length) {
+      this.draft_loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  
+  loadMorePublished() {
+    this.loading = true
+    if(this.published_loadIndex < this.publishedEvents.length) {
+      this.published_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessPublished() {
+    this.loading = true
+    if(this.published_loadIndex >= this.publishedEvents.length) {
+      this.published_loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  loadMoreArchived() {
+    this.loading = true
+    if(this.archived_loadIndex < this.archivedEvents.length) {
+      this.archived_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessArchived() {
+    this.loading = true
+    if(this.archived_loadIndex >= this.archivedEvents.length) {
+      this.archived_loadIndex = 6
     }
     
     this.loading = false
