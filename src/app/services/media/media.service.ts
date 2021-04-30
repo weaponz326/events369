@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import _ from 'lodash';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,7 @@ export class MediaService {
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
     this.formHeaders = this.endpoint.headers(true);
-    this.getImagesUrl = this.endpoint.apiHost + '/v1/get_event_images/';
+    this.getImagesUrl = this.endpoint.apiHost + '/get_event_images/';
     this.storeImageUrl = this.endpoint.apiHost + '/v1/store_event_image';
     this.deleteImageUrl = this.endpoint.apiHost + '/v1/delete_event_image/';
   }
@@ -43,6 +44,24 @@ export class MediaService {
         },
         err => {
           console.error('store_image_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getImages(eventId: string): Promise<Array<any>> {
+    return new Promise((resolve, reject) => {
+      let images: any[] = [];
+      const url = this.getImagesUrl + eventId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_event_images_ok: ', res);
+          images = res;
+          resolve(images);
+        },
+        err => {
+          console.log('get_event_images_error: ', err);
           reject(err);
         }
       );
