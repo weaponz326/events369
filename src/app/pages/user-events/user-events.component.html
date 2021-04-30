@@ -5,23 +5,57 @@
     <div class="col-12">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All</a>
+            <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All 
+                <ng-container *ngIf="userEvents.length">
+                    ({{userEvents.length}})
+                </ng-container>
+            </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-published-tab" data-toggle="pill" href="#pills-published" role="tab" aria-controls="pills-published" aria-selected="false">Published</a>
+            <a class="nav-link" id="pills-published-tab" data-toggle="pill" href="#pills-published" role="tab" aria-controls="pills-published" aria-selected="false">Published
+                <ng-container *ngIf="publishedEvents.length">
+                    ({{publishedEvents.length}})
+                    <!-- <span style="color: inherit;background-color: #fff;border-radius: 50%;">{{publishedEvents.length}})</span> -->
+                </ng-container>
+            </a>
+            
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts</a>
+            <a class="nav-link" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts
+                <ng-container *ngIf="createdEvents.length">
+                    ({{createdEvents.length}})
+                </ng-container>
+            </a>
+            
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-archived-tab" data-toggle="pill" href="#pills-archived" role="tab" aria-controls="pills-drafts" aria-selected="false">Archived</a>
+            <a class="nav-link" id="pills-archived-tab" data-toggle="pill" href="#pills-archived" role="tab" aria-controls="pills-drafts" aria-selected="false">Archived
+                <ng-container *ngIf="archivedEvents.length">
+                    ({{archivedEvents.length}})
+                </ng-container>
+            </a>
+            
         </li>
     </ul>
 
     
     <div class="tab-content pt-3" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-            <div class="row">                
+            <div class="row">  
+                
+                
+            <div class="row" *ngIf="!userEvents || userEvents.length == 0">
+                <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                  <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
+                    <i class="bi bi-camera-reels-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                    <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Host your first event!</span>
+                    <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                      You have not hosted any event yet                      
+  
+                  </p>
+                </div>
+  
+              </div>
 
                 <div *ngFor="let event of userEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" *ngIf="i < loadIndex">
@@ -76,6 +110,21 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pills-published" role="tabpanel" aria-labelledby="pills-published-tab">
+
+            
+            <div class="row" *ngIf="!publishedEvents || publishedEvents.length == 0">
+                <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                  <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
+                    <i class="bi bi-check-circle-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                    <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Publish an event</span>
+                    <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                      You have no published event yet
+  
+                  </p>
+                </div>
+  
+              </div>
+
             <div class="row">
                 <div *ngFor="let event of publishedEvents" class="col-lg-4 mb-4">
                     <div class="card">
@@ -129,6 +178,20 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pills-drafts" role="tabpanel" aria-labelledby="pills-drafts-tab">
+
+            <div class="row" *ngIf="!createdEvents || createdEvents.length == 0">
+                <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                  <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
+                    <i class="bi bi-journal-x" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                    <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Drafts empty</span>
+                    <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                      You have no created event yet
+  
+                  </p>
+                </div>
+  
+              </div>
+
             <div class="row">
                 <div *ngFor="let event of createdEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" *ngIf="i < draft_loadIndex">
@@ -180,6 +243,20 @@
             </div>
         </div>
         <div class="tab-pane fade" id="pills-archived" role="tabpanel" aria-labelledby="pills-archived-tab">
+            
+            <div class="row" *ngIf="!archivedEvents || archivedEvents.length == 0">
+                <div style="height: 50%;width: 100%;padding-bottom: 10%;">
+                  <p style="display: block;text-align: center;margin-left: 10%;margin-right: 10%;padding-top: 1%;">
+                    <i class="bi bi-archive-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
+                    <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Archive empty</span>
+                    <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
+                      You have no archived event yet
+  
+                  </p>
+                </div>
+  
+              </div>
+
             <div class="row">
                 <div *ngFor="let event of archivedEvents" class="col-lg-4 mb-4">
                     <div class="card">
