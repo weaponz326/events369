@@ -66,3 +66,11 @@
 .spinner-border {
     margin-bottom: .5vh;
 }
+
+span.see-more-or-less {
+  font-weight: 600 !important;
+  color: var(--ev-brandname-darkblue) !important;
+  background: linear-gradient(to right, #f05537,#1e0a3c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}

@@ -90,6 +90,9 @@ import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.
 import { NewEventsComponent } from './components/new-events/new-events.component';
 import { PopularEventsComponent } from './components/popular-events/popular-events.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { HelpContentsComponent } from './components/help-contents/help-contents.component';
+import { HelpPageComponent } from './pages/help-page/help-page.component';
+import { HelpNavbarComponent } from './components/help-navbar/help-navbar.component';
 
 
 
@@ -164,6 +167,9 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     NewEventsPageComponent,
     NewEventsComponent,
     PopularEventsComponent,
+    HelpContentsComponent,
+    HelpPageComponent,
+    HelpNavbarComponent,
   ],
   imports: [
     BrowserModule,
