@@ -89,6 +89,7 @@ import { PopularEventsPageComponent } from './pages/popular-events-page/popular-
 import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.component';
 import { NewEventsComponent } from './components/new-events/new-events.component';
 import { PopularEventsComponent } from './components/popular-events/popular-events.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 
 
@@ -183,6 +184,7 @@ import { PopularEventsComponent } from './components/popular-events/popular-even
     NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent],

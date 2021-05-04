@@ -115,6 +115,7 @@
                                                                                     style="object-fit: cover;"
                                                                                     aria-hidden="true"
                                                                                     alt=""
+                                                                                    id="image-{{event.id}}"
                                                                                     decoding="async"
                                                                                     loading="lazy"
                                                                                     src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}"
@@ -228,17 +229,17 @@
                                                                   </ng-container>
                                                                 </div>
                                                             </div>
-                                                            <div class="live_event_title" style="min-width: 200px; max-width: 200px;text-align: left; line-height: 20px; max-height: 40px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-top: 7px;">
+                                                            <div class="live_event_title" style="min-width: 200px; max-width: 200px;text-align: left; line-height: 20px; min-height: 45px; max-height: 50px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-top: 7px;">
                                                                {{event.title}}
                                                                 
                                                             </div>
-                                                            <div class="live_event_number_participating_div" style="margin-top: 6px;">
+                                                            <div class="live_event_number_participating_div" style="margin-top: 0px;">
                                                                 <span style="color: gray;">
                                                                     <span class="live_event_number_participating_span" style="font-weight: 300;font-size: 13px;color: gray;">
                                                                         <!-- From -->
                                                                          <span class="live_event_number_participating_span" style="font-weight: 600 !important;font-size: 13px;color: gray;"><span class="live_event_participating_text">Joined:</span>{{event.watching}} </span>
                                                                     </span>
-                                                                   232 participating
+                                                                   232 joined
                                                                     <!-- / person -->
                                                                     <br>
                                                                     <span style="color: #fff;">$$$$$$$$$</span>

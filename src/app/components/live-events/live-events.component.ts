@@ -47,15 +47,18 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
     try {
       if(this.eventsToday?.length) {
         $('.slider').slick({
-          infinite: true,
-          slidesToShow: 5,
-          slidesToScroll: 5,
+          infinite: false,
           nextArrow: $('.next'),
           prevArrow: $('.prev'),
-          initialSlide: 0,
-          mobileFirst: true,
-          row: 1,
-          slidesPerRow: 5,responsive: [
+          // initialSlide: 0,
+          // mobileFirst: true,
+          speed: 300,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          // row: 1,
+          // variableWidth: false,
+          // slidesPerRow: 5,
+          responsive: [
             {
               breakpoint: 1024,
               settings: {
@@ -95,6 +98,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
           
           // alert('Here')
           $(this).find('video').get(0).style.setProperty('display', 'block')
+          $(this).find('img').get(0).style.setProperty('display', 'none')
   
           if(_x.watched_videos.length > 0) {
             
@@ -119,6 +123,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
           $(this).find('video').get(0).pause()
           $(this).find('video').get(0).currentTime = 0;
           $(this).find('video').get(0).style.setProperty('display', 'none')
+          $(this).find('img').get(0).style.setProperty('display', 'block')
       
         });
         

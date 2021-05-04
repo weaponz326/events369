@@ -28,6 +28,14 @@ export class CreateBasicInfoComponent implements OnInit {
   url: string = '';
   currentRoute: string = '';
 
+  formattedAddress = '';
+
+  // options = {
+  //   componentRestrictions: {
+  //     country: ['GH']
+  //   }
+  // }
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -270,6 +278,10 @@ export class CreateBasicInfoComponent implements OnInit {
             window.clearInterval(scrollToTop);
         }
     }, 16);
+  }
+
+  public handleAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
   }
 
 }
