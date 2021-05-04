@@ -20,6 +20,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    line-height: 35px;
   }
 
   .card-text{
@@ -39,6 +40,27 @@
 .btn-dark {
     background-color: #1e0a3c !important;
     border: none !important;
+}
+
+.btn-outline-primary {
+  color: #1e0a3c !important;
+  border: 2px solid #1e0a3c !important; 
+  i {
+    font-weight: bolder !important;
+    font-size: xx-large !important;
+  }
+}
+
+.btn-outline-primary:hover {
+  background-color: #1e0a3c !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary:focus {
+  background-color: #1e0a3c !important;
+  border: none !important;
+  color: #fff !important;
 }
 
 .spinner-border {
