@@ -21,6 +21,14 @@
     left: 0px !important;
     top: 14vh !important;
     font-size: 80px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-prev:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
   }
   
   
@@ -29,6 +37,14 @@
     right: -4vh !important;
     top: 14vh !important;
     font-size: 80px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-next:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
   }
 }
 
