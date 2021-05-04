@@ -34,6 +34,8 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   loading: boolean = true;
   loadIndex = [5, 5, 5]
 
+  favorites_loadIndex = 8
+
   
   users_favorite_event_id_and_fav_id: any = []
 
@@ -167,12 +169,15 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
           console.log(res);
           this.categoryEvents[i] = res.event.data;
           this.loadIndex[i] = 5
+          console.log(this.categoryEvents[i])
         },
         err => {
           console.log(err);
         }
       );
     }
+
+    console.log(this.categoryEvents, this.loadIndex)
   }
 
   getUsersFavorites (){
@@ -324,8 +329,36 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   loadMore(categoryId: any) {
 
     this.loading = true
-    if(this.loadIndex[categoryId] < this.events_in_six_hrs.length) {
+    if(this.loadIndex[categoryId] < this.categoryEvents[categoryId].length) {
       this.loadIndex[categoryId] += 5
+    }
+    
+    this.loading = false
+  }
+
+  loadLess(categoryId: any) {
+    this.loading = true
+    if(this.loadIndex[categoryId] >= this.categoryEvents[categoryId].length) {
+      this.loadIndex[categoryId] -= 5
+    }
+    
+    this.loading = false
+  }
+
+  loadMoreFavorites() {
+
+    this.loading = true
+    if(this.favorites_loadIndex < this.userFavorites.length) {
+      this.favorites_loadIndex += 5
+    }
+    
+    this.loading = false
+  }
+
+  loadLessFavorites() {
+    this.loading = true
+    if(this.favorites_loadIndex >= this.userFavorites.length) {
+      this.favorites_loadIndex = 8
     }
     
     this.loading = false

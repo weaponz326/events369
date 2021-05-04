@@ -11,13 +11,18 @@ import moment from 'moment';
 })
 export class UserEventsComponent implements OnInit {
 
-  userEvents: any;
-  createdEvents: any;
-  publishedEvents: any;
-  archivedEvents: any;
+  userEvents: any = [];
+  createdEvents: any = [];
+  publishedEvents: any = [];
+  archivedEvents: any = [];
 
   loading: boolean = false
-  loadIndex = 20
+  loadIndex = 6
+  draft_loadIndex = 6
+  published_loadIndex = 6
+  archived_loadIndex = 6
+
+  
 
   constructor(
     private router: Router,
@@ -37,6 +42,9 @@ export class UserEventsComponent implements OnInit {
       res => {
         console.log(res);
         this.userEvents = res.all_events.data;
+        this.userEvents.sort(function(a: any, b:any){
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
       },
       err => {
         console.log(err);
@@ -49,8 +57,23 @@ export class UserEventsComponent implements OnInit {
       res => {
         console.log(res);
         if (eventStatus == 0) this.createdEvents = res.all_events.data;
+        this.createdEvents.sort(function(a: any, b:any){
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+
+
         if (eventStatus == 2) this.publishedEvents = res.all_events.data;
+        this.publishedEvents.sort(function(a: any, b:any){
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+
+
         if (eventStatus == 3) this.archivedEvents = res.all_events.data;
+        this.archivedEvents.sort(function(a: any, b:any){
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+
+
       },
       err => {
         console.log(err);
@@ -131,10 +154,140 @@ export class UserEventsComponent implements OnInit {
   loadMore() {
     this.loading = true
     if(this.loadIndex < this.userEvents.length) {
-      this.loadIndex += 5
+      this.loadIndex += 6
     }
     
     this.loading = false
   }
+
+  loadLess() {
+    this.loading = true
+    if(this.loadIndex >= this.userEvents.length) {
+      this.loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  
+  loadMoreDrafts() {
+    this.loading = true
+    if(this.draft_loadIndex < this.createdEvents.length) {
+      this.draft_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessDrafts() {
+    this.loading = true
+    if(this.draft_loadIndex >= this.createdEvents.length) {
+      this.draft_loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  
+  loadMorePublished() {
+    this.loading = true
+    if(this.published_loadIndex < this.publishedEvents.length) {
+      this.published_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessPublished() {
+    this.loading = true
+    if(this.published_loadIndex >= this.publishedEvents.length) {
+      this.published_loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  loadMoreArchived() {
+    this.loading = true
+    if(this.archived_loadIndex < this.archivedEvents.length) {
+      this.archived_loadIndex += 6
+    }
+    
+    this.loading = false
+  }
+
+  loadLessArchived() {
+    this.loading = true
+    if(this.archived_loadIndex >= this.archivedEvents.length) {
+      this.archived_loadIndex = 6
+    }
+    
+    this.loading = false
+  }
+
+  showHideMore(event_id: any) {
+    var dots = document.getElementById("dots-"+event_id) as HTMLSpanElement;
+    var moreText = document.getElementById("more-"+event_id) as HTMLSpanElement;
+    var btnText = document.getElementById("myBtn-"+event_id)  as HTMLSpanElement;
+
+    if (dots?.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "See more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "See less"; 
+      moreText.style.display = "inline";
+    }
+  }
+
+  showHideMorePublished(event_id: any) {
+    var dots = document.getElementById("published-dots-"+event_id) as HTMLSpanElement;
+    var moreText = document.getElementById("published-more-"+event_id) as HTMLSpanElement;
+    var btnText = document.getElementById("published-myBtn-"+event_id)  as HTMLSpanElement;
+
+    if (dots?.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "See more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "See less"; 
+      moreText.style.display = "inline";
+    }
+  }
+
+  showHideMoreDraft(event_id: any) {
+    var dots = document.getElementById("draft-dots-"+event_id) as HTMLSpanElement;
+    var moreText = document.getElementById("draft-more-"+event_id) as HTMLSpanElement;
+    var btnText = document.getElementById("draft-myBtn-"+event_id)  as HTMLSpanElement;
+
+    if (dots?.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "See more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "See less"; 
+      moreText.style.display = "inline";
+    }
+  }
+
+  showHideMoreArchived(event_id: any) {
+    var dots = document.getElementById("archived-dots-"+event_id) as HTMLSpanElement;
+    var moreText = document.getElementById("archived-more-"+event_id) as HTMLSpanElement;
+    var btnText = document.getElementById("archived-myBtn-"+event_id)  as HTMLSpanElement;
+
+    if (dots?.style.display === "none") {
+      dots.style.display = "inline";
+      btnText.innerHTML = "See more"; 
+      moreText.style.display = "none";
+    } else {
+      dots.style.display = "none";
+      btnText.innerHTML = "See less"; 
+      moreText.style.display = "inline";
+    }
+  }
+
 
 }
