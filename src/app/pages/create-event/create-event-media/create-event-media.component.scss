@@ -210,6 +210,11 @@
     display: none;
   }
   
+  .video-preview {
+    height: 100%;
+    width: 100%;
+  }
+
   @media (max-width: 780px) {
     .only-non-mobile {
       // display: none;

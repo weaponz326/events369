@@ -20,6 +20,9 @@ export class CreateEventMediaComponent implements OnInit {
   isImageSet: boolean;
   imgSrcList: any[];
   createdImgSrc: string;
+  isVideoSet: boolean;
+  videoSrcList: any[];
+  createdVideoSrc: string;
   eventId: string;
   isSaving: boolean;
 
@@ -34,6 +37,9 @@ export class CreateEventMediaComponent implements OnInit {
     this.isImageSet = false;
     this.imgSrcList = [];
     this.createdImgSrc = '';
+    this.isVideoSet = false;
+    this.videoSrcList = [];
+    this.createdVideoSrc = '';
 
     this.getEventDetails();
     this.getExistingImages();
@@ -59,10 +65,7 @@ export class CreateEventMediaComponent implements OnInit {
     console.log(this.eventId);
   }
 
-  create(): void {  
-    // this.isLoading = false;
-    // this.imgSrcList.unshift(this.createdImgSrc)
-    // this.isImageSet = false;
+  createImage(): void {  
     this.mediaService.storeImage(this.f.event_image.value, this.eventId).then(
       res => {
         if (res) {
@@ -86,7 +89,7 @@ export class CreateEventMediaComponent implements OnInit {
     this.mediaService.getImages(this.eventId).then(
       images => {
         _.forEach(images, (image, i) => {
-          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_image/' + images[i].url;
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_images/' + images[i].url;
           console.log(this.imgSrcList[i]);
         });
       }
@@ -104,6 +107,56 @@ export class CreateEventMediaComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = (e: any) => {
         this.createdImgSrc = e.target.result;
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------------------------
+  // videos
+
+  createVideo(): void {  
+    this.mediaService.storeVideo(this.f.event_image.value, this.eventId).then(
+      res => {
+        if (res) {
+          this.isLoading = false;
+          this.videoSrcList.unshift(this.createdVideoSrc)
+          this.isVideoSet = false;
+        }
+        else {
+          this.isLoading = false;
+          alert('oops, didn\'t create');
+        }
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );  
+  }
+
+  // getExistingVideos(): any {
+  //   this.mediaService.getVideos(this.eventId).then(
+  //     videos => {
+  //       _.forEach(videos, (image, i) => {
+  //         this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_videos/' + videos[i].url;
+  //         console.log(this.imgSrcList[i]);
+  //       });
+  //     }
+  //   );
+  // }
+
+  onVideoSelected(e: any){
+    const file:File = e.target.files[0];
+    if (file) {
+      this.isVideoSet = true;
+
+      this.f.event_video.value = file;
+
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e: any) => {
+        this.createdVideoSrc = e.target.result;
+        console.log(e.target.result);
       }
     }
   }

@@ -15,6 +15,8 @@ export class MediaService {
   private getImagesUrl: string;
   private storeImageUrl: string;
   private deleteImageUrl: string;
+  private getVidoesUrl: string;
+  private storeVidoesUrl: string;
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -22,6 +24,8 @@ export class MediaService {
     this.getImagesUrl = this.endpoint.apiHost + '/get_event_images/';
     this.storeImageUrl = this.endpoint.apiHost + '/v1/store_event_image';
     this.deleteImageUrl = this.endpoint.apiHost + '/v1/delete_event_image/';
+    this.getVidoesUrl = this.endpoint.apiHost + '/get_live_videos/';
+    this.storeVidoesUrl = this.endpoint.apiHost + '/v1/store_live_video/';
   }
 
   storeImage(image: File, eventId: any): Promise<any> {
@@ -62,6 +66,31 @@ export class MediaService {
         },
         err => {
           console.log('get_event_images_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  storeVideo(video: File, eventId: any): Promise<any> {
+    console.log(this.storeImageUrl);
+    console.log(eventId);
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('image', video);
+
+      this.http.post<any>(this.storeImageUrl + eventId, formData, { headers: this.formHeaders }).subscribe(
+        res => {
+          console.log('store_video_ok: ', res);
+          if (_.toLower(res.message) == 'ok') {
+            resolve(res.message);
+          }
+          else {
+            resolve(0);
+          }
+        },
+        err => {
+          console.error('store_video_error: ', err);
           reject(err);
         }
       );
