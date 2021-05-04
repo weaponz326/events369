@@ -25,9 +25,9 @@
             </div>
         </div> -->
         <div style="float: right;" class="controls-top">
-          <div class="happening_now_show_more">
-            <!-- aria-label="Happening Now; Show {{eventsToday?.data.length - 1}}+ more" -->
-              <a *ngIf="eventsToday"
+          <div class="happening_now_show_more" *ngIf="eventsNow?.length > 5">
+            <!-- aria-label="Happening Now; Show {{eventsNow?.data.length - 1}}+ more" -->
+              <a *ngIf="eventsNow?.length > 5"
                   href="/events/live/"
                   class="happening_now_show_more_link ev-display-only-non-mobile"
               >
@@ -77,7 +77,7 @@
   </div>  
       <!-- </div> -->
     
-  <ng-container *ngIf="!eventsToday">
+  <ng-container *ngIf="!eventsNow">
     <div class="d-flex justify-content-center">
       <!-- <div class="spinner-grow" role="status">  -->
         <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
@@ -89,7 +89,7 @@
     
   </ng-container>
   <div class="slider">
-    <div class="slider_items" *ngFor="let event of eventsToday">
+    <div class="slider_items" *ngFor="let event of eventsNow">
                   <div class="live_event_slide_item">
                                     <div class="live_event_core">
                                         <div>

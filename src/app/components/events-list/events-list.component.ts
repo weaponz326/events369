@@ -19,7 +19,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   categoryEvents: any[] = [];
   slideConfig: any;
 
-  eventsToday: any = []
+  // eventsToday: any = []
   events_in_six_hrs: any = []
   events_events_in_six_hrs_empty: boolean = false
   popularEvents: any = []
@@ -52,7 +52,6 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       this.getEventsInSixHrs();
       this.getPopularEvents();
       this.getNewEvents();
-      this.getTodaysEvents();
       this.getAllEvents();
       this.getUsersFavorites();
     }
@@ -210,17 +209,6 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     return this.users_favorite_event_ids.includes(event_id)
   }
 
-  getTodaysEvents(): void {
-    this.eventsHappeningNow.getTodaysEvents().then(
-      res => {
-        console.log(res);
-        this.eventsToday = res.event.data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
 
   getEventsInSixHrs(): void {
     this.eventsService.getEventsInSixHours().then(

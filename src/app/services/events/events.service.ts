@@ -22,6 +22,7 @@ export class EventsService {
   getEventsInSixHoursUrl: string; // upcoming events
   getPopularEventsUrl: string;
   getNewEventsUrl: string;
+  getEventsHappeningNowUrl: string;
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -37,6 +38,7 @@ export class EventsService {
     this.getEventsInSixHoursUrl = this.endpoint.apiHost + '/events_six_hours';
     this.getPopularEventsUrl = this.endpoint.apiHost + '/get_popular_events';
     this.getNewEventsUrl = this.endpoint.apiHost + '/get_new_events';
+    this.getEventsHappeningNowUrl = this.endpoint.apiHost + '/events_happening_now';
   }
 
   archiveEvent(eventId: any): Promise<any> {    
@@ -257,6 +259,24 @@ export class EventsService {
         },
         err => {
           console.log('get_new_events_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getEventsHappeningNow(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events_happening_now: any[] = [];
+      const url = this.getEventsHappeningNowUrl;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_events_happening_now_ok: ', res);
+          events_happening_now = res;
+          resolve(events_happening_now);
+        },
+        err => {
+          console.log('get_events_happening_now_error: ', err);
           reject(err);
         }
       );
