@@ -6,6 +6,7 @@ import { OwlCarousel } from 'ngx-owl-carousel';
 import { Router } from '@angular/router';
 import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
 
+declare var $: any;
 
 @Component({
   selector: 'app-events-list',
@@ -54,6 +55,21 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       this.getNewEvents();
       this.getAllEvents();
       this.getUsersFavorites();
+
+
+      
+      $(document).ready(function(){ 
+
+      $(".save_live_event_div").on("mouseover", function(this: HTMLDivElement){
+        alert('Hi')
+        $(this).find('svg').get(0).style.setProperty('fill', 'rgba(255, 101, 80, 0.4)');
+        // .css('fill','rgba(255, 101, 80, 0.4);');
+        console.log($(this).find('svg'))
+        });
+
+      });
+
+
     }
 
   ngOnInit(): void {
@@ -258,7 +274,9 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       this.router.navigateByUrl('/login')
       
     } else {
-
+      
+      document.getElementById('favorite-'+event_id)?.style.setProperty('fill', 'rgba(255, 101, 80, 0.4)');
+      
       this.userFavoriteService.addFavoriteEvent(event_id, this.userID).then(
         res => {
           if (res) {
