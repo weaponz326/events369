@@ -594,8 +594,8 @@
                 <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">
-                    <span class="bold">{{event.title}}</span>
-                    <br>
+                    <span class="bold card-title">{{event.title}}</span>
+                    <span class="lead text-muted">By: {{event.created_by}}</span><br>
                     <span class="lead">{{getEventStartDateFormatted(event.start_date_time)}}</span>
                   </p>
                 </div>
