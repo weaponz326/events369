@@ -67,14 +67,16 @@ export class CreateEventOrganizersComponent implements OnInit {
   
 
   initForm(): void {
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       profile_image: [''],
       bio: [''],
-      facebook: [''],
-      twitter: [''],
-      linkedin: [''],
-      instagram: [''],
+      facebook: ['', Validators.pattern(urlRegex)],
+      twitter: ['', Validators.pattern(urlRegex)],
+      linkedin: ['', Validators.pattern(urlRegex)],
+      instagram: ['', Validators.pattern(urlRegex)],
     });
   }
 
@@ -153,7 +155,7 @@ export class CreateEventOrganizersComponent implements OnInit {
         this.isLoadingOrganizers = false;
         _.forEach(organizers, (organizer, i) => {
           this.createdOrganizerList.push(organizer);
-          this.imgSrcList[i] = organizers[i].image;
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/organizer/' + organizers[i].image;
         });
       }
     );

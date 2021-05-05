@@ -39,12 +39,7 @@ export class MediaService {
       this.http.post<any>(this.storeImageUrl, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('store_image_ok: ', res);
-          if (_.toLower(res.message) == 'ok') {
-            resolve(res.message);
-          }
-          else {
-            resolve(0);
-          }
+          resolve(res.message);
         },
         err => {
           console.error('store_image_error: ', err);
@@ -73,24 +68,37 @@ export class MediaService {
   }
 
   storeVideo(video: File, eventId: any): Promise<any> {
-    console.log(this.storeImageUrl);
+    console.log(this.storeVidoesUrl);
     console.log(eventId);
     return new Promise((resolve, reject) => {
       const formData = new FormData();
-      formData.append('image', video);
+      formData.append('video', video);
 
-      this.http.post<any>(this.storeImageUrl + eventId, formData, { headers: this.formHeaders }).subscribe(
+      this.http.post<any>(this.storeVidoesUrl + eventId, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('store_video_ok: ', res);
-          if (_.toLower(res.message) == 'ok') {
-            resolve(res.message);
-          }
-          else {
-            resolve(0);
-          }
+          resolve(res.message);
         },
         err => {
           console.error('store_video_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getVideos(eventId: string): Promise<Array<any>> {
+    return new Promise((resolve, reject) => {
+      let images: any[] = [];
+      const url = this.getVidoesUrl + eventId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_event_images_ok: ', res);
+          images = res;
+          resolve(images);
+        },
+        err => {
+          console.log('get_event_images_error: ', err);
           reject(err);
         }
       );

@@ -41,21 +41,28 @@ export class CreateEventMediaComponent implements OnInit {
     this.videoSrcList = [];
     this.createdVideoSrc = '';
 
+    this.initForm();
     this.getEventDetails();
     this.getExistingImages();
+    this.getExistingVideos();
   }
 
   ngOnInit(): void {
     var data: any =  sessionStorage.getItem('created_event')
     data = JSON.parse(data)
     this.eventTitle = data.event[0].title;
-    this.eventDate = data.event[0].start_date_time
-
-    this.form = this.formBuilder.group({ event_image: ['', Validators.required] });
+    this.eventDate = data.event[0].start_date_time    
   }
 
   public get f(): any {
     return this.form.controls;
+  }
+
+  initForm(){
+    this.form = this.formBuilder.group({ 
+      event_image: ['', Validators.required], 
+      event_video: ['', Validators.required] 
+    });
   }
 
   getEventDetails(): any {
@@ -134,16 +141,16 @@ export class CreateEventMediaComponent implements OnInit {
     );  
   }
 
-  // getExistingVideos(): any {
-  //   this.mediaService.getVideos(this.eventId).then(
-  //     videos => {
-  //       _.forEach(videos, (image, i) => {
-  //         this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_videos/' + videos[i].url;
-  //         console.log(this.imgSrcList[i]);
-  //       });
-  //     }
-  //   );
-  // }
+  getExistingVideos(): any {
+    this.mediaService.getVideos(this.eventId).then(
+      videos => {
+        _.forEach(videos, (image, i) => {
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_videos/' + videos[i].url;
+          console.log(this.imgSrcList[i]);
+        });
+      }
+    );
+  }
 
   onVideoSelected(e: any){
     const file:File = e.target.files[0];
@@ -156,7 +163,7 @@ export class CreateEventMediaComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = (e: any) => {
         this.createdVideoSrc = e.target.result;
-        console.log(e.target.result);
+        // console.log(e.target.result);
       }
     }
   }

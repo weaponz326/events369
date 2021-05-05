@@ -67,14 +67,16 @@ export class CreateEventSpeakersComponent implements OnInit {
   
 
   initForm(): void {
+    const urlRegex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       profile_image: [''],
       bio: [''],
-      facebook: [''],
-      twitter: [''],
-      linkedin: [''],
-      instagram: [''],
+      facebook: ['', Validators.pattern(urlRegex)],
+      twitter: ['', Validators.pattern(urlRegex)],
+      linkedin: ['', Validators.pattern(urlRegex)],
+      instagram: ['', Validators.pattern(urlRegex)],
     });
   }
 
@@ -153,7 +155,8 @@ export class CreateEventSpeakersComponent implements OnInit {
         this.isLoadingSpeakers = false;
         _.forEach(speakers, (speaker, i) => {
           this.createdSpeakerList.push(speaker);
-          this.imgSrcList[i] = speakers[i].image;
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/host/' + speakers[i].image;
+          console.log(this.imgSrcList[i]);
         });
       }
     );
@@ -201,6 +204,8 @@ export class CreateEventSpeakersComponent implements OnInit {
     this.f.linkedin.setValue(speaker.linkedin);
     this.f.twitter.setValue(speaker.twitter);
     this.f.instagram.setValue(speaker.instagram);
+    this.createdImgSrc = this.imgSrcList[index];
+    this.isImageSet = true;
 
     this.selectedSpeakerId = speaker.id;
     this.selectedSpeakerIndex = index;
