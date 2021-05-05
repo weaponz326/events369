@@ -203,7 +203,9 @@ export class CreateEventOrganizersComponent implements OnInit {
     this.f.linkedin.setValue(organizer.linkedin);
     this.f.twitter.setValue(organizer.twitter);
     this.f.instagram.setValue(organizer.instagram);
-
+    this.createdImgSrc = this.imgSrcList[index];
+    this.isImageSet = true;
+    
     this.selectedOrganizerId = organizer.id;
     this.selectedOrganizerIndex = index;
   }

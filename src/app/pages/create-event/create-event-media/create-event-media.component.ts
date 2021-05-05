@@ -122,7 +122,7 @@ export class CreateEventMediaComponent implements OnInit {
   // videos
 
   createVideo(): void {  
-    this.mediaService.storeVideo(this.f.event_image.value, this.eventId).then(
+    this.mediaService.storeVideo(this.f.event_video.value, this.eventId).then(
       res => {
         if (res) {
           this.isLoading = false;

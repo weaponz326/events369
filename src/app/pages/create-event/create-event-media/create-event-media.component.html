@@ -23,7 +23,7 @@
                 <div class="form-body">
                   <!-- image -->
                   <div class="form-group">
-                    <input type="file" class="file-input" formControlName="event_image" (change)="onImageSelected($event)" #imageUpload>
+                    <input type="file" accept="image/*" class="file-input" formControlName="event_image" (change)="onImageSelected($event)" #imageUpload>
                     <!-- <input type="file" class="file-input" formControlName="event_image" #imageUpload> -->
                     <div class="row">
                         <div class="col-lg-8">
@@ -97,7 +97,7 @@
                 <div class="form-body">
                   <!-- video -->
                   <div class="form-group">
-                    <input type="file" class="file-input" formControlName="event_video" (change)="onVideoSelected($event)" #videoUpload>
+                    <input type="file" accept="video/*" class="file-input" formControlName="event_video" (change)="onVideoSelected($event)" #videoUpload>
                     <div class="row">
                       <div class="col-lg-8">
                         <div class="card">
