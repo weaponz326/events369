@@ -43,7 +43,7 @@
 
                   <div class="row">
                     <div class="col-md-8 mx-auto">
-                      <input type="file" class="file-input" formControlName="profile_image" (change)="onFileSelected($event)" #fileUpload>
+                      <input type="file" accept="image/*" class="file-input" formControlName="profile_image" (change)="onFileSelected($event)" #fileUpload>
                       <div class="card card-image-upload">
                         <div (click)="fileUpload.click()" class="text-center">
                           <div *ngIf="!isImageSet" class="p-2">
@@ -53,7 +53,7 @@
                               <p class="lead text-muted">JPG, JPEG or PNG, no larger than 10MB</p>
                             </div>
                           </div>
-                          <div *ngIf="isImageSet">
+                            <div *ngIf="isImageSet">
                             <img class="card-img-bottom" [src]="createdImgSrc" height="250">
                           </div>
                         </div>
@@ -73,8 +73,12 @@
                     <div class="form-group">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook">
-                            <label for="floatingTitle">Facebook</label>                                
+                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="facebook"
+                              [ngClass]="{'is-invalid': saved && f.facebook.errors, 'is-valid': f.facebook.value!='' && !f.facebook.errors}">
+                            <label for="floatingTitle">Facebook</label>         
+                            <small *ngIf="saved && f.facebook.errors" id="titleHelp" class="form-text invalid-feedback">
+                              You must enter a valid url.
+                            </small>                       
                         </div>
                       </div>
                     </div>
@@ -82,8 +86,12 @@
                     <div class="form-group">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="twitter">
-                            <label for="floatingTitle">Twitter</label>                                
+                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="twitter"
+                            [ngClass]="{'is-invalid': saved && f.twitter.errors, 'is-valid': f.twitter.value!='' && !f.twitter.errors}">
+                            <label for="floatingTitle">Twitter</label>           
+                            <small *ngIf="saved && f.twitter.errors" id="titleHelp" class="form-text invalid-feedback">
+                              You must enter a valid url.
+                            </small>                       
                         </div>
                       </div>
                     </div>
@@ -91,8 +99,12 @@
                     <div class="form-group">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="linkedin">
-                            <label for="floatingTitle">Linked-In</label>                                
+                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="linkedin"
+                              [ngClass]="{'is-invalid': saved && f.linkedin.errors, 'is-valid': f.linkedin.value!='' && !f.linkedin.errors}">
+                            <label for="floatingTitle">Linked-In</label> 
+                            <small *ngIf="saved && f.linkedin.errors" id="titleHelp" class="form-text invalid-feedback">
+                              You must enter a valid url.
+                            </small>                                 
                         </div>
                       </div>
                     </div>
@@ -100,8 +112,12 @@
                     <div class="form-group">
                       <div class="form-floating">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="instagram">
-                            <label for="floatingTitle">Instagram</label>                                
+                            <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" formControlName="instagram"
+                              [ngClass]="{'is-invalid': saved && f.instagram.errors, 'is-valid': f.instagram.value!='' && !f.instagram.errors}">
+                            <label for="floatingTitle">Instagram</label>     
+                            <small *ngIf="saved && f.instagram.errors" id="titleHelp" class="form-text invalid-feedback">
+                              You must enter a valid url.
+                            </small>                             
                         </div>
                       </div>
                     </div>
@@ -157,15 +173,15 @@
                             </div>
                             <div class="col-lg-7">
                               <h5 class="card-title">{{speaker.name}}</h5>
-                              <p class="card-text">
+                              <p class="card-text bio-text">
                                 {{speaker.bio}}
                               </p>
                               <p class="card-text">
                                 <small>
-                                  Facebook: <a href="{{speaker.facebook}}" target="_blank">{{speaker.facebook}}</a><br>
-                                  Twitter: <a href="{{speaker.twitter}}" target="_blank">{{speaker.twitter}}</a><br>
-                                  Linked-In: <a href="{{speaker.linkedin}}" target="_blank">{{speaker.linkedin}}</a><br>
-                                  Instagram: <a href="{{speaker.instagram}}" target="_blank">{{speaker.instagram}}</a><br>
+                                  Facebook: <a class="link-text" href="{{speaker.facebook}}" target="_blank">{{speaker.facebook}}</a><br>
+                                  Twitter: <a class="link-text" href="{{speaker.twitter}}" target="_blank">{{speaker.twitter}}</a><br>
+                                  Linked-In: <a class="link-text" href="{{speaker.linkedin}}" target="_blank">{{speaker.linkedin}}</a><br>
+                                  Instagram: <a class="link-text" href="{{speaker.instagram}}" target="_blank">{{speaker.instagram}}</a><br>
                                 </small>
                               </p>
                             </div>

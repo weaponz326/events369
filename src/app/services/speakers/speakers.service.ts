@@ -23,7 +23,7 @@ export class SpeakersService {
     this.formHeaders = this.endpoint.headers(true);
     this.editSpeakerUrl = this.endpoint.apiHost + '/v1/edit_host/';
     this.getSpeakerUrl = this.endpoint.apiHost + '/v1/get_hosts/';
-    this.createSpeakerUrtl = this.endpoint.apiHost + '/v1/create_host/';
+    this.createSpeakerUrtl = this.endpoint.apiHost + '/v1/create_host';
     this.hasSpeakerUrl = this.endpoint.apiHost + '/v1/hasSpeaker/';
     this.deleteSpeakerUrl = this.endpoint.apiHost + '/v1/delete_host/';
   }
@@ -47,7 +47,7 @@ export class SpeakersService {
       formData.append('linkedin', speaker.linkedin);      
       formData.append('instagram', speaker.instagram);      
 
-      const url = this.createSpeakerUrtl + eventId;
+      const url = this.createSpeakerUrtl;
       this.http.post<any>(url, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('create_speaker_ok: ', res);

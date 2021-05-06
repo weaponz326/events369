@@ -63,30 +63,31 @@ export class CreateEventSponsorsComponent implements OnInit {
     this.isLoading = false;
     this.imgSrcList.unshift(this.createdImgSrc)
     this.isSponsorSet = false;
-    // this.sponsorsService.createSponsor(this.f.event_sponsor.value, this.eventId).then(
-    //   res => {
-    //     if (res) {
-    //       this.isLoading = false;
-    //       this.imgSrcList.unshift(this.createdImgSrc)
-    //       this.isSponsorSet = false;
-    //     }
-    //     else {
-    //       this.isLoading = false;
-    //       alert('oops, didn\'t create');
-    //     }
-    //   },
-    //   err => {
-    //     console.log(err);
-    //     this.isLoading = false;
-    //   }
-    // );  
+    this.sponsorsService.createSponsor(this.f.event_sponsor.value, this.eventId).then(
+      res => {
+        if (res) {
+          this.isLoading = false;
+          this.imgSrcList.unshift(this.createdImgSrc)
+          this.isSponsorSet = false;
+        }
+        else {
+          this.isLoading = false;
+          alert('oops, didn\'t create');
+        }
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );  
   }
 
   getExistingSponsors(): any {
     this.sponsorsService.getSponsors(this.eventId).then(
       sponsors => {
         _.forEach(sponsors, (sponsor, i) => {
-          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/event_sponsor/' + sponsors[i].url;
+          console.log(sponsors)
+          this.imgSrcList[i] = 'http://events369.logitall.biz/storage/sponsors/' + sponsors[i].logo;
           console.log(this.imgSrcList[i]);
         });
       }

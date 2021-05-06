@@ -20,7 +20,7 @@ export class SponsorsService {
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
     this.formHeaders = this.endpoint.headers(true);
-    this.getSponsorsUrl = this.endpoint.apiHost + '/get_sponsor/';
+    this.getSponsorsUrl = this.endpoint.apiHost + '/v1/get_sponsors/';
     this.createSponsorUrl = this.endpoint.apiHost + '/v1/create_sponsor';
     this.editSponsorUrl = this.endpoint.apiHost + '/v1/edit_sponsor/';
     this.deleteSponsorUrl = this.endpoint.apiHost + '/v1/delete_sponsor/';
@@ -31,7 +31,7 @@ export class SponsorsService {
     console.log(eventId);
     return new Promise((resolve, reject) => {
       const formData = new FormData();
-      formData.append('image', image);
+      formData.append('logo', image);
       formData.append('event_id', eventId);
 
       this.http.post<any>(this.createSponsorUrl, formData, { headers: this.formHeaders }).subscribe(
