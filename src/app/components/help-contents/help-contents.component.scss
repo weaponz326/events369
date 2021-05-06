@@ -1,0 +1,29 @@
+.help-banner {
+    background: url(../../../assets/images/help-image-banner.png) 0 0/100% 100% no-repeat;
+    margin-top: 0;
+    min-height: 300px;
+}
+
+
+// .ev-nav-searchbar-input {
+//     background-color: var(--ev-searchbar-background) !important;
+//     border-color: var(--ev-searchbar-border) !important;
+//   }
+
+.card-img-top {
+    height: 64px;
+    width: 64px;
+    margin: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    padding: 5%;
+}
+
+tr td {
+    color: var(--ev-brandname-darkblue);
+    margin: 2%;
+}
+

@@ -22,6 +22,8 @@ export class UserEventsComponent implements OnInit {
   published_loadIndex = 6
   archived_loadIndex = 6
 
+  errMsg = '';
+
   
 
   constructor(
@@ -30,7 +32,7 @@ export class UserEventsComponent implements OnInit {
     private basicInfoService: BasicInfoService
   ) { }
 
-  ngOnInit(): void {    
+  ngOnInit() {    
     this.getAllUserEvents();
     this.getUserEvents(0)
     this.getUserEvents(2)
@@ -123,6 +125,7 @@ export class UserEventsComponent implements OnInit {
         },
         err => {
           console.log(err);
+          this.errMsg = err
           reject(err);
         }
       );

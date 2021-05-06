@@ -90,6 +90,10 @@ import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.
 import { NewEventsComponent } from './components/new-events/new-events.component';
 import { PopularEventsComponent } from './components/popular-events/popular-events.component';
 import { GalleryComponent } from './components/event-details/gallery/gallery.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { HelpContentsComponent } from './components/help-contents/help-contents.component';
+import { HelpPageComponent } from './pages/help-page/help-page.component';
+import { HelpNavbarComponent } from './components/help-navbar/help-navbar.component';
 
 
 
@@ -165,6 +169,9 @@ import { GalleryComponent } from './components/event-details/gallery/gallery.com
     NewEventsComponent,
     PopularEventsComponent,
     GalleryComponent,
+    HelpContentsComponent,
+    HelpPageComponent,
+    HelpNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -185,6 +192,7 @@ import { GalleryComponent } from './components/event-details/gallery/gallery.com
     NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent],

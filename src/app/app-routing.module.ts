@@ -10,6 +10,7 @@ import { SignupPageComponent } from './pages/user-auth/signup-page/signup-page.c
 import { UpcomingEventsPageComponent } from "./pages/upcoming-events-page/upcoming-events-page.component";
 import { PopularEventsPageComponent } from "./pages/popular-events-page/popular-events-page.component";
 import { NewEventsPageComponent } from "./pages/new-events-page/new-events-page.component";
+import { HelpPageComponent } from "./pages/help-page/help-page.component";
 
 import { CreateBasicInfoComponent } from './pages/create-event/create-basic-info/create-basic-info.component';
 import { CreateEventSchedulesComponent } from './pages/create-event/create-event-schedules/create-event-schedules.component';
@@ -33,13 +34,16 @@ import { CreateEventMediaComponent } from './pages/create-event/create-event-med
 import { CreateEventSponsorsComponent } from './pages/create-event/create-event-sponsors/create-event-sponsors.component';
 import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-email.component';
 import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
-import { HappeningNowService } from './services/happening-now/happening-now.service';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
+  },
+  {
+    path: 'help',
+    component: HelpPageComponent
   },
   {
     path: 'user_events',
