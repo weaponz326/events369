@@ -94,6 +94,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { HelpContentsComponent } from './components/help-contents/help-contents.component';
 import { HelpPageComponent } from './pages/help-page/help-page.component';
 import { HelpNavbarComponent } from './components/help-navbar/help-navbar.component';
+import { SearchResultsComponent } from './pages/search-results/search-results.component';
 
 
 
@@ -172,6 +173,7 @@ import { HelpNavbarComponent } from './components/help-navbar/help-navbar.compon
     HelpContentsComponent,
     HelpPageComponent,
     HelpNavbarComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,
