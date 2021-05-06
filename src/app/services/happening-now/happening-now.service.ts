@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HappeningNowService {
 
   private headers: HttpHeaders;
-  getTodaysEventsUrl: string;
+  getEventsHappeningNowUrl: string;
   
 
   constructor(
@@ -18,22 +18,23 @@ export class HappeningNowService {
     {
 
     this.headers = this.endpoint.headers();
-    this.getTodaysEventsUrl =  this.endpoint.apiHost + '/get_todays_events'; 
+    this.getEventsHappeningNowUrl =  this.endpoint.apiHost + '/events_happening_now'; 
     
   }
 
-  getTodaysEvents(): Promise<any> {
+  
+  getEventsHappeningNow(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let todays_events: any[] = [];
-      const url = this.getTodaysEventsUrl;
+      let events_happening_now: any[] = [];
+      const url = this.getEventsHappeningNowUrl;
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
-          console.log('get_today_events_ok: ', res);
-          todays_events = res;
-          resolve(todays_events);
+          console.log('get_events_happening_now_ok: ', res);
+          events_happening_now = res;
+          resolve(events_happening_now);
         },
         err => {
-          console.log('get_todays_events_error: ', err);
+          console.log('get_events_happening_now_error: ', err);
           reject(err);
         }
       );

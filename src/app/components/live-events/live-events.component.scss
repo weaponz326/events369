@@ -488,7 +488,7 @@ p.card-text {
     -moz-box-orient: vertical !important;
   }
   .live_event_title {
-    font-weight: 400 !important;
+    font-weight: 600 !important;
     color: var(--card-typography-color-primary, #222222) !important;
     font-size: 16px !important;
     line-height: 20px !important;
@@ -500,6 +500,7 @@ p.card-text {
     align-items: center !important;
     font-size: 16px !important;
     line-height: 20px !important;
+    font-weight: bold;
   }
   .live_event_number_participating_span {
     font-weight: 800 !important;

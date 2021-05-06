@@ -15,6 +15,40 @@
   background: #0d6efd !important;
 }
 
+@media(min-width: 992px) {
+  ::ng-deep .owl-carousel .owl-nav button.owl-prev {
+    position: absolute !important;
+    left: 0px !important;
+    top: 14vh !important;
+    font-size: 80px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-prev:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
+  }
+  
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-next {
+    position: absolute !important;
+    right: -4vh !important;
+    top: 14vh !important;
+    font-size: 80px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-next:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
+  }
+}
+
+
 .owl-theme .owl-dots .owl-dot span {
   width: 45px;
   height: 4px;
@@ -171,3 +205,8 @@
 .owl-theme .owl-dots .owl-dot.active span {
   color: #1e0a3c !important;
 }
+
+.home-banner-title {
+  text-align: center !important;
+}
+

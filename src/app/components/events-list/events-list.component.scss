@@ -143,7 +143,7 @@ span.title {
 span.bold {
   font-weight: bold;
   font-size: 18px;
-  line-height: 20px;
+  line-height: 24px;
 }
 
 span.lead {
@@ -365,4 +365,14 @@ ul.nav {
 
 .spinner-border {
   margin-bottom: .5vh;
+}
+
+.text-muted {
+  font-weight: bold !important;
+}
+
+@media(min-width: 1500px) {
+  p.card-text {
+    min-height: 6vh !important;
+  }
 }

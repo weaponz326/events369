@@ -34,7 +34,8 @@ export class AdBannerComponent implements OnInit {
 
     this.sliderOptions = {
       items: 1,
-      dots: true,
+      // dots: true,
+      nav: true,
       margin: 30,
       center: true,
       loop: true,

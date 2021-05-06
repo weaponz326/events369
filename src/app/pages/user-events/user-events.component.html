@@ -2,6 +2,14 @@
 
 <div class="container mt-5">
 <div class="row">
+
+    <div *ngIf="errMsg" class="alert alert-danger alert-dismissible" role="alert">
+        {{errMsg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+
     <div class="col-12">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -12,18 +20,18 @@
             </a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-published-tab" data-toggle="pill" href="#pills-published" role="tab" aria-controls="pills-published" aria-selected="false">Published
-                <ng-container *ngIf="publishedEvents.length">
-                    ({{publishedEvents.length}})
-                    <!-- <span style="color: inherit;background-color: #fff;border-radius: 50%;">{{publishedEvents.length}})</span> -->
+            <a class="nav-link" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts
+                <ng-container *ngIf="createdEvents.length">
+                    ({{createdEvents.length}})
                 </ng-container>
             </a>
             
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts
-                <ng-container *ngIf="createdEvents.length">
-                    ({{createdEvents.length}})
+            <a class="nav-link" id="pills-published-tab" data-toggle="pill" href="#pills-published" role="tab" aria-controls="pills-published" aria-selected="false">Published
+                <ng-container *ngIf="publishedEvents.length">
+                    ({{publishedEvents.length}})
+                    <!-- <span style="color: inherit;background-color: #fff;border-radius: 50%;">{{publishedEvents.length}})</span> -->
                 </ng-container>
             </a>
             
@@ -85,7 +93,7 @@
                                     
                                 </span>
 
-                                <span id="myBtn-{{event.id}}" (click)="showHideMore(event.id)">See More</span>
+                                <span id="myBtn-{{event.id}}" class="see-more-or-less" (click)="showHideMore(event.id)">See More</span>
                                 
                             </div>
                         </div>                       
@@ -93,8 +101,23 @@
                 </div> 
                 
                 
-                <br><br><br>
-                <div class="d-flex justify-content-center">
+                <!-- <br><br><br> -->
+                <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex flex-row justify-content-end p-1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button *ngIf="(loadIndex >= userEvents.length) && (userEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLess()">
+                            <i class="bi-arrow-up"></i>
+                          </button>
+                          <button *ngIf="loadIndex < userEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMore()">
+                            <i class="bi-arrow-down"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <br><br><br>
+                  </div>
+                <!-- <div class="d-flex justify-content-center">
                     <button  *ngIf="loadIndex < userEvents.length" class="btn btn-dark btn-lg" (click)="loadMore()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Show more
@@ -105,7 +128,7 @@
                         Show less
                     </button>
                 <br><br><br>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -147,12 +170,12 @@
                                 <div class="text-center">
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary mb-1 px-4 mx-1">Preview</button>
                                     <button (click)="gotoEdit(event.id)" class="btn btn-secondary mb-1 px-4 mx-1">Edit</button>
-                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Archive</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Delete</button>
                                 </div>
 
                                 </span>
 
-                                <span id="published-myBtn-{{event.id}}" (click)="showHideMorePublished(event.id)">See More</span>
+                                <span id="published-myBtn-{{event.id}}" class="see-more-or-less" (click)="showHideMorePublished(event.id)">See More</span>
                                 
                             </div>
                         </div>                       
@@ -160,7 +183,23 @@
                 </div>  
                 
                 
-                <br><br><br>
+                <!-- <br><br><br> -->
+                <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex flex-row justify-content-end p-1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button *ngIf="(published_loadIndex >= publishedEvents.length) && (publishedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessPublished()">
+                            <i class="bi-arrow-up"></i>
+                          </button>
+                          <button *ngIf="published_loadIndex < publishedEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMorePublished()">
+                            <i class="bi-arrow-down"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <br><br><br>
+                  </div>
+                <!-- <br><br><br>
                 <div class="d-flex justify-content-center">
                     <button  *ngIf="published_loadIndex < publishedEvents.length" class="btn btn-dark btn-lg" (click)="loadMorePublished()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -172,7 +211,7 @@
                         Show less
                     </button>
                 <br><br><br>
-                </div>
+                </div> -->
 
 
             </div>
@@ -215,18 +254,37 @@
                                 <div class="text-center">
                                     <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mb-1 mx-1">Edit</button>
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mb-1 mx-1">Preview</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Delete</button>
                                 </div>
 
                                 </span>
 
-                                <span id="draft-myBtn-{{event.id}}" (click)="showHideMoreDraft(event.id)">See More</span>
+                                <span id="draft-myBtn-{{event.id}}" class="see-more-or-less" (click)="showHideMoreDraft(event.id)">See More</span>
                                 
                             </div>
                         </div>                       
                     </div>
-                </div>     
+                </div>  
                 
-                <br><br><br>
+                
+                <!-- <br><br><br> -->
+                <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex flex-row justify-content-end p-1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button *ngIf="(draft_loadIndex >= createdEvents.length) && (createdEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessDrafts()">
+                            <i class="bi-arrow-up"></i>
+                          </button>
+                          <button *ngIf="draft_loadIndex < createdEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMoreDrafts()">
+                            <i class="bi-arrow-down"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <br><br><br>
+                  </div>
+                
+                <!-- <br><br><br>
                 <div class="d-flex justify-content-center">
                     <button  *ngIf="draft_loadIndex < createdEvents.length" class="btn btn-dark btn-lg" (click)="loadMoreDrafts()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -238,7 +296,7 @@
                         Show less
                     </button>
                 <br><br><br>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -284,7 +342,7 @@
 
                                 </span>
 
-                                <span id="archived-myBtn-{{event.id}}" (click)="showHideMoreArchived(event.id)">See More</span>
+                                <span id="archived-myBtn-{{event.id}}" class="see-more-or-less" (click)="showHideMoreArchived(event.id)">See More</span>
                                 
                             </div>
                         </div>                       
@@ -292,7 +350,24 @@
                 </div>  
                 
                 
-                <br><br><br>
+                
+                <!-- <br><br><br> -->
+                <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex flex-row justify-content-end p-1">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button *ngIf="(archived_loadIndex >= archivedEvents.length) && (archivedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessArchived()">
+                            <i class="bi-arrow-up"></i>
+                          </button>
+                          <button *ngIf="archived_loadIndex < archivedEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMoreArchived()">
+                            <i class="bi-arrow-down"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <br><br><br>
+                  </div>
+                <!-- <br><br><br>
                 <div class="d-flex justify-content-center">
                     <button  *ngIf="archived_loadIndex < archivedEvents.length" class="btn btn-dark btn-lg" (click)="loadMoreArchived()" type="button">
                         <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -304,7 +379,7 @@
                         Show less
                     </button>
                 <br><br><br>
-                </div>
+                </div> -->
 
             </div>
         </div>

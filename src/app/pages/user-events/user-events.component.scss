@@ -20,6 +20,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    line-height: 35px;
   }
 
   .card-text{
@@ -41,6 +42,35 @@
     border: none !important;
 }
 
+.btn-outline-primary {
+  color: #1e0a3c !important;
+  border: 2px solid #1e0a3c !important; 
+  i {
+    font-weight: bolder !important;
+    font-size: xx-large !important;
+  }
+}
+
+.btn-outline-primary:hover {
+  background-color: #1e0a3c !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary:focus {
+  background-color: #1e0a3c !important;
+  border: none !important;
+  color: #fff !important;
+}
+
 .spinner-border {
     margin-bottom: .5vh;
+}
+
+span.see-more-or-less {
+  font-weight: 600 !important;
+  color: var(--ev-brandname-darkblue) !important;
+  background: linear-gradient(to right, #f05537,#1e0a3c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }

@@ -15,7 +15,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
 
   thumbsSliderOptions: any;
   
-  eventsToday: any;
+  eventsNow: any;
 
   watched_videos:any = []
   _x = this;
@@ -45,17 +45,20 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     try {
-      if(this.eventsToday?.length) {
+      if(this.eventsNow?.length) {
         $('.slider').slick({
-          infinite: true,
-          slidesToShow: 5,
-          slidesToScroll: 5,
+          infinite: false,
           nextArrow: $('.next'),
           prevArrow: $('.prev'),
-          initialSlide: 0,
-          mobileFirst: true,
-          row: 1,
-          slidesPerRow: 5,responsive: [
+          // initialSlide: 0,
+          // mobileFirst: true,
+          speed: 300,
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          // row: 1,
+          // variableWidth: false,
+          // slidesPerRow: 5,
+          responsive: [
             {
               breakpoint: 1024,
               settings: {
@@ -95,6 +98,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
           
           // alert('Here')
           $(this).find('video').get(0).style.setProperty('display', 'block')
+          $(this).find('img').get(0).style.setProperty('display', 'none')
   
           if(_x.watched_videos.length > 0) {
             
@@ -119,6 +123,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
           $(this).find('video').get(0).pause()
           $(this).find('video').get(0).currentTime = 0;
           $(this).find('video').get(0).style.setProperty('display', 'none')
+          $(this).find('img').get(0).style.setProperty('display', 'block')
       
         });
         
@@ -130,7 +135,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    // this.getEventsHappeningNow()
+    this.getEventsHappeningNow()
     // using  http://events369.logitall.biz/api/get_events_by_type/1 for now, waiting for happening now api
 
     
@@ -141,15 +146,6 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
     this.getUsersFavorites()
     console.log(this.users_favorite_event_ids)
 
-    this.eventService.getEventsByType(1).then(
-      res => {
-        console.log(res);
-        this.eventsToday = res.events.data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
 
     
 
@@ -159,10 +155,10 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
   }
  
   getEventsHappeningNow(): void {
-    this.eventsHappeningNow.getTodaysEvents().then(
+    this.eventService.getEventsHappeningNow().then(
       res => {
         console.log(res);
-        this.eventsToday = res.event.data;
+        this.eventsNow = res.event.data;
       },
       err => {
         console.log(err);
