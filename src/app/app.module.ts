@@ -89,6 +89,7 @@ import { PopularEventsPageComponent } from './pages/popular-events-page/popular-
 import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.component';
 import { NewEventsComponent } from './components/new-events/new-events.component';
 import { PopularEventsComponent } from './components/popular-events/popular-events.component';
+import { GalleryComponent } from './components/event-details/gallery/gallery.component';
 
 
 
@@ -163,6 +164,7 @@ import { PopularEventsComponent } from './components/popular-events/popular-even
     NewEventsPageComponent,
     NewEventsComponent,
     PopularEventsComponent,
+    GalleryComponent,
   ],
   imports: [
     BrowserModule,
