@@ -73,7 +73,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     }
 
   ngOnInit(): void {
-    var user_id: any =  sessionStorage.getItem('user_id')
+    var user_id: any =  sessionStorage.getItem('x_auth_token')
     // user_id = JSON.parse(user_id)
     console.log(user_id)
     this.userID = user_id;
