@@ -86,13 +86,13 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     console.log(this.users_favorite_event_ids)  
 
     this.sliderOptions = {
-      items: 5,
+      items: 4,
       margin: 15,
       dots: false,      
       responsive:{        
         450: { items:2 },
         600: { items:3 },
-        900: { items:5 }
+        900: { items:4 }
       }
     };
   }
