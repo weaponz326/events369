@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs'
 import { EndpointService } from 'src/app/services/endpoints/endpoint.service';
@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
 
   userAuthenticated: boolean = false;  
   searchQuery: string = '';
+
+  @Output() searchEvent = new EventEmitter<string>();
 
   constructor(private http: HttpClient, private router: Router, private endpoint: EndpointService) { }
 
@@ -114,6 +116,7 @@ export class NavbarComponent implements OnInit {
   doSearch(){
     console.log('lets search for ' + this.searchQuery);
     sessionStorage.setItem('search_query', this.searchQuery);
+    this.searchEvent.emit(this.searchQuery);
     this.router.navigateByUrl('/search_results');
   }
 
