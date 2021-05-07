@@ -30,7 +30,9 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "ngx-owl-carousel",
+              "ngx-google-places-autocomplete"
             ],
             "assets": [
               "src/favicon.ico",
