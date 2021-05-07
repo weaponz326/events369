@@ -295,10 +295,10 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
             
             // reload data so view reflects changes
             this.getUsersFavorites();
-            this.getEventsInSixHrs();
-            this.getPopularEvents();
-            this.getNewEvents();
-            this.getAllEvents();
+            // this.getEventsInSixHrs();
+            // this.getPopularEvents();
+            // this.getNewEvents();
+            // this.getAllEvents();
 
           }
           else {
@@ -338,10 +338,10 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
             // reload data so view reflects
             this.getUsersFavorites();
-            this.getEventsInSixHrs();
-            this.getPopularEvents();
-            this.getNewEvents();
-            this.getAllEvents();
+            // this.getEventsInSixHrs();
+            // this.getPopularEvents();
+            // this.getNewEvents();
+            // this.getAllEvents();
             
           }
           else {
