@@ -18,6 +18,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   searchEvent(){
+    this.searchData = null;
     this.serachService.searchEvent().then(
       res => {
         if (res) {
