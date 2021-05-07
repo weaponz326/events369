@@ -170,7 +170,8 @@
                                 <div class="text-center">
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary mb-1 px-4 mx-1">Preview</button>
                                     <button (click)="gotoEdit(event.id)" class="btn btn-secondary mb-1 px-4 mx-1">Edit</button>
-                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Delete</button>
+                                    <button (click)="cancelEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Cancel</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-danger mb-1 px-4 mx-1">Delete</button>
                                 </div>
 
                                 </span>
@@ -254,7 +255,8 @@
                                 <div class="text-center">
                                     <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mb-1 mx-1">Edit</button>
                                     <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mb-1 mx-1">Preview</button>
-                                    <button (click)="archiveEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Delete</button>
+                                    <button (click)="cancelEvent(event.id)" class="btn btn-warning mb-1 px-4 mx-1">Cancel</button>
+                                    <button (click)="archiveEvent(event.id)" class="btn btn-danger mb-1 px-4 mx-1">Delete</button>
                                 </div>
 
                                 </span>
