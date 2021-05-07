@@ -28,6 +28,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
   userFavorites: any = []
   userID: string = '';
+  user_token: string = '';
   sliderOptions: any;
   
   users_favorite_event_ids: any = []
@@ -60,8 +61,8 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       
       $(document).ready(function(){ 
 
-      $(".save_live_event_div").on("mouseover", function(this: HTMLDivElement){
-        alert('Hi')
+      $(".save_live_event_div").on("click", function(this: HTMLDivElement){
+        // alert('Hi')
         $(this).find('svg').get(0).style.setProperty('fill', 'rgba(255, 101, 80, 0.4)');
         // .css('fill','rgba(255, 101, 80, 0.4);');
         console.log($(this).find('svg'))
@@ -73,6 +74,8 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     }
 
   ngOnInit(): void {
+    var user_token = sessionStorage.getItem('x_auth_token')
+    this.user_token = ((user_token !== null? user_token: ''))
     var user_id: any =  sessionStorage.getItem('user_id')
     // user_id = JSON.parse(user_id)
     console.log(user_id)
@@ -200,8 +203,16 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     if(this.userID !== '') {
       this.userFavoriteService.getUserFavorites(this.userID).then(
         res => {
-          console.log(res);
+          // console.log(res.event.data);
           this.userFavorites = res.event.data;
+
+          for (let i = 0; i < this.userFavorites.length; i++) {
+            this.users_favorite_event_ids.push(this.userFavorites[i].id)
+            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites[i].id, fav_id: this.userFavorites[i].fav_id })
+            
+            
+          }
+
         },
         err => {
           console.log(err);
@@ -211,10 +222,10 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     }
 
 
-    for (let i = 0; i < this.userFavorites.length; i++) {
-      this.users_favorite_event_ids.push(this.userFavorites[i].id)
-      
-    }
+    
+    
+    // console.log(this.userID)
+    // console.log('Users favorites: ', this.users_favorite_event_ids)
   }
 
   getEventStartDateFormatted(date: any) {
@@ -270,7 +281,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   }
 
   saveEventAsFavorite(event_id: any): void {
-    if(this.userID == null) {
+    if(this.user_token == null) {
       this.router.navigateByUrl('/login')
       
     } else {
@@ -281,8 +292,14 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
         res => {
           if (res) {
             console.log(res);
-  
             
+            // reload data so view reflects changes
+            this.getUsersFavorites();
+            // this.getEventsInSixHrs();
+            // this.getPopularEvents();
+            // this.getNewEvents();
+            // this.getAllEvents();
+
           }
           else {
             console.log('didnt add to favorites');
@@ -307,16 +324,24 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
       if(this.users_favorite_event_id_and_fav_id[i].event_id == event_id) {
           favorite_id = this.users_favorite_event_id_and_fav_id[i].fav_id
+          console.log(favorite_id)
       }
       
     }
-    console.log(this.users_favorite_event_id_and_fav_id)
-      console.log(favorite_id)
+    // console.log(this.users_favorite_event_id_and_fav_id)
+    //   console.log(favorite_id)
 
       this.userFavoriteService.removeEventFromFavorite(favorite_id).then(
         res => {
           if (res) {
             console.log(res); 
+
+            // reload data so view reflects
+            this.getUsersFavorites();
+            // this.getEventsInSixHrs();
+            // this.getPopularEvents();
+            // this.getNewEvents();
+            // this.getAllEvents();
             
           }
           else {

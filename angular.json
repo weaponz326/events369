@@ -29,6 +29,11 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "ngx-owl-carousel",
+              "ngx-google-places-autocomplete"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
