@@ -157,8 +157,8 @@
               </div>
 
             <div class="row">
-                <div *ngFor="let event of publishedEvents" class="col-lg-4 mb-4">
-                    <div class="card" (click)="showHideMorePublished(event.id)">
+                <div *ngFor="let event of publishedEvents; let i = index" class="col-lg-4 mb-4">
+                    <div class="card" (click)="showHideMorePublished(event.id)" *ngIf="i < published_loadIndex" (click)="showHideMore(event.id)">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
                         <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
                         
