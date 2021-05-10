@@ -189,9 +189,9 @@
                     <div class="col-12">
                       <div class="d-flex flex-row justify-content-end p-1">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <button *ngIf="(published_loadIndex >= publishedEvents.length) && (publishedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessPublished()">
+                          <!-- <button *ngIf="(published_loadIndex >= publishedEvents.length) && (publishedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessPublished()">
                             <i class="bi-arrow-up"></i>
-                          </button>
+                          </button> -->
                           <button *ngIf="published_loadIndex < publishedEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMorePublished()">
                             <i class="bi-arrow-down"></i>
                           </button>
@@ -274,9 +274,9 @@
                     <div class="col-12">
                       <div class="d-flex flex-row justify-content-end p-1">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <button *ngIf="(draft_loadIndex >= createdEvents.length) && (createdEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessDrafts()">
+                          <!-- <button *ngIf="(draft_loadIndex >= createdEvents.length) && (createdEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessDrafts()">
                             <i class="bi-arrow-up"></i>
-                          </button>
+                          </button> -->
                           <button *ngIf="draft_loadIndex < createdEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMoreDrafts()">
                             <i class="bi-arrow-down"></i>
                           </button>
@@ -358,9 +358,9 @@
                     <div class="col-12">
                       <div class="d-flex flex-row justify-content-end p-1">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <button *ngIf="(archived_loadIndex >= archivedEvents.length) && (archivedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessArchived()">
+                          <!-- <button *ngIf="(archived_loadIndex >= archivedEvents.length) && (archivedEvents.length >= 6)" type="button" class="btn btn-outline-primary" (click)="loadLessArchived()">
                             <i class="bi-arrow-up"></i>
-                          </button>
+                          </button> -->
                           <button *ngIf="archived_loadIndex < archivedEvents.length" type="button" class="btn btn-outline-primary" (click)="loadMoreArchived()">
                             <i class="bi-arrow-down"></i>
                           </button>
