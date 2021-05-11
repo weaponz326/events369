@@ -151,47 +151,48 @@ export class CreateBasicInfoComponent implements OnInit {
     console.log(this.isDateCorrect);
     console.log(this.isDateIntervalCorrect);
 
+    // TODO: add date time validation variables to if statement
 
-    // if (this.form.valid) {
-    //   this.isLoading = true;
-    //   const data = this.getFormData();
-    //   console.log(data);
-    //   this.basicInfoService.createBasicEvent(data).then(
-    //     res => {
-    //       if (res) {
-    //         console.log(res);
-    //         console.log(data.recurring);
-    //         this.saveCreatedEvent(res).then(
-    //           ok => {
-    //             if (ok) {
-    //               this.isLoading = false;
-    //               data.recurring == '1'
-    //                 ? this.router.navigateByUrl('/create_event/schedule')
-    //                 : this.router.navigateByUrl('/create_event/more_details');
-    //             }
-    //           },
-    //           err => {
-    //             // we still navigate but will get the data from the side menu.
-    //             data.recurring == '1'
-    //               ? this.router.navigateByUrl('/create_event/schedule')
-    //               : this.router.navigateByUrl('/create_event/more_details');
-    //           }
-    //         );
-    //       }
-    //       else {
-    //         this.isLoading = false;
-    //       }
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       this.isLoading = false;
-    //     }
-    //   );
-    // }
-    // else{
-    //   console.log('scrolling to top');
-    //   window.scrollTo(0,0);
-    // }
+    if (this.form.valid) {
+      this.isLoading = true;
+      const data = this.getFormData();
+      console.log(data);
+      this.basicInfoService.createBasicEvent(data).then(
+        res => {
+          if (res) {
+            console.log(res);
+            console.log(data.recurring);
+            this.saveCreatedEvent(res).then(
+              ok => {
+                if (ok) {
+                  this.isLoading = false;
+                  data.recurring == '1'
+                    ? this.router.navigateByUrl('/create_event/schedule')
+                    : this.router.navigateByUrl('/create_event/more_details');
+                }
+              },
+              err => {
+                // we still navigate but will get the data from the side menu.
+                data.recurring == '1'
+                  ? this.router.navigateByUrl('/create_event/schedule')
+                  : this.router.navigateByUrl('/create_event/more_details');
+              }
+            );
+          }
+          else {
+            this.isLoading = false;
+          }
+        },
+        err => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
+    }
+    else{
+      console.log('scrolling to top');
+      window.scrollTo(0,0);
+    }
   }
 
   getFormData(): any {
