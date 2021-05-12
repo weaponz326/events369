@@ -333,7 +333,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-lg-5">
+                      <div class="col-lg-4">
                         <div class="form-floating mt-3">
                           <select class="form-select" id="floatingSelect1" formControlName="country_code" required>
                             <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -554,7 +554,7 @@
                           <label for="floatingInput">Country Code</label>
                         </div>
                       </div>
-                      <div class="col-lg-7">
+                      <div class="col-lg-8">
                         <div class="form-floating mt-3">
                           <input type="tel" class="form-control" id="floatingInput" placeholder="Phone Number" formControlName="phone" required>
                           <label for="floatingInput">Phone Number</label>
@@ -607,7 +607,7 @@
                       <div class="col">
                         <div class="form-floating mt-3">
                           <input type="password" class="form-control" id="floatingFname" placeholder="Fname" formControlName="password_confirmation" required>
-                          <label for="floatingFname">Confirm</label>
+                          <label for="floatingFname">Confirm Password</label>
                         </div>
                         <small><span *ngFor="let x of errorMsgs?.errors?.password_confirmation" class="text-danger">{{x}}</span></small>
                       </div>
