@@ -11,5 +11,5 @@ export class PreviewSpeakersComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
 }

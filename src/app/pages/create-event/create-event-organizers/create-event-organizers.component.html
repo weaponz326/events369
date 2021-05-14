@@ -126,13 +126,16 @@
                   <!-- buttons -->
                 <div class="form-group">
                     <div *ngIf="!isEditMode" class="submit-button">
-                    <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Save Organizer</button>
-                    <app-loading-button *ngIf="isSaving"></app-loading-button>
+                      <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Save Organizer</button>
+                      <app-loading-button *ngIf="isSaving"></app-loading-button>
                     </div>
     
                     <div *ngIf="isEditMode" class="submit-button">
-                    <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary">Update Organizer</button>
-                    <app-loading-button *ngIf="isSaving"></app-loading-button>
+                      <button *ngIf="!isSaving" type="submit" class="btn btn-lg btn-primary ml-2">Update Organizer</button>
+                      <app-loading-button *ngIf="isSaving"></app-loading-button>
+                    </div>
+                    <div *ngIf="isEditMode" class="submit-button">
+                      <button type="button" class="btn btn-lg btn-primary ml-2" (click)="resetForm()">Reset Form</button>
                     </div>
                 </div>
                 

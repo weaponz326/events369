@@ -157,7 +157,7 @@ export class CreateEventSpeakersComponent implements OnInit {
           this.createdSpeakerList.push(speaker);
 
           if (!(speakers[i].image == null)){
-            this.imgSrcList[i] = 'http://events369.logitall.biz/storage/organizer/' + speakers[i].image;
+            this.imgSrcList[i] = 'http://events369.logitall.biz/storage/host/' + speakers[i].image;
           }
           else{
             this.imgSrcList[i] = '../../../../assets/images/avatar-placeholder.png';
@@ -266,6 +266,19 @@ export class CreateEventSpeakersComponent implements OnInit {
     );
   }
   
+  resetForm() {
+    this.f.name.setValue('');
+    this.f.bio.setValue('');
+    this.f.facebook.setValue('');
+    this.f.linkedin.setValue('');
+    this.f.twitter.setValue('');
+    this.f.instagram.setValue('');
+    this.createdImgSrc = '';
+    this.isImageSet = false;
+
+    this.isEditMode = false;
+  }
+
   previous(): void {
     this.router.navigateByUrl('/create_advanced/organizers');
   }
