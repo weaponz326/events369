@@ -12,15 +12,9 @@
 
     <div class="col-12">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        
         <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All 
-                <ng-container *ngIf="userEvents.length">
-                    ({{userEvents.length}})
-                </ng-container>
-            </a>
-        </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts
+            <a class="nav-link active" id="pills-drafts-tab" data-toggle="pill" href="#pills-drafts" role="tab" aria-controls="pills-drafts" aria-selected="false">Drafts
                 <ng-container *ngIf="createdEvents.length">
                     ({{createdEvents.length}})
                 </ng-container>
@@ -52,6 +46,13 @@
             </a>
             
         </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" aria-selected="true">All 
+              <ng-container *ngIf="userEvents.length">
+                  ({{userEvents.length}})
+              </ng-container>
+          </a>
+      </li>
     </ul>
 
     
@@ -76,7 +77,7 @@
                 <div *ngFor="let event of userEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" *ngIf="i < loadIndex" (click)="showHideMore(event.id)">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250px" alt="{{event.title}}">
-                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" height="250px" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/placeholder-image.png" height="250px" alt="{{event.title}}">
               
                         <!-- <img class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" alt="banner"> -->
                         <div class="card-body">                          
@@ -160,7 +161,7 @@
                 <div *ngFor="let event of publishedEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" (click)="showHideMorePublished(event.id)" *ngIf="i < published_loadIndex" (click)="showHideMore(event.id)">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
-                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/placeholder-image.png" class="card-img-top" height="250" alt="{{event.title}}">
                         
                         <div class="card-body">                          
                             <div class="col">
@@ -244,7 +245,7 @@
                 <div *ngFor="let event of createdEvents; let i = index" class="col-lg-4 mb-4">
                     <div class="card" *ngIf="i < draft_loadIndex" (click)="showHideMoreDraft(event.id)">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
-                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/placeholder-image.png" class="card-img-top" height="250" alt="{{event.title}}">
                         
                         <div class="card-body">                          
                             <div class="col">
@@ -329,7 +330,7 @@
               <div *ngFor="let event of cancelledEvents; let i = index" class="col-lg-4 mb-4">
                   <div class="card" *ngIf="i < cancelled_loadIndex" (click)="showHideMoreCancelled(event.id)">
                       <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
-                      <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                      <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/placeholder-image.png" class="card-img-top" height="250" alt="{{event.title}}">
                       
                       <div class="card-body">                          
                           <div class="col">
@@ -404,7 +405,7 @@
                     <i class="bi bi-archive-fill" mode="ios" style="color: #a1949c;font-size: 60px;"></i>
                     <span style="display: block;font-weight: 400;color: rgb(41, 39, 39);font-size: 20px;">Archive empty</span>
                     <p style="font-size: 14px;text-align: center;color: #888484;margin-left: 10%;margin-right: 10%;">
-                      You have no archived event yet
+                      You have no deleted event yet
   
                   </p>
                 </div>
@@ -415,7 +416,7 @@
                 <div *ngFor="let event of archivedEvents" class="col-lg-4 mb-4">
                     <div class="card"  (click)="showHideMoreArchived(event.id)">
                         <img *ngIf="event.banner_image" class="card-img-top" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" height="250" class="card-img-top" alt="{{event.title}}">
-                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/default-event-banner.jpg" class="card-img-top" height="250" alt="{{event.title}}">
+                        <img *ngIf="!event.banner_image" class="card-img-top" src="/assets/images/placeholder-image.png" class="card-img-top" height="250" alt="{{event.title}}">
               
                         <div class="card-body">                          
                             <div class="col">

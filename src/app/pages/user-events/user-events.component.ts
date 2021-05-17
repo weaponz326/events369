@@ -38,7 +38,7 @@ export class UserEventsComponent implements OnInit {
     this.getAllUserEvents();
     this.getUserEvents(0);
     this.getUserEvents(2);
-    this.getUserEvents(1); // not available yet : for cancelled events
+    this.getUserEvents(4);
     this.getUserEvents(3);
   }
 
@@ -79,8 +79,7 @@ export class UserEventsComponent implements OnInit {
         });
 
         
-        // not available yet, for cancelled events
-        if (eventStatus == 1) this.cancelledEvents = res.all_events.data;
+        if (eventStatus == 4) this.cancelledEvents = res.all_events.data;
         this.cancelledEvents.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
