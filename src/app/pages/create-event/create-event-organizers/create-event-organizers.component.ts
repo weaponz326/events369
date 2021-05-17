@@ -270,6 +270,19 @@ export class CreateEventOrganizersComponent implements OnInit {
     );
   }
   
+  resetForm() {
+    this.f.name.setValue('');
+    this.f.bio.setValue('');
+    this.f.facebook.setValue('');
+    this.f.linkedin.setValue('');
+    this.f.twitter.setValue('');
+    this.f.instagram.setValue('');
+    this.createdImgSrc = '';
+    this.isImageSet = false;
+
+    this.isEditMode = false;
+  }
+
   previous(): void {
     this.router.navigateByUrl('/edit_event/basic_info');
   }
