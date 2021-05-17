@@ -55,7 +55,7 @@ export class PreviewEventPageComponent implements OnInit {
           this.organisersContent = this.dataContent.organizers;
           this.sponsorsContent = this.dataContent.sponsors;
           this.galleryContent = this.dataContent.images;
-  
+
           console.log(this.eventContent);
 
           this.displayOptions();
@@ -83,6 +83,41 @@ export class PreviewEventPageComponent implements OnInit {
       sponsors: this.sponsorsDisplay,
       gallery: this.galleryDisplay
     });
+  }
+
+  gotoIntro() {
+    console.log('going to intro...');
+    document.querySelector('#intro')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoSpeakers() {
+    console.log('going to speakers...');
+    document.querySelector('#speakers')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoSchedule() {
+    console.log('going to schedule...');
+    document.querySelector('#schedule')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoPricing() {
+    console.log('going to pricing...');
+    document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoOrganizers() {
+    console.log('going to organizers...');
+    document.querySelector('#organizers')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoSponsors() {
+    console.log('going to sponsors...');
+    document.querySelector('#sponsors')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  gotoGallery() {
+    console.log('going to gallery...');
+    document.querySelector('#gallery')?.scrollIntoView({ behavior: 'smooth' });
   }
 
 }
