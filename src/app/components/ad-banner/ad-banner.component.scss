@@ -140,14 +140,15 @@
     display: block;
     visibility: visible;
   }
+}
 
+@media (min-width: 1200px) {
   .home-banner-text-core {
     position: relative;
     top: 7vh;
     
   }
 }
-
 .onzoom-homepage-total {
   padding-left: 1.125rem !important;
   padding-right: 0.125rem !important;
