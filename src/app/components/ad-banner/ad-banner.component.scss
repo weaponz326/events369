@@ -49,6 +49,48 @@
 }
 
 
+@media(max-width: 992px) {
+  ::ng-deep .owl-carousel .owl-nav button.owl-prev {
+    // position: absolute !important;
+    // left: 0px !important;
+    // top: 14vh !important;
+    font-size: 40px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-prev:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
+  }
+  
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-next {
+    // position: absolute !important;
+    // right: -4vh !important;
+    // top: 14vh !important;
+    font-size: 40px !important;
+    opacity: 0.3;
+  }
+
+  
+  ::ng-deep .owl-carousel .owl-nav button.owl-next:hover {
+    background-color: inherit !important;
+    color: var(--ev-brandname-darkblue) !important;
+    opacity: 1;
+  }
+
+  ::ng-deep .owl-carousel .owl-nav {
+    height: 60px;
+    margin-top: -5vh;
+
+  }
+
+
+}
+
+
 .owl-theme .owl-dots .owl-dot span {
   width: 45px;
   height: 4px;
