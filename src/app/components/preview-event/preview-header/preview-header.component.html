@@ -5,29 +5,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
          <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-               <a class="nav-link" href="#">Intro</a>
+            <li *ngIf="intro == true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onIntroClicked($event)">Intro</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Speakers</a>
+            <li *ngIf="speakers == true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onSpeakersClicked($event)">Speakers</a>
             </li>
-            <!-- <li class="nav-item">
-               <a class="nav-link" href="#">Schedule</a>
+            <!-- <li *ngIf="schedule == true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onScheduleClicked($event)">Schedule</a>
             </li> -->
-            <li class="nav-item">
-               <a class="nav-link" href="#">Pricing</a>
+            <li *ngIf="pricing== true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onPricingClicked($event)">Pricing</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Organizers</a>
+            <li *ngIf="organizers== true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onOrganizersClicked($event)">Organizers</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Sponsors</a>
+            <li *ngIf="sponsors== true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onSponsorsClicked($event)">Sponsors</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Gallery</a>
+            <li *ngIf="gallery == true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onGalleryClicked($event)">Gallery</a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Location</a>
+            <li *ngIf="location == true" class="nav-item">
+               <a class="nav-link" href="#" (click)="onLocationClicked($event)">Location</a>
             </li>
             <button class="btn btn-outline-primary ml-4 ticket-button" type="button">Buy Ticket</button>
          </ul>

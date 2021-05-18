@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-preview-details',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PreviewDetailsComponent implements OnInit {
 
+  @Input() eventContent?: any;
+  
   constructor() { }
 
   ngOnInit(): void {
