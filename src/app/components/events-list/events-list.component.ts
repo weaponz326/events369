@@ -78,7 +78,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
     this.user_token = ((user_token !== null? user_token: ''))
     var user_id: any =  sessionStorage.getItem('user_id')
     // user_id = JSON.parse(user_id)
-    console.log(user_id)
+    // console.log(user_token)
     this.userID = user_id;
    
     this.getCategories();
@@ -281,7 +281,8 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
   }
 
   saveEventAsFavorite(event_id: any): void {
-    if(this.user_token == null) {
+    // console.log(this.user_token )
+    if(this.user_token == '') {
       this.router.navigateByUrl('/login')
       
     } else {
