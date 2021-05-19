@@ -143,6 +143,8 @@ export class EditEventDetailsComponent implements OnInit {
           this.isLoading = false;
         }
       );
+    } else {
+      console.log('form data invalid')
     }
   }
 

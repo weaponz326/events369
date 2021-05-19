@@ -18,11 +18,11 @@ export class UserEventsComponent implements OnInit {
   cancelledEvents: any = [];
 
   loading: boolean = false;
-  loadIndex = 6;
-  draft_loadIndex = 6;
-  published_loadIndex = 6;
-  cancelled_loadIndex = 6;
-  archived_loadIndex = 6;
+  loadIndex = 15;
+  draft_loadIndex = 15;
+  published_loadIndex = 15;
+  cancelled_loadIndex = 15;
+  archived_loadIndex = 15;
 
   errMsg = '';
 
@@ -61,25 +61,25 @@ export class UserEventsComponent implements OnInit {
     this.eventsService.getUserEvents(eventStatus).then(
       res => {
         console.log(res);
-        if (eventStatus == 0) this.createdEvents = res.all_events.data;
+        if (eventStatus == 0) this.createdEvents = res;
         this.createdEvents.sort(function(a: any, b:any){
-          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+          return new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf();
         });
  
 
-        if (eventStatus == 2) this.publishedEvents = res.all_events.data;
+        if (eventStatus == 2) this.publishedEvents = res;
         this.publishedEvents.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
 
 
-        if (eventStatus == 3) this.archivedEvents = res.all_events.data;
+        if (eventStatus == 3) this.archivedEvents = res;
         this.archivedEvents.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
 
         
-        if (eventStatus == 4) this.cancelledEvents = res.all_events.data;
+        if (eventStatus == 4) this.cancelledEvents = res;
         this.cancelledEvents.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
@@ -183,7 +183,7 @@ export class UserEventsComponent implements OnInit {
   loadMore() {
     this.loading = true
     if(this.loadIndex < this.userEvents.length) {
-      this.loadIndex += 6
+      this.loadIndex += 15
     }
     
     this.loading = false
@@ -192,7 +192,7 @@ export class UserEventsComponent implements OnInit {
   loadLess() {
     this.loading = true
     if(this.loadIndex >= this.userEvents.length) {
-      this.loadIndex = 6
+      this.loadIndex = 15
     }
     
     this.loading = false
@@ -202,7 +202,7 @@ export class UserEventsComponent implements OnInit {
   loadMoreDrafts() {
     this.loading = true
     if(this.draft_loadIndex < this.createdEvents.length) {
-      this.draft_loadIndex += 6
+      this.draft_loadIndex += 15
     }
     
     this.loading = false
@@ -211,7 +211,7 @@ export class UserEventsComponent implements OnInit {
   loadLessDrafts() {
     this.loading = true
     if(this.draft_loadIndex >= this.createdEvents.length) {
-      this.draft_loadIndex = 6
+      this.draft_loadIndex = 15
     }
     
     this.loading = false
@@ -220,7 +220,7 @@ export class UserEventsComponent implements OnInit {
   loadMoreCancelled() {
     this.loading = true
     if(this.cancelled_loadIndex < this.cancelledEvents.length) {
-      this.cancelled_loadIndex += 6
+      this.cancelled_loadIndex += 15
     }
     
     this.loading = false
@@ -229,7 +229,7 @@ export class UserEventsComponent implements OnInit {
   loadLessCancelled() {
     this.loading = true
     if(this.cancelled_loadIndex >= this.cancelledEvents.length) {
-      this.cancelled_loadIndex = 6
+      this.cancelled_loadIndex = 15
     }
     
     this.loading = false
@@ -239,7 +239,7 @@ export class UserEventsComponent implements OnInit {
   loadMorePublished() {
     this.loading = true
     if(this.published_loadIndex < this.publishedEvents.length) {
-      this.published_loadIndex += 6
+      this.published_loadIndex += 15
     }
     
     this.loading = false
@@ -248,7 +248,7 @@ export class UserEventsComponent implements OnInit {
   loadLessPublished() {
     this.loading = true
     if(this.published_loadIndex >= this.publishedEvents.length) {
-      this.published_loadIndex = 6
+      this.published_loadIndex = 15
     }
     
     this.loading = false
@@ -257,7 +257,7 @@ export class UserEventsComponent implements OnInit {
   loadMoreArchived() {
     this.loading = true
     if(this.archived_loadIndex < this.archivedEvents.length) {
-      this.archived_loadIndex += 6
+      this.archived_loadIndex += 15
     }
     
     this.loading = false
@@ -266,7 +266,7 @@ export class UserEventsComponent implements OnInit {
   loadLessArchived() {
     this.loading = true
     if(this.archived_loadIndex >= this.archivedEvents.length) {
-      this.archived_loadIndex = 6
+      this.archived_loadIndex = 15
     }
     
     this.loading = false
