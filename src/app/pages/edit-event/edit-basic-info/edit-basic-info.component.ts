@@ -26,6 +26,11 @@ export class EditBasicInfoComponent implements OnInit {
   tagsList: Array<any>;
   recurringStore: string;
 
+  isDateCorrect: boolean;
+  isDateIntervalCorrect: boolean;
+  isTimeCorrect: boolean;
+  isTimeIntervalCorrect: boolean;
+
   url: string = '';
   event: any;
   currentRoute: string = '';
@@ -44,6 +49,11 @@ export class EditBasicInfoComponent implements OnInit {
     this.tagsString = '';
     this.tagsList = [];
     this.recurringStore = '0';
+
+    this.isDateCorrect = true;
+    this.isDateIntervalCorrect = true;
+    this.isTimeCorrect = true;
+    this.isTimeIntervalCorrect = true;
 
     this.initVars();
   }
@@ -121,9 +131,45 @@ export class EditBasicInfoComponent implements OnInit {
     this.setTagsChips();
   }
 
+  dateValidation(){
+    let date = new Date();
+    date.setHours(0,0,0,0);
+    let today = date.valueOf();
+    let sd = Date.parse(this.f.start_date.value);
+    let ed = Date.parse(this.f.end_date.value);    
+    let now = new Date().getTime();
+    let st = new Date(this.f.start_time.value).getTime();
+    let et = new Date(this.f.end_time.value).getTime();
+
+    console.log(Date.parse(this.f.start_date.value));
+    console.log(Date.parse(this.f.end_date.value));
+    console.log(today);
+
+    // check if event date is greater than today's date
+    // TODO: this check aint working
+    if (sd >= today) this.isDateCorrect = true;
+    else this.isDateCorrect = false;
+      
+    // check if end date is greater start date
+    if (ed >= sd) this.isDateIntervalCorrect = true;
+    else this.isDateIntervalCorrect = false;
+
+    // if date is same check time
+    if (ed == sd){
+      // check if event time is greater than current time
+      if (st > now) this.isTimeCorrect = true;
+      else this.isTimeCorrect = false;
+
+      // check if end date is greater start date
+      if (et > st) this.isTimeIntervalCorrect = true;
+      else this.isTimeIntervalCorrect = false;
+    }
+  }
+
   edit(): void {
     this.saved = true;
-    if (this.form.valid) {
+    this.dateValidation();
+    if (this.form.valid && this.isDateCorrect && this.isDateIntervalCorrect && this.isTimeCorrect && this.isTimeIntervalCorrect) {
       console.log('form is valid');
       this.isLoading = true;
       this.basicInfoService.editBasicEvent(this.eventID, this.getFormData()).then(
@@ -229,16 +275,16 @@ export class EditBasicInfoComponent implements OnInit {
     if (this.f.hosting.value == '1') {
       console.log('...adding physical event validators');
       this.f.venue.setValidators(Validators.required);
-      this.f.gps.setValidators(Validators.required);
+      // this.f.gps.setValidators(Validators.required);
       this.f.venue.updateValueAndValidity();
-      this.f.gps.updateValueAndValidity();
+      // this.f.gps.updateValueAndValidity();
     }
     else if (this.f.hosting.value == '0') {
       console.log('...removing physical event validators');
       this.f.venue.clearValidators();
-      this.f.gps.clearValidators();
+      // this.f.gps.clearValidators();
       this.f.venue.updateValueAndValidity();
-      this.f.gps.updateValueAndValidity();
+      // this.f.gps.updateValueAndValidity();
     }
   }
 

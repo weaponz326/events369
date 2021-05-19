@@ -18,9 +18,14 @@
     [direction]="dataContent?.hosting == 'Physical' ? true:false">
 </app-preview-header>
 
-<app-preview-banner [eventContent]="this.eventContent"></app-preview-banner>
+<app-preview-banner 
+    [eventContent]="this.eventContent"    
+></app-preview-banner>
 
-<app-preview-details id="intro" [eventContent]="this.eventContent"></app-preview-details>
+<app-preview-details id="intro" 
+    [eventContent]="this.eventContent"
+    [hostingContent]="this.hostingContent">
+</app-preview-details>
 
 <!-- <app-preview-schedule id="schedule"
     *ngIf="scheduleDisplay == true">
@@ -37,11 +42,11 @@
 </app-preview-pricing>
 
 <app-preview-organizers id="organizers"
-    *ngIf="organisersDisplay ==true"
+    *ngIf="organisersDisplay == true"
     [organizers]="organisersContent">
 </app-preview-organizers>
 
-<app-preview-sponsors id="sponsors">
+<app-preview-sponsors id="sponsors"
     *ngIf="sponsorsDisplay == true"
     [sponsors]="sponsorsContent">
 </app-preview-sponsors>
@@ -57,3 +62,5 @@
     [contactPhone]="eventContent.contact_phone"
     [contactEmail]="eventContent.contact_email">
 </app-preview-location>location -->
+
+<app-footer></app-footer>

@@ -109,6 +109,7 @@
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
                           <svg
+                              class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -128,6 +129,7 @@
                   <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
                     <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
                         <svg
+                            class="favorite-{{event.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
                             style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -243,6 +245,7 @@
                     <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
                         <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
                             <svg
+                                class="favorite-{{event.id}}"
                                 viewBox="0 0 32 32"
                                 xmlns="http://www.w3.org/2000/svg"
                                 style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -262,6 +265,7 @@
                     <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
                       <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
                           <svg
+                              class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -390,6 +394,7 @@
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
                           <svg
+                              class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -407,8 +412,9 @@
                   </div>
 
                   <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
-                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                    <button aria-label="Unsave this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
                         <svg
+                            class="favorite-{{event.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
                             style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -464,10 +470,10 @@
               <div class="card mb-2" *ngIf="i < favorites_loadIndex">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div></div>
-                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(favorites.id)" style="visibility: visible !important;">
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(favorites.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(favorites.id)" class="save_live_event_button">
                           <svg
-                              id="favorite-{{favorites.id}}"
+                              class="favorite-{{favorites.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -484,10 +490,10 @@
                       
                   </div>
 
-                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(favorites.id)" style="visibility: visible !important;">
-                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(favorites.id)" class="save_live_event_button">
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(favorites.id)">
+                    <button aria-label="Unsave this Event" type="button" (click)="removeEventFromFavorites(favorites.id)" class="save_live_event_button">
                         <svg
-                            id="favorite-{{favorites.id}}"
+                            class="favorite-{{favorites.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
                             style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -557,9 +563,10 @@
               <div class="card mb-5"  *ngIf="i < loadIndex[i]">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div></div>
-                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
+                  <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
                           <svg
+                              class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
                               style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
@@ -576,9 +583,10 @@
                       
                   </div>
 
-                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" style="visibility: visible !important;">
-                    <button aria-label="Save this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
+                  <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(event.id)" [hidden]="!hasBeenAddedToFavorites(event.id)">
+                    <button aria-label="Unsave this Event" type="button" (click)="removeEventFromFavorites(event.id)" class="save_live_event_button">
                         <svg
+                            class="favorite-{{event.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
                             style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"

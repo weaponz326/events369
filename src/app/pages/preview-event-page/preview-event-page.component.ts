@@ -18,6 +18,7 @@ export class PreviewEventPageComponent implements OnInit {
   organisersContent: any;
   sponsorsContent: any;
   galleryContent: any;
+  hostingContent: any;
 
   eventDisplay: Boolean = false;
   speakersDisplay: Boolean = false;
@@ -55,8 +56,9 @@ export class PreviewEventPageComponent implements OnInit {
           this.organisersContent = this.dataContent.organizers;
           this.sponsorsContent = this.dataContent.sponsors;
           this.galleryContent = this.dataContent.images;
+          this.hostingContent = this.dataContent.hosted_on_links;
 
-          console.log(this.eventContent);
+          console.log(this.hostingContent);
 
           this.displayOptions();
         },
@@ -67,10 +69,10 @@ export class PreviewEventPageComponent implements OnInit {
   }
 
   displayOptions(){
+    if (Object.keys(this.pricingContent)?.length > 0) this.pricingDisplay = true;
     if (Object.keys(this.eventContent)?.length > 0) this.eventDisplay = true;
     if (Object.keys(this.speakersContent)?.length > 0) this.speakersDisplay = true;
     if (Object.keys(this.scheduleContent)?.length > 0) this.scheduleDisplay = true;
-    if (Object.keys(this.pricingContent)?.length > 0) this.pricingDisplay = true;
     if (Object.keys(this.organisersContent)?.length > 0) this.organisersDisplay = true;
     if (Object.keys(this.sponsorsContent)?.length > 0) this.sponsorsDisplay = true;
     if (Object.keys(this.galleryContent)?.length > 0) this.galleryDisplay = true;
