@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { ClipboardModule } from '@angular/cdk/clipboard'
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,21 +26,10 @@ import { SignupPageComponent } from './pages/user-auth/signup-page/signup-page.c
 import { DiscoverPageComponent } from './pages/discover-page/discover-page.component';
 import { SettingsPageComponent } from './pages/settings-page/settings-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
-import { EventPageComponent } from './pages/event-page/event-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LocationComponent } from './components/event-details/location/location.component';
-import { HeaderComponent } from './components/event-details/header/header.component';
-import { OrganizersComponent } from './components/event-details/organizers/organizers.component';
-import { PricingComponent } from './components/event-details/pricing/pricing.component';
-import { ScheduleComponent } from './components/event-details/schedule/schedule.component';
-import { SpeakersComponent } from './components/event-details/speakers/speakers.component';
-import { SponsorsComponent } from './components/event-details/sponsors/sponsors.component';
 import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
 
-import { BasicInfoComponent } from './components/event-details/basic-info/basic-info.component';
-import { BannerComponent } from './components/event-details/banner/banner.component';
-import { EventFooterComponent } from './components/event-details/event-footer/event-footer.component';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { AdBannerComponent } from './components/ad-banner/ad-banner.component';
 import { LiveEventsComponent } from './components/live-events/live-events.component';
@@ -89,7 +79,6 @@ import { PopularEventsPageComponent } from './pages/popular-events-page/popular-
 import { NewEventsPageComponent } from './pages/new-events-page/new-events-page.component';
 import { NewEventsComponent } from './components/new-events/new-events.component';
 import { PopularEventsComponent } from './components/popular-events/popular-events.component';
-import { GalleryComponent } from './components/event-details/gallery/gallery.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { HelpContentsComponent } from './components/help-contents/help-contents.component';
 import { HelpPageComponent } from './pages/help-page/help-page.component';
@@ -117,19 +106,8 @@ import { PreviewBannerComponent } from './components/preview-event/preview-banne
     DiscoverPageComponent,
     SettingsPageComponent,
     AccountPageComponent,
-    EventPageComponent,
     NavbarComponent,
     FooterComponent,
-    LocationComponent,
-    HeaderComponent,
-    OrganizersComponent,
-    PricingComponent,
-    ScheduleComponent,
-    SpeakersComponent,
-    SponsorsComponent,
-    BasicInfoComponent,
-    BannerComponent,
-    EventFooterComponent,
     AdBannerComponent,
     LiveEventsComponent,
     EventCategoriesComponent,
@@ -179,7 +157,6 @@ import { PreviewBannerComponent } from './components/preview-event/preview-banne
     NewEventsPageComponent,
     NewEventsComponent,
     PopularEventsComponent,
-    GalleryComponent,
     HelpContentsComponent,
     HelpPageComponent,
     HelpNavbarComponent,
@@ -201,6 +178,7 @@ import { PreviewBannerComponent } from './components/preview-event/preview-banne
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ClipboardModule,
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,

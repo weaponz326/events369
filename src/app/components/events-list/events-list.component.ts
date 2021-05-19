@@ -40,6 +40,7 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
   
   users_favorite_event_id_and_fav_id: any = []
+  users_favorite_event_id_and_visibilty: any = []
 
   @ViewChild('upcomingSlider') upcomingSlider: OwlCarousel | undefined;
   @ViewChild('popularSlider') popularSlider: OwlCarousel | undefined;
@@ -209,10 +210,13 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
           for (let i = 0; i < this.userFavorites.length; i++) {
             this.users_favorite_event_ids.push(this.userFavorites[i].id)
             this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites[i].id, fav_id: this.userFavorites[i].fav_id })
+            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites[i].id) })
             
             
           }
 
+          // console.log(this.users_favorite_event_id_and_fav_id)
+          // console.log(this.users_favorite_event_id_and_visibilty)
         },
         err => {
           console.log(err);
@@ -286,8 +290,17 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
       this.router.navigateByUrl('/login')
       
     } else {
+
+      // var favorite_buttons: HTMLCollection = document.getElementsByClassName('favorite-'+event_id);
+      var favorite_buttons = document.getElementsByClassName('favorite-'+event_id);
+
       
-      document.getElementById('favorite-'+event_id)?.style.setProperty('fill', 'rgba(255, 101, 80, 0.4)');
+      for (let item of favorite_buttons) {
+        item.setAttribute('style', 'display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;'); 
+        // item.style.fill = 'red';  // This is probably what you need for your SVG items
+      }
+      
+      // document.getElementById('favorite-'+event_id)?.style.setProperty('fill', 'rgba(255, 101, 80, 0.4)');
       
       this.userFavoriteService.addFavoriteEvent(event_id, this.userID).then(
         res => {
@@ -325,12 +338,30 @@ export class EventsListComponent implements OnInit, AfterViewChecked {
 
       if(this.users_favorite_event_id_and_fav_id[i].event_id == event_id) {
           favorite_id = this.users_favorite_event_id_and_fav_id[i].fav_id
-          console.log(favorite_id)
-      }
+
+          var favorite_buttons = document.getElementsByClassName('favorite-'+event_id);
+
       
+          for (let item of favorite_buttons) {
+            item.setAttribute('style', 'display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;'); 
+            // item.style.fill = 'red';  // This is probably what you need for your SVG items
+          }
+          
+      }
+
+      // TODO: low priority; remove duplicates from users_favorite_event_ids
+      // var unique_users_favorite_event_ids = [];
+
+      // unique_users_favorite_event_ids = this.users_favorite_event_ids.filter(function(item: any, pos: any) {
+      //   return this.users_favorite_event_ids.indexOf(item) == pos;
+      // })
+
+      var index = this.users_favorite_event_ids.indexOf(event_id);
+      if (index > -1) {
+        this.users_favorite_event_ids.splice(index, 1);
+      }
+
     }
-    // console.log(this.users_favorite_event_id_and_fav_id)
-    //   console.log(favorite_id)
 
       this.userFavoriteService.removeEventFromFavorite(favorite_id).then(
         res => {
