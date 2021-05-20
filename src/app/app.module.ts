@@ -95,6 +95,7 @@ import { PreviewGalleryComponent } from './components/preview-event/preview-gall
 import { PreviewSponsorsComponent } from './components/preview-event/preview-sponsors/preview-sponsors.component';
 import { PreviewLocationComponent } from './components/preview-event/preview-location/preview-location.component';
 import { PreviewBannerComponent } from './components/preview-event/preview-banner/preview-banner.component';
+import { RecoveryInvalidComponent } from './pages/user-auth/recovery-invalid/recovery-invalid.component';
 
 
 @NgModule({
@@ -172,6 +173,7 @@ import { PreviewBannerComponent } from './components/preview-event/preview-banne
     PreviewSponsorsComponent,
     PreviewLocationComponent,
     PreviewBannerComponent,
+    RecoveryInvalidComponent,
   ],
   imports: [
     BrowserModule,

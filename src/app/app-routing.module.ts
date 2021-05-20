@@ -35,6 +35,7 @@ import { SignupEmailComponent } from './pages/user-auth/signup-email/signup-emai
 import { SignupMoreInfoComponent } from './pages/user-auth/signup-more-info/signup-more-info.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { PreviewEventPageComponent } from './pages/preview-event-page/preview-event-page.component';
+import { RecoveryInvalidComponent } from './pages/user-auth/recovery-invalid/recovery-invalid.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'recovery_email',
     component: RecoveryEmailComponent
+  },
+  {
+    path: 'recovery_invalid',
+    component: RecoveryInvalidComponent
   },
   {
     path: 'password_reset',
