@@ -35,8 +35,8 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-floating mt-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="username" required>
-                      <label for="floatingInput">Email Address / Username</label>
+                      <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email" required>
+                      <label for="floatingInput">Email Address</label>
                     </div>
                     <small><span *ngFor="let x of errorMsgs?.errors?.email" class="text-danger">{{x}}</span></small>
                   </div>
