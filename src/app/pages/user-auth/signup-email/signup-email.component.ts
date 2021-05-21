@@ -23,20 +23,14 @@ export class SignupEmailComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
+      type: new FormControl('30', Validators.required)
     });
   }  
 
   onSubmit(){
     this.isSending = true;
 
-    var body = {
-      email: this.registerForm.value.email,
-      type: '30'
-    }
-
-    console.log(body);
-
-    this.auth.singupEmail(body).subscribe(
+    this.auth.singupEmail(this.registerForm.value).subscribe(
       res => {
         console.log(res);
         sessionStorage.setItem('registration_id', res.id);        
