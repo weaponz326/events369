@@ -79,10 +79,10 @@ const routes: Routes = [
     path: 'email_invalid',
     component: EmailInvalidComponent
   },
-  // {
-  //   path: 'phone_authentication',
-  //   component: PhoneAuthenticationComponent
-  // },
+  {
+    path: 'phone_authentication',
+    component: PhoneAuthenticationComponent
+  },
   {
     path: 'recovery_email',
     component: RecoveryEmailComponent
