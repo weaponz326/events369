@@ -33,7 +33,7 @@ export class SignupMoreInfoComponent implements OnInit {
     console.log(this.registerForm.value);
     this.isSending = true;
 
-    this.auth.regsiterUser(this.registerForm.value).subscribe(
+    this.auth.singupMoreInfo(this.registerForm.value).subscribe(
       res => {
         console.log(res);        
         if(res.message == 'Ok') this.showPrompt = true;

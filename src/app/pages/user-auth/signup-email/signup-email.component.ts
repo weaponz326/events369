@@ -27,12 +27,19 @@ export class SignupEmailComponent implements OnInit {
   }  
 
   onSubmit(){
-    console.log(this.registerForm.value);
     this.isSending = true;
 
-    this.auth.singupEmail(this.registerForm.value).subscribe(
+    var body = {
+      email: this.registerForm.value.email,
+      type: '30'
+    }
+
+    console.log(body);
+
+    this.auth.singupEmail(body).subscribe(
       res => {
-        console.log(res);        
+        console.log(res);
+        sessionStorage.setItem('registration_id', res.id);        
         if(res.message == 'Ok') this.showPrompt = true;
       },
       err => {
