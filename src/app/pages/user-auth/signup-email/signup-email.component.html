@@ -1,33 +1,26 @@
 <div class="container-fluid h-100">
     <div class="row align-items-center h-100">
-      <div class="offset-lg-3 col-lg-6 mx-auto">
+      <div class="col-lg-5 mx-auto my-auto form-card">
   
-        <div class="card">
+        <div class="card p-5">
           <div class="card-body">
             <div class="row">
-              <div class="col-lg-6 stuffs-side">
-                
-                <!-- comopnent -->
-  
-                <app-form-side-pane 
-                  [primaryText]="'Welcome back,'"
-                  [secondaryText]="'One account for all of our amazing products.'">
-                </app-form-side-pane>
-  
-              </div>
   
               <!-- ---------------------------------------------------------------------------- -->
   
-              <div class="col-lg-6 form-side">
+              <div class="col">
   
                 <!-- component -->
   
-                <app-form-header [formTitle]="'Create account'"></app-form-header>
+                <app-form-header 
+                  [formTitle]="'Create account'" 
+                  [subText]="'Sign to enjoy our suite of products'">
+                </app-form-header>
   
                 <!-- signup form -->
                 <form *ngIf="!showPrompt" [formGroup]="registerForm" (ngSubmit)="onSubmit()">                
   
-                  <div class="row text-center">
+                  <div class="row">
                     <div class="col">
                       <small class="text-danger">{{errorMsgs.message}}</small>
                     </div>
@@ -36,8 +29,8 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-floating mt-3">
-                            <input type="email" class="form-control" id="floatingFname" placeholder="Fname" formControlName="email" required>
-                            <label for="floatingFname">Email</label>
+                              <input type="email" class="form-control form-element" id="floatingFname" style="height: 48px;" placeholder="Fname" formControlName="email" required>
+                              <label for="floatingFname">Email</label>
                             </div>
                             <small><span *ngFor="let x of errorMsgs?.errors?.email" class="text-danger">{{x}}</span></small>
                         </div>
@@ -45,26 +38,45 @@
     
                     <div class="row mt-4">
                         <div class="col mb-1">
-                          <button type="submit" class="float-right btn btn-lg git-color ml-2">
-                            <span *ngIf="isSending" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+                          <button type="submit" class="float-right btn btn-lg btn-primary form-element form-btn">
+                            <span *ngIf="isSending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             Register
                           </button>
                         </div>
-                      </div>
-                    <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-    
-                  <div class="row mt-2 mb-5">
-                    <div class="col-lg-12">
-                      <p class="text-center">
-                        <small><a routerLink="/login" class="form-link">Already registered? Log in</a></small>
-                      </p>
-                    </div>
-                  </div>                  
-  
+                      </div>    
+            
                 </form>
                 <!-- /.signup form -->
   
-                <div *ngIf="showPrompt" class="row align-items-center">
+                <span class="text-center mx-5"><p>or sign up with</p></span>
+
+                <div class="row">
+                  <div class="col mb-2">
+                    <button type="button" class="float-right btn btn-lg border form-element form-btn">
+                      <!-- <span *ngIf="isSending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                      <span class="ml-3">
+                        <img class="rounded-circle social-logo" src="../../../../assets/images/social-media/099-google.png" alt="" width="25" height="25">
+                      </span>
+                      Google
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col mb-1">
+                    <button type="button" class="float-right btn btn-lg border form-element form-btn">
+                      <!-- <span *ngIf="isSending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+                      <span class="ml-3">
+                        <img class="rounded-circle social-logo" src="../../../../assets/images/social-media/036-facebook.png" alt="" width="25" height="25">
+                      </span>
+                      Facebook
+                    </button>
+                  </div>
+                </div>
+
+                <span class="mx-5"><p>Already have an account? <a href="#" routerLink="/login">Sign in</a></p></span>
+
+                <!-- <div *ngIf="showPrompt" class="row align-items-center">
                     <div class="col">
                         <div class="card my-5">
                             <div class="card-header text-center">
@@ -72,12 +84,10 @@
                             </div>
                         </div>
                     </div>
-                </div>                            
+                </div>                             -->
 
-                <!-- component -->
-  
-                <app-form-footer></app-form-footer>
-  
+               
+                
               </div>
   
             </div>
