@@ -53,6 +53,14 @@ export class UserAuthService {
     return this.http.post<any>(this.baseUrl + 'complete_registration/' + sessionStorage.getItem('registration_id'), body);      
   }
 
+  resendActivationLink(ecncryption: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'resend_verification_link/' + ecncryption, {});      
+  }
+
+  resendRecoveryLink(ecncryption: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'resend_pass_reset_link/' + ecncryption, {});      
+  }
+
   // signUpWithFacebook(): Observable<any> {
   //   return this.http.get<any>(this.facebookAuthUrl);      
   // }
