@@ -20,8 +20,8 @@
               <!-- lofin form -->
               <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">                
 
-                <div class="row text-center">
-                  <div class="col">
+                <div *ngIf="errorMsgs.message" class="row text-center">
+                  <div class="col alert alert-danger">
                     <small class="text-danger">{{errorMsgs.message}}</small>
                   </div>
                 </div>
