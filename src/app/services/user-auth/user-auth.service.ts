@@ -24,6 +24,7 @@ export class UserAuthService {
   }
 
   accountRecovery(user: any): Observable<any> {
+    console.log(user);
     return this.http.post<any>(this.baseUrl + 'forgotPassword', user);      
   }
 
