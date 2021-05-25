@@ -85,6 +85,7 @@
   text-align: center;
   font-size: .8rem;
 }
+
 p {
   font-size: .8rem !important;
 }
@@ -151,7 +152,19 @@ small {
 .social-logo {
   height: 26px;
   width: 26px;
-  margin-top: -4vh;
+  // margin-top: -4vh;
+}
+.text-muted {
+  font-size: .8rem;
+}
+
+.card-links:hover {
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.social-div {
+  margin-top: -3vh;
 }
 
 body {
