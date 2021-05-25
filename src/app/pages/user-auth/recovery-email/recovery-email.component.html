@@ -1,4 +1,7 @@
-<div class="container-fluid h-100">
+<section>
+  <div class="contents" style="padding-top: 10vh;">
+
+  <div class="container-fluid h-100">
   <div class="row align-items-center h-100">
     <div class="col-lg-5 mx-auto my-auto form-card">
 
@@ -26,7 +29,7 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-floating mt-3">
-                      <input type="email" class="form-control form-element" id="floatingFname" placeholder="Fname" formControlName="email" style="height: 48px;" required>
+                      <input type="email" class="form-control form-element" id="floatingFname" placeholder="" formControlName="email" style="height: 48px;" required>
                       <label for="floatingFname">Email</label>
                     </div>
                     <small><span *ngFor="let x of errorMsgs?.errors?.email" class="text-danger">{{x}}</span></small>
@@ -35,7 +38,7 @@
 
                 <div class="row mt-5">
                   <div class="col">
-                    <button class="float-right btn btn-primary form-element form-btn">
+                    <button class="float-right register-button btn btn-primary form-element form-btn">
                       <span *ngIf="isSending" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
                       Submit
                     </button>
@@ -67,3 +70,6 @@
     </div>
   </div>
 </div>
+
+</div>
+</section>
