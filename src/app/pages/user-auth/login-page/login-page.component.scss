@@ -7,7 +7,8 @@
 }
 
 .form-element {
-  border-radius: 21px;
+  // border-radius: 21px;
+  border-radius: 8px;
   height: 42px;
 }
 
@@ -22,7 +23,7 @@
   // color: #000;
   // background-color: #fff;
   border: none;
-  border-radius: 45px;
+  border-radius: 8px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
@@ -47,6 +48,20 @@
   transform: translateY(-7px);
 }
 
+.zoom {
+  // padding: 50px;
+  // background-color: green;
+  transition: transform .2s; /* Animation */
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.07);
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 .socialite-buttons {
   margin-bottom: 2vh !important;
   // font-size: 1px !important;
@@ -68,6 +83,10 @@
   display: flex;
   align-items: center;
   text-align: center;
+  font-size: .8rem;
+}
+p {
+  font-size: .8rem !important;
 }
 
 .separator::before,
@@ -101,9 +120,28 @@
   padding: .7rem 1.50rem !important;
 }
 
+.form-control {
+  padding: .9rem .9rem !important;
+  font-size: .8rem;
+  line-height: 1.6;
+  padding-top: .5rem !important;
+}
+
 .form-floating > .form-select {
   padding-top: .5rem !important;
   padding: .3rem 1.2rem !important;
+}
+
+.mb-2 {
+  margin-bottom: -1rem !important;
+}
+
+.card {
+  border-radius: 1.25rem !important;
+}
+
+small {
+  font-size: .8rem !important;
 }
 
 .custom-select {
@@ -111,9 +149,9 @@
 }
 
 .social-logo {
-  height: 40px;
-  width: 40px;
-  margin-top: -.5vh;
+  height: 26px;
+  width: 26px;
+  margin-top: -4vh;
 }
 
 body {
@@ -157,4 +195,20 @@ section:before {
 
 small {
   margin-left: 1.5rem;
+}
+
+
+@media (max-width: 1500px) {
+  .contents {
+    padding-top: 50vh;
+  }
+}
+
+.alert-danger {
+  margin: .7rem !important;
+}
+
+.alert {
+  padding: .5rem .5rem !important;
+  border-radius: 8px !important;
 }
