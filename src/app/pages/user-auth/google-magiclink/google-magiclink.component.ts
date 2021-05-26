@@ -74,8 +74,8 @@ export class GoogleMagiclinkComponent implements OnInit {
         res => {
           console.log(res);
 
-          // sessionStorage.setItem('user_id', res.user.id);
-          // sessionStorage.setItem('x_auth_token', res.token);
+          sessionStorage.setItem('user_id', res.user.id);
+          sessionStorage.setItem('x_auth_token', res.token);
 
           sessionStorage.setItem('user_id', res.id);
           sessionStorage.setItem('user_phone', res.phone);
