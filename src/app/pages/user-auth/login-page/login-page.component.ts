@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
 
   images = ['../../../../assets/images/samantha-gades-fIHozNWfcvs-unsplash.webp', '../../../../assets/images/pexels-august-de-richelieu-4262413.jpg', '../../../../assets/images/pexels-christina-morillo-1181433.jpg', '../../../../assets/images/pexels-jopwell-2422280.jpg', '../../../../assets/images/pexels-nandhu-kumar-1613240.jpg', '../../../../assets/images/istockphoto-1243928117-612x612.jpg']
-  image = this.images[this.getRandomInt(0, 4)]
+  image = this.images[this.getRandomInt(0, 5)]
 
   constructor(private auth: UserAuthService, private router: Router) {
   }
@@ -39,11 +39,14 @@ export class LoginPageComponent implements OnInit {
         res => {
           console.log(res);
 
-          // sessionStorage.setItem('user_id', res.user.id);
-          // sessionStorage.setItem('x_auth_token', res.token);
-
-          sessionStorage.setItem('user_id', res.id);
-          sessionStorage.setItem('user_phone', res.phone);
+          sessionStorage.setItem('user_id', res.user.id);
+          sessionStorage.setItem('x_auth_token', res.token);
+          
+          sessionStorage.setItem('events_user_id', res.user.id);
+          sessionStorage.setItem('events_user_name', res.user.name);
+          sessionStorage.setItem('events_user_email', res.user.email);
+          // sessionStorage.setItem('user_id', res.id);
+          sessionStorage.setItem('user_phone', res.user.phone);
 
           // TODO: reroute according 2fa 
 
