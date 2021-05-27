@@ -101,6 +101,7 @@ import { FacebookMagiclinkComponent } from './pages/user-auth/facebook-magiclink
 import { MagiclinkSuccessComponent } from './pages/user-auth/magiclink-success/magiclink-success.component';
 import { MagiclinkInvalidComponent } from './pages/user-auth/magiclink-invalid/magiclink-invalid.component';
 import { MoreProfileComponent } from './pages/user-auth/more-profile/more-profile.component';
+import { AccountProfileComponent } from './pages/profile/account-profile/account-profile.component';
 
 
 @NgModule({
@@ -184,6 +185,7 @@ import { MoreProfileComponent } from './pages/user-auth/more-profile/more-profil
     MagiclinkSuccessComponent,
     MagiclinkInvalidComponent,
     MoreProfileComponent,
+    AccountProfileComponent,
   ],
   imports: [
     BrowserModule,
