@@ -27,18 +27,18 @@ export class UserAccountService {
 
   editProfile(profile: any, photo: File): Promise<any> {
     return new Promise((resolve, reject) => {
-      // const formData = new FormData();
-      // formData.append('profile', photo);
-      // formData.append('firstname', profile.organizer);
-      // formData.append('lastname', profile.email);
-      // formData.append('country', profile.phone);
-      // formData.append('phone', profile.phone);
-      // formData.append('usertype', profile.phone);
-      // formData.append('dob', profile.phone);
-      // formData.append('gender', profile.phone);
+      const formData = new FormData();
+      formData.append('profile', photo);
+      formData.append('firstname', profile.firstname);
+      formData.append('lastname', profile.lastname);
+      formData.append('country', profile.country);
+      formData.append('phone', profile.phone);
+      formData.append('usertype', profile.usertype);
+      formData.append('dob', profile.dob);
+      formData.append('gender', profile.gender);
 
       const url = this.editProfileUrl;
-      this.http.post<any>(url, JSON.stringify(profile), { headers: this.headers }).subscribe(
+      this.http.post<any>(url, formData, { headers: this.formHeaders }).subscribe(
         res => {
           console.log('edit_profile_ok: ', res);
           resolve(res);

@@ -8,11 +8,19 @@
 
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="row mb-5">
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="profile-image-div text-center">
                                 <input type="file" class="photo-input" formControlName="photo" (change)="onFileSelected($event)" #photoUpload>
-                                <img [src]="imgSrc" alt="" class="rounded-circle photo-image" width="150" height="150" (click)="photoUpload.click()">
+                                <img [src]="imgSrc" alt="{{currentUser.name}}'s photo" class="rounded-circle photo-image" width="150" height="150" (click)="photoUpload.click()">                              
+                                <!-- <img src="../../../../assets/images/avatar-placeholder.png" alt="" class="rounded-circle photo-image" width="150" height="150" (click)="photoUpload.click()">                        -->
+                                <div class="avatar-edit"><i class="bi bi-pencil-fill"></i></div>
                             </div>
+                           
+                        </div>
+                        <div *ngIf="currentUser" class="col-lg-4 col-md-6 my-auto profile-summary">
+                            {{currentUser.name}} <br>
+                            <!-- Event Organizer, GiT <br> -->
+                            {{getCountry(currentUser.country)}}
                         </div>
                     </div>
 
@@ -553,7 +561,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mt-3">
-                                <label class="form-label" for="floatingFname" style="margin-bottom: 0;">User Type</label>
+                                <label class="form-label" for="floatingFname" style="margin-bottom: 0;">Account Type</label>
                                 <select type="text" class="form-control form-element" id="floatingInput" style="height: 42px;" formControlName="usertype" required>
                                     <option value="30">Individual</option>
                                     <option value="31">Organization</option>
