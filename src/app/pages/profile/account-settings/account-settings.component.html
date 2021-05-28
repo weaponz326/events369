@@ -1,4 +1,4 @@
-<app-account-side-menu></app-account-side-menu>
+<app-account-side-menu [currentPage]=""></app-account-side-menu>
 
 <div class="main">
     <div class="mt-5">
@@ -249,14 +249,14 @@
                                         <div class="col-lg-7">
                                             <div class="mt-3">
                                                 <label class="form-label" for="floatingFname" style="margin-bottom: 0;">Phone No.</label>
-                                                <input type="text" class="form-control form-element" id="floatingInput" style="height: 42px;" formControlName="phone" required>
+                                                <input type="text" class="form-control form-element" id="phone" style="height: 42px;" formControlName="phone" required>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <small><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small> -->
+                                    <small><span *ngFor="let x of twoFaErrorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small>
                                     <div class="row mt-3">
                                         <div class="col">
-                                            <button class="register-button btn btn-primary form-element form-btn" [disabled]="!twoFA">
+                                            <button class="account-button btn btn-primary form-element form-btn" [disabled]="!twoFA">
                                                 <span *ngIf="isSendingTwoFA" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
                                                 Set 2FA
                                             </button>
@@ -280,32 +280,41 @@
                                 <div class="col-lg-6">
                                     <div class="mt-1">
                                         <label class="form-label" for="floatingFname" style="margin-bottom: 0;">Current Password</label>
-                                        <input type="password" class="form-control form-element" id="floatingInput" style="height: 42px;" formControlName="current_password" required>
+                                        <input type="password" class="form-control form-element" id="currentPassword" style="height: 42px;" formControlName="current_password" required>
                                     </div>
-                                    <!-- <small><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small> -->
+                                    <small><span *ngFor="let x of passwordErrorMsgs?.errors?.current_password" class="text-danger">{{x}}</span></small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mt-1">
                                         <label class="form-label" for="floatingFname" style="margin-bottom: 0;">New Password</label>
-                                        <input type="password" class="form-control form-element" id="floatingInput" style="height: 42px;" formControlName="new_password" required>
+                                        <input type="password" class="form-control form-element" id="newPassword" style="height: 42px;" formControlName="new_password" required>
                                     </div>
-                                    <!-- <small><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small> -->
+                                    <small><span *ngFor="let x of passwordErrorMsgs?.errors?.new_password" class="text-danger">{{x}}</span></small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mt-1">
                                         <label class="form-label" for="floatingFname" style="margin-bottom: 0;">Confirm New Password</label>
-                                        <input type="password" class="form-control form-element" id="floatingInput" style="height: 42px;" formControlName="new_password_confirmation" required>
+                                        <input type="password" class="form-control form-element" id="confirmPassword" style="height: 42px;" formControlName="new_password_confirmation" required>
                                     </div>
-                                    <!-- <small><span *ngFor="let x of errorMsgs?.errors?.lastname" class="text-danger">{{x}}</span></small> -->
+                                    <small><span *ngFor="let x of passwordErrorMsgs?.errors?.new_password_confirmation" class="text-danger">{{x}}</span></small>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-lg-6">
+                                    <div class="my-2">
+                                        <div *ngIf="passwordMsg != ''" class="alert alert-danger">
+                                            <p>{{passwordMsg}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <button class="register-button btn btn-primary form-element form-btn">
+                                    <button class="account-button btn btn-primary form-element form-btn">
                                         <span *ngIf="isSendingPassword" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
                                         Reset
                                     </button>

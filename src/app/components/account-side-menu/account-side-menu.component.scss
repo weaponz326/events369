@@ -43,3 +43,33 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.active {
+  border-right: 2px solid rgb(34, 34, 34);
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav {
+    width: 60px;
+    text-align: center;
+  }
+
+  .sidenav a:not(i) {
+    padding: 5px 2px;
+    text-decoration: none;
+    font-size: 10px;
+    color: var(--ev-menu-item);
+    font-weight: 500;
+    display: block;
+  }
+
+  .sidenav i {
+    padding: 5px auto;
+    text-decoration: none;
+    font-size: 26px;
+    color: var(--ev-menu-item);
+    font-weight: 500;
+    display: block;
+  }
+
+}

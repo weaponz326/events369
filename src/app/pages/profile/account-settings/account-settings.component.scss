@@ -2,4 +2,14 @@
     margin-left: 250px !important; /* Same as the width of the sidebar */
     padding: 0px 40px;
 }
-  
+
+.account-button {
+    width: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .main {
+        margin-left: 60px !important; /* Same as the width of the sidebar */
+        padding: 0px 10px;
+    }
+}

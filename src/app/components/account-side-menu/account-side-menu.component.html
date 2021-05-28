@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 <div class="sidenav border-right" style="background-color: var(--ev-background);color: var(--primary-color);">
-  <a routerLink="/account/profile">Profile</a>
-  <a routerLink="/account/settings">Settings</a>
+  <!-- <div class="text-center"><p><b>User Account</b></p></div> -->
+  <a routerLink="/account/profile" [class.active] = "current_route == 'profile'"><i class="bi bi-person-circle"></i> Profile</a>
+  <a routerLink="/account/settings" [class.active] = "current_route == 'settings'"><i class="bi bi-gear"></i> Settings</a>
   <!-- <a href="#">Package</a>
   <a href="#">Payments</a>
   <a href="#">Charges & Credits</a>

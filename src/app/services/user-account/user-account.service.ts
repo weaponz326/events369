@@ -41,12 +41,13 @@ export class UserAccountService {
       this.http.post<any>(url, JSON.stringify(profile), { headers: this.headers }).subscribe(
         res => {
           console.log('edit_profile_ok: ', res);
-          if (_.toLower(res.message) == 'ok') {
-            resolve(res.message); 
-          }
-          else {
-            resolve(0);
-          }
+          resolve(res);
+          // if (_.toLower(res.message) == 'ok') {
+          //   resolve(res.message); 
+          // }
+          // else {
+          //   resolve(0);
+          // }
         },
         err => {
           console.error('edit_profile_error: ', err);
@@ -58,13 +59,11 @@ export class UserAccountService {
 
   getCurrentUser(): Promise<any> {
     return new Promise((resolve, reject) => {
-      let event;
       const url = this.getUserUrl;
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
           console.log('get_user_ok: ', res);
-          event = res;
-          resolve(event);
+          resolve(res);
         },
         err => {
           console.log('get_user_error: ', err);
@@ -81,12 +80,13 @@ export class UserAccountService {
       this.http.post<any>(this.enableTwoFaUrl, JSON.stringify(phone), { headers: this.headers}).subscribe(
         res => {
           console.log('edit_event_ok: ', res);
-          if (_.toLower(res.message) == 'ok') {
-            resolve(true);            
-          }
-          else {
-            resolve(false);
-          }
+          resolve(res);
+          // if (_.toLower(res.message) == 'ok') {
+          //   resolve(true);            
+          // }
+          // else {
+          //   resolve(false);
+          // }
         },
         err => {
           console.error('edit_event_error: ', err);
@@ -103,12 +103,13 @@ export class UserAccountService {
       this.http.post<any>(url, JSON.stringify(password), { headers: this.headers}).subscribe(
         res => {
           console.log('edit_event_ok: ', res);
-          if (_.toLower(res.message) == 'ok') {
-            resolve(true);            
-          }
-          else {
-            resolve(false);
-          }
+          resolve(res);
+          // if (_.toLower(res.message) == 'ok') {
+          //   resolve(true);            
+          // }
+          // else {
+          //   resolve(false);
+          // }
         },
         err => {
           console.error('edit_event_error: ', err);

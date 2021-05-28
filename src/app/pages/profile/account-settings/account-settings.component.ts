@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserAccountService } from 'src/app/services/user-account/user-account.service';
 
 @Component({
@@ -11,19 +12,29 @@ export class AccountSettingsComponent implements OnInit {
 
   twoFA: boolean = false;
   userId: any;
+  userPhone: any;
 
   isLoading: boolean;
   isSendingPassword: boolean;
   isSendingTwoFA: boolean;
+  passwordMsg: string;
+  passwordErrorMsgs: any;
+  twoFaErrorMsgs: any;
   saved: boolean;
   twoFaForm: FormGroup = new FormGroup({});
   passwordForm: FormGroup = new FormGroup({});
   formBuilder: any;
 
-  constructor(private userAccountService: UserAccountService) { 
+  current_route:string = '';
+
+  constructor(
+    private userAccountService: UserAccountService,
+    private router: Router
+    ) { 
     this.isLoading = false;
     this.isSendingPassword = false;
     this.isSendingTwoFA = false;
+    this.passwordMsg = '';
     this.saved = false;
   }
 
@@ -33,10 +44,10 @@ export class AccountSettingsComponent implements OnInit {
     this.initPasswordForm();
   }
 
-  initTwoFaForm(): void {
+  initTwoFaForm(): void {    
     this.twoFaForm = new FormGroup({
-      country_code: new FormControl(''),            
-      phone: new FormControl(''),            
+      country_code: new FormControl(),            
+      phone: new FormControl(),            
     })
   }
 
@@ -62,20 +73,23 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   onTwoFaSubmit() {
-    let formatedPhone = this.formatPhoneNo(this.twoFaForm.controls.country_code.value, this.twoFaForm.controls.country_code.value);
+    let formatedPhone = this.formatPhoneNo(this.twoFaForm.controls.country_code.value, this.twoFaForm.controls.phone.value);
     console.log(formatedPhone);
     this.isSendingTwoFA = true;
 
-    this.userAccountService.enableTwoFA(formatedPhone)
+    let phoneData = { phone: formatedPhone };
+
+    this.userAccountService.enableTwoFA(phoneData)
       .then(
         res => {
           console.log(res);
-          this.isSendingTwoFA = false
+          this.twoFaErrorMsgs = [];
+          this.isSendingTwoFA = false;
         },
         err => {
           console.log(err)
           this.isSendingTwoFA = false;
-          // this.errorMsgs = err.error;
+          this.twoFaErrorMsgs = err.error;
         }
       );
   }
@@ -93,12 +107,15 @@ export class AccountSettingsComponent implements OnInit {
       .then(
         res => {
           console.log(res);
-          this.isSendingPassword = false
+          this.isSendingPassword = false;
+          this.passwordErrorMsgs = [];
+          this.passwordMsg = res.message;
+          
         },
         err => {
           console.log(err)
           this.isSendingPassword = false;
-          // this.errorMsgs = err.error;
+          this.passwordErrorMsgs = err.error;
         }
       );
   }
@@ -109,11 +126,35 @@ export class AccountSettingsComponent implements OnInit {
         console.log(res);
         this.userId = res.id;
         if(res.two_way == 1) this.twoFA = true;
+        this.enablePhone();
+
+        if (res.phone) {
+          console.log('has phone');
+          this.userPhone = res.phone;
+          this.populateTwoFaForm();
+        }
       },
       err => {
         console.log(err);
       }
     );
+  }
+
+  populateTwoFaForm() {
+    var code, number;
+    if(this.userPhone) {
+      code = this.userPhone.substring(0,3);
+      number = this.userPhone.substring(3);
+      console.log(code);
+      console.log(number);
+    }
+    else {
+      code = null;
+      number = null;
+    }
+
+    this.twoFaForm.controls.country_code.setValue(code);
+    this.twoFaForm.controls.phone.setValue(number);
   }
 
   formatPhoneNo(code: any, phone: any){    
