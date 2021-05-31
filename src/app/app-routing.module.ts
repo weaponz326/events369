@@ -107,7 +107,7 @@ const routes: Routes = [
     component: GoogleMagiclinkComponent,
   },
   {
-    path: 'facebook_magiclink',
+    path: 'magiclink_confirmed',
     component: FacebookMagiclinkComponent,
   },
   {
