@@ -27,7 +27,7 @@
               <!-- lofin form -->
               <form *ngIf="!showPrompt" [formGroup]="recoveryForm" (ngSubmit)="onSubmit()">
                       
-                  <div *ngIf="errorMsgs.message" class="row text-center">
+                  <div *ngIf="errorMsgs?.message" class="row text-center">
                     <div class="col alert alert-danger" style="margin-top: 0 !important;margin-bottom: 2.5rem !important;">
                       <small class="text-danger">{{errorMsgs.message}}</small>
                     </div>
@@ -39,7 +39,10 @@
                       <label class="form-label" for="floatingFname" style="margin-bottom: 0;font-size: 0.8rem;margin-left: 5px !important;">Email</label>
                       <input type="email" class="form-control form-element" id="floatingFname" placeholder="" formControlName="email" style="height: 42px;" required>
                     </div>
-                    <small style="margin-left: 0rem !important;"><span *ngFor="let x of errorMsgs?.errors?.email" class="text-danger">{{x}}</span></small>
+                    <small *ngFor="let x of errorMsgs?.errors?.email"><span class="text-danger">{{x}}</span></small>
+                    <small *ngIf="saved && recoveryForm.controls.email.errors" class="text-danger">
+                      Email format is incorrect.
+                    </small>
                   </div>
                 </div>
 
