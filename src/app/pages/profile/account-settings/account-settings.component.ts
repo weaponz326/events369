@@ -139,6 +139,7 @@ export class AccountSettingsComponent implements OnInit {
             }
             else {
               this.passwordMsg = res.message;
+              console.log(res.message);
             }            
           },
           err => {

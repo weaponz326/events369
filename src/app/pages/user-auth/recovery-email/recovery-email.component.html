@@ -50,7 +50,7 @@
                   <div class="col">
                     <button class="float-right register-button btn btn-primary form-element form-btn">
                       <span *ngIf="isSending" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
-                      Log in
+                      Submit
                     </button>
                   </div>
                 </div>   
@@ -71,9 +71,9 @@
                   </div>
 
                   <div class="col-lg-12 my-3">
-                    <button type="submit" class="register-button float-right btn btn-primary form-element form-btn">
+                    <button type="submit" class="register-button float-right btn btn-primary form-element form-btn" (click)="resend()">
                       <span *ngIf="isResending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                      Resend
+                      Resend Link
                     </button>
                   </div>
               </div>
