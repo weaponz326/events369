@@ -197,4 +197,12 @@ export class CreateEventMediaComponent implements OnInit {
     }
   }
 
+  previous(): void {
+    this.router.navigateByUrl('/create_advanced/speakers');
+  }
+
+  save(): void {
+    this.router.navigateByUrl('/create_advanced/sponsors');
+  }
+
 }

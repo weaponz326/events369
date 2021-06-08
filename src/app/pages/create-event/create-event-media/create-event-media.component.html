@@ -166,5 +166,16 @@
             </div>
         </div>
 
+        <div class="col-12">
+
+          <div class="navigation">
+            <div class="nav-buttons">
+              <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
+              <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="save()">Continue</button>
+              <app-loading-button *ngIf="isLoading"></app-loading-button>
+            </div>
+          </div>
+        </div>
+
     </div>
 </div>
