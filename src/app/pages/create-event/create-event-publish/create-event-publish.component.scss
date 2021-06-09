@@ -156,6 +156,10 @@
   height: 300px;
 }
 
+.form-check-input {
+  margin-left: 0 !important;
+}
+
 @media (max-width: 780px) {
   .only-non-mobile {
     // display: none;

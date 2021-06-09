@@ -27,6 +27,21 @@ export class CreateEventPublishComponent implements OnInit {
 
   eventTickets: any;
 
+  includePrefix: boolean = false;
+  requirePrefix: boolean = false;
+  includeFirstName: boolean = true;
+  requireFirstName: boolean = true;
+  includeLastName: boolean = true;
+  requireLastName: boolean = true;
+  includeGender: boolean = false;
+  requireGender: boolean = false;
+  includeEmail: boolean = true;
+  requireEmail: boolean = true;
+  includePhone: boolean = false;
+  requirePhone: boolean = false;
+  includeAddress: boolean = false;
+  requireAddress: boolean = false;
+
   constructor(
     private router: Router, 
     private publishingService: PublishingService,
