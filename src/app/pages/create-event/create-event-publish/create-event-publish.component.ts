@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { PublishingService } from 'src/app/services/publishing/publishing.service';
 import { TicketsService } from 'src/app/services/tickets/tickets.service';
 import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service';
+import { PrefixNot } from '@angular/compiler';
 
 @Component({
   selector: 'app-create-event-publish',
@@ -12,6 +13,10 @@ import { BasicInfoService } from 'src/app/services/basic-info/basic-info.service
 export class CreateEventPublishComponent implements OnInit {
 
   isLoading: boolean;
+  allowCancel: number = 0;
+  cancelRules: number = 0;
+
+  rsvpForm: any[] = [];
 
   eventTitle: string = ''
   eventDate: string = ''
@@ -73,30 +78,79 @@ export class CreateEventPublishComponent implements OnInit {
     this.router.navigateByUrl('/create_event/ticketing');
   }
 
-  publish(): void {    
-      this.isLoading = true;
-      // this.router.navigateByUrl('/create_event/more_details');
-      this.publishingService.publishEvent(this.eventId).then(
-        res => {
-          if (res) {
-            console.log(res);
-            this.isLoading = false;
-            if(res.message == 'OK') {
+  publish(): void {   
+    this.isLoading = true;
+    // publish
+    let body = {
+      allow_cancel: this.allowCancel,
+      cancel_rules: this.cancelRules
+    } 
+    this.publishingService.publishEvent(this.eventId, body).then(
+      res => {
+        if (res) {
+          console.log(res);
+          this.isLoading = false;
+          if(res.message == 'OK') {            
+            this.createRsvpForm();
+          }
+        }
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );    
+  }
 
-              this.saveCreatedEvent(this.eventId).then(
+  createRsvpForm() {
+    this.isLoading = true;
+    this.fillRsvpForm();
+    console.log(this.rsvpForm);
+
+    this.publishingService.createRsvpForm(this.eventId, this.rsvpForm, 0).then(
+      res => {
+        if (res) {
+          console.log(res);
+          this.isLoading = false;
+          if(res.message == 'OK') {
+            this.saveCreatedEvent(this.eventId).then(
               ok => {
                 if (ok) this.router.navigateByUrl('/user_events');;
               }                               
             );
-              
-            }
           }
-        },
-        err => {
-          console.log(err);
-          this.isLoading = false;
         }
-      );
+      },
+      err => {
+        console.log(err);
+        this.isLoading = false;
+        this.rsvpForm = [];
+      }
+    );
+  }
+
+  fillRsvpForm() {
+    if(this.includePrefix == true) {
+      this.rsvpForm.push({ field_name: "Prefix", required: this.requirePrefix });
+    }
+    if(this.includeFirstName == true) {
+      this.rsvpForm.push({ field_name: "First Name", required: this.requireFirstName });
+    }
+    if(this.includeLastName == true) {
+      this.rsvpForm.push({ field_name: "Last Name", required: this.requireLastName });
+    }
+    if(this.includeGender == true) {
+      this.rsvpForm.push({ field_name: "Gender", required: this.requireGender });
+    }
+    if(this.includeEmail == true) {
+      this.rsvpForm.push({ field_name: "Email", required: this.requireEmail });
+    }
+    if(this.includePhone == true) {
+      this.rsvpForm.push({ field_name: "Phone No.", required: this.requirePhone });
+    }
+    if(this.includeAddress == true) {
+      this.rsvpForm.push({ field_name: "Address", required: this.requireAddress });
+    }
   }
 
   getTickets(): any {
