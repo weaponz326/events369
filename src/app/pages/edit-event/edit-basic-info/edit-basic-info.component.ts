@@ -123,7 +123,7 @@ export class EditBasicInfoComponent implements OnInit {
       category_id: [this.event.category, Validators.required],
       subcategory_id: [this.event.subcategory, Validators.required],
       tags: '',
-      venue_tobe_announced: [0],
+      // venue_tobe_announced: [0],
       hosting: [this.event.hosting]
     });
 
@@ -223,7 +223,7 @@ export class EditBasicInfoComponent implements OnInit {
       category_id: this.f.category_id.value,
       subcategory_id: this.f.subcategory_id.value,
       tags: this.tagsString,
-      venue_tobe_announced: this.recurringStore,
+      // venue_tobe_announced: this.recurringStore,
       hosting: this.event.hosting,
       ticketing: this.f.ticketing.value
     };
