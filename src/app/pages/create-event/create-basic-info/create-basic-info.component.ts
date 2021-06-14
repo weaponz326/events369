@@ -28,7 +28,7 @@ export class CreateBasicInfoComponent implements OnInit {
   isTimeCorrect: boolean;
   isTimeIntervalCorrect: boolean;
 
-  hosting: any = 1
+  hosting: any = 1;
 
   url: string = '';
   currentRoute: string = '';
@@ -66,6 +66,7 @@ export class CreateBasicInfoComponent implements OnInit {
     // this.toggleVenueView();
     this.getCategories();
     this.disableSubcategory();
+    this.setHosting(1);
   }
 
   public get f(): any {
@@ -121,9 +122,12 @@ export class CreateBasicInfoComponent implements OnInit {
 
     // if date is same check time
     if (ed == sd){
+      // check if event date is today and
       // check if event time is greater than current time
-      if (st > now) this.isTimeCorrect = true;
-      else this.isTimeCorrect = false;
+      if (sd == today) {
+        if (st > now) this.isTimeCorrect = true;
+        else this.isTimeCorrect = false;
+      }
 
       // check if end date is greater start date
       if (et > st) this.isTimeIntervalCorrect = true;
@@ -152,16 +156,25 @@ export class CreateBasicInfoComponent implements OnInit {
               ok => {
                 if (ok) {
                   this.isLoading = false;
-                  data.recurring == '1'
-                    ? this.router.navigateByUrl('/create_event/schedule')
-                    : this.router.navigateByUrl('/create_event/more_details');
+                  if(data.recurring == '1') {
+                    window.location.href = '/create_event/schedule';
+                  }
+                  else {
+                    window.location.href = '/create_event/more_details';
+                  }
+                    // ? this.router.navigateByUrl('/create_event/schedule')
+                  //  window.location.href = '/create_event/more_details';
+                    // : this.router.navigateByUrl('/create_event/more_details');
                 }
               },
               err => {
                 // we still navigate but will get the data from the side menu.
-                data.recurring == '1'
-                  ? this.router.navigateByUrl('/create_event/schedule')
-                  : this.router.navigateByUrl('/create_event/more_details');
+                if(data.recurring == '1') {
+                  window.location.href = '/create_event/schedule';
+                }
+                else {
+                  window.location.href = '/create_event/more_details';
+                }
               }
             );
           }
