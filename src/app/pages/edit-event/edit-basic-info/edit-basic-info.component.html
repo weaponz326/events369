@@ -368,7 +368,10 @@
                     <div class="form-floating">
                       <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" 
-                          formControlName="venue" [ngClass]="{'is-invalid': saved && f.venue.errors, 'is-valid': !f.venue.errors && f.venue.value != ''}">
+                          formControlName="venue" [ngClass]="{'is-invalid': saved && f.venue.errors, 'is-valid': !f.venue.errors && f.venue.value != ''}"
+                          ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)">
+                        <!-- <input type="text" class="form-control" id="floatingVenue" aria-describedby="titleHelp" placeholder="Venue" 
+                          formControlName="venue" [ngClass]="{'is-invalid': saved && f.venue.errors, 'is-valid': !f.venue.errors && f.venue.value != ''}"> -->
                         <label for="floatingVenue">Venue</label>
                         <small *ngIf="saved && f.venue.errors" id="titleHelp" class="form-text invalid-feedback">
                           Venue is required for physical events.
