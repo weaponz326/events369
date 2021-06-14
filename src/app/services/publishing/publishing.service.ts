@@ -12,12 +12,14 @@ export class PublishingService {
   private headers: HttpHeaders;
   publishUrl: string;
   rsvpUrl: string;
+  getRsvpUrl: string;
   
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
     this.publishUrl = this.endpoint.apiHost + '/v1/publish_event/';
-    this.rsvpUrl = this.endpoint.apiHost + 'v1/rsvping_form/';
+    this.rsvpUrl = this.endpoint.apiHost + '/v1/rsvping_form/';
+    this.getRsvpUrl = this.endpoint.apiHost + '/get_rsvp_form/';
   }
   
   publishEvent(eventId: any, body: any): Promise<any> {
@@ -64,6 +66,24 @@ export class PublishingService {
         },
         err => {
           console.error('publish_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getRsvp(eventId: string): Promise<Array<any>> {
+    return new Promise((resolve, reject) => {
+      let tickets: any[] = [];
+      const url = this.getRsvpUrl + eventId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_rsvp_ok: ', res);
+          tickets = res;
+          resolve(tickets);
+        },
+        err => {
+          console.log('get_rsvp_error: ', err);
           reject(err);
         }
       );

@@ -15,8 +15,11 @@ export class CreateEventPublishComponent implements OnInit {
   isLoading: boolean;
   allowCancel: number = 0;
   cancelRules: number = 0;
+  publishErrors: any[] = [];
 
   rsvpForm: any[] = [];
+  existingRsvpId: any = 0;
+  existingRsvpForm: any;
 
   eventTitle: string = ''
   eventDate: string = ''
@@ -72,6 +75,7 @@ export class CreateEventPublishComponent implements OnInit {
     this.eventContactPhone = data.event[0].contact_phone;
     
     this.getTickets();
+    this.getRsvp();
   }
 
   previous() {
@@ -82,8 +86,8 @@ export class CreateEventPublishComponent implements OnInit {
     this.isLoading = true;
     // publish
     let body = {
-      allow_cancel: this.allowCancel,
-      cancel_rules: this.cancelRules
+      allow_cancel: this.allowCancel.toString(),
+      cancel_rules: this.cancelRules.toString()
     } 
     this.publishingService.publishEvent(this.eventId, body).then(
       res => {
@@ -93,11 +97,13 @@ export class CreateEventPublishComponent implements OnInit {
           if(res.message == 'OK') {            
             this.createRsvpForm();
           }
+          this.publishErrors = [];
         }
       },
       err => {
         console.log(err);
         this.isLoading = false;
+        this.publishErrors = err.error.message;
       }
     );    
   }
@@ -107,7 +113,7 @@ export class CreateEventPublishComponent implements OnInit {
     this.fillRsvpForm();
     console.log(this.rsvpForm);
 
-    this.publishingService.createRsvpForm(this.eventId, this.rsvpForm, 0).then(
+    this.publishingService.createRsvpForm(this.eventId, this.rsvpForm, this.existingRsvpId).then(
       res => {
         if (res) {
           console.log(res);
@@ -183,4 +189,72 @@ export class CreateEventPublishComponent implements OnInit {
     });
   }
 
+  getRsvp(): any {
+    this.publishingService.getRsvp(this.eventId).then(
+      rsvp => {
+        console.log(rsvp);
+        this.existingRsvpId = rsvp[0].id;
+        this.existingRsvpForm = rsvp[0].form_fields;
+        
+        if (rsvp[0].id) {
+          this.populateRsvpForm(rsvp[0].form_fields);
+        }
+      }
+    );
+  }
+  
+  populateRsvpForm(form: any) {
+    console.log(form)
+    if(form.find((key: { field_name: string; }) => key.field_name === 'Prefix')){
+      this.includePrefix = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "Prefix");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requirePrefix = true;
+      }
+    }
+    if(form.find((key: { field_name: string; }) => key.field_name === 'First Name')){
+      this.includeFirstName = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "First Name");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requireFirstName = true;
+      }
+    }
+    if(form.find((key: { field_name: string; }) => key.field_name === 'Last Name')){
+      this.includeLastName = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "Last Name");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requireLastName = true;
+      }
+    }
+    if(form.find((key: { field_name: string; }) => key.field_name === 'Gender')){
+      this.includeGender = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "Gender");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requireGender = true;
+      }
+    }
+    if(form.find((key: { field_name: string; }) => key.field_name === 'Email')){
+      this.includeEmail = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "Email");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requireEmail = true;
+      }
+    }
+    if(form.find((key: { field_name: string; }) => key.field_name === 'Phone No.')){
+      this.includePhone = true;
+      let index = form.findIndex((key: { field_name: string; }) => key.field_name == "Phone No.");
+      console.log(index);
+      if(form[index].required == true) {
+        this.requirePhone = true;
+      }
+    }
+  }
+
 }
+
+

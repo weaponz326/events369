@@ -62,7 +62,7 @@ export class EditBasicInfoComponent implements OnInit {
     this.populateForm()
     this.initForm();
     this.populateSubCategory()
-    this.toggleVenueView();
+    // this.toggleVenueView();
     this.getCategories();
     this.disableSubcategory();
 
@@ -288,21 +288,21 @@ export class EditBasicInfoComponent implements OnInit {
     }
   }
 
-  toggleVenueView(): void {
-    this.form.controls['venue_tobe_announced'].valueChanges.subscribe(change => {
-      console.log(change);
-      if (change == true) {
-        this.form.controls['venue'].disable();
-        this.form.controls['gps'].disable();
-        this.recurringStore = '1'
-      }
-      else if (change == false) {
-        this.form.controls['venue'].enable();
-        this.form.controls['gps'].enable();
-        this.recurringStore = '0'
-      }
-    });
-  }
+  // toggleVenueView(): void {
+  //   this.form.controls['venue_tobe_announced'].valueChanges.subscribe(change => {
+  //     console.log(change);
+  //     if (change == true) {
+  //       this.form.controls['venue'].disable();
+  //       this.form.controls['gps'].disable();
+  //       this.recurringStore = '1'
+  //     }
+  //     else if (change == false) {
+  //       this.form.controls['venue'].enable();
+  //       this.form.controls['gps'].enable();
+  //       this.recurringStore = '0'
+  //     }
+  //   });
+  // }
 
   disableSubcategory(): void {
     this.form.controls['subcategory_id'].disable();

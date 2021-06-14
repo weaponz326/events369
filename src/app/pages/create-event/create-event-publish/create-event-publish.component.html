@@ -114,12 +114,12 @@
               </tr>
               <tr>
                 <td>First Name</td>
-                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeFirstName"></td>
+                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeFirstName" [disabled]="true"></td>
                 <td><input class="form-check-input" type="checkbox" id="requirePrefix" [(ngModel)]="requireFirstName"></td>
               </tr>
               <tr>
                 <td>Last Name</td>
-                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeLastName"></td>
+                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeLastName" [disabled]="true"></td>
                 <td><input class="form-check-input" type="checkbox" id="requirePrefix" [(ngModel)]="requireLastName"></td>
               </tr>
               <tr>
@@ -129,7 +129,7 @@
               </tr>
               <tr>
                 <td>Email</td>
-                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeEmail"></td>
+                <td><input class="form-check-input" type="checkbox" id="includePrefix" [(ngModel)]="includeEmail" [disabled]="true"></td>
                 <td><input class="form-check-input" type="checkbox" id="requirePrefix" [(ngModel)]="requireEmail"></td>
               </tr>
               <tr>
@@ -219,6 +219,10 @@
           /. End Date time Section
         -->
 
+        <div *ngIf="publishErrors.length != 0" class="alert alert-danger">
+            <p style="margin-bottom: 0rem !important;">{{publishErrors}}</p>
+        </div>
+      
         <div class="navigation">
           <div class="nav-buttons">
             <button type="button" class="btn btn-lg btn-warning mr-3" (click)="previous()">Previous</button>
