@@ -34,6 +34,7 @@ export class CreateBasicInfoComponent implements OnInit {
   currentRoute: string = '';
 
   formattedAddress = '';
+  addressCoordinates = '';
 
   // options = {
   //   componentRestrictions: {
@@ -136,6 +137,7 @@ export class CreateBasicInfoComponent implements OnInit {
   }
 
   create(): void {
+    console.log(this.getFormData());
     this.saved = true;
     this.dateValidation();
     console.log(this.isDateCorrect);
@@ -198,8 +200,8 @@ export class CreateBasicInfoComponent implements OnInit {
     const data = {
       title: this.f.title.value,
       description: this.f.description.value,
-      venue: this.f.venue.value,
-      gps: this.f.gps.value,
+      venue: this.formattedAddress,
+      gps: this.addressCoordinates,
       start_date: this.dtService.formatDateTime(this.f.start_date.value, this.f.start_time.value),
       end_date: this.dtService.formatDateTime(this.f.end_date.value, this.f.end_time.value),
       recurring: this.f.recurring.value,
@@ -347,6 +349,9 @@ export class CreateBasicInfoComponent implements OnInit {
 
   public handleAddressChange(address: any) {
     this.formattedAddress = address.formatted_address;
+    this.addressCoordinates = address.geometry.viewport.Eb.g + ', ' + address.geometry.viewport.lc.g;
+    this.f.gps.setValue(this.addressCoordinates);
+    console.log(address);
   }
 
 }

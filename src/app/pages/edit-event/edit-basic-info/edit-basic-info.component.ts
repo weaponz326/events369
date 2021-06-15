@@ -36,7 +36,9 @@ export class EditBasicInfoComponent implements OnInit {
   url: string = '';
   event: any;
   currentRoute: string = '';
+
   formattedAddress = '';
+  addressCoordinates = '';
 
   constructor(
     private router: Router,
@@ -124,8 +126,9 @@ export class EditBasicInfoComponent implements OnInit {
       gps: [this.event.gps],
       start_date: [this.event.start_date, Validators.required],
       end_date: [this.event.end_date, Validators.required],
-      start_time: [this.startDateTime, Validators.required],
-      end_time: [this.endDateTime, Validators.required],
+      // start_time: [new Date('2020-05-23 16:25:40'), Validators.required],
+      start_time: [new Date(this.startDateTime), Validators.required],
+      end_time: [new Date(this.endDateTime), Validators.required],
       recurring: [this.event.recurring],
       type: [this.event.type, Validators.required],
       ticketing: [this.event.ticketing, Validators.required],
@@ -226,8 +229,8 @@ export class EditBasicInfoComponent implements OnInit {
     const data = {
       title: this.f.title.value,
       description: this.f.description.value,
-      venue: this.f.venue.value,
-      gps: this.f.gps.value,
+      venue: this.formattedAddress,
+      gps: this.addressCoordinates,
       start_date: this.dtService.formatDateTime(this.f.start_date.value, this.f.start_time.value),
       end_date: this.dtService.formatDateTime(this.f.end_date.value, this.f.end_time.value),
       recurring: this.event.recurring,
@@ -428,6 +431,8 @@ export class EditBasicInfoComponent implements OnInit {
 
   public handleAddressChange(address: any) {
     this.formattedAddress = address.formatted_address;
+    this.addressCoordinates = address.geometry.viewport.Eb.g + ', ' + address.geometry.viewport.lc.g;
+    this.f.gps.setValue(this.addressCoordinates);
   }
 
 }
