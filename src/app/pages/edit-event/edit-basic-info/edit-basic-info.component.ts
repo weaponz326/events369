@@ -36,6 +36,7 @@ export class EditBasicInfoComponent implements OnInit {
   url: string = '';
   event: any;
   currentRoute: string = '';
+  formattedAddress = '';
 
   constructor(
     private router: Router,
@@ -423,6 +424,10 @@ export class EditBasicInfoComponent implements OnInit {
     delString = delString + ',';
     this.tagsString = this.tagsString.replace(delString, '');
     console.log(this.tagsString);
+  }
+
+  public handleAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
   }
 
 }
