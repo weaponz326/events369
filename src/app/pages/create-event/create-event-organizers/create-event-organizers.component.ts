@@ -244,6 +244,7 @@ export class CreateEventOrganizersComponent implements OnInit {
 
           this.isSaving = false;
           this.isEditMode = false;
+          this.saved = false;
           this.form.reset();
           this.createdImgSrc = '';
           this.isImageSet = false;
