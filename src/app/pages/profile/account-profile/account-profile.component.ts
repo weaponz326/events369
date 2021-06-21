@@ -167,19 +167,6 @@ export class AccountProfileComponent implements OnInit {
   } 
 
   bdayValidation(){
-    // let date = new Date();
-    // date.setHours(0,0,0,0);
-    // let today = date.valueOf();
-    // let bday = Date.parse(this.f.dob.value);
-
-    // console.log(Date.parse(this.f.dob.value));
-    // console.log(today);
-
-    // if (bday <= today ) this.isBdayCorrect = true;
-    // else this.isBdayCorrect = false;
-
-    console.log(this.isBdayCorrect);
-
     var today = new Date();
     var birthDate = new Date(this.f.dob.value);
     var age = today.getFullYear() - birthDate.getFullYear();
@@ -190,13 +177,8 @@ export class AccountProfileComponent implements OnInit {
     console.log(age);
 
     if (age >= 18 ) this.isBdayCorrect = true;
-    else this.isBdayCorrect = false;
-
-
-
-
-
-
+    else this.isBdayCorrect = false; 
+    console.log(this.isBdayCorrect);
 
 
   }
