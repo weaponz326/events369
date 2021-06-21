@@ -163,7 +163,7 @@ export class AccountProfileComponent implements OnInit {
   }
 
   getCountry(country: string) {
-    return 'Accra, Ghana'
+    
   } 
 
   bdayValidation(){
