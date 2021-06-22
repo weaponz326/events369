@@ -58,7 +58,7 @@
                 <div class="col">
                   <div class="form-floating">
                     <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="ticket name"
+                      <input type="text" class="form-control" id="floatingTitle" aria-describedby="titleHelp" placeholder="ticket name eg. Premium"
                         formControlName="name" [ngClass]="{'is-invalid': saved && f.name.errors, 'is-valid': !f.name.errors}">
                       <label for="floatingTitle">Name</label>
                       <small *ngIf="saved && f.name.errors" id="titleHelp" class="form-text invalid-feedback">
