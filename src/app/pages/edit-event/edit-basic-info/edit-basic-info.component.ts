@@ -465,10 +465,10 @@ export class EditBasicInfoComponent implements OnInit {
             }
             else {
               if (this.checkSessionData.eventHasMoreDetailsData()) {
-                this.router.navigateByUrl('/edit_event/more_details');
+                this.router.navigateByUrl('/user_events');
               }
               else {
-                this.router.navigateByUrl('/create_event/more_details');
+                this.router.navigateByUrl('/user_events');
               }
             }
           }
