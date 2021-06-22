@@ -451,6 +451,7 @@
       
       <div class="navigation" *ngIf="currentRoute === 'edit_basic_info'">
         <div class="nav-buttons">
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-secondary mr-3" (click)="openUsersEvents()">Save & Exit</button>
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>
         </div>
@@ -459,6 +460,7 @@
       
       <div class="navigation only-mobile" *ngIf="currentRoute !== 'edit_basic_info'">
         <div class="nav-buttons">
+          <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-secondary mr-3" (click)="openUsersEvents()">Save & Exit</button>
           <button *ngIf="!isLoading" type="button" class="btn btn-lg btn-primary" (click)="create()">Save & Continue</button>
           <app-loading-button *ngIf="isLoading"></app-loading-button>
         </div>

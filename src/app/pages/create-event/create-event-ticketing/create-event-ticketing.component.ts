@@ -282,4 +282,9 @@ export class CreateEventTicketingComponent implements OnInit {
     });
   }
 
+  openUsersEvents() {
+    this.router.navigateByUrl('/user_events');
+    
+  }
+
 }
