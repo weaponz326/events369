@@ -115,6 +115,7 @@ export class CreateEventPublishComponent implements OnInit {
           console.log(res);
           this.isLoading = false;
           if(res.message == 'OK') {
+            sessionStorage.setItem('preview_event_id', this.eventId);
             this.router.navigateByUrl('/event_details');                        
           }
           this.publishErrors = [];
