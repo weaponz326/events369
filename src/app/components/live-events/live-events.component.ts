@@ -162,7 +162,7 @@ export class LiveEventsComponent implements OnInit, AfterViewChecked {
     this.eventService.getEventsHappeningNow().then(
       res => {
         console.log(res);
-        this.eventsNow = res.event?.data;
+        this.eventsNow = res.events?.data;
       },
       err => {
         console.log(err);
