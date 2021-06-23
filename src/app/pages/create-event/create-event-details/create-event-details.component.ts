@@ -95,7 +95,7 @@ export class CreateEventDetailsComponent implements OnInit {
       phone: ['', [Validators.minLength(12), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],      
       hosted_on: [''],
       banner_image: [''],
-      organizer: ['', Validators.required],
+      organizer: [''],
       facebook_hosting: ['', Validators.pattern(urlRegex)],
       zoom_hosting: ['', Validators.pattern(urlRegex)],
       zoom_hosting_id: [''],
