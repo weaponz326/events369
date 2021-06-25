@@ -5,6 +5,8 @@ import { EndpointService } from 'src/app/services/endpoints/endpoint.service';
 import { Router } from '@angular/router';
 import _ from 'lodash';
 import { UserAccountService } from 'src/app/services/user-account/user-account.service';
+import { SearchService } from 'src/app/services/search/search.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -17,20 +19,28 @@ export class NavbarComponent implements OnInit {
   searchQuery: string = '';
   imgSrc: string = '';
   currentUser: any;
+  live_search_results: any;
 
   @Output() searchEvent = new EventEmitter<string>();
+
+  formGroup: FormGroup = new FormGroup({});
 
   constructor(
     private http: HttpClient, 
     private router: Router, 
     private endpoint: EndpointService,
-    private userAccountsService: UserAccountService
-    ) { }
+    private userAccountsService: UserAccountService,
+    private searchService: SearchService,
+    private fb: FormBuilder
+    ) 
+    { 
+      this.initForm()
+    }
 
   ngOnInit(): void {
     this.checkIfUserAuthenticated();
     this.getUser();
-
+    this.initForm()
     let sessionQuery = sessionStorage.getItem('search_query');
     sessionQuery ? this.searchQuery = sessionQuery : this.searchQuery = '';
   }
@@ -128,6 +138,35 @@ export class NavbarComponent implements OnInit {
       }
     )
   }
+
+  initForm() {
+    this.formGroup = this.fb.group({
+      'search': ['']
+    }) ;
+    this.formGroup.get('search')?.valueChanges.subscribe(response => {
+      if(response.length < 1) this.live_search_results = null;
+      this.doLiveSearch(response);
+    })
+  }
+
+
+
+  doLiveSearch(searchword: string){
+    this.live_search_results = null;
+    this.searchService.liveSearch(searchword).then(
+      res => {
+        if (res) {
+          console.log(res);  
+          this.live_search_results = res.events.data;  
+          this.live_search_results = this.live_search_results.slice(0, 5);      
+        }        
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  
 
   doSearch(){
     console.log('lets search for ' + this.searchQuery);
