@@ -3,14 +3,38 @@
   
   <form [formGroup] = "formGroup" class="form search-form">
     <div class="form-group has-search" style="margin-bottom: 0rem !important;">
-      <span class="bi bi-search form-control-feedback"></span>
+      <span class="bi bi-search position-top form-control-feedback"></span>
       <mat-form-field>
 
       <input formControlName="search" matInput [matAutocomplete] = "auto" [(ngModel)]="this.searchQuery" name="search_query" class="form-control mr-sm-2 ev-nav-searchbar-input" type="text" placeholder="What do you want to attend?" aria-label="Search" (keydown.enter)="doSearch()">
       
       <mat-autocomplete #auto = "matAutocomplete">
          <mat-option *ngFor ="let item of live_search_results" [value]="item.title">
-            {{ item.title}}
+          <!-- <ul class="w3-ul w3-card-4">
+            <li class="w3-bar">
+                <img src="http://events369.logitall.biz/storage/banner/{{item.banner_image}}" class="bg w3-bar-item w3-circle w3-hide-small" style="width:50px">
+                <div class="w3-bar-item">
+                  <span class="w3-large">{{item.title}}</span><br>
+                  <span>{{ getEventDateFormatted(item.start_date_time)}}</span>
+                </div>
+              </li>
+            </ul> -->
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img src="http://events369.logitall.biz/storage/banner/{{item.banner_image}}" class="bg w3-bar-item w3-circle w3-hide-small" style="width:50px; height: 50px;">
+                
+                  </td>
+                  <td style="padding-left: 5%;">
+                    <span class="w3-large">{{item.title}}</span>
+                    <span class="present_date">{{ getEventDateFormatted(item.start_date_time)}}</span>
+                    <span class="search_price">{{item.price}}</span>
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
          </mat-option>
        </mat-autocomplete>
 

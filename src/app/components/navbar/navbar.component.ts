@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { UserAccountService } from 'src/app/services/user-account/user-account.service';
 import { SearchService } from 'src/app/services/search/search.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import moment from 'moment';
 
 @Component({
   selector: 'app-navbar',
@@ -173,6 +174,11 @@ export class NavbarComponent implements OnInit {
     sessionStorage.setItem('search_query', this.searchQuery);
     this.searchEvent.emit(this.searchQuery);
     this.router.navigateByUrl('/search_results');
+  }
+
+  getEventDateFormatted(date: any) {
+    // return moment(date).format('ddd, MMM D, YYYY h:mm A');
+    return moment(date).format('MMM d, YYYY - h:mm A');
   }
 
   getUser(): void {
