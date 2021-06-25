@@ -197,4 +197,9 @@ export class NavbarComponent implements OnInit {
     );
   }
 
+  gotoPreview(eventId: any) {
+    sessionStorage.setItem('preview_event_id', eventId);
+    this.router.navigateByUrl('/event_details');
+  }
+
 }
