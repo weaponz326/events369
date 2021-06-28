@@ -143,8 +143,9 @@
                   </div>
 
                 </div>
-
-                <img  (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top image-fluid" alt="{{event.title}}">                
+                <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                </div>
+                <!-- <img  (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top image-fluid" alt="{{event.title}}">                 -->
               </div>
               <div (click)="gotoPreview(event.id)">
                 <p class="card-text">
@@ -279,7 +280,9 @@
                       
                   </div>
                 </div>
-                  <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="{{event.title}}">
+                <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                </div>
+                  <!-- <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="{{event.title}}"> -->
                   <div class="card-body"  (click)="gotoPreview(event.id)">
                     <p class="card-text">
                       <span class="bold card-title">{{event.title}}</span>
@@ -426,8 +429,9 @@
                     </div>
 
                 </div>
-
-                <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
+                <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                </div>
+                <!-- <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
               </div>             
               <div (click)="gotoPreview(event.id)">
                   <div class="card-body">
@@ -507,7 +511,9 @@
                     
                 </div>
               </div>
-                <img (click)="gotoPreview(favorites.id)" src="http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}" class="card-img-top" alt="...">
+              <div (click)="gotoPreview(favorites.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}&quot;);height: 20vh;">
+              </div>
+                <!-- <img (click)="gotoPreview(favorites.id)" src="http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}" class="card-img-top" alt="..."> -->
                 <div class="card-body" (click)="gotoPreview(favorites.id)">
                   <p class="card-text">
                     <span class="bold card-title">{{favorites.title}}</span>
@@ -600,7 +606,9 @@
                     
                 </div>
               </div>
-                <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="...">
+              <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+              </div>
+                <!-- <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
                 <div class="card-body" (click)="gotoPreview(event.id)">
                   <p class="card-text">
                     <span class="bold card-title">{{event.title}}</span>
