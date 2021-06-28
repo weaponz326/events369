@@ -392,8 +392,12 @@ ul.nav {
 
 @media(min-width: 567px) {
   ::ng-deep .row {
-    // --bs-gutter-x:  1. !important;
+    --bs-gutter-x:  1. !important;
   }
+  ::ng-deep .owl-carousel-child {
+      margin: 0px !important;
+    }
+    
 }
 
 .img-fit-img-fix-background-cover {
