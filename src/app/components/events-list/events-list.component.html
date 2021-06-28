@@ -144,6 +144,7 @@
 
                 </div>
                 <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                <span class="price-span">{{event.price}}</span>
                 </div>
                 <!-- <img  (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top image-fluid" alt="{{event.title}}">                 -->
               </div>
@@ -281,6 +282,7 @@
                   </div>
                 </div>
                 <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                  <span class="price-span">{{event.price}}</span>
                 </div>
                   <!-- <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="{{event.title}}"> -->
                   <div class="card-body"  (click)="gotoPreview(event.id)">
@@ -430,6 +432,7 @@
 
                 </div>
                 <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                  <span class="price-span">{{event.price}}</span>
                 </div>
                 <!-- <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
               </div>             
@@ -512,6 +515,8 @@
                 </div>
               </div>
               <div (click)="gotoPreview(favorites.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}&quot;);height: 20vh;">
+              
+                <span class="price-span">{{favorites.price}}</span>
               </div>
                 <!-- <img (click)="gotoPreview(favorites.id)" src="http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}" class="card-img-top" alt="..."> -->
                 <div class="card-body" (click)="gotoPreview(favorites.id)">
@@ -607,6 +612,7 @@
                 </div>
               </div>
               <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                <span class="price-span">{{event.price}}</span>
               </div>
                 <!-- <img (click)="gotoPreview(event.id)" src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
                 <div class="card-body" (click)="gotoPreview(event.id)">
