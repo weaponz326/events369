@@ -457,9 +457,17 @@ input {
 }
 
 .form-control {
-  min-width: -moz-available !important;
   min-width: -webkit-fill-available !important;
+  // min-width: ;
   width: 280px !important;
+}
+
+@-moz-document url-prefix() {
+  .form-control {
+    min-width: -moz-available !important;
+    // min-width: ;
+    width: 280px !important;
+  }
 }
 
 ::ng-deep .mat-autocomplete-panel.mat-autocomplete-visible {

@@ -445,9 +445,9 @@ export class EventsListComponent implements OnInit {
     // let st = new Date(this.f.start_time.value).getTime();
     let et = new Date(ticket_end_time).getTime();
 
-    console.log(Date.parse(ticket_end_date));
-    console.log(Date.parse(ticket_end_time));
-    console.log(today);
+    // console.log(Date.parse(ticket_end_date));
+    // console.log(Date.parse(ticket_end_time));
+    // console.log(today);
 
     // check if event date is greater than today's date
     // if (sd >= today) this.isDateCorrect = true;
