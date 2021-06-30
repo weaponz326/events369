@@ -462,6 +462,4 @@ export class EventsListComponent implements OnInit {
     }
   }
  
-
-
 }

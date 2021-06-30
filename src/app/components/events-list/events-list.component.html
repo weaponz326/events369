@@ -21,7 +21,8 @@
             <div class="col-12 ev-padlr-0">
               
               <h3 class="display-6 ev-head-padl ev-display-only-non-mobile">
-                <i class="bi bi-clock"></i> &nbsp; Upcoming
+                <!-- <i class="bi bi-clock"></i> &nbsp;  -->
+                Upcoming
                 
                 <!--Controls-->
                 <div style="float: right;" class="controls-top">
@@ -112,7 +113,7 @@
                               class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
-                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              style="display: block; fill: rgba(0, 0, 0, 0.0); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 5px; overflow: visible;"
                               aria-hidden="true"
                               role="presentation"
                               focusable="false"
@@ -130,7 +131,7 @@
                             class="favorite-{{event.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
-                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
                             aria-hidden="true"
                             role="presentation"
                             focusable="false"
@@ -261,7 +262,7 @@
                                 class="favorite-{{event.id}}"
                                 viewBox="0 0 32 32"
                                 xmlns="http://www.w3.org/2000/svg"
-                                style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                                style="display: block; fill: rgba(0, 0, 0, 0.0); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 5px; overflow: visible;"
                                 aria-hidden="true"
                                 role="presentation"
                                 focusable="false"
@@ -281,7 +282,7 @@
                               class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
-                              style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              style="display: block; fill: rgba(255, 101, 80, 0.4); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
                               aria-hidden="true"
                               role="presentation"
                               focusable="false"
@@ -345,7 +346,8 @@
           <div class="row mb-4 ev-martop-5 ev-padlr-0" *ngIf="newEvents?.length > 0">
             <div class="col-12  ev-padlr-0">
               <h3 class="display-6 ev-head-padl">
-                <i class="bi-megaphone"></i> &nbsp; New
+                <!-- <i class="bi-megaphone"></i> &nbsp;  -->
+                New
                 
                   <!--Controls-->
                   <div style="float: right;" class="controls-top">
@@ -428,7 +430,7 @@
                                 class="favorite-{{event.id}}"
                                 viewBox="0 0 32 32"
                                 xmlns="http://www.w3.org/2000/svg"
-                                style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                                style="display: block; fill: rgba(0, 0, 0, 0.0); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 5px; overflow: visible;"
                                 aria-hidden="true"
                                 role="presentation"
                                 focusable="false"
@@ -446,7 +448,7 @@
                               class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
-                              style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              style="display: block; fill: rgba(255, 101, 80, 0.4); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
                               aria-hidden="true"
                               role="presentation"
                               focusable="false"
@@ -458,34 +460,34 @@
                       </button>
                     </div>
 
-                </div>
-                <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
-                  <ng-container *ngIf="event.ticketing == '0'">
-                    <span class="price-span">Free</span>
-                  </ng-container>
-                  <ng-container *ngIf="event.ticketing == '2'">
-                    <span class="price-span">Donation</span>
-                  </ng-container>
-                  <ng-container *ngIf="event.ticketing == '1'">
-                    <span class="price-span">{{event.price}}</span>
-                  </ng-container>
-                  <ng-container *ngIf="event.ticketing == '1' && event.qty_remaining == 0">
-                    <span class="price-span">Sold out</span>
-                  </ng-container>
-                  <ng-container *ngIf="event.ticketing == '1' && getTicketSalesStatus(event.ticket_sales_end_date) == 0">
-                    <span class="price-span">Sales ended</span>
-                  </ng-container>
-                </div>
-                <!-- <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
-              </div>             
-              <div (click)="gotoPreview(event.id)">
-                  <div class="card-body">
-                    <p class="card-text">
-                      <span class="bold card-title">{{event.title}}</span>
-                      <span class="lead text-muted">{{getEventStartDateFormatted(event.start_date_time)}}</span><br>
-                      <span class="lead text-muted">Hosted by: <span style="color: #fe5104;">{{event.created_by}}</span></span>
-                    </p>
                   </div>
+                  <div (click)="gotoPreview(event.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{event.banner_image}}&quot;);height: 20vh;">
+                    <ng-container *ngIf="event.ticketing == '0'">
+                      <span class="price-span">Free</span>
+                    </ng-container>
+                    <ng-container *ngIf="event.ticketing == '2'">
+                      <span class="price-span">Donation</span>
+                    </ng-container>
+                    <ng-container *ngIf="event.ticketing == '1'">
+                      <span class="price-span">{{event.price}}</span>
+                    </ng-container>
+                    <ng-container *ngIf="event.ticketing == '1' && event.qty_remaining == 0">
+                      <span class="price-span">Sold out</span>
+                    </ng-container>
+                    <ng-container *ngIf="event.ticketing == '1' && getTicketSalesStatus(event.ticket_sales_end_date) == 0">
+                      <span class="price-span">Sales ended</span>
+                    </ng-container>
+                  </div>
+                  <!-- <img src="http://events369.logitall.biz/storage/banner/{{event.banner_image}}" class="card-img-top" alt="..."> -->
+                </div>             
+                <div (click)="gotoPreview(event.id)">
+                    <div class="card-body">
+                      <p class="card-text">
+                        <span class="bold card-title">{{event.title}}</span>
+                        <span class="lead text-muted">{{getEventStartDateFormatted(event.start_date_time)}}</span><br>
+                        <span class="lead text-muted">Hosted by: <span style="color: #fe5104;">{{event.created_by}}</span></span>
+                      </p>
+                    </div>
                 </div>
               </div>             
             </owl-carousel>
@@ -515,14 +517,13 @@
             <div class="col-sm-12 col-md-3 col-lg-3" style="margin-bottom: 2%;" *ngFor="let favorites of userFavorites; let i = index">
               <div class="card mb-2" *ngIf="i < favorites_loadIndex">
                 <div class="save_live_event_div_container" style="padding: 8px;">
-                  <div></div>
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(favorites.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(favorites.id)" class="save_live_event_button">
                           <svg
                               class="favorite-{{favorites.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
-                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              style="display: block; fill: rgba(0, 0, 0, 0.0); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 5px; overflow: visible;"
                               aria-hidden="true"
                               role="presentation"
                               focusable="false"
@@ -532,8 +533,6 @@
                               ></path>
                           </svg>
                       </button>
-                      
-                      
                   </div>
 
                   <div class="save_live_event_div" *ngIf="hasBeenAddedToFavorites(favorites.id)">
@@ -542,7 +541,7 @@
                             class="favorite-{{favorites.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
-                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
                             aria-hidden="true"
                             role="presentation"
                             focusable="false"
@@ -552,8 +551,6 @@
                             ></path>
                         </svg>
                     </button>
-                    
-                    
                 </div>
               </div>
               <div (click)="gotoPreview(favorites.id)" class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{favorites.banner_image}}&quot;);height: 20vh;">
@@ -632,7 +629,7 @@
                               class="favorite-{{event.id}}"
                               viewBox="0 0 32 32"
                               xmlns="http://www.w3.org/2000/svg"
-                              style="display: block; fill: rgba(0, 0, 0, 0.5); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                              style="display: block; fill: rgba(0, 0, 0, 0.0); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 5px; overflow: visible;"
                               aria-hidden="true"
                               role="presentation"
                               focusable="false"
@@ -652,7 +649,7 @@
                             class="favorite-{{event.id}}"
                             viewBox="0 0 32 32"
                             xmlns="http://www.w3.org/2000/svg"
-                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 24px; width: 24px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
+                            style="display: block; fill: rgba(255, 101, 80, 0.4); height: 16px; width: 16px; stroke: rgb(255, 255, 255); stroke-width: 2px; overflow: visible;"
                             aria-hidden="true"
                             role="presentation"
                             focusable="false"
