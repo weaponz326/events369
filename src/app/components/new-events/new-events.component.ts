@@ -186,7 +186,7 @@ export class NewEventsComponent implements OnInit {
   
   loadMore() {
     this.loading = true
-    if(this.loadIndex < this.events_in_six_hrs.length) {
+    if(this.loadIndex < this.newEvents.length) {
       this.loadIndex += 5
     }
     
