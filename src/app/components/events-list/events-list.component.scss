@@ -422,7 +422,7 @@ ul.nav {
     border-start-start-radius: 10px;
 }
 
-@media (max-height: 200px) and (orientation : landscape) {
+@media (max-height: 500px) and (orientation : landscape) {
     .img-fit-img-fix-background-cover {
       height: 40vh !important;
     }

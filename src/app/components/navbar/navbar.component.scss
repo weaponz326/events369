@@ -227,7 +227,16 @@ nav {
   .navbar-standalone-search-icon {
     color: #fff !important;
   }
+
+  .ev-navbar-dropdown-content {
+    background-color: var(--ev-create-event-nav-background) !important;
+  }
   
+  .authenticated-link {
+    color: grey !important;
+  }
+
+
 }
 
 
@@ -572,6 +581,8 @@ input {
 	background-size: cover;
 	height: 100%;
 }
+
+
 
 
 
