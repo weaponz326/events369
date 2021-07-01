@@ -385,6 +385,13 @@ ev-avatar img {
     display: block;
     visibility: visible;
   }
+  .search-on-mobile-only input {
+    width: auto !important;
+  }
+  .has-search .form-control-feedback {
+    line-height: 3rem !important;
+  }
+  
 }
 
 @media (min-width: 781px) {
