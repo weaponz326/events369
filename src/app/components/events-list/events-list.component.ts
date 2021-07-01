@@ -173,7 +173,8 @@ export class EventsListComponent implements OnInit {
 
   gotoPreview(eventId: any) {
     sessionStorage.setItem('preview_event_id', eventId);
-    this.router.navigateByUrl('/event_details');
+    // this.router.navigateByUrl('/event_details');
+    window.open('/event_details', "_blank");
   }
   
   getAllEvents(): void {
