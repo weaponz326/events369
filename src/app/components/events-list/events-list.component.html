@@ -597,7 +597,7 @@
           <!-- Your favorites tab  -->
           <div class="row" style="margin-bottom: 2%;" *ngIf="onlineEvents">
             <div class="col-sm-12 col-md-3 col-lg-3" style="margin-bottom: 2%;padding-left: 10px; padding-right: 10px;" *ngFor="let event of onlineEvents; let i = index">
-              <div class="card mb-2" *ngIf="i < online_events_loadIndex">
+              <div class="card mb-2 event-card" *ngIf="i < online_events_loadIndex">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
@@ -726,7 +726,7 @@
           <!-- Your favorites tab  -->
           <div class="row" style="margin-bottom: 2%;" *ngIf="todaysEvents">
             <div class="col-sm-12 col-md-3 col-lg-3" style="margin-bottom: 2%;padding-left: 10px; padding-right: 10px;" *ngFor="let event of todaysEvents; let i = index">
-              <div class="card mb-2" *ngIf="i < todays_events_loadIndex">
+              <div class="card mb-2 event-card" *ngIf="i < todays_events_loadIndex">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(event.id)" class="save_live_event_button">
@@ -856,7 +856,7 @@
           <!-- Your favorites tab  -->
           <div class="row" style="margin-bottom: 2%;" *ngIf="userFavorites">
             <div class="col-sm-12 col-md-3 col-lg-3" style="margin-bottom: 2%;padding-left: 10px; padding-right: 10px;" *ngFor="let favorites of userFavorites; let i = index">
-              <div class="card mb-2" *ngIf="i < favorites_loadIndex">
+              <div class="card mb-2 event-card" *ngIf="i < favorites_loadIndex">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(favorites.id)">
                       <button aria-label="Save this Event" type="button" (click)="saveEventAsFavorite(favorites.id)" class="save_live_event_button">
@@ -989,7 +989,7 @@
           <div class="row">
             <div *ngFor="let event of categoryEvents[i];  let i = index" class="col-sm-12 col-md-3 col-lg-3" style="padding-left: 10px; padding-right: 10px;">
               <ng-container *ngIf="i < loadIndex[i]">
-              <div class="card mb-2"  >
+              <div class="card mb-2 event-card">
                 <div class="save_live_event_div_container" style="padding: 8px;">
                   <div></div>
                   <div class="save_live_event_div" *ngIf="!hasBeenAddedToFavorites(event.id)">
