@@ -4,7 +4,8 @@ import { UsersFavoritesService } from 'src/app/services/users-favorites/users-fa
 import moment from 'moment';
 import { OwlCarousel } from 'ngx-owl-carousel';
 import { Router } from '@angular/router';
-import { SocialShareModalComponent } from 'src/app/components/social-share-modal/social-share-modal.component'
+import { UpcomingEventsComponent } from 'src/app/components/upcoming-events/upcoming-events.component';
+import { SocialShareModalComponent } from 'src/app/components/social-share-modal/social-share-modal.component';
 // import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
@@ -21,6 +22,8 @@ export class EventsListComponent implements OnInit {
 
   categories: any;
   allEvents: any;
+  onlineEvents: any;
+  todaysEvents: any;
   categoryEvents: any[] = [];
   slideConfig: any;
 
@@ -41,6 +44,8 @@ export class EventsListComponent implements OnInit {
   loadIndex = [5, 5, 5]
 
   favorites_loadIndex = 8
+  online_events_loadIndex = 8
+  todays_events_loadIndex = 8
 
   
   users_favorite_event_id_and_fav_id: any = []
@@ -61,6 +66,8 @@ export class EventsListComponent implements OnInit {
       this.getPopularEvents();
       this.getNewEvents();
       this.getAllEvents();
+      this.getOnlineEvents();
+      this.getTodaysEvents();
       this.getUsersFavorites();
 
 
@@ -76,7 +83,8 @@ export class EventsListComponent implements OnInit {
 
       });
 
-      this.modalRef = this.modalService.open(SocialShareModalComponent);
+      // just to initialize modalRef
+      this.modalRef = this.modalService.open(UpcomingEventsComponent);
       this.modalRef.close();
 
 
@@ -173,6 +181,30 @@ export class EventsListComponent implements OnInit {
       res => {
         console.log(res);
         this.allEvents = res.events?.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getOnlineEvents(): void {
+    this.eventsService.getEventsByHosting('0').then(
+      res => {
+        console.log(res);
+        this.onlineEvents = res.events?.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getTodaysEvents(): void {
+    this.eventsService.getTodaysEvents().then(
+      res => {
+        console.log(res);
+        this.todaysEvents = res.events?.data;
       },
       err => {
         console.log(err);
@@ -426,6 +458,26 @@ export class EventsListComponent implements OnInit {
     this.loading = true
     if(this.favorites_loadIndex < this.userFavorites.length) {
       this.favorites_loadIndex += 5
+    }
+    
+    this.loading = false
+  }
+
+  loadMoreOnlineEvents() {
+
+    this.loading = true
+    if(this.online_events_loadIndex < this.onlineEvents.length) {
+      this.online_events_loadIndex += 5
+    }
+    
+    this.loading = false
+  }
+
+  loadMoreTodaysEvents() {
+
+    this.loading = true
+    if(this.todays_events_loadIndex < this.todaysEvents.length) {
+      this.todays_events_loadIndex += 5
     }
     
     this.loading = false
