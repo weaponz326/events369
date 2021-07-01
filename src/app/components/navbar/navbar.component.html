@@ -60,7 +60,7 @@
       <span class="bi bi-search form-control-feedback"></span>
 
       <mat-form-field>
-      <input formControlName="search" matInput [matAutocomplete] = "auto" class="form-control mr-sm-2 ev-nav-searchbar-input" type="search" placeholder="What do you want to attend?" autofocus="true" aria-label="Search">
+      <input formControlName="search" matInput [matAutocomplete] = "auto" class="form-control mr-sm-2 ev-nav-searchbar-input" [(ngModel)]="this.searchQuery" type="search" placeholder="What do you want to attend?" (keydown.enter)="doSearch()" autofocus="true" aria-label="Search">
     
       
       <mat-autocomplete #auto = "matAutocomplete">
