@@ -188,7 +188,7 @@
                     <div class="happening_now_show_more" *ngIf="popularEvents.length > 5">  
                       <a *ngIf="popularEvents.length > 5"
                           href="/events/popular/"
-                          class="happening_now_show_more_link ev-display-only-non-mobile"
+                          class="happening_now_show_more_link"
                       >
                           Show more
                       </a>                  
@@ -349,14 +349,15 @@
             <div class="col-12  ev-padlr-0">
               <h3 class="display-6 ev-head-padl">
                 <!-- <i class="bi-megaphone"></i> &nbsp;  -->
-                New Events
+                
+                New
                 
                   <!--Controls-->
                   <div style="float: right;" class="controls-top">
                     <div class="happening_now_show_more"  *ngIf="newEvents?.length > 5">  
                       <a *ngIf="newEvents?.length > 5"
                           href="/events/new/"
-                          class="happening_now_show_more_link ev-display-only-non-mobile"
+                          class="happening_now_show_more_link"
                       >
                           Show more
                       </a>                 
