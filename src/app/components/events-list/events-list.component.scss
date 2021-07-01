@@ -1,3 +1,4 @@
+@import "~mdb-angular-ui-kit/assets/scss/mdb.scss";
 
 @media(max-width: 567px) {
   ::ng-deep .owl-stage-outer {
@@ -334,15 +335,24 @@ ul.nav {
   -moz-box-pack: justify !important;
   position: absolute !important;
   right: 0% !important;
-  display: flex !important;
+  display: block !important;
   justify-content: space-between !important;
   z-index: 999 !important;
 }
-.save_live_event_div {
+.event-card:hover .event_social_share {
+  visibility: visible !important;
+}
+.save_live_event_div, .event_social_share {
   pointer-events: auto !important;
   margin-top: -5px !important;
   margin-right: -3px !important;
+  margin-bottom: 15px !important;
 }
+
+.event_social_share:hover {
+  visibility: visible !important;
+}
+
 .save_live_event_button {
   -moz-box-pack: center !important;
   -moz-box-align: center !important;

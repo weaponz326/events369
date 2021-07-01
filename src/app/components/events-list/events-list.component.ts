@@ -4,7 +4,9 @@ import { UsersFavoritesService } from 'src/app/services/users-favorites/users-fa
 import moment from 'moment';
 import { OwlCarousel } from 'ngx-owl-carousel';
 import { Router } from '@angular/router';
-import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
+import { SocialShareModalComponent } from 'src/app/components/social-share-modal/social-share-modal.component'
+// import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 declare var $: any;
 
@@ -14,6 +16,8 @@ declare var $: any;
   styleUrls: ['./events-list.component.scss']
 })
 export class EventsListComponent implements OnInit {
+
+  modalRef: MdbModalRef<SocialShareModalComponent>;
 
   categories: any;
   allEvents: any;
@@ -50,7 +54,8 @@ export class EventsListComponent implements OnInit {
     private router: Router,
     private eventsService: EventsService,
     private userFavoriteService: UsersFavoritesService,
-    private eventsHappeningNow: HappeningNowService,
+    // private eventsHappeningNow: HappeningNowService,
+    private modalService: MdbModalService
     ) { 
       this.getEventsInSixHrs();
       this.getPopularEvents();
@@ -70,6 +75,9 @@ export class EventsListComponent implements OnInit {
         });
 
       });
+
+      this.modalRef = this.modalService.open(SocialShareModalComponent);
+      this.modalRef.close();
 
 
     }
@@ -460,6 +468,10 @@ export class EventsListComponent implements OnInit {
     } else {
       return 1;
     }
+  }
+
+  openModal(url: string) {
+    this.modalRef = this.modalService.open(SocialShareModalComponent, { data: { url: url }});
   }
  
 }
