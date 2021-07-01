@@ -207,7 +207,7 @@ nav {
 
 .ev-navbar {
   width: 100%;
-  z-index: 99999;
+  z-index: 999;
   background-color: var(--ev-background) !important;
   color: var(--primary-color);
 }
@@ -427,6 +427,16 @@ ev-avatar img {
   }
 }
 
+@media (height: 1024px) and (width: 1366px) {
+  .avatar-container {
+
+    img {
+      margin-top: 0vh !important;
+
+    }
+  }
+}
+
 @media (min-width: 1500px) {
   .avatar-container {
   
@@ -598,6 +608,15 @@ input {
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 100%;
+}
+
+@media (height: 1024px) and (width: 1366px) {
+  .dropdown-content_user {
+    margin-left: -220% !important;
+  }
+  .avatar-container {
+    margin-top: 0vh !important;
+  }
 }
 
 
