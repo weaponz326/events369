@@ -46,8 +46,8 @@ export class UserEventsComponent implements OnInit {
     this.eventsService.getAllUserEvents().then(
       res => {
         console.log(res);
-        this.userEvents = res.all_events.data;
-        this.userEvents.sort(function(a: any, b:any){
+        this.userEvents = res.all_events;
+        this.userEvents.data.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
       },
@@ -62,25 +62,25 @@ export class UserEventsComponent implements OnInit {
       res => {
         console.log(res);
         if (eventStatus == 0) this.createdEvents = res;
-        this.createdEvents.sort(function(a: any, b:any){
+        this.createdEvents.data.sort(function(a: any, b:any){
           return new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf();
         });
  
 
         if (eventStatus == 2) this.publishedEvents = res;
-        this.publishedEvents.sort(function(a: any, b:any){
+        this.publishedEvents.data.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
 
 
         if (eventStatus == 3) this.archivedEvents = res;
-        this.archivedEvents.sort(function(a: any, b:any){
+        this.archivedEvents.data.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
 
         
         if (eventStatus == 4) this.cancelledEvents = res;
-        this.cancelledEvents.sort(function(a: any, b:any){
+        this.cancelledEvents.data.sort(function(a: any, b:any){
           return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
         });
 

@@ -125,34 +125,9 @@ export class EventsService {
         res => {
           // console.log('get_user_events_ok: ', res);
           events = res;
-          actual_event_data = res.all_events.data;
+          actual_event_data = res.all_events;
           last_page = res.all_events.last_page;
           console.log(last_page)
-
-          for (let i = 1; i <= last_page; i++) {  
-            url = this.getUserEventsUrl + userId + '/' + status + '?page=' + page_number++;
-
-            this.http.get<any>(url, { headers: this.headers}).subscribe(
-              res => {
-
-                // console.log('get_user_events_page_' + page_number + '_ok: ', res);
-                next_page_event_data = res.all_events.data;
-                Array.prototype.push.apply(actual_event_data,next_page_event_data); 
-
-              },
-                err => {
-                  console.log('get_user_events_page_' + i + 'error: ', err);
-                  reject(err);
-                }
-              );
-            // const element = array[i];
-
-            
-          }
-
-          // actual_event_data = actual_event_data.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
-          // let event_data: any[] = []; 
-          // actual_event_data.map(x => event_data.filter(a => a.id == x.id).length > 0 ? null : event_data.push(x));
 
           console.log('get_user_events_' + status +'_ok: ', actual_event_data);
           resolve(actual_event_data);
@@ -370,3 +345,70 @@ export class EventsService {
    
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          // for (let i = 1; i <= last_page; i++) {  
+          //   url = this.getUserEventsUrl + userId + '/' + status + '?page=' + page_number++;
+
+          //   this.http.get<any>(url, { headers: this.headers}).subscribe(
+          //     res => {
+
+          //       // console.log('get_user_events_page_' + page_number + '_ok: ', res);
+          //       next_page_event_data = res.all_events.data;
+          //       Array.prototype.push.apply(actual_event_data,next_page_event_data); 
+
+          //     },
+          //       err => {
+          //         console.log('get_user_events_page_' + i + 'error: ', err);
+          //         reject(err);
+          //       }
+          //     );
+          //   // const element = array[i];
+
+            
+          // }
+
+          // actual_event_data = actual_event_data.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
+          // let event_data: any[] = []; 
+          // actual_event_data.map(x => event_data.filter(a => a.id == x.id).length > 0 ? null : event_data.push(x));
