@@ -197,7 +197,7 @@ export class PopularEventsComponent implements OnInit {
     this.eventsService.getPopularEvents().then(
       res => {
         console.log(res);
-        this.popularEvents = res.events.data;
+        this.popularEvents = res.events;
       },
       err => {
         console.log(err);

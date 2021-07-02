@@ -209,7 +209,7 @@ export class NewEventsComponent implements OnInit {
     this.eventsService.getNewEvents().then(
       res => {
         console.log(res);
-        this.newEvents = res.events.data;
+        this.newEvents = res.events;
       },
       err => {
         console.log(err);
