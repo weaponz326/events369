@@ -159,6 +159,25 @@ export class EventsService {
       );
     });
   }
+
+  getAllUsersEventsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_users_all_events_next_page_ok: ', res);
+          events = res;
+          resolve(events);
+        },
+        err => {
+          console.log('get_users_all_events_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
   
 
   getCategories(): Promise<any> {

@@ -48,7 +48,7 @@ export class UserEventsComponent implements OnInit {
         console.log(res);
         this.userEvents = res.all_events;
         this.userEvents.data.sort(function(a: any, b:any){
-          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
         });
       },
       err => {
@@ -350,6 +350,21 @@ export class UserEventsComponent implements OnInit {
       btnText.innerHTML = "See less"; 
       moreText.style.display = "inline";
     }
+  }
+
+  openAllEventsNextPage(url: string) {
+    this.eventsService.getAllUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.userEvents = res.all_events;
+        this.userEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 
