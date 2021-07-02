@@ -205,6 +205,18 @@ export class PopularEventsComponent implements OnInit {
     );
   }
 
+  getPopularEventsPage(page: any): void {
+    this.eventsService.getPopularEventsPage(page).then(
+      res => {
+        console.log(res);
+        this.popularEvents = res.events;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   getTicketSalesStatus(ticket_sales_end_date: string) {
     var ticket_end_date = ticket_sales_end_date.split(' ')[0];
     var ticket_end_time = ticket_sales_end_date.split(' ')[1];

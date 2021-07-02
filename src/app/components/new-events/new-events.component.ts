@@ -217,6 +217,18 @@ export class NewEventsComponent implements OnInit {
     );
   }
 
+  getNewEventsPage(page: any): void {
+    this.eventsService.getNewEventsPage(page).then(
+      res => {
+        console.log(res);
+        this.newEvents = res.events;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   getTicketSalesStatus(ticket_sales_end_date: string) {
     var ticket_end_date = ticket_sales_end_date.split(' ')[0];
     var ticket_end_time = ticket_sales_end_date.split(' ')[1];
