@@ -22,8 +22,11 @@ export class EventsService {
   getTodaysEventsUrl: string;
   getEventsByHostingUrl: string;
   getEventsInSixHoursUrl: string; // upcoming events
+  getEventsInSixHoursPageUrl: string; // upcoming events
   getPopularEventsUrl: string;
+  getPopularEventsPageUrl: string;
   getNewEventsUrl: string;
+  getNewEventsPageUrl: string;
   getEventsHappeningNowUrl: string;
   
   constructor(private http: HttpClient, private endpoint: EndpointService) {
@@ -40,8 +43,11 @@ export class EventsService {
     this.getTodaysEventsUrl =  this.endpoint.apiHost + '/get_todays_events';
     this.getEventsByHostingUrl =  this.endpoint.apiHost + '/get_events_by_hosting/';
     this.getEventsInSixHoursUrl = this.endpoint.apiHost + '/events_six_hours';
+    this.getEventsInSixHoursPageUrl = this.endpoint.apiHost + '/events_six_hours?page=';
     this.getPopularEventsUrl = this.endpoint.apiHost + '/get_popular_events';
+    this.getPopularEventsPageUrl = this.endpoint.apiHost + '/get_popular_events?page=';
     this.getNewEventsUrl = this.endpoint.apiHost + '/get_new_events';
+    this.getNewEventsPageUrl = this.endpoint.apiHost + '/get_new_events?page=';
     this.getEventsHappeningNowUrl = this.endpoint.apiHost + '/events_happening_now';
   }
 
@@ -382,6 +388,24 @@ export class EventsService {
     });
   }
 
+  getEventsInSixHoursPage(page: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events_in_six_hrs: any[] = [];
+      const url = this.getEventsInSixHoursPageUrl + page;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_events_in_six_hrs_page_ok: ', res);
+          events_in_six_hrs = res;
+          resolve(events_in_six_hrs);
+        },
+        err => {
+          console.log('get_events_in_six_hrs_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
   getPopularEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let popular_events: any[] = [];
@@ -400,6 +424,24 @@ export class EventsService {
     });
   }
 
+  getPopularEventsPage(page: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let popular_events: any[] = [];
+      const url = this.getPopularEventsPageUrl + page;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_popular_events_page_ok: ', res);
+          popular_events = res;
+          resolve(popular_events);
+        },
+        err => {
+          console.log('get_popular_events_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
   getNewEvents(): Promise<any> {
     return new Promise((resolve, reject) => {
       let new_events: any[] = [];
@@ -412,6 +454,24 @@ export class EventsService {
         },
         err => {
           console.log('get_new_events_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getNewEventsPage(page: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let new_events: any[] = [];
+      const url = this.getNewEventsPageUrl + page;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_new_events_page_ok: ', res);
+          new_events = res;
+          resolve(new_events);
+        },
+        err => {
+          console.log('get_new_events_page_error: ', err);
           reject(err);
         }
       );

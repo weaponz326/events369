@@ -91,6 +91,21 @@ export class UpcomingEventsComponent implements OnInit {
     );
   }
 
+  getEventsInSixHrsPage(page: any): void {
+    this.eventsService.getEventsInSixHoursPage(page).then(
+      res => {
+        console.log(res);
+        this.events_in_six_hrs = res.events;
+        this.events_in_six_hrs.data.sort(function(a: any, b:any){
+          return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   gotoPreview(eventId: any) {
     sessionStorage.setItem('preview_event_id', eventId);
     this.router.navigateByUrl('/event_details');
