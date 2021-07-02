@@ -18,7 +18,7 @@ declare var $: any;
 })
 export class EventsListComponent implements OnInit {
 
-  modalRef: MdbModalRef<SocialShareModalComponent>;
+  modalRef: any;
 
   categories: any;
   allEvents: any;
@@ -83,9 +83,6 @@ export class EventsListComponent implements OnInit {
 
       });
 
-      // just to initialize modalRef
-      this.modalRef = this.modalService.open(UpcomingEventsComponent);
-      this.modalRef.close();
 
 
     }
