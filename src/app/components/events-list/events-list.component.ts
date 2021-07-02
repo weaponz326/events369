@@ -83,9 +83,6 @@ export class EventsListComponent implements OnInit {
 
       });
 
-      // just to initialize modalRef
-      // this.modalRef = this.modalService.open(UpcomingEventsComponent);
-      // this.modalRef.close();
 
 
     }
