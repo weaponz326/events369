@@ -367,5 +367,65 @@ export class UserEventsComponent implements OnInit {
     );
   }
 
+  openDraftedEventsNextPage(url: string) {
+    this.eventsService.getDraftedUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.createdEvents = res.all_events;
+        this.createdEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  openPublishedEventsNextPage(url: string) {
+    this.eventsService.getPublishedUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.publishedEvents = res.all_events;
+        this.publishedEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  openArchivedEventsNextPage(url: string) {
+    this.eventsService.getArchivedUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.archivedEvents = res.all_events;
+        this.archivedEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  openCancelledEventsNextPage(url: string) {
+    this.eventsService.getCancelledUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.cancelledEvents = res.all_events;
+        this.cancelledEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 
 }

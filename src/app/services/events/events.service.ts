@@ -178,6 +178,82 @@ export class EventsService {
       );
     });
   }
+
+  getDraftedUsersEventsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_drafted_events_next_page_ok: ', res);
+          events = res.all_events;
+          resolve(events);
+        },
+        err => {
+          console.log('get_drafted_events_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getPublishedUsersEventsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_published_events_next_page_ok: ', res);
+          events = res.all_events;
+          resolve(events);
+        },
+        err => {
+          console.log('get_published_events_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getCancelledUsersEventsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_cancelled_events_next_page_ok: ', res);
+          events = res.all_events;
+          resolve(events);
+        },
+        err => {
+          console.log('get_cancelled_events_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getArchivedUsersEventsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let events: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_archived_events_next_page_ok: ', res);
+          events = res.all_events;
+          resolve(events);
+        },
+        err => {
+          console.log('get_archived_events_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
   
 
   getCategories(): Promise<any> {

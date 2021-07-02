@@ -124,7 +124,7 @@
                       <nav aria-label="Page navigation example">
                         <ul class="pagination">
                           <li class="page-item" *ngIf="createdEvents.current_page !== 1">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" (click)="openDraftedEventsNextPage(createdEvents.prev_page_url)" aria-label="Previous">
                               <span aria-hidden="true">&laquo;</span>
                               <span class="sr-only">Previous</span>
                             </a>
@@ -133,7 +133,7 @@
                           <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                           <li class="page-item" *ngIf="createdEvents.to < createdEvents.total">
-                            <a class="page-link"  aria-label="Next">
+                            <a class="page-link" (click)="openDraftedEventsNextPage(createdEvents.next_page_url)" aria-label="Next">
                               <span aria-hidden="true">&raquo;</span>
                               <span class="sr-only">Next</span>
                             </a>
@@ -331,7 +331,7 @@
                           <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item" *ngIf="publishedEvents.current_page !== 1">
-                                <a class="page-link" href="#" aria-label="Previous">
+                                <a class="page-link" (click)="openPublishedEventsNextPage(publishedEvents.prev_page_url)" aria-label="Previous">
                                   <span aria-hidden="true">&laquo;</span>
                                   <span class="sr-only">Previous</span>
                                 </a>
@@ -340,7 +340,7 @@
                               <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                               <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                               <li class="page-item" *ngIf="publishedEvents.to < publishedEvents.total">
-                                <a class="page-link" href="#" aria-label="Next">
+                                <a class="page-link" (click)="openPublishedEventsNextPage(publishedEvents.next_page_url)" aria-label="Next">
                                   <span aria-hidden="true">&raquo;</span>
                                   <span class="sr-only">Next</span>
                                 </a>
@@ -439,7 +439,7 @@
                       <nav aria-label="Page navigation example">
                         <ul class="pagination">
                           <li class="page-item" *ngIf="cancelledEvents.current_page !== 1">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" (click)="openCancelledEventsNextPage(cancelledEvents.prev_page_url)" aria-label="Previous">
                               <span aria-hidden="true">&laquo;</span>
                               <span class="sr-only">Previous</span>
                             </a>
@@ -448,7 +448,7 @@
                           <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                           <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                           <li class="page-item" *ngIf="cancelledEvents.to < cancelledEvents.total">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link"  (click)="openCancelledEventsNextPage(cancelledEvents.next_page_url)" aria-label="Next">
                               <span aria-hidden="true">&raquo;</span>
                               <span class="sr-only">Next</span>
                             </a>
@@ -542,7 +542,7 @@
                           <nav aria-label="Page navigation example">
                             <ul class="pagination">
                               <li class="page-item" *ngIf="archivedEvents.current_page !== 1">
-                                <a class="page-link" href="#" aria-label="Previous">
+                                <a class="page-link" (click)="openArchivedEventsNextPage(archivedEvents.prev_page_url)" aria-label="Previous">
                                   <span aria-hidden="true">&laquo;</span>
                                   <span class="sr-only">Previous</span>
                                 </a>
@@ -551,7 +551,7 @@
                               <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                               <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                               <li class="page-item" *ngIf="archivedEvents.to < archivedEvents.total">
-                                <a class="page-link" href="#" aria-label="Next">
+                                <a class="page-link" (click)="openArchivedEventsNextPage(archivedEvents.next_page_url)" aria-label="Next">
                                   <span aria-hidden="true">&raquo;</span>
                                   <span class="sr-only">Next</span>
                                 </a>
