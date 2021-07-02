@@ -36,6 +36,10 @@
     padding: 0 0 24px;
 }
 
+::ng-deep .modal-dialog {
+    top: 10vh;
+}
+
 .zm-share-header {
     overflow: hidden;
     margin-bottom: 32px;
