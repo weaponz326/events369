@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preview-event-page',
@@ -28,11 +29,52 @@ export class PreviewEventPageComponent implements OnInit {
   sponsorsDisplay: Boolean = false;
   galleryDisplay: Boolean = false;
 
-  constructor(private http: HttpClient) { 
-    this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
+  
+  string_from_url: string = '';
+
+  id: string = '';
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) { 
+
+      this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
+    
+      this.string_from_url = decodeURI(this.router.url);
+
+      var ind1 = this.string_from_url.indexOf('=');
+      var ind2 = this.string_from_url.indexOf('&', ind1 + 1);
+      
+
+      this.id = this.string_from_url.substring(ind1+1, ind2);
+      console.log(this.id)
+
+      if(this.id.length > 0) {
+        // sessionStorage.setItem('preview_event_id', this.id);
+        this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + this.id;
+        console.log('http://events369.logitall.biz/api/get_event_data/', this.id)
+      }
+      
+      
   }
 
   ngOnInit(): void {
+    this.string_from_url = decodeURI(this.router.url);
+
+    var ind1 = this.string_from_url.indexOf('=');
+    var ind2 = this.string_from_url.indexOf('&', ind1 + 1);
+    
+
+    this.id = this.string_from_url.substring(ind1+1, ind2);
+    console.log(this.id)
+
+    if(this.id.length > 0 ) {
+      // sessionStorage.setItem('preview_event_id', this.id);
+      this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + this.id;
+      console.log(this.dataUrl, sessionStorage.getItem('preview_event_id'))
+    }
+
   }
 
   ngAfterViewInit() {
