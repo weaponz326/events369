@@ -113,6 +113,10 @@ import { SocialShareModalComponent } from './components/social-share-modal/socia
 import { PreviewOrganizerModalComponent } from './components/preview-event/preview-organizer-modal/preview-organizer-modal.component';
 import { PreviewSpeakerModalComponent } from './components/preview-event/preview-speaker-modal/preview-speaker-modal.component';
 import { PreviewGalleryModalComponent } from './components/preview-event/preview-gallery-modal/preview-gallery-modal.component';
+import { FavoritePageComponent } from './pages/favorites-page/favorite-page.component';
+import { FavoritesComponentComponent } from './components/favorites-component/favorites-component.component';
+import { EventsByCategoryComponent } from './components/events-by-category/events-by-category.component';
+import { CategoryEventsPageComponent } from './pages/category-events-page/category-events-page.component';
 
 
 @NgModule({
@@ -200,7 +204,11 @@ import { PreviewGalleryModalComponent } from './components/preview-event/preview
     SocialShareModalComponent,
     PreviewOrganizerModalComponent,
     PreviewSpeakerModalComponent,
-    PreviewGalleryModalComponent
+    PreviewGalleryModalComponent,
+    FavoritePageComponent,
+    FavoritesComponentComponent,
+    EventsByCategoryComponent,
+    CategoryEventsPageComponent
   ],
   imports: [
     BrowserModule,
