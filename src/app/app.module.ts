@@ -109,6 +109,10 @@ import { MagiclinkInvalidComponent } from './pages/user-auth/magiclink-invalid/m
 import { AccountProfileComponent } from './pages/profile/account-profile/account-profile.component';
 import { AccountSettingsComponent } from './pages/profile/account-settings/account-settings.component';
 import { SocialShareModalComponent } from './components/social-share-modal/social-share-modal.component';
+import { FavoritePageComponent } from './pages/favorites-page/favorite-page.component';
+import { FavoritesComponentComponent } from './components/favorites-component/favorites-component.component';
+import { EventsByCategoryComponent } from './components/events-by-category/events-by-category.component';
+import { CategoryEventsPageComponent } from './pages/category-events-page/category-events-page.component';
 
 
 @NgModule({
@@ -193,7 +197,11 @@ import { SocialShareModalComponent } from './components/social-share-modal/socia
     MagiclinkInvalidComponent,
     AccountProfileComponent,
     AccountSettingsComponent,
-    SocialShareModalComponent
+    SocialShareModalComponent,
+    FavoritePageComponent,
+    FavoritesComponentComponent,
+    EventsByCategoryComponent,
+    CategoryEventsPageComponent
   ],
   imports: [
     BrowserModule,

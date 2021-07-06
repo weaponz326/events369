@@ -9,14 +9,16 @@ import { SocialShareModalComponent } from 'src/app/components/social-share-modal
 // import { HappeningNowService } from 'src/app/services/happening-now/happening-now.service';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 
+
 declare var $: any;
 
+
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  selector: 'app-favorites-component',
+  templateUrl: './favorites-component.component.html',
+  styleUrls: ['./favorites-component.component.scss']
 })
-export class EventsListComponent implements OnInit {
+export class FavoritesComponentComponent implements OnInit {
 
   modalRef: any;
 
@@ -41,7 +43,7 @@ export class EventsListComponent implements OnInit {
   users_favorite_event_ids: any = []
 
   loading: boolean = true;
-  loadIndex = [12, 12, 12]
+  loadIndex = [15, 15, 15]
 
   favorites_loadIndex = 8
   online_events_loadIndex = 8
@@ -62,12 +64,6 @@ export class EventsListComponent implements OnInit {
     // private eventsHappeningNow: HappeningNowService,
     private modalService: MdbModalService
     ) { 
-      this.getEventsInSixHrs();
-      this.getPopularEvents();
-      this.getNewEvents();
-      this.getAllEvents();
-      this.getOnlineEvents();
-      this.getTodaysEvents();
       this.getUsersFavorites();
 
 
@@ -100,6 +96,9 @@ export class EventsListComponent implements OnInit {
     console.log(this.users_favorite_event_ids);
     
     this.initCarousel();
+
+    // scroll to top of page
+    window.scrollTo(0, 0)
   }
 
   initCarousel() {
@@ -231,7 +230,7 @@ export class EventsListComponent implements OnInit {
         res => {
           console.log(res);
           this.categoryEvents[i] = res.events?.data;
-          this.loadIndex[i] = 12
+          this.loadIndex[i] = 15
           console.log(this.categoryEvents[i])
         },
         err => {
@@ -249,6 +248,7 @@ export class EventsListComponent implements OnInit {
       this.userFavoriteService.getUserFavorites(this.userID).then(
         res => {
           this.userFavorites = res.event?.data;
+          console.log(this.userFavorites)
 
           for (let i = 0; i < this.userFavorites.length; i++) {
             this.users_favorite_event_ids.push(this.userFavorites[i].id)
@@ -432,14 +432,12 @@ export class EventsListComponent implements OnInit {
   }
 
   
-  loadMore(categoryId: any) {    
+  loadMore(categoryId: any) {
+
     this.loading = true
-    console.log(categoryId);
-    this.router.navigateByUrl('/events/events-by-category/'+ categoryId);
-    
-    // if(this.loadIndex[categoryId] < this.categoryEvents[categoryId].length) {
-    //   this.loadIndex[categoryId] += 12
-    // }
+    if(this.loadIndex[categoryId] < this.categoryEvents[categoryId].length) {
+      this.loadIndex[categoryId] += 15
+    }
     
     this.loading = false
   }
@@ -447,7 +445,7 @@ export class EventsListComponent implements OnInit {
   loadLess(categoryId: any) {
     this.loading = true
     if(this.loadIndex[categoryId] >= this.categoryEvents[categoryId].length) {
-      this.loadIndex[categoryId] -= 12
+      this.loadIndex[categoryId] -= 15
     }
     
     this.loading = false
@@ -528,5 +526,20 @@ export class EventsListComponent implements OnInit {
   openModal(url: string) {
     this.modalRef = this.modalService.open(SocialShareModalComponent, { data: { url: url }});
   }
- 
+
+  getFavoriteEventsNextPage(url: string) {
+    this.eventsService.getCancelledUsersEventsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.userFavorites = res.all_events;
+        this.userFavorites.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 }
