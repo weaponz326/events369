@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { OwlModule } from 'ngx-owl-carousel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -109,6 +110,9 @@ import { MagiclinkInvalidComponent } from './pages/user-auth/magiclink-invalid/m
 import { AccountProfileComponent } from './pages/profile/account-profile/account-profile.component';
 import { AccountSettingsComponent } from './pages/profile/account-settings/account-settings.component';
 import { SocialShareModalComponent } from './components/social-share-modal/social-share-modal.component';
+import { PreviewOrganizerModalComponent } from './components/preview-event/preview-organizer-modal/preview-organizer-modal.component';
+import { PreviewSpeakerModalComponent } from './components/preview-event/preview-speaker-modal/preview-speaker-modal.component';
+import { PreviewGalleryModalComponent } from './components/preview-event/preview-gallery-modal/preview-gallery-modal.component';
 
 
 @NgModule({
@@ -193,7 +197,10 @@ import { SocialShareModalComponent } from './components/social-share-modal/socia
     MagiclinkInvalidComponent,
     AccountProfileComponent,
     AccountSettingsComponent,
-    SocialShareModalComponent
+    SocialShareModalComponent,
+    PreviewOrganizerModalComponent,
+    PreviewSpeakerModalComponent,
+    PreviewGalleryModalComponent
   ],
   imports: [
     BrowserModule,
@@ -201,6 +208,7 @@ import { SocialShareModalComponent } from './components/social-share-modal/socia
     HttpClientModule,
     BrowserAnimationsModule,
     ClipboardModule,
+    MatDialogModule,
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
