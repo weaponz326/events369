@@ -60,7 +60,7 @@ export class EventsByCategoryComponent implements OnInit {
     console.log(this.users_favorite_event_ids) 
 
     this.loadIndex = 15 
-
+    
   }
 
   getCategoryEvents() {
