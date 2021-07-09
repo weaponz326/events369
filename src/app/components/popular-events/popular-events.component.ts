@@ -24,6 +24,7 @@ export class PopularEventsComponent implements OnInit {
   
   users_favorite_event_ids: any = []  
   users_favorite_event_id_and_fav_id: any = []
+  users_favorite_event_id_and_visibilty: any = []
   
   @ViewChild('upcomingSlider') upcomingSlider: OwlCarousel | undefined;
 
@@ -211,6 +212,24 @@ export class PopularEventsComponent implements OnInit {
     );
   }
 
+  getUsersFavoritesAfterNextPageLoad (){
+
+    if(this.userID !== '') {
+      
+          for (let i = 0; i < this.userFavorites.data.length; i++) {
+            this.users_favorite_event_ids.push(this.userFavorites.data[i].id)
+            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites.data[i].id, fav_id: this.userFavorites.data[i].fav_id })
+            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites.data[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites.data[i].id) })
+            
+            
+          }
+
+          // console.log(this.users_favorite_event_id_and_fav_id)
+          // console.log(this.users_favorite_event_id_and_visibilty)
+    }
+  }
+
+
   getPopularEventsPage(url: string): void {
     this.eventsService.getPopularEventsPage(url).then(
       res => {
@@ -225,7 +244,7 @@ export class PopularEventsComponent implements OnInit {
         });
 
         // assign id of next events to userfavorites id array
-        // if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
 
         // get the next_page_url of the new events data and assigned it to the respective category data
         this.popularEvents.next_page_url = nextEvents.next_page_url
