@@ -461,7 +461,7 @@ export class EventsListComponent implements OnInit {
 
         // get the next_page_url of the new events data and assigned it to the respective category data
         this.categoryEvents[index].next_page_url = nextEvents.next_page_url
-        console.log(this.categoryEvents[index])
+        // console.log(this.categoryEvents[index])
 
         
         // this.categoryEvents[index].data.sort(function(a: any, b:any){
