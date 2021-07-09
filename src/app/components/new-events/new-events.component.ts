@@ -225,12 +225,26 @@ export class NewEventsComponent implements OnInit {
   }
 
   getNewEventsPage(url: string): void {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
 
     this.eventsService.getNewEventsPage(url).then(
       res => {
         console.log(res);
-        this.newEvents = res.events;
+        let nextEvents = []
+        nextEvents = res.events
+        nextEvents.data.sort(function(a: any, b:any){
+            return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+          });
+        nextEvents.data.forEach((event: any) => {
+          this.newEvents.data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        // if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.newEvents.next_page_url = nextEvents.next_page_url
+        
       },
       err => {
         console.log(err);
