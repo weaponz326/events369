@@ -28,12 +28,12 @@ export class EventsListComponent implements OnInit {
   slideConfig: any;
 
   // eventsToday: any = []
-  events_in_six_hrs: any = []
+  events_in_six_hrs: any = [];
   events_events_in_six_hrs_empty: boolean = false
-  popularEvents: any = []
-  newEvents: any = []
+  popularEvents: any = [];
+  newEvents: any = [];
 
-  userFavorites: any = []
+  userFavorites: any = [];
   userID: string = '';
   user_token: string = '';
   sliderOptions: any;
@@ -190,7 +190,7 @@ export class EventsListComponent implements OnInit {
     this.eventsService.getEventsByHosting('0').then(
       res => {
         console.log(res);
-        this.onlineEvents = res.events?.data;
+        this.onlineEvents = res.events;
       },
       err => {
         console.log(err);
@@ -202,7 +202,7 @@ export class EventsListComponent implements OnInit {
     this.eventsService.getTodaysEvents().then(
       res => {
         console.log(res);
-        this.todaysEvents = res.events?.data;
+        this.todaysEvents = res.events;
       },
       err => {
         console.log(err);
@@ -230,9 +230,9 @@ export class EventsListComponent implements OnInit {
       this.eventsService.getCategoryEvents(categoryId).then(
         res => {
           console.log(res);
-          this.categoryEvents[i] = res.events?.data;
+          this.categoryEvents[i] = res.events;
           this.loadIndex[i] = 12
-          console.log(this.categoryEvents[i])
+          console.log(this.categoryEvents[i].data)
         },
         err => {
           console.log(err);
@@ -248,12 +248,12 @@ export class EventsListComponent implements OnInit {
     if(this.userID !== '') {
       this.userFavoriteService.getUserFavorites(this.userID).then(
         res => {
-          this.userFavorites = res.event?.data;
+          this.userFavorites = res.event;
 
-          for (let i = 0; i < this.userFavorites.length; i++) {
-            this.users_favorite_event_ids.push(this.userFavorites[i].id)
-            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites[i].id, fav_id: this.userFavorites[i].fav_id })
-            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites[i].id) })
+          for (let i = 0; i < this.userFavorites.data.length; i++) {
+            this.users_favorite_event_ids.push(this.userFavorites.data[i].id)
+            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites.data[i].id, fav_id: this.userFavorites.data[i].fav_id })
+            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites.data[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites.data[i].id) })
             
             
           }
@@ -266,13 +266,24 @@ export class EventsListComponent implements OnInit {
         }
       );
 
+    }  
+  }
+
+  getUsersFavoritesAfterNextPageLoad (){
+
+    if(this.userID !== '') {
+      
+          for (let i = 0; i < this.userFavorites.data.length; i++) {
+            this.users_favorite_event_ids.push(this.userFavorites.data[i].id)
+            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites.data[i].id, fav_id: this.userFavorites.data[i].fav_id })
+            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites.data[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites.data[i].id) })
+            
+            
+          }
+
+          // console.log(this.users_favorite_event_id_and_fav_id)
+          // console.log(this.users_favorite_event_id_and_visibilty)
     }
-
-
-    
-    
-    // console.log(this.userID)
-    // console.log('Users favorites: ', this.users_favorite_event_ids)
   }
 
   getEventStartDateFormatted(date: any) {
@@ -432,14 +443,40 @@ export class EventsListComponent implements OnInit {
   }
 
   
-  loadMore(categoryId: any) {    
+  loadMore(url: string, index: any) {    
     this.loading = true
-    console.log(categoryId);
-    this.router.navigateByUrl('/events/events-by-category/'+ categoryId);
+
+    this.eventsService.getCategoryEventsNextPage(url).then(
+      res => {
+        console.log(res);
+
+        let nextEvents = []
+        nextEvents = res.events
+        nextEvents.data.forEach((event: any) => {
+          this.categoryEvents[index].data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.categoryEvents[index].next_page_url = nextEvents.next_page_url
+        // console.log(this.categoryEvents[index])
+
+        
+        // this.categoryEvents[index].data.sort(function(a: any, b:any){
+        //   return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+        // });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+
+    // console.log(categoryId);
+    // this.router.navigateByUrl('/events/events-by-category/'+ categoryId);
     
-    // if(this.loadIndex[categoryId] < this.categoryEvents[categoryId].length) {
-    //   this.loadIndex[categoryId] += 12
-    // }
     
     this.loading = false
   }
@@ -453,33 +490,93 @@ export class EventsListComponent implements OnInit {
     this.loading = false
   }
 
-  loadMoreFavorites() {
+  loadMoreFavorites(url: string) {
 
     this.loading = true
-    if(this.favorites_loadIndex < this.userFavorites.length) {
-      this.favorites_loadIndex += 5
-    }
     
+    this.eventsService.getCategoryEventsNextPage(url).then(
+      res => {
+        console.log(res);
+
+        let nextEvents = []
+        nextEvents = res.event
+        nextEvents.data.forEach((event: any) => {
+          this.userFavorites.data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.userFavorites.next_page_url = nextEvents.next_page_url
+
+        
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     this.loading = false
   }
 
-  loadMoreOnlineEvents() {
+  loadMoreOnlineEvents(url: string) {
 
     this.loading = true
-    if(this.online_events_loadIndex < this.onlineEvents.length) {
-      this.online_events_loadIndex += 5
-    }
     
+    this.eventsService.getCategoryEventsNextPage(url).then(
+      res => {
+        console.log(res);
+
+        let nextEvents = []
+        nextEvents = res.event
+        nextEvents.data.forEach((event: any) => {
+          this.onlineEvents.data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.onlineEvents.next_page_url = nextEvents.next_page_url
+
+        
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     this.loading = false
   }
 
-  loadMoreTodaysEvents() {
+  loadMoreTodaysEvents(url: string) {
 
     this.loading = true
-    if(this.todays_events_loadIndex < this.todaysEvents.length) {
-      this.todays_events_loadIndex += 5
-    }
     
+    this.eventsService.getCategoryEventsNextPage(url).then(
+      res => {
+        console.log(res);
+
+        let nextEvents = []
+        nextEvents = res.event
+        nextEvents.data.forEach((event: any) => {
+          this.todaysEvents.data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.todaysEvents.next_page_url = nextEvents.next_page_url
+
+        
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     this.loading = false
   }
 

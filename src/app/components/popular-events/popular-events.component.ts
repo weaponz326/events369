@@ -4,6 +4,9 @@ import { OwlCarousel } from 'ngx-owl-carousel';
 import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
 import moment from 'moment';
 import { Router } from '@angular/router';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { SocialShareModalComponent } from 'src/app/components/social-share-modal/social-share-modal.component';
+
 
 @Component({
   selector: 'app-popular-events',
@@ -21,17 +24,21 @@ export class PopularEventsComponent implements OnInit {
   
   users_favorite_event_ids: any = []  
   users_favorite_event_id_and_fav_id: any = []
+  users_favorite_event_id_and_visibilty: any = []
   
   @ViewChild('upcomingSlider') upcomingSlider: OwlCarousel | undefined;
 
   loading: boolean = false
   
   loadIndex = 20
+  
+  modalRef: any;
 
   constructor(
     private eventsService: EventsService,
     private userFavoriteService: UsersFavoritesService,
-    private router: Router
+    private router: Router,
+    private modalService: MdbModalService
   ) { 
     this.getPopularEvents();
   }
@@ -205,11 +212,43 @@ export class PopularEventsComponent implements OnInit {
     );
   }
 
-  getPopularEventsPage(page: any): void {
-    this.eventsService.getPopularEventsPage(page).then(
+  getUsersFavoritesAfterNextPageLoad (){
+
+    if(this.userID !== '') {
+      
+          for (let i = 0; i < this.userFavorites.data.length; i++) {
+            this.users_favorite_event_ids.push(this.userFavorites.data[i].id)
+            this.users_favorite_event_id_and_fav_id.push({event_id: this.userFavorites.data[i].id, fav_id: this.userFavorites.data[i].fav_id })
+            this.users_favorite_event_id_and_visibilty.push({event_id: this.userFavorites.data[i].id, visibility: this.hasBeenAddedToFavorites(this.userFavorites.data[i].id) })
+            
+            
+          }
+
+          // console.log(this.users_favorite_event_id_and_fav_id)
+          // console.log(this.users_favorite_event_id_and_visibilty)
+    }
+  }
+
+
+  getPopularEventsPage(url: string): void {
+    this.eventsService.getPopularEventsPage(url).then(
       res => {
         console.log(res);
-        this.popularEvents = res.events;
+        let nextEvents = []
+        nextEvents = res.events
+        nextEvents.data.sort(function(a: any, b:any){
+            return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
+          });
+        nextEvents.data.forEach((event: any) => {
+          this.popularEvents.data.push(event);
+        });
+
+        // assign id of next events to userfavorites id array
+        if(this.userFavorites.data) this.getUsersFavoritesAfterNextPageLoad();
+
+        // get the next_page_url of the new events data and assigned it to the respective category data
+        this.popularEvents.next_page_url = nextEvents.next_page_url
+        
       },
       err => {
         console.log(err);
@@ -218,6 +257,8 @@ export class PopularEventsComponent implements OnInit {
   }
 
   getTicketSalesStatus(ticket_sales_end_date: string) {
+    if (ticket_sales_end_date == null) return 1;
+
     var ticket_end_date = ticket_sales_end_date.split(' ')[0];
     var ticket_end_time = ticket_sales_end_date.split(' ')[1];
 
@@ -237,6 +278,11 @@ export class PopularEventsComponent implements OnInit {
     } else {
       return 1;
     }
+  }
+
+  
+  openModal(url: string) {
+    this.modalRef = this.modalService.open(SocialShareModalComponent, { data: { url: url }});
   }
 
 }
