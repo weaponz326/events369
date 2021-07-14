@@ -61,9 +61,11 @@ export class PreviewEventPageComponent implements OnInit {
       } else {
 
         // get id from session Storage instead if the url has no id
+        // console.log('preview_event_id: ', sessionStorage.getItem('preview_event_id'));
         this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
     
       }
+
       
       
   }
@@ -81,8 +83,11 @@ export class PreviewEventPageComponent implements OnInit {
     if(this.id.length > 0 ) {
       // sessionStorage.setItem('preview_event_id', this.id);
       this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + this.id;
-      console.log(this.dataUrl, sessionStorage.getItem('preview_event_id'))
+      // console.log(this.dataUrl, sessionStorage.getItem('preview_event_id'))
     }
+
+    // get event data before view initialized : fix for 14-Jul-2021 bug
+    this.getData();
 
   }
 
@@ -92,6 +97,7 @@ export class PreviewEventPageComponent implements OnInit {
 
   dataCall() {
     return this.http.get(this.dataUrl);
+
   }
 
   getData() {
