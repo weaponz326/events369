@@ -528,12 +528,12 @@ export class FavoritesComponentComponent implements OnInit {
   }
 
   getFavoriteEventsNextPage(url: string) {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     this.eventsService.getFavoritesEventsNextPage(url).then(
       res => {
         console.log(res);
-        let nextEvents = []
-        nextEvents = res.events
+        let nextEvents = [];
+        nextEvents = res.event;
         nextEvents.data.sort(function(a: any, b:any){
             return new Date(a.start_date_time).valueOf() - new Date(b.start_date_time).valueOf();
           });
