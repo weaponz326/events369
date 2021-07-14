@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <div class="row">
       <div class="col-12 text-center py-3" style="margin-bottom: 1rem;">
-        <span class="text-muted">showing <ng-container *ngIf="searchData?.data.length">{{searchData?.data.length}}</ng-container>  results for</span> "<b><em>{{searchQuery}}</em></b>"
+        <span class="text-muted">showing results for</span> "<b><em>{{searchQuery}}</em></b>" <ng-container *ngIf="searchData?.data.length"><span class="text-muted">. {{searchData?.total}} found.</span> </ng-container> 
       </div>
     </div>
     <ng-container *ngIf="!searchData">
