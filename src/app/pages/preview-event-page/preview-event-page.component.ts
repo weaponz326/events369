@@ -39,8 +39,9 @@ export class PreviewEventPageComponent implements OnInit {
     private router: Router
     ) { 
 
-      this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
-    
+      
+      // get id from email redirect
+      // this would only work if the user is redirecting from the email
       this.string_from_url = decodeURI(this.router.url);
 
       var ind1 = this.string_from_url.indexOf('=');
@@ -50,10 +51,18 @@ export class PreviewEventPageComponent implements OnInit {
       this.id = this.string_from_url.substring(ind1+1, ind2);
       console.log(this.id)
 
+      // end of email redirect get id from url
+
+      // if id is in the url then assign it to dataUrl variable
       if(this.id.length > 0) {
         // sessionStorage.setItem('preview_event_id', this.id);
         this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + this.id;
         console.log('http://events369.logitall.biz/api/get_event_data/', this.id)
+      } else {
+
+        // get id from session Storage instead if the url has no id
+        this.dataUrl = 'http://events369.logitall.biz/api/get_event_data/' + sessionStorage.getItem('preview_event_id');
+    
       }
       
       
