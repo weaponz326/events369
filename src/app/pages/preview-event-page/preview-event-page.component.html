@@ -22,10 +22,26 @@
     [eventContent]="this.eventContent"
 ></app-preview-banner>
 
-<app-preview-details id="intro"
+<!-- <app-preview-details id="intro"
     [eventContent]="this.eventContent"
     [hostingContent]="this.hostingContent">
-</app-preview-details>
+</app-preview-details> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-preview-minimised-description
+                [eventContent]="this.eventContent">
+            </app-preview-minimised-description>
+        </div>
+        <div class="col">
+            <app-preview-minimised-location
+                [eventContent]="this.eventContent"
+                [hostingContent]="this.hostingContent">
+            </app-preview-minimised-location>
+        </div>
+    </div>
+</div>
 
 <!-- <app-preview-schedule id="schedule"
     *ngIf="scheduleDisplay == true">
