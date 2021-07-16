@@ -123,6 +123,7 @@ import { PreviewMinimisedSponsorsComponent } from './components/preview-event/pr
 import { PreviewMinimisedPricingComponent } from './components/preview-event/preview-minimised-pricing/preview-minimised-pricing.component';
 import { PreviewMinimisedDescriptionComponent } from './components/preview-event/preview-minimised-description/preview-minimised-description.component';
 import { PreviewMinimisedLocationComponent } from './components/preview-event/preview-minimised-location/preview-minimised-location.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -247,8 +248,8 @@ import { PreviewMinimisedLocationComponent } from './components/preview-event/pr
     OwlNativeDateTimeModule,
     GooglePlaceModule,
     TimeagoModule.forRoot(),
-    MdbModalModule
-
+    MdbModalModule,
+    GoogleMapsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
