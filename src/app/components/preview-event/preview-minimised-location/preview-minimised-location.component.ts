@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { MatSnackBar } from '@angular/material/snack-bar';
+// import {}  from 'googlemaps'
 
 @Component({
   selector: 'app-preview-minimised-location',
@@ -11,7 +13,8 @@ export class PreviewMinimisedLocationComponent implements OnInit {
   @Input() eventContent?: any;
   @Input() hostingContent?: any;
 
-  hosting = '';
+  @ViewChild(GoogleMap, { static: false }) map: GoogleMap | undefined
+  @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow | undefined
 
   facebookLinkCopied = false;
   youtubeLinkCopied = false;
@@ -23,11 +26,93 @@ export class PreviewMinimisedLocationComponent implements OnInit {
   teamsLinkCopied = false;
   teamsPasswordCopied = false;
 
+  zoom = 12;
+  // center: google.maps.LatLngLiteral | undefined;
+  options: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    mapTypeId: 'hybrid',
+    maxZoom: 15,
+    minZoom: 8,
+  };
+  markers: any[] = [];
+  marker: any = {};
+  center: any = {};
+  infoContent = '';
+
   constructor(private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-    this.hosting = this.eventContent?.hosting;
+    let latitude = this.eventContent?.gps.split(", ")[0];
+    let longitude = this.eventContent?.gps.split(", ")[1];
+
+    this.marker = {
+      position: {
+        lat: latitude,
+        lng: longitude,
+      },
+      label: {
+        color: 'red',
+        text: 'Marker label ' + (this.markers.length + 1),
+      },
+      title: 'Marker title ' + (this.markers.length + 1),
+      info: 'Marker info ' + (this.markers.length + 1),
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      }
+    }
+
+    this.center = {
+      lat: latitude,
+      lng: longitude
+    }
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  zoomIn() {
+    // if (this.zoom < this.options.maxZoom) this.zoom++
+  }
+
+  zoomOut() {
+    // if (this.zoom > this.options.minZoom) this.zoom--
+  }
+
+  click(event: google.maps.MouseEvent) {
+    console.log(event)
+  }
+
+  logCenter() {
+    console.log(JSON.stringify(this.map?.getCenter()))
+  }
+
+  addMarker() {
+    let latitude = this.eventContent?.gps.split(", ")[0];
+    let longitude = this.eventContent?.gps.split(", ")[1];
+
+    this.markers.push({
+      position: {
+        lat: latitude,
+        lng: longitude,
+      },
+      label: {
+        color: 'red',
+        text: 'Marker label ' + (this.markers.length + 1),
+      },
+      title: 'Marker title ' + (this.markers.length + 1),
+      info: 'Marker info ' + (this.markers.length + 1),
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      },
+    })
+  }
+
+  openInfo(marker: MapMarker, content: string) {
+    this.infoContent = content
+    this.info?.open(marker)
   }
 
   openSnackBar() {
