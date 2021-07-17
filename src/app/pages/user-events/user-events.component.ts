@@ -308,15 +308,18 @@ export class UserEventsComponent implements OnInit {
     var dots = document.getElementById("draft-dots-"+event_id) as HTMLSpanElement;
     var moreText = document.getElementById("draft-more-"+event_id) as HTMLSpanElement;
     var btnText = document.getElementById("draft-myBtn-"+event_id)  as HTMLSpanElement;
+    var icons = document.getElementById("draft-icons-"+event_id)  as HTMLSpanElement;
 
     if (dots?.style.display === "none") {
       dots.style.display = "inline";
       btnText.innerHTML = "See more"; 
       moreText.style.display = "none";
+      icons.style.display = "inline";
     } else {
       dots.style.display = "none";
       btnText.innerHTML = "See less"; 
       moreText.style.display = "inline";
+      icons.style.display = "none";
     }
   }
 
@@ -343,15 +346,18 @@ export class UserEventsComponent implements OnInit {
     var dots = document.getElementById("archived-dots-"+event_id) as HTMLSpanElement;
     var moreText = document.getElementById("archived-more-"+event_id) as HTMLSpanElement;
     var btnText = document.getElementById("archived-myBtn-"+event_id)  as HTMLSpanElement;
+    var icons = document.getElementById("archived-icons-"+event_id)  as HTMLSpanElement;
 
     if (dots?.style.display === "none") {
       dots.style.display = "inline";
       btnText.innerHTML = "See more"; 
       moreText.style.display = "none";
+      icons.style.display = "inline";
     } else {
       dots.style.display = "none";
       btnText.innerHTML = "See less"; 
       moreText.style.display = "inline";
+      icons.style.display = "none";
     }
   }
 
@@ -378,7 +384,7 @@ export class UserEventsComponent implements OnInit {
     this.eventsService.getDraftedUsersEventsNextPage(url).then(
       res => {
         console.log(res);
-        this.createdEvents = res.all_events;
+        this.createdEvents = res;
         this.createdEvents.data.sort(function(a: any, b:any){
           return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
         });
@@ -412,7 +418,7 @@ export class UserEventsComponent implements OnInit {
     this.eventsService.getArchivedUsersEventsNextPage(url).then(
       res => {
         console.log(res);
-        this.archivedEvents = res.all_events;
+        this.archivedEvents = res;
         this.archivedEvents.data.sort(function(a: any, b:any){
           return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
         });
@@ -429,7 +435,7 @@ export class UserEventsComponent implements OnInit {
     this.eventsService.getCancelledUsersEventsNextPage(url).then(
       res => {
         console.log(res);
-        this.cancelledEvents = res.all_events;
+        this.cancelledEvents = res;
         this.cancelledEvents.data.sort(function(a: any, b:any){
           return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
         });
