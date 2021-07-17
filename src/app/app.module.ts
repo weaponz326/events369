@@ -127,6 +127,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { CancelEventAlertComponent } from './components/modals/cancel-event-alert/cancel-event-alert.component';
 import { EditEventAlertComponent } from './components/modals/edit-event-alert/edit-event-alert.component';
 import { DeleteEventAlertComponent } from './components/modals/delete-event-alert/delete-event-alert.component';
+import { RecoverEventAlertComponent } from './components/modals/recover-event-alert/recover-event-alert.component';
 
 
 @NgModule({
@@ -227,7 +228,8 @@ import { DeleteEventAlertComponent } from './components/modals/delete-event-aler
     PreviewMinimisedLocationComponent,
     CancelEventAlertComponent,
     EditEventAlertComponent,
-    DeleteEventAlertComponent
+    DeleteEventAlertComponent,
+    RecoverEventAlertComponent
   ],
   imports: [
     BrowserModule,

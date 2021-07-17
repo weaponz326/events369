@@ -41,9 +41,11 @@ export class DeleteEventAlertComponent implements OnInit {
         res => {
           console.log(res);
           this.openSnackBar();
-          this.modalRef.close();
-          // TODO: reload page          
+          this.modalRef.close();         
           resolve(true);
+          
+          // TODO: reload page 
+          window.open('/user_events', "_self");
         },
         err => {
           console.log(err);

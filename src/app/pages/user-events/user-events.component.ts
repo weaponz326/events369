@@ -9,6 +9,7 @@ import { SocialShareModalComponent } from 'src/app/components/social-share-modal
 import { CancelEventAlertComponent } from 'src/app/components/modals/cancel-event-alert/cancel-event-alert.component';
 import { EditEventAlertComponent } from 'src/app/components/modals/edit-event-alert/edit-event-alert.component';
 import { DeleteEventAlertComponent } from 'src/app/components/modals/delete-event-alert/delete-event-alert.component';
+import { RecoverEventAlertComponent } from 'src/app/components/modals/recover-event-alert/recover-event-alert.component';
 
 @Component({
   selector: 'app-user-events',
@@ -163,19 +164,8 @@ export class UserEventsComponent implements OnInit {
   }
 
   recoverEvent(eventId: any){
-    return new Promise((resolve, reject) => {
-      this.eventsService.recoverEvent(eventId).then(
-        res => {
-          console.log(res);
-          // TODO: reload page          
-          resolve(true);
-        },
-        err => {
-          console.log(err);
-          reject(err);
-        }
-      );
-    });
+    this.modalRef = this.modalService.open(RecoverEventAlertComponent, { data: { id: eventId }});
+    
   }
 
   getEventDateFormatted(date: any) {
@@ -334,15 +324,18 @@ export class UserEventsComponent implements OnInit {
     var dots = document.getElementById("cancelled-dots-"+event_id) as HTMLSpanElement;
     var moreText = document.getElementById("cancelled-more-"+event_id) as HTMLSpanElement;
     var btnText = document.getElementById("cancelled-myBtn-"+event_id)  as HTMLSpanElement;
+    var icons = document.getElementById("cancelled-icons-"+event_id)  as HTMLSpanElement;
 
     if (dots?.style.display === "none") {
       dots.style.display = "inline";
       btnText.innerHTML = "See more"; 
       moreText.style.display = "none";
+      icons.style.display = "inline";
     } else {
       dots.style.display = "none";
       btnText.innerHTML = "See less"; 
       moreText.style.display = "inline";
+      icons.style.display = "none";
     }
   }
 
