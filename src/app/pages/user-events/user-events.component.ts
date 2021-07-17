@@ -7,6 +7,8 @@ import { UsersFavoritesService } from 'src/app/services/users-favorites/users-fa
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { SocialShareModalComponent } from 'src/app/components/social-share-modal/social-share-modal.component';
 import { CancelEventAlertComponent } from 'src/app/components/modals/cancel-event-alert/cancel-event-alert.component';
+import { EditEventAlertComponent } from 'src/app/components/modals/edit-event-alert/edit-event-alert.component';
+import { DeleteEventAlertComponent } from 'src/app/components/modals/delete-event-alert/delete-event-alert.component';
 
 @Component({
   selector: 'app-user-events',
@@ -118,10 +120,14 @@ export class UserEventsComponent implements OnInit {
   }
 
   gotoEdit(eventId: any) {
+    // this.modalRef = this.modalService.open(EditEventAlertComponent, { data: { id: eventId }});
     console.log(eventId);
     this.saveSelectedEvent(eventId).then(
       ok => {
-        if (ok) this.router.navigateByUrl('/edit_event/basic_info')
+        if (ok) {
+          this.router.navigateByUrl('/edit_event/basic_info');
+          this.modalRef.close();
+        }
       },   
     );
   }
@@ -149,26 +155,11 @@ export class UserEventsComponent implements OnInit {
   }
 
   archiveEvent(eventId: any){
-    return new Promise((resolve, reject) => {
-      this.eventsService.archiveEvent(eventId).then(
-        res => {
-          console.log(res);
-          // TODO: reload page          
-          resolve(true);
-        },
-        err => {
-          console.log(err);
-          this.errMsg = err
-          reject(err);
-        }
-      );
-    });
+    this.modalRef = this.modalService.open(DeleteEventAlertComponent, { data: { id: eventId }});   
   }
 
   cancelEvent(eventId: any){
     this.modalRef = this.modalService.open(CancelEventAlertComponent, { data: { id: eventId }});
-
-    
   }
 
   recoverEvent(eventId: any){
