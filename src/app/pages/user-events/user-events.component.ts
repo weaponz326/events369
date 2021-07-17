@@ -315,15 +315,21 @@ export class UserEventsComponent implements OnInit {
     var dots = document.getElementById("published-dots-"+event_id) as HTMLSpanElement;
     var moreText = document.getElementById("published-more-"+event_id) as HTMLSpanElement;
     var btnText = document.getElementById("published-myBtn-"+event_id)  as HTMLSpanElement;
+    var icons = document.getElementById("published-icons-"+event_id)  as HTMLSpanElement;
 
     if (dots?.style.display === "none") {
       dots.style.display = "inline";
       btnText.innerHTML = "See more"; 
       moreText.style.display = "none";
+      moreText.style.height = "0";
+      icons.style.display = "inline";
     } else {
       dots.style.display = "none";
       btnText.innerHTML = "See less"; 
       moreText.style.display = "inline";
+      moreText.style.height = "max-content";
+      icons.style.display = "none";
+
     }
   }
 
