@@ -41,13 +41,11 @@ export class PreviewMinimisedLocationComponent implements OnInit {
     console.log(longitude);
 
     this.mapOptions = {
-      center: { lat: -0.215112080291502, lng: 5.643800969708496 },
-      // center: { lat: latitude, lng: longitude },
+      center: { lat: latitude, lng: longitude },
       zoom : 14
     }
     this.mapMarker = {
-      position: { lat: -0.215112080291502, lng: 5.643800969708496 },
-      // position: { lat: latitude, lng: longitude },
+      position: { lat: latitude, lng: longitude },
     }
   }
 
