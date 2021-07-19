@@ -78,23 +78,13 @@
 </div>
 
 <div *ngIf="eventContent?.hosting=='1'" id="map" class="map-view">
-    <!-- <google-map (mapClick)="click($event)" -->
     <google-map
-          height="100%"
-          width="100%"
-          [zoom]="zoom"
-          [center]="center"
-          [options]="options"
-      >
-        <!-- <map-marker #markerElem (mapClick)="openInfo(markerElem, marker.info)" -->
-        <map-marker #markerElem
-            *ngFor="let marker of markers"
-            [position]="marker.position"
-            [label]="marker.label"
-            [title]="marker.title"
-            [options]="marker.options"
-        >
-        </map-marker>
-        <map-info-window>{{ infoContent }}</map-info-window>
+        height="100%"
+        width="100%"
+        [options]="mapOptions"
+    >
+        <map-marker
+            [position]="mapMarker.position"
+        ></map-marker>
     </google-map>
 </div>
