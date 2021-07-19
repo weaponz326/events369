@@ -124,6 +124,10 @@ import { PreviewMinimisedPricingComponent } from './components/preview-event/pre
 import { PreviewMinimisedDescriptionComponent } from './components/preview-event/preview-minimised-description/preview-minimised-description.component';
 import { PreviewMinimisedLocationComponent } from './components/preview-event/preview-minimised-location/preview-minimised-location.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { CancelEventAlertComponent } from './components/modals/cancel-event-alert/cancel-event-alert.component';
+import { EditEventAlertComponent } from './components/modals/edit-event-alert/edit-event-alert.component';
+import { DeleteEventAlertComponent } from './components/modals/delete-event-alert/delete-event-alert.component';
+import { RecoverEventAlertComponent } from './components/modals/recover-event-alert/recover-event-alert.component';
 
 
 @NgModule({
@@ -221,7 +225,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
     PreviewMinimisedSponsorsComponent,
     PreviewMinimisedPricingComponent,
     PreviewMinimisedDescriptionComponent,
-    PreviewMinimisedLocationComponent
+    PreviewMinimisedLocationComponent,
+    CancelEventAlertComponent,
+    EditEventAlertComponent,
+    DeleteEventAlertComponent,
+    RecoverEventAlertComponent
   ],
   imports: [
     BrowserModule,
