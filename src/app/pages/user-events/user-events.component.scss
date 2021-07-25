@@ -562,3 +562,12 @@ color: var(--ev-create-event-nav-background);
     overflow-x: scroll;
   }
 }
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .event_social_share {
+    visibility: visible !important;
+  }
+  .swipeable-x {
+    overflow-x: scroll;
+  }
+}
