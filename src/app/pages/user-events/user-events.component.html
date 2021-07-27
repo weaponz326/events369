@@ -251,8 +251,15 @@
                   <span class="py-2 fadeIn">
                     <span id="draft-myBtn-{{event.id}}" (click)="showHideMoreDraft(event.id)" class="see-more-or-less p-2">See More 
                     </span>
-                    <span id="draft-icons-{{event.id}}" class="px-2" style="float: right;"><i (click)="gotoPreview(event.id)" class="bi bi-display"></i>&nbsp;&nbsp;<i (click)="gotoEdit(event.id)" class="bi bi-pencil-square">                        
-                    </i>&nbsp;&nbsp;<i (click)="archiveEvent(event.id)" class="bi bi-trash"></i>
+                    <span id="draft-icons-{{event.id}}" class="px-2 icons" style="float: right;">
+                      <i (click)="gotoPreview(event.id)" class="bi bi-display">
+                        <span class="tooltip">Preview</span>                        
+                    </i>&nbsp;&nbsp;
+                    <i (click)="gotoEdit(event.id)" class="bi bi-pencil-square">
+                      <span class="tooltip">Edit</span>
+                    </i>&nbsp;&nbsp;<i (click)="archiveEvent(event.id)" class="bi bi-trash">
+                      <span class="tooltip">Delete</span>
+                    </i>
                     </span>
                   </span>
                 
