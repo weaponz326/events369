@@ -741,7 +741,7 @@
                       <span class="py-2 fadeIn">
                         <span id="published-myBtn-{{event.id}}" (click)="showHideMorePublished(event.id)" class="see-more-or-less p-2">See More 
                         </span>
-                        <span id="published-icons-{{event.id}}" class="px-2" style="float: right;"><i (click)="gotoPreview(event.id)" class="bi bi-display"></i>&nbsp;&nbsp;<i (click)="gotoEdit(event.id)" class="bi bi-pencil-square">                        
+                        <span id="published-icons-{{event.id}}" class="px-2" style="float: right;"><i (click)="gotoPreview(event.id)" class="bi bi-display"></i>&nbsp;&nbsp;<i (click)="postPoneEvent(event.id)" class="bi bi-clock-history"></i> &nbsp;&nbsp;<i (click)="gotoEdit(event.id)" class="bi bi-pencil-square">                        
                         </i>&nbsp;&nbsp;<i (click)="cancelEvent(event.id)" class="bi bi-x-square"></i>&nbsp;&nbsp;<i (click)="archiveEvent(event.id)" class="bi bi-trash"></i>
                         </span>
                       </span>
@@ -1691,8 +1691,8 @@
                     <hr>
                     <div class="text-center fadeIn">
                       <button (click)="gotoPreview(event.id)" class="btn btn-primary px-4 mb-1 mx-1"> Preview</button>
-                      <button (click)="postPoneEvent(event.id)" class="btn btn-warning px-4 mb-1 mx-1"> Postpone</button>
-                      <button (click)="archiveEvent(event.id)" class="btn btn-danger mb-1 px-4 mx-1"> Delete</button>
+                      <button (click)="gotoEdit(event.id)" class="btn btn-secondary px-4 mb-1 mx-1"> Edit</button>
+                      <!-- <button (click)="archiveEvent(event.id)" class="btn btn-danger mb-1 px-4 mx-1"> Delete</button> -->
                     </div>
 
                     <!-- <div class="text-center p-2">
@@ -1705,7 +1705,7 @@
                   <span id="ongoing-myBtn-{{event.id}}" (click)="showHideMoreOngoing(event.id)" class="see-more-or-less p-2">See More 
                   </span>
                   <span id="ongoing-icons-{{event.id}}" class="px-2" style="float: right;"><i (click)="gotoPreview(event.id)" class="bi bi-display"></i>                       
-                    &nbsp;&nbsp;<i (click)="postPoneEvent(event.id)" class="bi bi-clock-history"></i>&nbsp;&nbsp;<i (click)="archiveEvent(event.id)" class="bi bi-trash"></i>
+                    &nbsp;&nbsp;<i (click)="gotoEdit(event.id)" class="bi bi-pencil-square"></i>
                   </span>
                 </span>
               
