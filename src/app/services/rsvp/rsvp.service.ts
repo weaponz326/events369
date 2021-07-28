@@ -14,6 +14,7 @@ export class RsvpService {
   getRsvpUrl: string;
   makeCardPaymentUrl: string;
   makeMobilePaymentUrl: string;
+  sendRsvpUrl: string;
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -21,6 +22,7 @@ export class RsvpService {
     this.getRsvpUrl = this.endpoint.apiHost + '/get_rsvp_form/';
     this.makeCardPaymentUrl = this.endpoint.apiHost + '/v1/rsvp_card_payment';
     this.makeMobilePaymentUrl = this.endpoint.apiHost + '/v1/rsvp_momo_payment';
+    this.sendRsvpUrl = this.endpoint.apiHost + '/v1/rsvp';
 
   }
 
@@ -63,7 +65,7 @@ export class RsvpService {
   makeCardPayment(cardData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = this.makeCardPaymentUrl;
-      this.http.post<any>(url, { headers: this.headers}).subscribe(
+      this.http.post<any>(url, cardData, { headers: this.headers}).subscribe(
         res => {
           console.log('make_card_payment_ok: ', res);
           resolve(res);
@@ -76,16 +78,32 @@ export class RsvpService {
     });
   }
 
-  makeMobilePayment(cardData: any): Promise<any> {
+  makeMobilePayment(mobileData: any): Promise<any> {
     return new Promise((resolve, reject) => {
       const url = this.makeMobilePaymentUrl;
-      this.http.post<any>(url, { headers: this.headers}).subscribe(
+      this.http.post<any>(url, mobileData, { headers: this.headers}).subscribe(
         res => {
           console.log('make_card_payment_ok: ', res);
           resolve(res);
         },
         err => {
           console.log('make_card_payment_err: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  sendRsvp(data: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = this.sendRsvpUrl;
+      this.http.post<any>(url, data, { headers: this.headers}).subscribe(
+        res => {
+          console.log('rsvp_ok: ', res);
+          resolve(res);
+        },
+        err => {
+          console.log('rsvp_err: ', err);
           reject(err);
         }
       );
