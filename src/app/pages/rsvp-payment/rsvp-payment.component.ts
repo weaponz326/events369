@@ -21,9 +21,11 @@ export class RsvpPaymentComponent implements OnInit {
   mobileForm: FormGroup = new FormGroup({});
 
   eventData: any;
-  selectedTicket = 0;
-  selectedTicketCurrency = '';
-  selectedTicketPrice = '';
+  // selectedTicket = 0;
+  // selectedTicketCurrency = '';
+  // selectedTicketPrice = '';
+
+  rsvpTicket: any;
 
   constructor(private rsvp: RsvpService, private router: Router) {
     this.isLoading = false;
@@ -37,13 +39,15 @@ export class RsvpPaymentComponent implements OnInit {
     this.initCardForm();
     this.initMobileForm();
     this.getEventData();
+
+    this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
   }
 
-  selectTicket(ticketId: any, currency: any, price: any){
-    this.selectedTicket = ticketId;
-    this.selectedTicketCurrency = currency;
-    this.selectedTicketPrice = price;
-  }
+  // selectTicket(ticketId: any, currency: any, price: any){
+  //   this.selectedTicket = ticketId;
+  //   this.selectedTicketCurrency = currency;
+  //   this.selectedTicketPrice = price;
+  // }
 
   getEventData(){
     this.rsvp.getCreatedEvent().then(
@@ -103,8 +107,8 @@ export class RsvpPaymentComponent implements OnInit {
       exp_month: this.f.exp_month.value,
       exp_year: this.f.exp_year.value,
       cvv: this.f.cvv.value,
-      currency: this.selectedTicketCurrency,
-      amount: this.selectedTicketPrice,
+      currency: this.rsvpTicket.currency,
+      amount: this.rsvpTicket.price,
     };
     return data;
   }
@@ -114,7 +118,7 @@ export class RsvpPaymentComponent implements OnInit {
       r_switch: this.g.r_switch.value,
       subscriber_number: this.g.subscriber_number.value,
       voucher_code: this.g.voucher_code.value,
-      amount: this.selectedTicketPrice,
+      amount: this.rsvpTicket.price,
     };
     return data;
   }

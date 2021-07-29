@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RsvpService } from 'src/app/services/rsvp/rsvp.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class RsvpUserComponent implements OnInit {
   selectedTicket = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice = '';
+  ticketQuantity: any;
 
   isPrefixIncluded: boolean = false;
   isFirstNameIncluded: boolean = false;
@@ -31,7 +33,7 @@ export class RsvpUserComponent implements OnInit {
   isPhoneIncluded: boolean = false;
   isAddressIncluded: boolean = false;
 
-  constructor(private rsvpService: RsvpService) {
+  constructor(private rsvpService: RsvpService, private router: Router) {
     this.isLoading = false;
     this.isSending = false;
     this.saved = false;
@@ -66,15 +68,26 @@ export class RsvpUserComponent implements OnInit {
   }
 
   getFormData(): any {
-    const data = {};
+    var details = {};
 
-    if(this.isPrefixIncluded == true) Object.assign(data, {field_name: "Prefix", value: this.f.prefix.value});
-    if(this.isFirstNameIncluded == true) Object.assign(data, {field_name: "First Name", value: this.f.firstname.value});
-    if(this.isLastNameIncluded == true) Object.assign(data, {field_name: "Last Name", value: this.f.lastname.value});
-    if(this.isGenderIncluded == true) Object.assign(data, {field_name: "Gender", value: this.f.gender.value});
-    if(this.isEmailIncluded == true) Object.assign(data, {field_name: "Email", value: this.f.email.value});
-    if(this.isPhoneIncluded == true) Object.assign(data, {field_name: "Phone No.", value: this.f.phone.value});
-    if(this.isAddressIncluded == true) Object.assign(data, {field_name: "Adress", value: this.f.address.value});
+    if(this.isPrefixIncluded == true) Object.assign(details, {field_name: "Prefix", value: this.f.prefix.value});
+    if(this.isFirstNameIncluded == true) Object.assign(details, {field_name: "First Name", value: this.f.firstname.value});
+    if(this.isLastNameIncluded == true) Object.assign(details, {field_name: "Last Name", value: this.f.lastname.value});
+    if(this.isGenderIncluded == true) Object.assign(details, {field_name: "Gender", value: this.f.gender.value});
+    if(this.isEmailIncluded == true) Object.assign(details, {field_name: "Email", value: this.f.email.value});
+    if(this.isPhoneIncluded == true) Object.assign(details, {field_name: "Phone No.", value: this.f.phone.value});
+    if(this.isAddressIncluded == true) Object.assign(details, {field_name: "Adress", value: this.f.address.value});
+
+    var data = {
+      details: details,
+      event_id: sessionStorage.getItem('created_event_id'),
+      user_id: sessionStorage.getItem('user_id'),
+      ticket_id: this.selectedTicket,
+      paid: this.eventData?.event[0].ticketing,
+      quantity: this.ticketQuantity,
+      price: this.selectedTicketPrice,
+      currency: this.selectedTicketCurrency,
+    }
 
     return data;
   }
@@ -85,10 +98,6 @@ export class RsvpUserComponent implements OnInit {
         console.log(res);
         this.eventData = res;
         sessionStorage.setItem('created_event', JSON.stringify(res));
-
-        if (res.event[0].ticketing == '0'){
-          // this.router.navigateByUrl('/rsvp/user');
-        }
       },
       err => {
         console.log(err);
@@ -172,6 +181,10 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isSending = false;
+            if (this.eventData.event[0].ticketing == '1' || res.event[0].ticketing == '2'){
+              sessionStorage.setItem('rsvp_ticket', this.getFormData());
+              this.router.navigateByUrl('/rsvp/payment');
+            }
           },
           err => {
             console.log(err)

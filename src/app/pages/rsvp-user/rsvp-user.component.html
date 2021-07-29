@@ -9,7 +9,7 @@
                     <p class="h6">{{ticket.name}}</p>
                     <p>{{ticket.currency}} {{ticket.price}}</p>
                     <label for="cc-quantity" class="mb-0"><small>Quantity</small></label>
-                    <input type="text" formControlName="prefix" class="form-control form-control-sm px-4" id="cc-quantity" placeholder="">
+                    <input [(ngModel)]="ticketQuantity" type="text" formControlName="prefix" class="form-control form-control-sm px-4" id="cc-quantity" placeholder="">
                 </div>
             </div>
         </div>

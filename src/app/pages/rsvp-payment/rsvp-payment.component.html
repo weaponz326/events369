@@ -2,23 +2,29 @@
 
 <div class="container mt-4">
 
-    <!-- <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
-        <div *ngFor="let ticket of eventData?.tickets" class="col ticket-card">
-            <div class="card" [class.active-ticket]="selectedTicket == ticket.id" (click)="selectTicket(ticket.id, ticket.currency, ticket.price)">
-                <div class="card-body text-center">
-                    <p class="h6">{{ticket.name}}</p>
-                    <p>{{ticket.currency}} {{ticket.price}}</p>
+    <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
+        <div class="col">
+            <div class="card price-card">
+                <div class="card-body">
+                    <span class="h4"><i class="bi bi-cash mr-2"></i>{{rsvpTicket.currency}} {{rsvpTicket.price}}</span>
+                    <span class="text-muted mx-3">X</span>
+                    <span class="h4"><i class="bi bi-people mr-2"></i>{{rsvpTicket.quantity}} {{rsvpTicket.quantity}}</span>
+                    <h3 class="h3"><strong>{{rsvpTicket.currency}} {{rsvpTicket.price * rsvpTicket.quantity}}</strong></h3>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+
+    <div *ngIf="eventData?.event[0].ticketing == '2'" class="row gx-2">
+        <p class="lead text-muted">Kindly Donate any amount to support the event</p>
+    </div>
 
     <div class="row">
         <div class="col-lg-8 mt-4">
 
             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-card-tab" data-toggle="pill" href="#pills-card" role="tab" aria-controls="pills-card" aria-selected="true">Credit/Debit Card</a>
+                    <a class="nav-link active" id="pills-card-tab" data-toggle="pill" href="#pills-card" role="tab" aria-controls="pills-card" aria-selected="true">Credit / Debit Card</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="pills-mobile-tab" data-toggle="pill" href="#pills-mobile" role="tab" aria-controls="pills-mobile" aria-selected="false">Mobile Money</a>
