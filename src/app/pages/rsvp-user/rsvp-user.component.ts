@@ -18,6 +18,11 @@ export class RsvpUserComponent implements OnInit {
 
   rsvpData: any;
 
+  eventData: any;
+  selectedTicket = 0;
+  selectedTicketCurrency = '';
+  selectedTicketPrice = '';
+
   isPrefixIncluded: boolean = false;
   isFirstNameIncluded: boolean = false;
   isLastNameIncluded: boolean = false;
@@ -33,7 +38,9 @@ export class RsvpUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
     this.getRsvpForm();
+    this.getEventData();
   }
 
   initForm(): void {
@@ -52,18 +59,41 @@ export class RsvpUserComponent implements OnInit {
     return this.form.controls;
   }
 
+  selectTicket(ticketId: any, currency: any, price: any){
+    this.selectedTicket = ticketId;
+    this.selectedTicketCurrency = currency;
+    this.selectedTicketPrice = price;
+  }
+
   getFormData(): any {
     const data = {};
 
-    if(this.isPrefixIncluded == true) Object.assign(data, {prefix: this.f.prefix.value});
-    if(this.isFirstNameIncluded == true) Object.assign(data, {firstname: this.f.firstname.value});
-    if(this.isLastNameIncluded == true) Object.assign(data, {lastname: this.f.lastname.value});
-    if(this.isGenderIncluded == true) Object.assign(data, {gender: this.f.gender.value});
-    if(this.isEmailIncluded == true) Object.assign(data, {email: this.f.email.value});
-    if(this.isPhoneIncluded == true) Object.assign(data, {phone: this.f.prefix.value});
-    if(this.isAddressIncluded == true) Object.assign(data, {address: this.f.address.value});
+    if(this.isPrefixIncluded == true) Object.assign(data, {field_name: "Prefix", value: this.f.prefix.value});
+    if(this.isFirstNameIncluded == true) Object.assign(data, {field_name: "First Name", value: this.f.firstname.value});
+    if(this.isLastNameIncluded == true) Object.assign(data, {field_name: "Last Name", value: this.f.lastname.value});
+    if(this.isGenderIncluded == true) Object.assign(data, {field_name: "Gender", value: this.f.gender.value});
+    if(this.isEmailIncluded == true) Object.assign(data, {field_name: "Email", value: this.f.email.value});
+    if(this.isPhoneIncluded == true) Object.assign(data, {field_name: "Phone No.", value: this.f.phone.value});
+    if(this.isAddressIncluded == true) Object.assign(data, {field_name: "Adress", value: this.f.address.value});
 
     return data;
+  }
+
+  getEventData(){
+    this.rsvpService.getCreatedEvent().then(
+      res => {
+        console.log(res);
+        this.eventData = res;
+        sessionStorage.setItem('created_event', JSON.stringify(res));
+
+        if (res.event[0].ticketing == '0'){
+          // this.router.navigateByUrl('/rsvp/user');
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   getRsvpForm(){

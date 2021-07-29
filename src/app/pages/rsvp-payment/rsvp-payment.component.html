@@ -2,7 +2,7 @@
 
 <div class="container mt-4">
 
-    <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
+    <!-- <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
         <div *ngFor="let ticket of eventData?.tickets" class="col ticket-card">
             <div class="card" [class.active-ticket]="selectedTicket == ticket.id" (click)="selectTicket(ticket.id, ticket.currency, ticket.price)">
                 <div class="card-body text-center">
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row">
         <div class="col-lg-8 mt-4">
@@ -124,7 +124,7 @@
                       </div>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg float-right" type="submit">Continue</button>
+                    <button routerLink="/rsvp/payment" class="btn btn-primary btn-lg float-right" type="submit">Continue</button>
                   </form>
                 </div>
 
