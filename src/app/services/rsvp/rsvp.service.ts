@@ -15,6 +15,8 @@ export class RsvpService {
   makeCardPaymentUrl: string;
   makeMobilePaymentUrl: string;
   sendRsvpUrl: string;
+  getAttendeesUrl: string;
+  cancelRsvpUrl: string;
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -23,6 +25,8 @@ export class RsvpService {
     this.makeCardPaymentUrl = this.endpoint.apiHost + '/v1/rsvp_card_payment';
     this.makeMobilePaymentUrl = this.endpoint.apiHost + '/v1/rsvp_momo_payment';
     this.sendRsvpUrl = this.endpoint.apiHost + '/v1/rsvp';
+    this.getAttendeesUrl = this.endpoint.apiHost + '/v1/get_attendees/';
+    this.cancelRsvpUrl = this.endpoint.apiHost + '/v1/cancel_rsvp/';
 
   }
 
@@ -104,6 +108,24 @@ export class RsvpService {
         },
         err => {
           console.log('rsvp_err: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getEventAttendees(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let event;
+      const url = this.getAttendeesUrl + sessionStorage.getItem('preview_event_id');
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_attendees: ', res);
+          event = res;
+          resolve(event.attendees);
+        },
+        err => {
+          console.log('get_attendees_error: ', err);
           reject(err);
         }
       );

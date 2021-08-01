@@ -80,7 +80,7 @@ export class RsvpUserComponent implements OnInit {
 
     var data = {
       details: details,
-      event_id: sessionStorage.getItem('created_event_id'),
+      event_id: sessionStorage.getItem('preview_event_id'),
       user_id: sessionStorage.getItem('user_id'),
       ticket_id: this.selectedTicket,
       paid: this.eventData?.event[0].ticketing,
