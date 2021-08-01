@@ -78,15 +78,14 @@ export class UserEventsComponent implements OnInit {
     this.getUserEvents(3);
     this.getEventCreatorsPastEvents();
     this.getEventCreatorsOngoingEvents();
-    this.getAttendees();
   }
 
-  getAttendees() {
-    this.rsvpService.getEventAttendees().then(
+  getAttendees(eventId: string) {
+    this.rsvpService.getEventAttendees(eventId).then(
       res => {
-        console.log(res);
-        this.attendees = res;
-        
+        // console.log(res);
+        var attendees = res;
+        return attendees.total
       },
       err => {
         console.log(err);

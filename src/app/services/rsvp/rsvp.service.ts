@@ -114,10 +114,15 @@ export class RsvpService {
     });
   }
 
-  getEventAttendees(): Promise<any> {
+  /**
+   * Returns a list of attendees for an event.
+   * @param eventId The event ID.
+   * @returns 
+   */
+  getEventAttendees(eventId: string): Promise<any> {
     return new Promise((resolve, reject) => {
       let event;
-      const url = this.getAttendeesUrl + sessionStorage.getItem('preview_event_id');
+      const url = this.getAttendeesUrl + eventId;
       this.http.get<any>(url, { headers: this.headers}).subscribe(
         res => {
           console.log('get_attendees: ', res);
