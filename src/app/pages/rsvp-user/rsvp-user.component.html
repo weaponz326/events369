@@ -2,14 +2,14 @@
 
 <div class="container mt-4">
 
-    <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2 mb-5">
+  <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2 mb-5">
         <div *ngFor="let ticket of eventData?.tickets" class="col ticket-card">
-            <div class="card" [class.active-ticket]="selectedTicket == ticket.id" (click)="selectTicket(ticket.id, ticket.currency, ticket.price)">
+            <div class="card h-100" [class.active-ticket]="selectedTicket == ticket.id" (click)="selectTicket(ticket.id, ticket.currency, ticket.price)">
                 <div class="card-body text-center">
                     <p class="h6">{{ticket.name}}</p>
                     <p>{{ticket.currency}} {{ticket.price}}</p>
                     <label for="cc-quantity" class="mb-0"><small>Quantity</small></label>
-                    <input [(ngModel)]="ticketQuantity" type="text" formControlName="prefix" class="form-control form-control-sm px-4" id="cc-quantity" placeholder="">
+                    <input [(ngModel)]="ticketQuantity" type="text" formControlName="prefix" class="form-control form-control-sm" placeholder="">
                 </div>
             </div>
         </div>
