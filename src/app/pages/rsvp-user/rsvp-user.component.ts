@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RsvpService } from 'src/app/services/rsvp/rsvp.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-rsvp-user',
@@ -23,7 +24,7 @@ export class RsvpUserComponent implements OnInit {
   selectedTicket = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice = '';
-  ticketQuantity: any;
+  ticketQuantity: number = 1;
 
   isPrefixIncluded: boolean = false;
   isFirstNameIncluded: boolean = false;
@@ -193,6 +194,21 @@ export class RsvpUserComponent implements OnInit {
           }
         );
     }
+  }
+
+  
+  getEventDateWithoutTime(date: string) {
+    return moment(date).format('YYYY-MM-DD');
+  }
+
+  
+  getEventStartDateFormatted(date: any) {
+    return moment(date).format('ddd, MMM D, YYYY h:mm A');
+  }
+
+  getEventEndDateFormatted(date: any) {
+    return moment(date).format('h:mm A');
+
   }
 
 }
