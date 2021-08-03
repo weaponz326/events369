@@ -23,7 +23,7 @@ export class RsvpUserComponent implements OnInit {
   eventData: any;
   selectedTicket = 0;
   selectedTicketCurrency = '';
-  selectedTicketPrice = '';
+  selectedTicketPrice: number = 0;
   ticketQuantity: number = 1;
 
   isPrefixIncluded: boolean = false;
@@ -66,6 +66,7 @@ export class RsvpUserComponent implements OnInit {
     this.selectedTicket = ticketId;
     this.selectedTicketCurrency = currency;
     this.selectedTicketPrice = price;
+    console.log(this.selectTicket);
   }
 
   getFormData(): any {
