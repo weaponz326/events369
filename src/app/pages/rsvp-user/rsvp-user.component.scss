@@ -1,3 +1,12 @@
+@font-face {
+  font-family: Dura;
+  src: url(../../../assets/fonts/Duru_Sans/DuruSans-Regular.ttf) format("opentype");
+}
+
+* {
+  font-family: 'Dura';
+}
+
 .ticket-card{
   max-width: 180px;
 }
@@ -58,6 +67,7 @@
   padding: .5rem .5rem !important;
   border-radius: 0px !important;
   border: none;
+  margin-top: 0 !important;
 }
 
 select {
