@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class UserAuthService {
 
   public redirectUrl: any = null;
-  public isLoggedIn: boolean = false;
+  // public isLoggedIn: boolean = false;
 
   private headers: HttpHeaders;  
   private baseUrl = 'http://events369.logitall.biz/api/';
@@ -86,8 +86,8 @@ export class UserAuthService {
     return this.http.post<any>(this.sendMagicUrl, body);  
   }  
 
-  // isLoggedIn() {
-  //   return !!sessionStorage.getItem('x_auth_token');
-  // }
+  isLoggedIn() {
+    return !!sessionStorage.getItem('x_auth_token');
+  }
 
 }

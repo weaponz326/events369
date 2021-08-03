@@ -73,7 +73,7 @@ export class LoginPageComponent implements OnInit {
             }
 
             // redirect to intended route if user came here because of authguard
-            this.auth.isLoggedIn = true;
+            // this.auth.isLoggedIn = true;
             if (this.auth.redirectUrl) {
               this.router.navigate([this.auth.redirectUrl]);
               this.auth.redirectUrl = null;
