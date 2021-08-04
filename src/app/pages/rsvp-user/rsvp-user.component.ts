@@ -72,8 +72,6 @@ export class RsvpUserComponent implements OnInit {
     this.getRsvpForm();
     this.getEventData();
 
-    this.initCardForm();
-    this.initMobileForm();
     this.getEventData();
 
 
@@ -268,9 +266,9 @@ export class RsvpUserComponent implements OnInit {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
     this.cardForm = new FormGroup({
-      customer_email: new FormControl('', Validators.required),
+      customer_email: new FormControl(this.currentUser?.email, Validators.required),
       r_switch: new FormControl('', Validators.required),
-      card_holder: new FormControl('', Validators.required),
+      card_holder: new FormControl(this.currentUser?.firstname + ' ' + this.currentUser?.lastname, Validators.required),
       pan: new FormControl('', Validators.required),
       exp_month: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
       exp_year: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
@@ -283,7 +281,7 @@ export class RsvpUserComponent implements OnInit {
 
     this.mobileForm = new FormGroup({
       r_switch: new FormControl('', Validators.required),
-      subscriber_number: new FormControl('', Validators.required),
+      subscriber_number: new FormControl(this.currentUser.phone, Validators.required),
       voucher_code: new FormControl('', [Validators.pattern(numberRegEx)]),
     })
   }
@@ -305,8 +303,10 @@ export class RsvpUserComponent implements OnInit {
       exp_month: this.h.exp_month.value,
       exp_year: this.h.exp_year.value,
       cvv: this.h.cvv.value,
-      currency: this.rsvpTicket.currency,
-      amount: this.rsvpTicket.price,
+      // currency: this.rsvpTicket.currency,
+      // amount: this.rsvpTicket.price,
+      currency: this.selectedTicketCurrency,
+      amount: this.selectedTicketPrice*this.ticketQuantity,
     };
     return data;
   }
@@ -371,6 +371,9 @@ export class RsvpUserComponent implements OnInit {
         console.log(res);
         this.currentUser = res;
         this.initForm();
+        
+        this.initCardForm();
+        this.initMobileForm();
 
         // if (res.profile) {
         //   this.imgSrc = 'http://events369.logitall.biz/storage/profile/' + res.profile

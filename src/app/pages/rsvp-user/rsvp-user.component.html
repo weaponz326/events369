@@ -135,7 +135,7 @@
                                     <label class="form-label" for="cc-name" style="margin-bottom: 0;">Name Prefix</label>
                                     <input type="text" class="form-control form-element" style="height: 42px;" formControlName="prefix" id="cc-prefix" placeholder="" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors.prefix"><span *ngFor="let x of errorMsgs?.errors?.prefix" class="text-danger">{{x}}</span></small>
+                                <small *ngIf="errorMsgs?.errors?.prefix"><span *ngFor="let x of errorMsgs?.errors?.prefix" class="text-danger">{{x}}</span></small>
                                 <small *ngIf="saved && f.prefix.errors" id="titleHelp" class="text-danger">
                                     Name prefix is required.
                                 </small>
@@ -145,7 +145,7 @@
                                     <label class="form-label" for="cc-first-name" style="margin-bottom: 0;">First Name</label>
                                     <input type="text" class="form-control form-element" id="cc-first-name" style="height: 42px;" formControlName="firstname" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors.firstname"><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small>
+                                <small *ngIf="errorMsgs?.errors?.firstname"><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small>
                                 <small *ngIf="saved && f.firstname.errors" id="titleHelp" class="text-danger">
                                     First name is required.
                                 </small>
@@ -156,7 +156,7 @@
                                     <label class="form-label" for="cc-last-name" style="margin-bottom: 0;">Last Name</label>
                                     <input type="text" class="form-control form-element" id="cc-last-name" style="height: 42px;" formControlName="lastname" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors.lastname"><span *ngFor="let x of errorMsgs?.errors?.lastname" class="text-danger">{{x}}</span></small>
+                                <small *ngIf="errorMsgs?.errors?.lastname"><span *ngFor="let x of errorMsgs?.errors?.lastname" class="text-danger">{{x}}</span></small>
                                 <small *ngIf="saved && f.lastname.errors" id="titleHelp" class="text-danger">
                                     Last name is required.
                                 </small>
@@ -171,7 +171,7 @@
                                         <option value="O">Other</option>
                                     </select>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors.gender"><span *ngFor="let x of errorMsgs?.errors?.gender" class="text-danger">{{x}}</span></small>
+                                <small *ngIf="errorMsgs?.errors?.gender"><span *ngFor="let x of errorMsgs?.errors?.gender" class="text-danger">{{x}}</span></small>
                             </div>
                 
                             <div *ngIf="isEmailIncluded" class="col-lg-6">
@@ -672,7 +672,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <small *ngIf="errorMsgs?.errors.phone"><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small>
+                                    <small *ngIf="errorMsgs?.errors?.phone"><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small>
                                     <small *ngIf="saved && f.phone.errors" id="titleHelp" class="text-danger">
                                         Please enter a valid phone number, eg 0501889354
                                     </small>
@@ -685,7 +685,7 @@
                                     <label class="form-label" for="cc-address" style="margin-bottom: 0;">Address</label>
                                     <input type="text" class="form-control form-element" id="cc-address" style="height: 42px;" formControlName="address" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors.address"><span *ngFor="let x of errorMsgs?.errors?.address" class="text-danger">{{x}}</span></small>
+                                <small *ngIf="errorMsgs?.errors?.address"><span *ngFor="let x of errorMsgs?.errors?.address" class="text-danger">{{x}}</span></small>
                                 <small *ngIf="saved && f.address.errors" id="titleHelp" class="text-danger">
                                     Address is required.
                                 </small>
@@ -747,7 +747,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="cc-name">Email</label>
                                             <input type="text" formControlName="customer_email" class="form-control" id="cc-email" placeholder="" required>
-                                            <div *ngIf="isCardSaved && f.customer_email.errors" class="text-danger">
+                                            <div *ngIf="isCardSaved && h.customer_email.errors" class="text-danger">
                                             Name on card is required
                                             </div>
                                         </div>
@@ -755,7 +755,7 @@
                                             <label for="cc-name">Name on card</label>
                                             <input type="text" formControlName="card_holder" class="form-control" id="cc-name" placeholder="" required>
                                             <small class="text-muted">Full name as displayed on card</small>
-                                            <div *ngIf="isCardSaved && f.card_holder.errors" class="text-danger">
+                                            <div *ngIf="isCardSaved && h.card_holder.errors" class="text-danger">
                                             Name on card is required
                                             </div>
                                         </div>
@@ -768,33 +768,60 @@
                                             <option value="VIS">Visa</option>
                                             <option value="MAS">Master Card</option>
                                             </select>
-                                            <div *ngIf="isCardSaved && f.r_switch.errors" class="text-danger">
+                                            <div *ngIf="isCardSaved && h.r_switch.errors" class="text-danger">
                                             Card Type is required
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="cc-number">Credit card number</label>
-                                            <input type="text" formControlName="pan" class="form-control" id="cc-number" placeholder="" required>
-                                            <div *ngIf="isCardSaved && f.pan.errors" class="text-danger">
+                                            <input type="text" formControlName="pan" class="form-control" id="cc-number" placeholder="" maxlength="15" required>
+                                            <div *ngIf="isCardSaved && h.pan.errors" class="text-danger">
                                             Credit card number is required
                                             </div>
                                         </div>
                                         </div>
                                         <div class="row">
-                                        <div class="col-md-3 mb-3">
-                                            <label for="cc-expiration" style="display: block;">Expiration</label>
+                                        <div class="col-md-6 mb-3">
+
+                                          <div style="display:flex">
+                                             <div style="width: 40%;">
+                                                <label for="cc-expiration" style="display: block;">Expiration</label>
+                                             
+                                                <div style="display: flex;"> 
+                                                    <div>
+                                                        <input type="text" formControlName="exp_month" class="form-control expiration-input" id="cc-expiration-month" placeholder="09" required maxlength="2" style="display: inline-block;"
+                                                        [class.invalid]="isCardSaved && h.exp_month.errors" style="display: inline-block;width: 40% !important;">
+                                                        <small class="text-muted">Month</small>
+                                                        
+                                                    </div>
+                                                    <span class="h3 text-center mx-1" style="margin: 0 .5rem !important;">/</span>
+                                                </div>
+                                             </div>
+                                            <div style="flex: 1;padding-left: 0rem;">
+                                            <label style="visibility: hidden">Year</label>
+                                            <input type="text" formControlName="exp_year" class="form-control expiration-input" id="cc-expiration-year" placeholder="26" required maxlength="2" style="display: inline-block;width: 50% !important;">
+                                            <small class="text-muted">Year</small>
+                                                    
+                                            </div>
+                                         </div>
+                                         
+                                         <div *ngIf="isCardSaved && (h.exp_month.errors || h.exp_year.errors)" class="text-danger">
+                                            Expiration date required
+                                        </div>
+
+                                            <!-- <label for="cc-expiration" style="display: block;">Expiration</label>
                                             <input type="text" formControlName="exp_month" class="form-control expiration-input" id="cc-expiration-month" placeholder="00" required maxlength="2" style="display: inline-block;"
                                             [class.invalid]="isCardSaved && f.exp_month.errors">
                                             <span class="h3 text-center mx-1">/</span>
                                             <input type="text" formControlName="exp_year" class="form-control expiration-input" id="cc-expiration-year" placeholder="00" required maxlength="2" style="display: inline-block;">
                                             <div *ngIf="isCardSaved && (f.exp_month.errors || f.exp_year.errors)" class="text-danger">
                                             Expiration date required
-                                            </div>
+                                            </div> -->
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-6 mb-3">
                                             <label for="cc-cvv">CVV</label>
-                                            <input type="text" formControlName="cvv" class="form-control" id="cc-cvv" placeholder="000" required maxlength="3">
-                                            <div *ngIf="isCardSaved && f.cvv.errors" class="text-danger">
+                                            <input type="text" formControlName="cvv" class="form-control" id="cc-cvv" placeholder="000" required maxlength="3" style="width: 100% !important;">
+                                            <div *ngIf="isCardSaved && h.cvv.errors" class="text-danger">
                                             Security code required
                                             </div>
                                         </div>
