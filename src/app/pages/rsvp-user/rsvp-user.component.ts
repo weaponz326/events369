@@ -22,9 +22,11 @@ export class RsvpUserComponent implements OnInit {
 
   eventData: any;
   selectedTicket = 0;
+  selectedIndex = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice: number = 0;
-  ticketQuantity: number = 1;
+
+  ticketQuantity: any[] = [];
 
   isPrefixIncluded: boolean = false;
   isFirstNameIncluded: boolean = false;
@@ -62,11 +64,17 @@ export class RsvpUserComponent implements OnInit {
     return this.form.controls;
   }
 
-  selectTicket(ticketId: any, currency: any, price: any){
+  selectTicket(index: any, ticketId: any, currency: any, price: any){
+    this.selectedIndex = index;
     this.selectedTicket = ticketId;
     this.selectedTicketCurrency = currency;
     this.selectedTicketPrice = price;
     console.log(this.selectTicket);
+
+    // set all other tickets to 0 when a particular ticket is selected
+    for(var i=0; i<this.ticketQuantity.length; i++){
+      if(i != this.selectedIndex) this.ticketQuantity[i] = 0;
+    }
   }
 
   getFormData(): any {
@@ -86,7 +94,7 @@ export class RsvpUserComponent implements OnInit {
       user_id: sessionStorage.getItem('user_id'),
       ticket_id: this.selectedTicket,
       paid: this.eventData?.event[0].ticketing,
-      quantity: this.ticketQuantity,
+      quantity: this.ticketQuantity[this.selectedIndex],
       price: this.selectedTicketPrice,
       currency: this.selectedTicketCurrency,
     }
@@ -197,12 +205,12 @@ export class RsvpUserComponent implements OnInit {
     }
   }
 
-  
+
   getEventDateWithoutTime(date: string) {
     return moment(date).format('YYYY-MM-DD');
   }
 
-  
+
   getEventStartDateFormatted(date: any) {
     return moment(date).format('ddd, MMM D, YYYY h:mm A');
   }
