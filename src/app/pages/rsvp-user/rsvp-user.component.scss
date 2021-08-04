@@ -1,11 +1,21 @@
+@font-face {
+  font-family: Dura;
+  src: url(../../../assets/fonts/Duru_Sans/DuruSans-Regular.ttf) format("opentype");
+}
+
+* {
+  font-family: 'Dura';
+}
+
 .ticket-card{
   max-width: 180px;
 }
 
 .active-ticket{
   cursor: pointer;
-  color: #fff;
-  background-color: rgb(11, 11, 243);
+  // color: #fff;
+  // background-color: rgb(11, 11, 243);
+  border: 2px solid #0d79f8 !important;
 }
 
 .ticket-card .card:hover{
@@ -49,7 +59,7 @@
 .alert-secondary {
   margin: .7rem !important;
   margin-left: 0rem !important;
-  background-color: #eaeae5 !important;
+  background-color: rgba(0,0,0,.03) !important;
   color: #41464b !important;
 }
 
@@ -57,11 +67,12 @@
   padding: .5rem .5rem !important;
   border-radius: 0px !important;
   border: none;
+  margin-top: 0 !important;
 }
 
 select {
 	background-color: inherit;
-	border: 2px solid #0d79f8;
+	border: 2px solid rgba(0,0,0,.1);
 	padding: .8rem 1rem;
 	font-weight: bolder;
 	padding-right: 2rem;
@@ -85,3 +96,10 @@ select {
     padding: 0 !important;
   }
   
+.event-title {
+  display: block;text-align: center;font-size: 1.4rem !important;margin-bottom: 0;font-weight: 398;
+}
+
+.card-body {
+  padding-top: 0 !important;
+}
