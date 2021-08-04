@@ -38,7 +38,8 @@ export class RsvpUserComponent implements OnInit {
   isPhoneIncluded: boolean = false;
   isAddressIncluded: boolean = false;
 
-  rsvpSuccessful: boolean = false;
+  submittedContactInfo: boolean = false;
+  rsvpCompleted: boolean = false;
 
   // for payment 
   isCardSending: boolean;
@@ -235,7 +236,7 @@ export class RsvpUserComponent implements OnInit {
             if (this.eventData.event[0].ticketing == '1' || res.event[0].ticketing == '2'){
               sessionStorage.setItem('rsvp_ticket', JSON.stringify(this.getFormData()));
               // this.router.navigateByUrl('/rsvp/payment');
-              this.rsvpSuccessful = true;
+              this.submittedContactInfo = true;
             }
           },
           err => {
@@ -334,6 +335,7 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isCardSending = false;
+            this.rsvpCompleted = true;
           },
           err => {
             console.log(err)
@@ -355,11 +357,13 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isMobileSending = false;
+            this.rsvpCompleted = true;
           },
           err => {
             console.log(err)
             this.isMobileSending = false;
             this.MobileErrorMsgs = err.error;
+            this.rsvpCompleted = true;
           }
         );
     }

@@ -3,7 +3,7 @@
 <div class="container mt-4 d-flex justify-content-between">
     
   <div class="col-lg-12">
-    <div class="card mb-4" style="width: 100%;">
+    <div class="card mb-4" style="width: 100%;" *ngIf="!rsvpCompleted">
         <div class="card-horizontal">
             
             <div class="card-body">
@@ -122,7 +122,7 @@
                 </div>
 
                 <!-- start of block to be hidden if rsvp hasn't been successfully submited -->
-                  <ng-container *ngIf = "!rsvpSuccessful">
+                  <ng-container *ngIf = "!submittedContactInfo">
                     <div class="col alert alert-secondary" role="alert">
                         <small class="text-secondary">By clicking 'register', I agree that Events369 may share my information with the event host.</small>
                       </div>
@@ -709,7 +709,7 @@
 
                 <!-- start of block to be shown if rsv successful  -->
                   
-                    <ng-container *ngIf="rsvpSuccessful">
+                    <ng-container *ngIf="submittedContactInfo">
                         <!-- <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
                             <div class="col">
                                 <div class="card price-card">
@@ -902,6 +902,133 @@
         </div>
         
       </div>
+
+    <div class="card mb-" style="width: 100%;" *ngIf="rsvpCompleted">
+    <div class="card-horizontal">
+        
+        <div class="card-body" style="padding: 2.5rem !important;">
+
+            <div class="row">
+                <div *ngIf="errorMsgs?.message" class="row text-center">
+                    <div class="col alert alert-danger">
+                        <small class="text-danger">{{errorMsgs.message}}</small>
+                    </div>
+                    </div>
+                <div class="col-md-12" *ngIf="eventData?.event[0]">
+                   <p style="text-align: left;">
+                       <span style="display: inline-block;text-align: center; color: white; height: 50px;width: 50px;padding: 6px;background-color: #4de3a4;border-radius: 50%;">
+                        <i class="bi bi-check" style="font-size: x-large;"></i>
+                       </span>
+                       <span class="mx-3 font-weight-bold" style="font-size: 1rem;">
+                        Thanks for your order! #1242463513
+                       </span>
+                   </p>
+                        
+                    <hr class="mb-4">
+                </div>
+
+                <div *ngIf="eventData?.event[0].ticketing == '1'">
+                    <div *ngFor="let ticket of eventData?.tickets">
+                        
+                            <div class="mb-3" >
+                                <div class="mb-3">
+                                    <small style="font-weight: 600;">You're joining</small> <br>
+                                    <span class="font-weight-bold" style="font-size: 1.4rem;">{{eventData?.event[0].title}}</span> <br>
+                                    <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
+                                </div>
+                                <div style="display: flex;" class="mb-3">
+                                    <div style="flex: 1;">
+                                        <small style="font-weight: 600;">
+                                            <ng-container *ngIf="ticketQuantity == 1">
+                                                {{ticketQuantity}} ticket
+                                            </ng-container>
+                                            <ng-container *ngIf="ticketQuantity > 1">
+                                                {{ticketQuantity}} tickets
+                                            </ng-container>
+                                            sent to </small> <br>
+                                    <span class="font-weight-initial" style="font-size: .8rem;">{{currentUser?.email}}</span> <br>
+                                    <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
+                               
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <small style="font-weight: 600;">Date</small> <br>
+                                    <span class="font-weight-initial" style="font-size: .8rem;">{{getEventStartDateFormatted(eventData?.event[0].start_date_time)}}</span> <br>
+                                    <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on </small> -->
+                               
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <small style="font-weight: 600;">Location</small> <br>
+                                    <span class="font-weight-initial" style="font-size: .8rem;">
+                                        <ng-container *ngIf="eventData?.event[0].venue">
+                                            {{eventData?.event[0].venue}}
+                                          </ng-container>
+                                          <ng-container *ngIf="eventData?.event[0].hosting == '0'">
+                                            &bull; Online Event &bull;
+                                          </ng-container>
+                                          <ng-container *ngIf="eventData?.event[0].venue_tobe_announced">
+                                            TBA
+                                          </ng-container>
+                                    </span> <br>
+                                </div>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+
+                
+                <div class="col-md-12">
+                    
+                    <hr class="mb-4">
+
+                    <div class="d-flex justify-content-between">
+                        <button routerLink="/" class="btn btn-primary btn-view-tickets btn-lg float-right" type="button">View tickets</button>
+                            
+                        <div style="font-size: 1.3rem;color: var(--ev-brandname-darkblue);">
+                            <span class="mx-3"><i class="bi bi-facebook"></i></span> <span class="mx-3"><svg xmlns="http://www.w3.org/2000/svg" style="height: 21px; width: 22px;margin-top: -.2rem" fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
+                                <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
+                              </svg></span> 
+                            <span class="mx-3"><i class="bi bi-twitter"></i></span> <span class="ml-3"><i class="bi bi-envelope-fill"></i></span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="card-footer">
+           
+            <div class="profile-details ml-4 my-4" style="display: flex;justify-content: flex-start;">
+                <div class="profile-content" style="border: 1px solid rgba(255,255,255, .3);padding: 4px;border-radius: 50%;">
+                  <img src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
+                
+                  <span class="discover-user-checkmark"><i class="bi bi-check"></i></span></div>
+                <div class="name-job p-2">
+                  <div class="profile_name">Kofi Ahen</div>
+                  <div class="job" style="font-size: .8rem;opacity: .7;">199 events &bull; Joined 2021</div>
+                </div>
+                <!-- <i class='bx bx-log-out' ></i> -->
+              </div>
+          
+
+        </div>
+        
+    </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2 mb-5">
         <div *ngFor="let ticket of eventData?.tickets" class="col ticket-card">
             <div class="card h-100" [class.active-ticket]="selectedTicket == ticket.id" (click)="selectTicket(ticket.id, ticket.currency, ticket.price)">
