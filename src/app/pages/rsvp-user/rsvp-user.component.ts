@@ -29,13 +29,9 @@ export class RsvpUserComponent implements OnInit {
   selectedIndex = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice: number = 0;
-<<<<<<< HEAD
 
   ticketQuantity: any[] = [];
-=======
-  ticketQuantity: number = 1;
   selectTicketName = '';
->>>>>>> 725833f34ed0682bba280b1f5f0ed5f14fdab6af
 
   isPrefixIncluded: boolean = false;
   isFirstNameIncluded: boolean = false;
@@ -48,7 +44,7 @@ export class RsvpUserComponent implements OnInit {
   submittedContactInfo: boolean = false;
   rsvpCompleted: boolean = false;
 
-  // for payment 
+  // for payment
   isCardSending: boolean;
   isMobileSending: boolean;
   isCardSaved: boolean;
@@ -60,11 +56,11 @@ export class RsvpUserComponent implements OnInit {
 
   r_switch: any;
 
-  
+
   rsvpTicket: any;
 
 
-  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router, 
+  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router,
     private userAccountsService: UserAccountService,
     private _snackBar: MatSnackBar,) {
     this.isLoading = false;
@@ -116,25 +112,18 @@ export class RsvpUserComponent implements OnInit {
     return this.form.controls;
   }
 
-<<<<<<< HEAD
-  selectTicket(index: any, ticketId: any, currency: any, price: any){
+  selectTicket(index: any, ticketId: any, currency: any, price: any, name: string){
     this.selectedIndex = index;
     this.selectedTicket = ticketId;
     this.selectedTicketCurrency = currency;
     this.selectedTicketPrice = price;
+    this.selectTicketName = name;
     console.log(this.selectTicket);
 
     // set all other tickets to 0 when a particular ticket is selected
     for(var i=0; i<this.ticketQuantity.length; i++){
       if(i != this.selectedIndex) this.ticketQuantity[i] = 0;
     }
-=======
-  selectTicket(ticketId: any, currency: any, price: any, name: string){
-    this.selectedTicket = ticketId;
-    this.selectedTicketCurrency = currency;
-    this.selectedTicketPrice = price;
-    this.selectTicketName = name;
->>>>>>> 725833f34ed0682bba280b1f5f0ed5f14fdab6af
   }
 
   getFormData(): any {
@@ -170,8 +159,8 @@ export class RsvpUserComponent implements OnInit {
         sessionStorage.setItem('created_event', JSON.stringify(res));
 
         // initialize selected ticket to the first ticket
-        this.selectTicket(this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
-    
+        this.selectTicket(0, this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
+
       },
       err => {
         console.log(err);
@@ -332,7 +321,7 @@ export class RsvpUserComponent implements OnInit {
       // currency: this.rsvpTicket.currency,
       // amount: this.rsvpTicket.price,
       currency: this.selectedTicketCurrency,
-      amount: this.selectedTicketPrice*this.ticketQuantity,
+      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
     };
     return data;
   }
@@ -343,7 +332,7 @@ export class RsvpUserComponent implements OnInit {
       subscriber_number: this.g.subscriber_number.value,
       voucher_code: this.g.voucher_code.value,
       // amount: this.rsvpTicket.price,
-      amount: this.selectedTicketPrice*this.ticketQuantity,
+      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
 
     };
     return data;
@@ -400,7 +389,7 @@ export class RsvpUserComponent implements OnInit {
         console.log(res);
         this.currentUser = res;
         this.initForm();
-        
+
         this.initCardForm();
         this.initMobileForm();
 
