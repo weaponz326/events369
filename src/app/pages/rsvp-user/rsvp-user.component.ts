@@ -26,9 +26,11 @@ export class RsvpUserComponent implements OnInit {
 
   eventData: any;
   selectedTicket = 0;
+  selectedIndex = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice: number = 0;
-  ticketQuantity: number = 1;
+
+  ticketQuantity: any[] = [];
   selectTicketName = '';
 
   isPrefixIncluded: boolean = false;
@@ -42,7 +44,7 @@ export class RsvpUserComponent implements OnInit {
   submittedContactInfo: boolean = false;
   rsvpCompleted: boolean = false;
 
-  // for payment 
+  // for payment
   isCardSending: boolean;
   isMobileSending: boolean;
   isCardSaved: boolean;
@@ -54,11 +56,11 @@ export class RsvpUserComponent implements OnInit {
 
   r_switch: any;
 
-  
+
   rsvpTicket: any;
 
 
-  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router, 
+  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router,
     private userAccountsService: UserAccountService,
     private _snackBar: MatSnackBar,) {
     this.isLoading = false;
@@ -110,11 +112,18 @@ export class RsvpUserComponent implements OnInit {
     return this.form.controls;
   }
 
-  selectTicket(ticketId: any, currency: any, price: any, name: string){
+  selectTicket(index: any, ticketId: any, currency: any, price: any, name: string){
+    this.selectedIndex = index;
     this.selectedTicket = ticketId;
     this.selectedTicketCurrency = currency;
     this.selectedTicketPrice = price;
     this.selectTicketName = name;
+    console.log(this.selectTicket);
+
+    // set all other tickets to 0 when a particular ticket is selected
+    for(var i=0; i<this.ticketQuantity.length; i++){
+      if(i != this.selectedIndex) this.ticketQuantity[i] = 0;
+    }
   }
 
   getFormData(): any {
@@ -134,7 +143,7 @@ export class RsvpUserComponent implements OnInit {
       user_id: sessionStorage.getItem('user_id'),
       ticket_id: this.selectedTicket,
       paid: this.eventData?.event[0].ticketing,
-      quantity: this.ticketQuantity,
+      quantity: this.ticketQuantity[this.selectedIndex],
       price: this.selectedTicketPrice,
       currency: this.selectedTicketCurrency,
     }
@@ -150,8 +159,8 @@ export class RsvpUserComponent implements OnInit {
         sessionStorage.setItem('created_event', JSON.stringify(res));
 
         // initialize selected ticket to the first ticket
-        this.selectTicket(this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
-    
+        this.selectTicket(0, this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
+
       },
       err => {
         console.log(err);
@@ -253,12 +262,12 @@ export class RsvpUserComponent implements OnInit {
     }
   }
 
-  
+
   getEventDateWithoutTime(date: string) {
     return moment(date).format('YYYY-MM-DD');
   }
 
-  
+
   getEventStartDateFormatted(date: any) {
     return moment(date).format('ddd, MMM D, YYYY h:mm A');
   }
@@ -312,7 +321,7 @@ export class RsvpUserComponent implements OnInit {
       // currency: this.rsvpTicket.currency,
       // amount: this.rsvpTicket.price,
       currency: this.selectedTicketCurrency,
-      amount: this.selectedTicketPrice*this.ticketQuantity,
+      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
     };
     return data;
   }
@@ -323,7 +332,7 @@ export class RsvpUserComponent implements OnInit {
       subscriber_number: this.g.subscriber_number.value,
       voucher_code: this.g.voucher_code.value,
       // amount: this.rsvpTicket.price,
-      amount: this.selectedTicketPrice*this.ticketQuantity,
+      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
 
     };
     return data;
@@ -380,7 +389,7 @@ export class RsvpUserComponent implements OnInit {
         console.log(res);
         this.currentUser = res;
         this.initForm();
-        
+
         this.initCardForm();
         this.initMobileForm();
 
