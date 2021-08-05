@@ -1,11 +1,11 @@
 <app-navbar></app-navbar>
 
 <div class="container mt-4 d-flex justify-content-between">
-    
+
   <div class="col-lg-12">
     <div class="card mb-4" style="width: 100%;" *ngIf="!rsvpCompleted">
         <div class="card-horizontal">
-            
+
             <div class="card-body">
 
                 <div class="row">
@@ -21,9 +21,9 @@
                           </ng-container>
                           <ng-container *ngIf="!(getEventDateWithoutTime(eventData?.event[0].start_date_time) == getEventDateWithoutTime(eventData?.event[0].end_date_time))">
                             <p class="card-text" style="display: block;text-align: center;"><small class="text-muted">{{eventData?.event[0].start_date_time | date:'mediumDate'}}<i><b> to </b></i>{{eventData?.event[0].end_date_time | date:'mediumDate'}}</small></p>
-            
+
                           </ng-container>
-                          
+
                         <hr class="mb-4">
                     </div>
                     <div class="banner-content-wrap" *ngIf="!eventData?.event[0]">
@@ -49,20 +49,16 @@
                                     <div>
                                         <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
-                                            <option value="2">2</option>
                                             <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
-                            
+
                         </div>
                     </div>
 
@@ -78,20 +74,12 @@
                                     <div>
                                         <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
                                             <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
-                            
+
                         </div>
                     </div>
 
@@ -107,28 +95,24 @@
                                     <div>
                                         <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
-                                            <option value="2">2</option>
                                             <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
                                             <option value="10">10</option>
                                         </select>
                                     </div>
-                                    
+
                                 </div>
-                            
+
                         </div>
                     </div>
-                    
+
                     <div class="col-md-12">
-                        
+
                         <hr class="mb-4">
                     </div>
-                    
+
                 </div>
 
                 <!-- start of block to be hidden if rsvp hasn't been successfully submited -->
@@ -136,7 +120,7 @@
                     <div class="col alert alert-secondary" role="alert">
                         <small class="text-secondary">By clicking 'register', I agree that Events369 may <u><a href="/privacy"> share my information</a></u> with the event host.</small>
                       </div>
-                
+
                     <h3 class="my-3 font-weight-bolder">Contact Information</h3>
                     <form [formGroup]="form" (ngSubmit)="onSubmit()">
                         <div class="row">
@@ -160,7 +144,7 @@
                                     First name is required.
                                 </small>
                             </div>
-                            
+
                             <div *ngIf="isLastNameIncluded" class="col">
                                 <div class="mt-2">
                                     <label class="form-label" for="cc-last-name" style="margin-bottom: 0;">Last Name</label>
@@ -171,7 +155,7 @@
                                     Last name is required.
                                 </small>
                             </div>
-                
+
                             <div *ngIf="isGenderIncluded" class="col">
                                 <div class="mt-2">
                                     <label class="form-label" for="cc-gender" style="margin-bottom: 0;">Gender</label>
@@ -183,14 +167,14 @@
                                 </div>
                                 <small *ngIf="errorMsgs?.errors?.gender"><span *ngFor="let x of errorMsgs?.errors?.gender" class="text-danger">{{x}}</span></small>
                             </div>
-                
+
                             <div *ngIf="isEmailIncluded" class="col-lg-6">
                                 <div class="mt-2">
                                     <label class="form-label" for="cc-email" style="margin-bottom: 0;">Email</label>
                                     <input type="text" class="form-control form-element" id="cc-email" style="height: 42px;" formControlName="email">
                                 </div>
                             </div>
-                
+
                             <div *ngIf="isPhoneIncluded" class="row">
                                 <!-- <div class="col">
                                     <div class="mt-2">
@@ -688,8 +672,8 @@
                                     </small>
                                 </div>
                             </div>
-                
-                            
+
+
                             <div *ngIf="isAddressIncluded" class="col">
                                 <div class="mt-2">
                                     <label class="form-label" for="cc-address" style="margin-bottom: 0;">Address</label>
@@ -700,12 +684,12 @@
                                     Address is required.
                                 </small>
                             </div>
-                
+
                             <!-- // end of row  -->
                         </div>
-                
-                        
-                
+
+
+
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-4">
                                 <hr class="mb-4">
@@ -721,7 +705,7 @@
                 <!-- end of block to be hidden if rsvp successful -->
 
                 <!-- start of block to be shown if rsv successful  -->
-                  
+
                     <ng-container *ngIf="submittedContactInfo">
                         <!-- <div *ngIf="eventData?.event[0].ticketing == '1'" class="row gx-2">
                             <div class="col">
@@ -799,13 +783,13 @@
                                           <div style="display:flex">
                                              <div style="width: 40%;">
                                                 <label for="cc-expiration" style="display: block;">Expiration</label>
-                                             
-                                                <div style="display: flex;"> 
+
+                                                <div style="display: flex;">
                                                     <div>
                                                         <input type="text" formControlName="exp_month" class="form-control expiration-input" id="cc-expiration-month" placeholder="09" required maxlength="2" style="display: inline-block;"
                                                         [class.invalid]="isCardSaved && h.exp_month.errors" style="display: inline-block;width: 40% !important;">
                                                         <small class="text-muted">Month</small>
-                                                        
+
                                                     </div>
                                                     <span class="h3 text-center mx-1" style="margin: 0 .5rem !important;">/</span>
                                                 </div>
@@ -814,10 +798,10 @@
                                             <label style="visibility: hidden">Year</label>
                                             <input type="text" formControlName="exp_year" class="form-control expiration-input" id="cc-expiration-year" placeholder="26" required maxlength="2" style="display: inline-block;width: 50% !important;">
                                             <small class="text-muted">Year</small>
-                                                    
+
                                             </div>
                                          </div>
-                                         
+
                                          <div *ngIf="isCardSaved && (h.exp_month.errors || h.exp_year.errors)" class="text-danger">
                                             Expiration date required
                                         </div>
@@ -901,27 +885,27 @@
 
                 <div class="container-fluid p-4">
                     <p class="font-weight-bold">Order Summary</p>
-                    <span class="w-100">{{ticketQuantity[selectedIndex]}} x {{selectTicketName}}
+                    <span *ngIf="ticketQuantity[selectedIndex]" class="w-100">{{ticketQuantity[selectedIndex]}} x {{selectTicketName}}
                         <span class="float-right"> {{selectedTicketCurrency}} {{selectedTicketPrice}}</span>
                     </span>
-                    
+
                     <hr class="mb-4">
 
                     <span class="w-100 font-weight-bold">Total
-                        <span class="float-right">{{selectedTicketCurrency}}  {{(ticketQuantity[selectedIndex]*selectedTicketPrice)}}</span>
+                        <span *ngIf="ticketQuantity[selectedIndex]" class="float-right">{{selectedTicketCurrency}}  {{(ticketQuantity[selectedIndex]*selectedTicketPrice)}}</span>
                     </span>
                 </div>
-                
+
 
             </div>
-            
+
         </div>
-        
+
       </div>
 
     <div class="card mb-" style="width: 100%;" *ngIf="rsvpCompleted">
     <div class="card-horizontal">
-        
+
         <div class="card-body" style="padding: 2.5rem !important;">
 
             <div class="row">
@@ -939,7 +923,7 @@
                         Thanks for your order! <ng-container *ngIf="transactionId"> #{{transactionId}} </ng-container>
                        </span>
                    </p>
-                        
+
                     <hr class="mb-4">
                 </div>
 
@@ -964,13 +948,13 @@
                                             sent to </small> <br>
                                     <span class="font-weight-initial" style="font-size: .8rem;">{{rsvpTicket?.details.value}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
-                               
+
                                     </div>
                                     <div style="flex: 1;">
                                         <small style="font-weight: 600;">Date</small> <br>
                                     <span class="font-weight-initial" style="font-size: .8rem;">{{getEventStartDateFormatted(eventData?.event[0].start_date_time)}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on </small> -->
-                               
+
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -987,20 +971,20 @@
                                           </ng-container>
                                     </span> <br>
                                 </div>
-                                
+
                             </div>
-                        
+
                     </div>
                 </div>
 
-                
+
                 <div class="col-md-12">
-                    
+
                     <hr class="mb-4">
 
                     <div class="d-flex justify-content-between">
                         <button routerLink="/" class="btn btn-primary btn-view-tickets btn-lg float-right" type="button">View tickets</button>
-                            
+
                         <div style="font-size: 1.3rem;color: var(--ev-brandname-darkblue);">
                             <span class="mx-3 social-media-links">
                                 <a href="https://www.facebook.com/dialog/share?locale=en_US&amp;display=popup&amp;app_id=281876326159158&amp;href={{eventData?.event[0].event_url}}&amp;hashtag="
@@ -1041,7 +1025,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
         </div>
@@ -1060,12 +1044,12 @@
                 </div>
                 <!-- <i class='bx bx-log-out' ></i> -->
               </div>
-          
+
 
         </div>
-        
+
     </div>
-    
+
     </div>
 
 
@@ -1122,8 +1106,7 @@
 
 
 
-
-<!-- 
+<!--
 <div *ngIf="isPrefixIncluded" class="col">
     <div class="col-md-6 mb-3">
         <label for="cc-name">Name Prefix</label>
