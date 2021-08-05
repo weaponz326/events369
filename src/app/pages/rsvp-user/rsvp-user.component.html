@@ -932,7 +932,7 @@
                         
                             <div class="mb-3" *ngIf="i == selectedIndex">
                                 <div class="mb-3">
-                                    <small style="font-weight: 600;">You're joining</small> <br>
+                                    <small style="font-weight: 600;">You're attending</small> <br>
                                     <span class="font-weight-bold" style="font-size: 1.4rem;">{{eventData?.event[0].title}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
                                 </div>
@@ -1031,16 +1031,23 @@
         </div>
         <div class="card-footer"  *ngIf="eventHost">
            
-            <div class="profile-details ml-4 my-4" style="display: flex;justify-content: flex-start;">
-                <div class="profile-content" style="border: 1px solid rgba(255,255,255, .9);padding: 4px;border-radius: 50%;">
-                  <img *ngIf ="!eventHostImgSrc" src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
-                  <img *ngIf = "eventHostImgSrc" [src]="eventHostImgSrc" style="height: 50px;width: 50px;border-radius: 50%;" alt="eventHost.name">
+            <div class="profile-details ml-4 my-4" style="display: -webkit-inline-box;justify-content: flex-start;">
+                <div class="profile-content">
+                  <div style="border: 1px solid rgba(255,255,255, .9);padding: 4px;border-radius: 50%;">
+                    <img *ngIf ="!eventHostImgSrc" src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
+                    <img *ngIf = "eventHostImgSrc" [src]="eventHostImgSrc" style="height: 50px;width: 50px;border-radius: 50%;" alt="eventHost.name">
+                  
+                    <span class="discover-user-checkmark"><i class="bi bi-check"></i></span>
+                  </div>
                 
-                  <span class="discover-user-checkmark"><i class="bi bi-check"></i></span></div>
+                </div>
                 <div class="name-job p-2">
-                  <div class="profile_name">{{eventHost.name}}</div>
-                  <div class="job" style="font-size: .8rem;opacity: .7;" *ngIf="eventCreatorsEvents?.total">{{eventCreatorsEvents?.total}} events &bull; Joined {{eventHost.created_at | date : 'yyyy'}}</div>
+                  <div class="profile_name">{{eventHost.user.name}}</div>
+                  <div class="job" style="font-size: .8rem;opacity: .7;" *ngIf="eventCreatorsEvents?.total">{{eventCreatorsEvents?.total}} events &bull; Joined {{eventHost.user.created_at | date : 'yyyy'}}</div>
                   <div class="job" style="font-size: .7rem;opacity: .6;">Event Host</div>
+                  <div class="job" style="font-size: .7rem;opacity: .6;">
+                    <button routerLink="/" disabled class="btn btn-primary login-button btn-md my-2" type="button">Follow</button>
+                  </div>
                 </div>
                 <!-- <i class='bx bx-log-out' ></i> -->
               </div>
