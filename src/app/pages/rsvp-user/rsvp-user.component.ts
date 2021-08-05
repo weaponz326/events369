@@ -15,6 +15,8 @@ import { EventsService } from 'src/app/services/events/events.service';
 export class RsvpUserComponent implements OnInit {
 
   currentUser: any;
+  eventHost: any;
+  eventHostImgSrc: any;
 
   eventCreatorsEvents: any = [];
 
@@ -83,7 +85,6 @@ export class RsvpUserComponent implements OnInit {
     this.getEventData();
 
     this.getEventData();
-    
 
 
     this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
@@ -180,6 +181,7 @@ export class RsvpUserComponent implements OnInit {
 
         // get event creators events count
         this.getAllEventCreatorsEvents();
+        this.getEventHost();
       },
       err => {
         console.log(err);
@@ -263,10 +265,18 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             if(res.message == 'Ticket sales ended.') {
-              return this.openSnackBar('Oops, ticket sales ended.')
+              this.isSending = false;
+              return this.openSnackBar('Oops, ticket sales ended.');
+              
             }
+            if(res.message == 'Ticket sold out.') {
+              this.isSending = false;
+              return this.openSnackBar('Oops, tickets sold out.'); 
+              
+            }
+
             this.isSending = false;
-            if (this.eventData.event[0].ticketing == '1' || res.event[0].ticketing == '2'){
+            if (this.eventData?.event[0].ticketing == '1' || this.eventData?.event[0].ticketing == '2' || this.eventData?.event[0].ticketing == '0'){
               sessionStorage.setItem('rsvp_ticket', JSON.stringify(this.getFormData()));
               // this.router.navigateByUrl('/rsvp/payment');
               this.submittedContactInfo = true;
@@ -300,13 +310,13 @@ export class RsvpUserComponent implements OnInit {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
     this.cardForm = new FormGroup({
-      customer_email: new FormControl(this.currentUser?.email, Validators.required),
-      r_switch: new FormControl('', Validators.required),
-      card_holder: new FormControl(this.currentUser?.firstname + ' ' + this.currentUser?.lastname, Validators.required),
-      pan: new FormControl('', Validators.required),
-      exp_month: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      exp_year: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      cvv: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
+      customer_email: new FormControl('warihanagumah@gmail.com', Validators.required),
+      r_switch: new FormControl('MAS', Validators.required),
+      card_holder: new FormControl('VBV Enabled', Validators.required),
+      pan: new FormControl('4111111111111111', Validators.required),
+      exp_month: new FormControl('12', [Validators.required, Validators.pattern(numberRegEx)]),
+      exp_year: new FormControl('12', [Validators.required, Validators.pattern(numberRegEx)]),
+      cvv: new FormControl('123', [Validators.required, Validators.pattern(numberRegEx)]),
     })
   }
 
@@ -314,9 +324,9 @@ export class RsvpUserComponent implements OnInit {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
     this.mobileForm = new FormGroup({
-      r_switch: new FormControl('', Validators.required),
-      subscriber_number: new FormControl(this.currentUser.phone, Validators.required),
-      voucher_code: new FormControl('', [Validators.pattern(numberRegEx)]),
+      r_switch: new FormControl('MTN', Validators.required),
+      subscriber_number: new FormControl('233501879144', Validators.required),
+      voucher_code: new FormControl('2152', [Validators.pattern(numberRegEx)]),
     })
   }
 
@@ -339,8 +349,10 @@ export class RsvpUserComponent implements OnInit {
       cvv: this.h.cvv.value,
       // currency: this.rsvpTicket.currency,
       // amount: this.rsvpTicket.price,
-      currency: this.selectedTicketCurrency,
-      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      // currency: this.selectedTicketCurrency,
+      currency: 'GHS',
+      // amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      amount: 10,
     };
     return data;
   }
@@ -351,7 +363,8 @@ export class RsvpUserComponent implements OnInit {
       subscriber_number: this.g.subscriber_number.value,
       voucher_code: this.g.voucher_code.value,
       // amount: this.rsvpTicket.price,
-      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      // amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      amount: 1,
 
     };
     return data;
@@ -368,8 +381,16 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isCardSending = false;
+            // get rsvpTicket data
+            this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
+            this.rsvpTicket = JSON.parse(this.rsvpTicket);
+            // console.log(this.rsvpTicket)
+
             this.rsvpCompleted = true;
-            this.transactionId = res.transaction_id;
+            this.transactionId = res.message.transaction_id;
+
+
+            
           },
           err => {
             console.log(err)
@@ -391,14 +412,23 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isMobileSending = false;
-            this.rsvpCompleted = true;
+            if(res.message.status == 'approved') {
+              // get rsvpTicket data
+              this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
+              this.rsvpTicket = JSON.parse(this.rsvpTicket);
+
+              this.rsvpCompleted = true;
+            } else {
+              // payment only works with data from docs
+              this.openSnackBar('Oops, an error occurred');
+            }
             this.transactionId = res.transaction_id;
           },
           err => {
             console.log(err)
             this.isMobileSending = false;
             this.MobileErrorMsgs = err.error;
-            this.rsvpCompleted = true;
+            this.rsvpCompleted = false;
           }
         );
     }
@@ -417,6 +447,23 @@ export class RsvpUserComponent implements OnInit {
         // if (res.profile) {
         //   this.imgSrc = 'http://events369.logitall.biz/storage/profile/' + res.profile
         // }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getEventHost(): void {
+    this.userAccountsService.getAnyUser(this.eventData?.event[0].user_id).then(
+      res => {
+        console.log(res);
+        this.eventHost = res;
+        
+
+        if (res.profile) {
+          this.eventHostImgSrc = 'http://events369.logitall.biz/storage/profile/' + res.profile
+        }
       },
       err => {
         console.log(err);
