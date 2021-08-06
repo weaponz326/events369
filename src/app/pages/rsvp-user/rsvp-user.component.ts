@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RsvpService } from 'src/app/services/rsvp/rsvp.service';
 import moment from 'moment';
 import { UserAccountService } from 'src/app/services/user-account/user-account.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EventsService } from 'src/app/services/events/events.service';
 
 @Component({
   selector: 'app-rsvp-user',
   templateUrl: './rsvp-user.component.html',
   styleUrls: ['./rsvp-user.component.scss']
 })
-export class RsvpUserComponent implements OnInit {
+export class RsvpUserComponent implements OnInit, AfterViewInit {
 
   currentUser: any;
+  eventHost: any;
+  eventHostImgSrc: any;
+
+  eventCreatorsEvents: any = [];
 
   isLoading: boolean;
   isSending: boolean;
@@ -29,7 +34,6 @@ export class RsvpUserComponent implements OnInit {
   selectedIndex = 0;
   selectedTicketCurrency = '';
   selectedTicketPrice: number = 0;
-
   ticketQuantity: any[] = [];
   selectTicketName = '';
 
@@ -54,14 +58,17 @@ export class RsvpUserComponent implements OnInit {
   cardForm: FormGroup = new FormGroup({});
   mobileForm: FormGroup = new FormGroup({});
 
+  transactionId: any;
+
   r_switch: any;
 
 
   rsvpTicket: any;
 
 
-  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router,
-    private userAccountsService: UserAccountService,
+  constructor(private rsvpService: RsvpService, private rsvp: RsvpService, private router: Router, 
+    private userAccountsService: UserAccountService, 
+    private eventsService: EventsService, 
     private _snackBar: MatSnackBar,) {
     this.isLoading = false;
     this.isCardSending = false;
@@ -82,6 +89,12 @@ export class RsvpUserComponent implements OnInit {
 
     this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
 
+  }
+
+  ngAfterViewInit() {
+    
+    this.getUser();
+    this.getRsvpForm();
   }
 
   initForm(): void {
@@ -118,11 +131,19 @@ export class RsvpUserComponent implements OnInit {
     this.selectedTicketCurrency = currency;
     this.selectedTicketPrice = price;
     this.selectTicketName = name;
-    console.log(this.selectTicket);
+
+    // if the ticket quantity was previouly 0 because it was deselected, set it to 1 on select
+    if(this.ticketQuantity[index] <= 0) this.ticketQuantity[index] = 1;
+
+    // set ticket quantity if quantity not set
+    if(!this.ticketQuantity[index]) this.ticketQuantity[index] = 1;
 
     // set all other tickets to 0 when a particular ticket is selected
     for(var i=0; i<this.ticketQuantity.length; i++){
-      if(i != this.selectedIndex) this.ticketQuantity[i] = 0;
+      if(i !== this.selectedIndex) this.ticketQuantity[i] = 0;
+      
+      // if(i == this.selectedIndex) this.ticketQuantity[i] = 1;
+
     }
   }
 
@@ -159,8 +180,14 @@ export class RsvpUserComponent implements OnInit {
         sessionStorage.setItem('created_event', JSON.stringify(res));
 
         // initialize selected ticket to the first ticket
-        this.selectTicket(0, this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
+        this.selectTicket(this.selectedIndex, this.eventData?.tickets[0].id, this.eventData?.tickets[0].currency, this.eventData?.tickets[0].price, this.eventData?.tickets[0].name);
+        
+        // initialize first ticket quantity to 1
+        this.ticketQuantity[0] = 1;
 
+        // get event creators events count
+        this.getAllEventCreatorsEvents();
+        this.getEventHost();
       },
       err => {
         console.log(err);
@@ -244,10 +271,18 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             if(res.message == 'Ticket sales ended.') {
-              this.openSnackBar('Ticket sales ended.')
+              this.isSending = false;
+              return this.openSnackBar('Oops, ticket sales ended.');
+              
             }
+            if(res.message == 'Ticket sold out.') {
+              this.isSending = false;
+              return this.openSnackBar('Oops, tickets sold out.'); 
+              
+            }
+
             this.isSending = false;
-            if (this.eventData.event[0].ticketing == '1' || res.event[0].ticketing == '2'){
+            if (this.eventData?.event[0].ticketing == '1' || this.eventData?.event[0].ticketing == '2' || this.eventData?.event[0].ticketing == '0'){
               sessionStorage.setItem('rsvp_ticket', JSON.stringify(this.getFormData()));
               // this.router.navigateByUrl('/rsvp/payment');
               this.submittedContactInfo = true;
@@ -281,13 +316,13 @@ export class RsvpUserComponent implements OnInit {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
     this.cardForm = new FormGroup({
-      customer_email: new FormControl(this.currentUser?.email, Validators.required),
-      r_switch: new FormControl('', Validators.required),
-      card_holder: new FormControl(this.currentUser?.firstname + ' ' + this.currentUser?.lastname, Validators.required),
-      pan: new FormControl('', Validators.required),
-      exp_month: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      exp_year: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
-      cvv: new FormControl('', [Validators.required, Validators.pattern(numberRegEx)]),
+      customer_email: new FormControl('warihanagumah@gmail.com', Validators.required),
+      r_switch: new FormControl('MAS', Validators.required),
+      card_holder: new FormControl('VBV Enabled', Validators.required),
+      pan: new FormControl('4111111111111111', Validators.required),
+      exp_month: new FormControl('12', [Validators.required, Validators.pattern(numberRegEx)]),
+      exp_year: new FormControl('12', [Validators.required, Validators.pattern(numberRegEx)]),
+      cvv: new FormControl('123', [Validators.required, Validators.pattern(numberRegEx)]),
     })
   }
 
@@ -295,9 +330,9 @@ export class RsvpUserComponent implements OnInit {
     const numberRegEx = /\-?\d*\.?\d{1,2}/;
 
     this.mobileForm = new FormGroup({
-      r_switch: new FormControl('', Validators.required),
-      subscriber_number: new FormControl(this.currentUser.phone, Validators.required),
-      voucher_code: new FormControl('', [Validators.pattern(numberRegEx)]),
+      r_switch: new FormControl('MTN', Validators.required),
+      subscriber_number: new FormControl('233501879144', Validators.required),
+      voucher_code: new FormControl('2152', [Validators.pattern(numberRegEx)]),
     })
   }
 
@@ -320,8 +355,10 @@ export class RsvpUserComponent implements OnInit {
       cvv: this.h.cvv.value,
       // currency: this.rsvpTicket.currency,
       // amount: this.rsvpTicket.price,
-      currency: this.selectedTicketCurrency,
-      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      // currency: this.selectedTicketCurrency,
+      currency: 'GHS',
+      // amount: (this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex]).toFixed(2),
+      amount: 10,
     };
     return data;
   }
@@ -332,7 +369,8 @@ export class RsvpUserComponent implements OnInit {
       subscriber_number: this.g.subscriber_number.value,
       voucher_code: this.g.voucher_code.value,
       // amount: this.rsvpTicket.price,
-      amount: this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex],
+      // amount: (this.selectedTicketPrice*this.ticketQuantity[this.selectedIndex]).toFixed(2),
+      amount: 1,
 
     };
     return data;
@@ -349,7 +387,16 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isCardSending = false;
+            // get rsvpTicket data
+            this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
+            this.rsvpTicket = JSON.parse(this.rsvpTicket);
+            // console.log(this.rsvpTicket)
+
             this.rsvpCompleted = true;
+            this.transactionId = res.message.transaction_id;
+
+
+            
           },
           err => {
             console.log(err)
@@ -371,13 +418,23 @@ export class RsvpUserComponent implements OnInit {
           res => {
             console.log(res);
             this.isMobileSending = false;
-            this.rsvpCompleted = true;
+            if(res.message.status == 'approved') {
+              // get rsvpTicket data
+              this.rsvpTicket = sessionStorage.getItem('rsvp_ticket');
+              this.rsvpTicket = JSON.parse(this.rsvpTicket);
+
+              this.rsvpCompleted = true;
+            } else {
+              // payment only works with data from docs
+              this.openSnackBar('Oops, an error occurred');
+            }
+            this.transactionId = res.transaction_id;
           },
           err => {
             console.log(err)
             this.isMobileSending = false;
             this.MobileErrorMsgs = err.error;
-            this.rsvpCompleted = true;
+            this.rsvpCompleted = false;
           }
         );
     }
@@ -403,10 +460,42 @@ export class RsvpUserComponent implements OnInit {
     );
   }
 
+  getEventHost(): void {
+    this.userAccountsService.getAnyUser(this.eventData?.event[0].user_id).then(
+      res => {
+        console.log(res);
+        this.eventHost = res;
+        
+
+        if (res.profile) {
+          this.eventHostImgSrc = 'http://events369.logitall.biz/storage/profile/' + res.profile
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   openSnackBar(message: string) {
     this._snackBar.open(message, 'x', {
       duration: 3000
     });
+  }
+
+  getAllEventCreatorsEvents(): void {
+    this.eventsService.getAllEventCreatorsEvents(this.eventData?.event[0].user_id).then(
+      res => {
+        console.log(res);
+        this.eventCreatorsEvents = res.all_events;
+        this.eventCreatorsEvents.data.sort(function(a: any, b:any){
+          return new Date(b.start_date_time).valueOf() - new Date(a.start_date_time).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 

@@ -9,11 +9,11 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div *ngIf="errorMsgs?.message" class="row text-center">
+                    <!-- <div *ngIf="errorMsgs?.message" class="row text-center">
                         <div class="col alert alert-danger">
                           <small class="text-danger">{{errorMsgs.message}}</small>
                         </div>
-                      </div>
+                      </div> -->
                     <div class="col-md-12" *ngIf="eventData?.event[0]">
                         <p class="event-title">{{eventData?.event[0].title}}</p>
                         <ng-container *ngIf="getEventDateWithoutTime(eventData?.event[0].start_date_time) == getEventDateWithoutTime(eventData?.event[0].end_date_time)">
@@ -26,21 +26,34 @@
 
                         <hr class="mb-4">
                     </div>
+                    <div class="banner-content-wrap" *ngIf="!eventData?.event[0]">
+                        <div class="d-flex justify-content-center">
+                           <!-- <div class="spinner-grow" role="status">  -->
+                             <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                             <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                             <span class="spinner-grow spinner-grow-sm text-secondary ev-spinner" role="status" aria-hidden="true"></span>
+                           
+                           <!-- </div> -->
+                         </div>
+                     </div>
 
                     <div *ngIf="eventData?.event[0].ticketing == '1'">
                         <div *ngFor="let ticket of eventData?.tickets; index as i">
-
+                            
                                 <div class="d-flex justify-content-between mb-3" (click)="selectTicket(i, ticket.id, ticket.currency, ticket.price, ticket.name)">
                                     <div>
-                                        <span class="font-weight-bold">{{ticket.name}}</span> <br>
-                                        <span class="font-weight-bold">{{ticket.currency}} {{ticket.price}}</span> <br>
-                                        <small style="font-weight: 600;">Paid</small> <br>
+                                        <span class="font-weight-bold"  class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">{{ticket.name}}</span> <br>
+                                        <small style="font-weight: 600;"  class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">Priced</small> <br>
                                         <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small>
                                     </div>
                                     <div>
-                                        <select [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
+                                        <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
+                                            <option value="2">2</option>
                                             <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
@@ -55,18 +68,25 @@
 
                     <div *ngIf="eventData?.event[0].ticketing == '0'">
                         <div *ngFor="let ticket of eventData?.tickets; index as i">
-
+                            
                                 <div class="d-flex justify-content-between mb-3" (click)="selectTicket(i, ticket.id, ticket.currency, ticket.price, ticket.name)">
                                     <div>
-                                        <span class="font-weight-bold">{{ticket.name}}</span> <br>
-                                        <span class="font-weight-bold">{{ticket.currency}} {{ticket.price}}</span> <br>
-                                        <small style="font-weight: 600;">Free</small> <br>
+                                        <span class="font-weight-bold" class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">{{ticket.name}}</span> <br>
+                                        <small style="font-weight: 600;" class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">Free</small> <br>
                                         <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small>
                                     </div>
                                     <div>
-                                        <select [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
+                                        <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
                                             <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
                                         </select>
                                     </div>
 
@@ -77,18 +97,21 @@
 
                     <div *ngIf="eventData?.event[0].ticketing == '2'">
                         <div *ngFor="let ticket of eventData?.tickets; index as i">
-
+                            
                                 <div class="d-flex justify-content-between mb-3"  (click)="selectTicket(i, ticket.id, ticket.currency, ticket.price, ticket.name)">
                                     <div>
-                                        <span class="font-weight-bold">{{ticket.name}}</span> <br>
-                                        <span class="font-weight-bold">{{ticket.currency}} {{ticket.price}}</span> <br>
-                                        <small style="font-weight: 600;">Donation</small> <br>
+                                        <span class="font-weight-bold" class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">{{ticket.name}}</span> <br>
+                                        <small style="font-weight: 600;" class="ticket-name" [class.active-ticket-name] = "selectedTicket == ticket.id">Donation</small> <br>
                                         <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small>
                                     </div>
                                     <div>
-                                        <select [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
+                                        <select class="ticket-quantity" [(ngModel)] = "ticketQuantity[i]" [class.active-ticket] = "selectedTicket == ticket.id">
                                             <option value="1">1</option>
+                                            <option value="2">2</option>
                                             <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
                                             <option value="7">7</option>
                                             <option value="8">8</option>
                                             <option value="9">9</option>
@@ -111,7 +134,7 @@
                 <!-- start of block to be hidden if rsvp hasn't been successfully submited -->
                   <ng-container *ngIf = "!submittedContactInfo">
                     <div class="col alert alert-secondary" role="alert">
-                        <small class="text-secondary">By clicking 'register', I agree that Events369 may share my information with the event host.</small>
+                        <small class="text-secondary">By clicking 'register', I agree that Events369 may <u><a href="/privacy"> share my information</a></u> with the event host.</small>
                       </div>
 
                     <h3 class="my-3 font-weight-bolder">Contact Information</h3>
@@ -122,7 +145,7 @@
                                     <label class="form-label" for="cc-name" style="margin-bottom: 0;">Name Prefix</label>
                                     <input type="text" class="form-control form-element" style="height: 42px;" formControlName="prefix" id="cc-prefix" placeholder="" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors?.prefix"><span *ngFor="let x of errorMsgs?.errors?.prefix" class="text-danger">{{x}}</span></small>
+                                <!-- <small *ngIf="errorMsgs?.errors?.prefix"><span *ngFor="let x of errorMsgs?.errors?.prefix" class="text-danger">{{x}}</span></small> -->
                                 <small *ngIf="saved && f.prefix.errors" id="titleHelp" class="text-danger">
                                     Name prefix is required.
                                 </small>
@@ -132,8 +155,8 @@
                                     <label class="form-label" for="cc-first-name" style="margin-bottom: 0;">First Name</label>
                                     <input type="text" class="form-control form-element" id="cc-first-name" style="height: 42px;" formControlName="firstname" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors?.firstname"><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small>
-                                <small *ngIf="saved && f.firstname.errors" id="titleHelp" class="text-danger">
+                                <!-- <small *ngIf="errorMsgs?.errors?.firstname"><span *ngFor="let x of errorMsgs?.errors?.firstname" class="text-danger">{{x}}</span></small> -->
+                                <small *ngIf="saved && f?.firstname.errors" id="titleHelp" class="text-danger">
                                     First name is required.
                                 </small>
                             </div>
@@ -143,8 +166,8 @@
                                     <label class="form-label" for="cc-last-name" style="margin-bottom: 0;">Last Name</label>
                                     <input type="text" class="form-control form-element" id="cc-last-name" style="height: 42px;" formControlName="lastname" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors?.lastname"><span *ngFor="let x of errorMsgs?.errors?.lastname" class="text-danger">{{x}}</span></small>
-                                <small *ngIf="saved && f.lastname.errors" id="titleHelp" class="text-danger">
+                                <!-- <small *ngIf="errorMsgs?.errors?.lastname"><span *ngFor="let x of errorMsgs?.errors?.lastname" class="text-danger">{{x}}</span></small> -->
+                                <small *ngIf="saved && f?.lastname.errors" id="titleHelp" class="text-danger">
                                     Last name is required.
                                 </small>
                             </div>
@@ -158,7 +181,7 @@
                                         <option value="O">Other</option>
                                     </select>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors?.gender"><span *ngFor="let x of errorMsgs?.errors?.gender" class="text-danger">{{x}}</span></small>
+                                <!-- <small *ngIf="errorMsgs?.errors?.gender"><span *ngFor="let x of errorMsgs?.errors?.gender" class="text-danger">{{x}}</span></small> -->
                             </div>
 
                             <div *ngIf="isEmailIncluded" class="col-lg-6">
@@ -659,8 +682,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <small *ngIf="errorMsgs?.errors?.phone"><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small>
-                                    <small *ngIf="saved && f.phone.errors" id="titleHelp" class="text-danger">
+                                    <!-- <small *ngIf="errorMsgs?.errors?.phone"><span *ngFor="let x of errorMsgs?.errors?.phone" class="text-danger">{{x}}</span></small> -->
+                                    <small *ngIf="saved && f?.phone.errors" id="titleHelp" class="text-danger">
                                         Please enter a valid phone number, eg 0501889354
                                     </small>
                                 </div>
@@ -672,8 +695,8 @@
                                     <label class="form-label" for="cc-address" style="margin-bottom: 0;">Address</label>
                                     <input type="text" class="form-control form-element" id="cc-address" style="height: 42px;" formControlName="address" required>
                                 </div>
-                                <small *ngIf="errorMsgs?.errors?.address"><span *ngFor="let x of errorMsgs?.errors?.address" class="text-danger">{{x}}</span></small>
-                                <small *ngIf="saved && f.address.errors" id="titleHelp" class="text-danger">
+                                <!-- <small *ngIf="errorMsgs?.errors?.address"><span *ngFor="let x of errorMsgs?.errors?.address" class="text-danger">{{x}}</span></small> -->
+                                <small *ngIf="saved && f?.address.errors" id="titleHelp" class="text-danger">
                                     Address is required.
                                 </small>
                             </div>
@@ -686,7 +709,10 @@
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-4">
                                 <hr class="mb-4">
-                                <button class="btn btn-primary btn-lg float-right" type="submit">Register</button>
+                                <button class="btn btn-primary btn-lg float-right" type="submit">
+                                    <span *ngIf="isSending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    Register
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -761,7 +787,7 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="cc-number">Credit card number</label>
-                                            <input type="text" formControlName="pan" class="form-control" id="cc-number" placeholder="" maxlength="15" required>
+                                            <input type="text" formControlName="pan" class="form-control" id="cc-number" placeholder="" required>
                                             <div *ngIf="isCardSaved && h.pan.errors" class="text-danger">
                                             Credit card number is required
                                             </div>
@@ -814,7 +840,10 @@
                                         </div>
                                         </div>
                                         <hr class="mb-4">
-                                        <button class="btn btn-primary btn-lg float-right" type="submit">Continue</button>
+                                        <button class="btn btn-primary btn-lg float-right" type="submit">
+                                            <span *ngIf="isCardSending || isMobileSending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Continue
+                                        </button>
                                     </form>
                                     </div>
 
@@ -879,7 +908,7 @@
                     <hr class="mb-4">
 
                     <span class="w-100 font-weight-bold">Total
-                        <span *ngIf="ticketQuantity[selectedIndex]" class="float-right">{{selectedTicketCurrency}}  {{(ticketQuantity[selectedIndex]*selectedTicketPrice)}}</span>
+                        <span *ngIf="ticketQuantity[selectedIndex]" class="float-right">{{selectedTicketCurrency}}  {{(ticketQuantity[selectedIndex]*selectedTicketPrice).toFixed(2)}}</span>
                     </span>
                 </div>
 
@@ -907,19 +936,19 @@
                         <i class="bi bi-check" style="font-size: x-large;"></i>
                        </span>
                        <span class="mx-3 font-weight-bold" style="font-size: 1rem;">
-                        Thanks for your order! #1242463513
+                        Thanks for your order! <ng-container *ngIf="transactionId"> #{{transactionId}} </ng-container>
                        </span>
                    </p>
 
                     <hr class="mb-4">
                 </div>
 
-                <div *ngIf="eventData?.event[0].ticketing == '1'">
-                    <div *ngFor="let ticket of eventData?.tickets">
-
-                            <div class="mb-3" >
+                <div *ngIf="eventData?.event[0].ticketing == '1' || eventData?.event[0].ticketing == '2' || eventData?.event[0].ticketing == '0'">
+                    <div *ngFor="let ticket of eventData?.tickets; index as i;">
+                        
+                            <div class="mb-3" *ngIf="i == selectedIndex">
                                 <div class="mb-3">
-                                    <small style="font-weight: 600;">You're joining</small> <br>
+                                    <small style="font-weight: 600;">You're attending</small> <br>
                                     <span class="font-weight-bold" style="font-size: 1.4rem;">{{eventData?.event[0].title}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
                                 </div>
@@ -933,7 +962,7 @@
                                                 {{ticketQuantity[selectedIndex]}} tickets
                                             </ng-container>
                                             sent to </small> <br>
-                                    <span class="font-weight-initial" style="font-size: .8rem;">{{currentUser?.email}}</span> <br>
+                                    <span class="font-weight-initial" style="font-size: .8rem;">{{rsvpTicket?.details.value}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
 
                                     </div>
@@ -951,9 +980,9 @@
                                             {{eventData?.event[0].venue}}
                                           </ng-container>
                                           <ng-container *ngIf="eventData?.event[0].hosting == '0'">
-                                            &bull; Online Event &bull;
+                                            Online Event
                                           </ng-container>
-                                          <ng-container *ngIf="eventData?.event[0].venue_tobe_announced">
+                                          <ng-container *ngIf="eventData?.event[0].venue_tobe_announced == '1'">
                                             TBA
                                           </ng-container>
                                     </span> <br>
@@ -973,10 +1002,42 @@
                         <button routerLink="/" class="btn btn-primary btn-view-tickets btn-lg float-right" type="button">View tickets</button>
 
                         <div style="font-size: 1.3rem;color: var(--ev-brandname-darkblue);">
-                            <span class="mx-3"><i class="bi bi-facebook"></i></span> <span class="mx-3"><svg xmlns="http://www.w3.org/2000/svg" style="height: 21px; width: 22px;margin-top: -.2rem" fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
-                                <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
-                              </svg></span>
-                            <span class="mx-3"><i class="bi bi-twitter"></i></span> <span class="ml-3"><i class="bi bi-envelope-fill"></i></span>
+                            <span class="mx-3 social-media-links">
+                                <a href="https://www.facebook.com/dialog/share?locale=en_US&amp;display=popup&amp;app_id=281876326159158&amp;href={{eventData?.event[0].event_url}}&amp;hashtag="
+                                   target="_blank"
+                                   aria-label="Share this event on Facebook"
+                                >
+                                <i class="bi bi-facebook"></i>
+                                </a>
+                            </span> 
+
+                            <span class="mx-3 social-media-links">
+                                <a target="_blank" 
+                                   href="http://www.facebook.com/dialog/send?app_id=281876326159158&amp;display=popup&amp;redirect_uri=http://events369.herokuapp.com/&amp;link={{eventData?.event[0].event_url}}"
+                                   aria-label="Share this event on Messenger"
+                                   >
+                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 21px; width: 22px;margin-top: -.2rem" fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16">
+                                    <path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
+                                </svg>
+                                </a>
+                            </span> 
+
+                            <span class="mx-3 social-media-links">
+                              <a href="https://twitter.com/intent/tweet?via=&amp;hashtags=&amp;text=Check%20out%20this%20event%20on%20Events369%3A%20{{eventData?.event[0].title}}&amp;url={{eventData?.event[0].event_url}}"
+                                 target="_blank"
+                                 aria-label="Share this event on Twitter">  
+                                <i class="bi bi-twitter"></i>
+                              </a>
+                            </span> 
+                            
+                            <span class="ml-3 social-media-links">
+                                <a  href="mailto:?subject=Check%20out%20this%20event%20on%20Events369%3A%20{{eventData?.event[0].title}}&amp;body=Hey%2C%20check%20out%20this%20event%20on%20Events369%3A%20{{eventData?.event[0].title}}%20on%2007%2F01%2F21%20%4004%3A00PM(GMT)%2C%20interested%3F%0A{{eventData?.event[0].event_url}}"
+                                    target="_blank"
+                                    aria-label="Share this event by Email"
+                                >
+                                <i class="bi bi-envelope-fill"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -984,16 +1045,25 @@
             </div>
 
         </div>
-        <div class="card-footer">
-
-            <div class="profile-details ml-4 my-4" style="display: flex;justify-content: flex-start;">
-                <div class="profile-content" style="border: 1px solid rgba(255,255,255, .3);padding: 4px;border-radius: 50%;">
-                  <img src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
-
-                  <span class="discover-user-checkmark"><i class="bi bi-check"></i></span></div>
+        <div class="card-footer"  *ngIf="eventHost">
+           
+            <div class="profile-details ml-4 my-4" style="display: -webkit-inline-box;justify-content: flex-start;">
+                <div class="profile-content">
+                  <div style="border: 1px solid rgba(255,255,255, .9);padding: 4px;border-radius: 50%;">
+                    <img *ngIf ="!eventHostImgSrc" src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
+                    <img *ngIf = "eventHostImgSrc" [src]="eventHostImgSrc" style="height: 50px;width: 50px;border-radius: 50%;" alt="eventHost.name">
+                  
+                    <span class="discover-user-checkmark"><i class="bi bi-check"></i></span>
+                  </div>
+                
+                </div>
                 <div class="name-job p-2">
-                  <div class="profile_name">Kofi Ahen</div>
-                  <div class="job" style="font-size: .8rem;opacity: .7;">199 events &bull; Joined 2021</div>
+                  <div class="profile_name">{{eventHost.user.name}}</div>
+                  <div class="job" style="font-size: .8rem;opacity: .7;" *ngIf="eventCreatorsEvents?.total">{{eventCreatorsEvents?.total}} events &bull; Joined {{eventHost.user.created_at | date : 'yyyy'}}</div>
+                  <div class="job" style="font-size: .7rem;opacity: .6;">Event Host</div>
+                  <div class="job" style="font-size: .7rem;opacity: .6;">
+                    <button routerLink="/" disabled class="btn btn-primary login-button btn-md my-2" type="button">Follow</button>
+                  </div>
                 </div>
                 <!-- <i class='bx bx-log-out' ></i> -->
               </div>
