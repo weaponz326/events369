@@ -47,6 +47,7 @@ import { CategoryEventsPageComponent } from './pages/category-events-page/catego
 import { RsvpPaymentComponent } from './pages/rsvp-payment/rsvp-payment.component';
 import { RsvpUserComponent } from './pages/rsvp-user/rsvp-user.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
+import { UserTicketsPageComponent } from './pages/user-tickets-page/user-tickets-page.component';
 
 
 const routes: Routes = [
@@ -269,7 +270,11 @@ const routes: Routes = [
         component: RsvpUserComponent
       },
     ]
-  }
+  },
+  {
+    path: 'user_tickets',
+    component: UserTicketsPageComponent
+  },
 ];
 
 @NgModule({

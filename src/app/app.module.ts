@@ -133,6 +133,7 @@ import { RsvpPaymentComponent } from './pages/rsvp-payment/rsvp-payment.componen
 import { RsvpUserComponent } from './pages/rsvp-user/rsvp-user.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { AuthGuard } from './services/auth-guard/auth.guard';
+import { UserTicketsPageComponent } from './pages/user-tickets-page/user-tickets-page.component';
 
 
 
@@ -238,7 +239,8 @@ import { AuthGuard } from './services/auth-guard/auth.guard';
     RecoverEventAlertComponent,
     PostponeEventAlertComponent,
     RsvpPaymentComponent,
-    RsvpUserComponent
+    RsvpUserComponent,
+    UserTicketsPageComponent
   ],
   imports: [
     BrowserModule,
