@@ -36,7 +36,9 @@ export class TicketsComponentComponent implements OnInit {
       res => {
         console.log(res);
         this.usersTickets = res;
-        
+        this.usersTickets.data.sort(function(a: any, b:any){
+          return new Date(b.ticket_reserved_at).valueOf() - new Date(a.ticket_reserved_at).valueOf();
+        });
       },
       err => {
         console.log(err);
@@ -93,5 +95,23 @@ export class TicketsComponentComponent implements OnInit {
   openAccountsPage() {
     window.open('/account/profile', '_blank');
   }
+
+  openUsersTicketsNextPage(url: string) {
+    window.scrollTo(0, 0);
+
+    this.ticketsService.getUserTicketsNextPage(url).then(
+      res => {
+        console.log(res);
+        this.usersTickets = res;
+        this.usersTickets.data.sort(function(a: any, b:any){
+          return new Date(b.ticket_reserved_at).valueOf() - new Date(a.ticket_reserved_at).valueOf();
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
 
 }

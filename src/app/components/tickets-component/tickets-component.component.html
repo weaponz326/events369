@@ -179,7 +179,7 @@
               
         </div>
         <div class="workspace-core">
-            <div class="container mt-0 mx-4 px-1">
+            <div class="container mt-0 mx-4 px-3">
                 <div class="row">
                   
                   <p class="text-muted mt-5 mb-3" style="color: var(--ev-brandname-darkblue) !important; font-size: 1.3rem;">Orders</p>
@@ -294,10 +294,46 @@
                             </div>  
                         </div>
                         </div>
+
+                        
+
                     </div>
-                  </div>
+
+                    
                   </div>
 
+                  
+                  </div>
+
+                  <div class="row mt-4">
+                    <div class="col-12">
+                      <div class="d-flex flex-row justify-content-center p-1" *ngIf="(usersTickets?.prev_page_url) || (usersTickets?.next_page_url)">
+                        
+                          
+                          <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li class="page-item" *ngIf="usersTickets.current_page !== 1">
+                                <a class="page-link" (click)="openUsersTicketsNextPage(usersTickets.prev_page_url)" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link">{{usersTickets.current_page}} of {{usersTickets.last_page}}</a></li>
+                              <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                              <li class="page-item" *ngIf="usersTickets.to < usersTickets.total">
+                                <a class="page-link" (click)="openUsersTicketsNextPage(usersTickets.next_page_url)" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                    <br><br><br>
+                  </div>
 
         </div>
     </section>

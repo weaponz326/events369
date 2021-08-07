@@ -194,4 +194,30 @@ export class TicketsService {
       );
     });
   }
+
+
+  /**
+   * Get users tickets next page.
+   * @param userID User ID.
+   * @returns 
+   */
+   getUserTicketsNextPage(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let tickets: any[] = [];
+      // var userId = sessionStorage.getItem('events_user_id');
+      // const url = this.getAllUserEventsUrl + userId;
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_user_tickets_next_page_ok: ', res);
+          tickets = res.user_tickets;
+          resolve(tickets);
+        },
+        err => {
+          console.log('get_user_tickets_next_page_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
 }

@@ -1,6 +1,7 @@
 main {
     display: flex;
     flex-direction: row;
+    overflow-x: hidden;
 }
 
 // section.home-section {
@@ -34,11 +35,14 @@ div.workspace-nav {
 div.workspace-core {
     flex: 2;
     background-color: inherit;
-    overflow-y: scroll;
-    height: 100vh;
-    overflow-x: hidden;
-    scrollbar-color: rgba(0,0,0,.3);
-    scrollbar-width: thin;
+    
+    .container {
+        overflow-y: scroll;
+        height: 100vh;
+        overflow-x: hidden;
+        scrollbar-color: rgba(0,0,0,.3);
+        scrollbar-width: thin;
+    }
 }
 
 .card-horizontal {
@@ -258,6 +262,7 @@ div.workspace-core {
           font-size: 1.3rem;
           color: var(--ev-brandname-darkblue);
           margin-bottom: 15px;
+          cursor: pointer;
         }
       
         &__txt {
@@ -312,7 +317,7 @@ div.workspace-core {
             font-weight: 700;
             font-size: .9rem;
             //color: #6944ff;
-            color: #324e63;
+            color: var(--ev-brandname-darkblue);
           }
       
           &__txt {
