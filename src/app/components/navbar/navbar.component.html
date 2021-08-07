@@ -134,7 +134,7 @@
                  <span [class.ev-border-authenticated] = "userAuthenticated === true" class="ev-avatar-border">
                   <div class="avatar-container">
                       <img *ngIf="imgSrc" style="width: inherit; height: inherit;" src="http://events369.logitall.biz/storage/profile/{{imgSrc}}" alt="{{currentUser.name}}'s photo">
-                      <img *ngIf="!imgSrc" src="https://firebasestorage.googleapis.com/v0/b/semagh-987db.appspot.com/o/Work%2FEvents369%2Fcustomer%20App%2Fuser%20avatars%2Fprofile.webp?alt=media&token=e2096749-9938-46d6-a25a-bd32fd783d0a" />
+                       <img *ngIf="!imgSrc" src="https://firebasestorage.googleapis.com/v0/b/semagh-987db.appspot.com/o/Work%2FEvents369%2Fcustomer%20App%2Fuser%20avatars%2Fprofile.webp?alt=media&token=e2096749-9938-46d6-a25a-bd32fd783d0a" />
                   </div>
                   <i class="bi bi-chevron-down" style="margin: 10%;color: #9f9f9f;"></i>
                    <!-- <ion-icon style="margin-top: 1vh;margin-left: 1vh;" name="chevron-down-outline"></ion-icon> -->
@@ -147,7 +147,7 @@
               <a (click)="openFavoritesPage()" [class.bolder] = "userFavorites?.data?.length > 0"> Favorites </a>
               <a> Following</a>
               <a (click)="openManageEventsPage()" style="border-top: 1px solid #ddd; cursor: pointer;">Manage event</a>
-              <a>Tickets (0)</a>
+              <a>Tickets ({{userTickets?.length}})</a>
 
               <!-- not working  -->
               <!-- <a href="#">Credits</a> -->

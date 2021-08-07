@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
+import { RsvpService } from 'src/app/services/rsvp/rsvp.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,10 +19,11 @@ import { UsersFavoritesService } from 'src/app/services/users-favorites/users-fa
 })
 export class NavbarComponent implements OnInit {
 
-  userAuthenticated: boolean = false;  
+  userAuthenticated: boolean = false;
   searchQuery: string = '';
   imgSrc: string = '';
   currentUser: any;
+  userTickets: any;
   live_search_results: any;
   userID: any;
 
@@ -32,16 +34,17 @@ export class NavbarComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
 
   constructor(
-    private http: HttpClient, 
-    private router: Router, 
+    private http: HttpClient,
+    private router: Router,
     private endpoint: EndpointService,
     private userAccountsService: UserAccountService,
     private searchService: SearchService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private userFavoriteService: UsersFavoritesService,
-    ) 
-    { 
+    private rsvpService: RsvpService,
+    )
+    {
       this.initForm()
     }
 
@@ -118,7 +121,7 @@ export class NavbarComponent implements OnInit {
     var data: any =  sessionStorage.getItem('x_auth_token')
     var user_id: any =  sessionStorage.getItem('user_id')
     this.userID = user_id;
-   
+
 
     this.userAuthenticated = ((data != null)? true : false)
     console.log('user authenticated: ', this.userAuthenticated)
@@ -136,8 +139,8 @@ export class NavbarComponent implements OnInit {
     e.preventDefault();
     // sessionStorage.removeItem('x_auth_token');
     // window.location.href = '/'
-    
-    
+
+
     const apiUrl = 'http://events369.logitall.biz/api/v1/';
     this.http.get<any>(apiUrl + 'logout', { headers: this.endpoint.headers() }).subscribe(
       res =>  {
@@ -148,7 +151,7 @@ export class NavbarComponent implements OnInit {
           sessionStorage.removeItem('user_id');
 
           // this.router.navigateByUrl('/');
-          
+
           window.location.href = '/';
         }
       },
@@ -159,7 +162,7 @@ export class NavbarComponent implements OnInit {
         sessionStorage.removeItem('user_id');
 
         // this.router.navigateByUrl('/');
-        
+
         window.location.href = '/';
 
       }
@@ -189,17 +192,17 @@ export class NavbarComponent implements OnInit {
     this.searchService.liveSearch(searchword).then(
       res => {
         if (res) {
-          console.log(res);  
-          this.live_search_results = res.events.data;  
-          this.live_search_results = this.live_search_results.slice(0, 5);      
-        }        
+          console.log(res);
+          this.live_search_results = res.events.data;
+          this.live_search_results = this.live_search_results.slice(0, 5);
+        }
       },
       err => {
         console.log(err);
       }
     );
   }
-  
+
 
   doSearch(){
     console.log('lets search for ' + this.searchQuery);
@@ -250,7 +253,7 @@ export class NavbarComponent implements OnInit {
         res => {
           this.userFavorites = res.event;
 
-          
+
 
           // console.log(this.users_favorite_event_id_and_fav_id)
           // console.log(this.users_favorite_event_id_and_visibilty)
@@ -260,7 +263,7 @@ export class NavbarComponent implements OnInit {
         }
       );
 
-    }  
+    }
   }
 
   getTicketSalesStatus(ticket_sales_end_date: string) {
@@ -274,7 +277,7 @@ export class NavbarComponent implements OnInit {
     date.setHours(0,0,0,0);
     let today = date.valueOf();
     // let sd = Date.parse(this.f.start_date.value);
-    let ed = Date.parse(ticket_end_date);    
+    let ed = Date.parse(ticket_end_date);
     let now = new Date().getTime();
     // let st = new Date(this.f.start_time.value).getTime();
     let et = new Date(ticket_end_time).getTime();
@@ -286,14 +289,26 @@ export class NavbarComponent implements OnInit {
     // check if event date is greater than today's date
     // if (sd >= today) this.isDateCorrect = true;
     // else this.isDateCorrect = false;
-      
-    // check if ticket sale end date  and timeis greater start date  and time 
-    
+
+    // check if ticket sale end date  and timeis greater start date  and time
+
     if (ed > today && et > now) {
       return 0;
     } else {
       return 1;
     }
+  }
+
+  getTickets(): void {
+    this.rsvpService.getUserTickets().then(
+      res => {
+        console.log(res);
+        this.userTickets = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }
