@@ -14,6 +14,7 @@ export class TicketsService {
   private deleteTicketUrl: string;
   private editTicketUrl: string;
   private createTicketUrtl: string;
+  private getUsersOrderedTicketsUrl: string;
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -22,6 +23,7 @@ export class TicketsService {
     this.createTicketUrtl = this.endpoint.apiHost + '/v1/create_ticket';
     this.hasTicketUrl = this.endpoint.apiHost + '/v1/hasTicket/';
     this.deleteTicketUrl = this.endpoint.apiHost + '/v1/delete_ticket/';
+    this.getUsersOrderedTicketsUrl = this.endpoint.apiHost + '/v1/get_user_ticket/';
   }
 
   /**
@@ -163,6 +165,30 @@ export class TicketsService {
         },
         err =>{
           console.log('delete_ticket_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  /**
+   * Get users tickets.
+   * @param userID User ID.
+   * @returns 
+   */
+   getUsersOrderedTickets(user_id: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const url = this.getUsersOrderedTicketsUrl + user_id;
+      let tickets: any[] = [];
+
+      this.http.get<any>(url, { headers: this.headers }).subscribe(
+        res => {
+          console.log('get_users_ordered_ticket_ok:', res);
+          tickets = res.user_tickets;
+          resolve(tickets);
+        },
+        err =>{
+          console.log('get_users_ordered_ticket_error: ', err);
           reject(err);
         }
       );

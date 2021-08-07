@@ -147,7 +147,8 @@
               <a (click)="openFavoritesPage()" [class.bolder] = "userFavorites?.data?.length > 0"> Favorites </a>
               <a> Following</a>
               <a (click)="openManageEventsPage()" style="border-top: 1px solid #ddd; cursor: pointer;">Manage event</a>
-              <a>Tickets (0)</a> 
+              <a href="/tickets" *ngIf = "usersTickets?.total > 0">Tickets ({{usersTickets?.total}})</a> 
+              <a href="/tickets" *ngIf = "usersTickets?.total == 0">Tickets (0)</a> 
 
               <!-- not working  -->
               <!-- <a href="#">Credits</a> -->
