@@ -1,13 +1,13 @@
 <nav [class.ev-navbar] = "userAuthenticated === false" [class.ev-navbar-authenticated] = "userAuthenticated === true" class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="position: sticky;">
   <a id="brand-name" class="navbar-brand mr-5" routerLink="/"><b class="ev-brandname-orange"> events</b> <b [class.ev-brandname-darkblue]="userAuthenticated === false" [class.ev-brandname-white]="userAuthenticated === true">369</b></a>
-  
+
   <form [formGroup] = "formGroup" class="form search-form">
     <div class="form-group has-search" style="margin-bottom: 0rem !important;">
       <span class="bi bi-search position-top form-control-feedback"></span>
       <mat-form-field>
 
       <input formControlName="search" matInput [matAutocomplete] = "auto" [(ngModel)]="this.searchQuery" name="search_query" class="form-control mr-sm-2 ev-nav-searchbar-input" type="text" placeholder="What do you want to attend?" aria-label="Search" (keydown.enter)="doSearch()">
-      
+
       <mat-autocomplete #auto = "matAutocomplete">
          <mat-option *ngFor ="let item of live_search_results" [value]="item.title">
           <!-- <ul class="w3-ul w3-card-4">
@@ -26,7 +26,7 @@
                     <div class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{item.banner_image}}&quot;);width: 70px;height: 67px;">
 
                     </div>
-                   
+
                   </td>
                   <td style="padding-left: 5%;">
                     <span class="w3-large">{{item.title}}</span>
@@ -46,9 +46,9 @@
                       </ng-container>
                       <ng-container *ngIf="item.ticketing == '1' && getTicketSalesStatus(item.ticket_sales_end_date) == 0">
                         <span class="price-span">Sales ended</span>
-                      </ng-container> 
+                      </ng-container>
                     </span>
-                    
+
                   </td>
                 </tr>
               </tbody>
@@ -60,10 +60,10 @@
     </div>
   </form>
 
-   
+
 
    <!-- <button type="button" class="btn btn-light"> -->
-    <span (click)="showSearchBar()" id="searchIcon" class="bi bi-search form-control-feedback navbar-standalone-search-icon nav-link"></span> 
+    <span (click)="showSearchBar()" id="searchIcon" class="bi bi-search form-control-feedback navbar-standalone-search-icon nav-link"></span>
    <!-- </button> -->
 
   <button id="toggle-button" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -77,8 +77,8 @@
 
       <mat-form-field>
       <input formControlName="search" matInput [matAutocomplete] = "auto" class="form-control mr-sm-2 ev-nav-searchbar-input" [(ngModel)]="this.searchQuery" type="search" placeholder="What do you want to attend?" (keydown.enter)="doSearch()" autofocus="true" aria-label="Search">
-    
-      
+
+
       <mat-autocomplete #auto = "matAutocomplete">
         <mat-option *ngFor ="let item of live_search_results" [value]="item.title">
           <table (click)="gotoPreview(item.id)">
@@ -88,13 +88,13 @@
                   <div class="img-fit-img-fix-background-cover" style="background-image: url(&quot;http://events369.logitall.biz/storage/banner/{{item.banner_image}}&quot;);width: 70px;height: 67px;">
 
                   </div>
-                 
+
                 </td>
                 <td style="padding-left: 5%;">
                   <span class="w3-large">{{item.title}}</span>
                   <span class="present_date">{{ getEventDateFormatted(item.start_date_time)}}</span>
                   <span class="search_price">{{item.price}}</span>
-                  
+
                 </td>
               </tr>
             </tbody>
@@ -105,7 +105,7 @@
     </mat-form-field>
     </div>
   </form>
-  
+
   <span class="cancel-btn search-on-mobile-only" (click)="hideMobileSearch()">Cancel</span>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -128,33 +128,33 @@
         <li class="nav-item only-mobile">
           <a class="nav-link authenticated-link" routerLink="/account/profile">Account</a>
         </li>
-        
+
         <div class="dropdown_user only-non-mobile" style="height: 100% !important;padding: 3% 0;">
           <div class="dropbtn_user" style="display: grid;height: 100%;">
                  <span [class.ev-border-authenticated] = "userAuthenticated === true" class="ev-avatar-border">
                   <div class="avatar-container">
-                      <img *ngIf="imgSrc" style="width: inherit; height: inherit;" src="http://events369.logitall.biz/storage/profile/{{imgSrc}}" alt="{{currentUser.name}}'s photo">                              
-                       <img *ngIf="!imgSrc" src="https://firebasestorage.googleapis.com/v0/b/semagh-987db.appspot.com/o/Work%2FEvents369%2Fcustomer%20App%2Fuser%20avatars%2Fprofile.webp?alt=media&token=e2096749-9938-46d6-a25a-bd32fd783d0a" />
-                  </div> 
+                      <img *ngIf="imgSrc" style="width: inherit; height: inherit;" src="http://events369.logitall.biz/storage/profile/{{imgSrc}}" alt="{{currentUser.name}}'s photo">
+                      <img *ngIf="!imgSrc" src="https://firebasestorage.googleapis.com/v0/b/semagh-987db.appspot.com/o/Work%2FEvents369%2Fcustomer%20App%2Fuser%20avatars%2Fprofile.webp?alt=media&token=e2096749-9938-46d6-a25a-bd32fd783d0a" />
+                  </div>
                   <i class="bi bi-chevron-down" style="margin: 10%;color: #9f9f9f;"></i>
                    <!-- <ion-icon style="margin-top: 1vh;margin-left: 1vh;" name="chevron-down-outline"></ion-icon> -->
                  </span>
           </div>
-          
-          <div class="dropdown-content_user"> 
+
+          <div class="dropdown-content_user">
               <!-- <a href="#" id="browse_events_link">Browse Events</a> -->
                <a id="browse_events_link">Notifications <span class="dot"></span> </a>
               <a (click)="openFavoritesPage()" [class.bolder] = "userFavorites?.data?.length > 0"> Favorites </a>
               <a> Following</a>
               <a (click)="openManageEventsPage()" style="border-top: 1px solid #ddd; cursor: pointer;">Manage event</a>
-              <a>Tickets (0)</a> 
+              <a>Tickets (0)</a>
 
               <!-- not working  -->
               <!-- <a href="#">Credits</a> -->
               <!-- <a href="#">Collections</a> -->
               <!-- <a href="#">Interests</a> -->
-              
-              
+
+
               <!-- <a href="#">Messages</a> -->
               <!-- <a href="#">Events</a> -->
               <!-- <a href="#">Saved</a> -->

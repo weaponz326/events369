@@ -17,6 +17,7 @@ export class RsvpService {
   sendRsvpUrl: string;
   getAttendeesUrl: string;
   cancelRsvpUrl: string;
+  getUserTicketsUrl: string;
 
   constructor(private http: HttpClient, private endpoint: EndpointService) {
     this.headers = this.endpoint.headers();
@@ -27,7 +28,7 @@ export class RsvpService {
     this.sendRsvpUrl = this.endpoint.apiHost + '/v1/rsvp';
     this.getAttendeesUrl = this.endpoint.apiHost + '/v1/get_attendees/';
     this.cancelRsvpUrl = this.endpoint.apiHost + '/v1/cancel_rsvp/';
-
+    this.getUserTicketsUrl = this.endpoint.apiHost + '/v1/get_user_ticket/';
   }
 
   getCreatedEvent(): Promise<any> {
@@ -117,7 +118,7 @@ export class RsvpService {
   /**
    * Returns a list of attendees for an event.
    * @param eventId The event ID.
-   * @returns 
+   * @returns
    */
   getEventAttendees(eventId: string): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -131,6 +132,30 @@ export class RsvpService {
         },
         err => {
           console.log('get_attendees_error: ', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  getUserTickets(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let tickets;
+
+      let url = '';
+      let userId = sessionStorage.getItem('user_id')
+      if(userId){
+        url = this.getUserTicketsUrl + userId;
+      }
+
+      this.http.get<any>(url, { headers: this.headers}).subscribe(
+        res => {
+          console.log('get_user_tickets: ', res);
+          tickets = res;
+          resolve(tickets.user_tickets);
+        },
+        err => {
+          console.log('get_user_tickets_error: ', err);
           reject(err);
         }
       );

@@ -1,1 +1,33 @@
 <app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row mt-5">
+
+        <div class="col-md-4 text-center">
+            <img *ngIf="currentUser?.profile == ''" src="../../../assets/images/avatar-placeholder.png" alt="" class=" rounded-circle bordered mx-auto mb-2" width="180" height="180">
+            <img *ngIf="currentUser?.profile != ''" src="http://events369.logitall.biz/storage/profile/{{currentUser?.profile}}" alt="" class=" rounded-circle bordered mx-auto mb-2" width="180" height="180">
+            <p class="lead"><strong>{{currentUser?.name}}</strong></p>
+            <p class="text-muted mt-2"><strong>{{userTickets?.length}} Orders</strong></p>
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-1 float-right">
+                    <span class="text-center">AUG <br> 7</span>
+                </div>
+                <div class="col-md-7">
+                    <div class="card">
+                        <img src="../../../assets/images/default-event-banner.jpg" alt="" class="card-img-top">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p class="h3"><strong>Event Title which can be very long comes here</strong></p>
+                    <small><span class="text-muted">from</span> 07-02-2021 <span class="text-muted">to</span> 17-02-2021</small>
+                    <br><br>
+                    <span class="h5"><i class="bi bi-tag mr-2"></i>Ticket Name</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
