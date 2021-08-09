@@ -962,7 +962,7 @@
                                                 {{ticketQuantity[selectedIndex]}} tickets
                                             </ng-container>
                                             sent to </small> <br>
-                                    <span class="font-weight-initial" style="font-size: .8rem;">{{rsvpTicket?.details.value}}</span> <br>
+                                    <span class="font-weight-initial" style="font-size: .8rem;">{{currentUser?.email}}</span> <br>
                                     <!-- <small class="text-muted" style="font-weight: 600;" *ngIf="ticket.sales_enddate_time">Sales end on {{getEventStartDateFormatted(ticket.sales_enddate_time)}}</small> -->
 
                                     </div>
@@ -999,7 +999,7 @@
                     <hr class="mb-4">
 
                     <div class="d-flex justify-content-between">
-                        <button routerLink="/" class="btn btn-primary btn-view-tickets btn-lg float-right" type="button">View tickets</button>
+                        <button routerLink="/tickets" class="btn btn-primary btn-view-tickets btn-lg float-right" type="button">View tickets</button>
 
                         <div style="font-size: 1.3rem;color: var(--ev-brandname-darkblue);">
                             <span class="mx-3 social-media-links">
@@ -1049,9 +1049,9 @@
            
             <div class="profile-details ml-4 my-4" style="display: -webkit-inline-box;justify-content: flex-start;">
                 <div class="profile-content">
-                  <div style="border: 1px solid rgba(255,255,255, .9);padding: 4px;border-radius: 50%;">
+                  <div style="border: 1px solid rgba(255,255,255, 100);padding: 4px;border-radius: 50%;">
                     <img *ngIf ="!eventHostImgSrc" src="../../../assets/images/avatar-placeholder.png" style="height: 50px;width: 50px;border-radius: 50%;" alt="profileImg">
-                    <img *ngIf = "eventHostImgSrc" [src]="eventHostImgSrc" style="height: 50px;width: 50px;border-radius: 50%;" alt="eventHost.name">
+                    <img *ngIf = "eventHostImgSrc" [src]="eventHostImgSrc" style="height: 50px;width: 50px;border-radius: 50%;" alt="{{eventHost.user.name}}">
                   
                     <span class="discover-user-checkmark"><i class="bi bi-check"></i></span>
                   </div>
@@ -1059,7 +1059,14 @@
                 </div>
                 <div class="name-job p-2">
                   <div class="profile_name">{{eventHost.user.name}}</div>
-                  <div class="job" style="font-size: .8rem;opacity: .7;" *ngIf="eventCreatorsEvents?.total">{{eventCreatorsEvents?.total}} events &bull; Joined {{eventHost.user.created_at | date : 'yyyy'}}</div>
+                  <div class="job" style="font-size: .8rem;opacity: .7;" *ngIf="eventCreatorsEvents?.total">
+                    <ng-container *ngIf="eventCreatorsEvents?.total == 1">
+                        {{eventCreatorsEvents?.total}} 
+                    </ng-container>
+                    <ng-container *ngIf="eventCreatorsEvents?.total > 1">
+                        {{eventCreatorsEvents?.total}}
+                    </ng-container>
+                    events &bull; Joined {{eventHost.user.created_at | date : 'yyyy'}}</div>
                   <div class="job" style="font-size: .7rem;opacity: .6;">Event Host</div>
                   <div class="job" style="font-size: .7rem;opacity: .6;">
                     <button routerLink="/" disabled class="btn btn-primary login-button btn-md my-2" type="button">Follow</button>

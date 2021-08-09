@@ -110,15 +110,27 @@ export class RsvpUserComponent implements OnInit, AfterViewInit {
       number = '';
     }
 
-    this.form = new FormGroup({
-      prefix: new FormControl(''),
-      firstname: new FormControl(this.currentUser?.firstname, Validators.required),
-      lastname: new FormControl(this.currentUser?.lastname, Validators.required),
-      phone: new FormControl(number, [Validators.minLength(9), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
-      gender: new FormControl(this.currentUser?.gender),
-      email: new FormControl(this.currentUser?.email, Validators.required),
-      address: new FormControl(''),
-    })
+    if(this.currentUser) {
+      this.form = new FormGroup({
+        prefix: new FormControl(''),
+        firstname: new FormControl(this.currentUser?.firstname, Validators.required),
+        lastname: new FormControl(this.currentUser?.lastname, Validators.required),
+        phone: new FormControl(number, [Validators.minLength(9), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
+        gender: new FormControl(this.currentUser?.gender),
+        email: new FormControl(this.currentUser?.email, Validators.required),
+        address: new FormControl(''),
+      });
+    } else {
+      this.form = new FormGroup({
+        prefix: new FormControl(''),
+        firstname: new FormControl('', Validators.required),
+        lastname: new FormControl('', Validators.required),
+        phone: new FormControl('', [Validators.minLength(9), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
+        gender: new FormControl(''),
+        email: new FormControl('', Validators.required),
+        address: new FormControl(''),
+      });
+    }
   }
 
   public get f(): any {
@@ -266,6 +278,7 @@ export class RsvpUserComponent implements OnInit, AfterViewInit {
 
     if (this.form.valid) {
       this.isSending = true;
+      console.log('reached send rsvp code');
       this.rsvpService.sendRsvp(this.getFormData())
         .then(
           res => {
@@ -282,11 +295,16 @@ export class RsvpUserComponent implements OnInit, AfterViewInit {
             }
 
             this.isSending = false;
-            if (this.eventData?.event[0].ticketing == '1' || this.eventData?.event[0].ticketing == '2' || this.eventData?.event[0].ticketing == '0'){
-              sessionStorage.setItem('rsvp_ticket', JSON.stringify(this.getFormData()));
+            sessionStorage.setItem('rsvp_ticket', JSON.stringify(this.getFormData()));
+            
+            if (this.eventData?.event[0].ticketing == '1' || this.eventData?.event[0].ticketing == '2'){
               // this.router.navigateByUrl('/rsvp/payment');
               this.submittedContactInfo = true;
+            } 
+            if (this.eventData?.event[0].ticketing == '0') {
+              this.rsvpCompleted = true;
             }
+
           },
           err => {
             console.log(err)
@@ -294,6 +312,8 @@ export class RsvpUserComponent implements OnInit, AfterViewInit {
             this.errorMsgs = err.error;
           }
         );
+    } else {
+      console.log('rsvp form invalid');
     }
   }
 
@@ -467,8 +487,8 @@ export class RsvpUserComponent implements OnInit, AfterViewInit {
         this.eventHost = res;
         
 
-        if (res.profile) {
-          this.eventHostImgSrc = 'http://events369.logitall.biz/storage/profile/' + res.profile
+        if (res.user.profile) {
+          this.eventHostImgSrc = 'http://events369.logitall.biz/storage/profile/' + res.user.profile;
         }
       },
       err => {
