@@ -48,6 +48,7 @@ import { RsvpPaymentComponent } from './pages/rsvp-payment/rsvp-payment.componen
 import { RsvpUserComponent } from './pages/rsvp-user/rsvp-user.component';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { UserTicketsPageComponent } from './pages/user-tickets-page/user-tickets-page.component';
+import { TicketsPageComponent } from './pages/tickets-page/tickets-page.component';
 
 
 const routes: Routes = [
@@ -71,10 +72,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginPageComponent
   },
-  // {
-  //   path: 'register',
-  //   component: SignupPageComponent
-  // },
+  {
+    path: 'tickets',
+    canActivate: [AuthGuard],
+    component: TicketsPageComponent
+  },
   {
     path: 'register',
     component: SignupEmailComponent

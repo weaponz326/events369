@@ -148,6 +148,14 @@
               <a> Following</a>
               <a (click)="openManageEventsPage()" style="border-top: 1px solid #ddd; cursor: pointer;">Manage event</a>
               <a>Tickets ({{userTickets?.length}})</a>
+              <a href="/tickets" >Tickets
+                <ng-container *ngIf = "usersTickets?.total > 0">
+                  ({{usersTickets?.total}})
+                </ng-container>
+                <ng-container *ngIf = "usersTickets?.total == 0">
+                  (0)
+                </ng-container>
+              </a>
 
               <!-- not working  -->
               <!-- <a href="#">Credits</a> -->

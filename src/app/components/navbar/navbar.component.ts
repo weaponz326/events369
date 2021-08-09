@@ -11,6 +11,7 @@ import moment from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsersFavoritesService } from 'src/app/services/users-favorites/users-favorites.service';
 import { RsvpService } from 'src/app/services/rsvp/rsvp.service';
+import { TicketsService } from 'src/app/services/tickets/tickets.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
   userID: any;
 
   userFavorites: any = [];
+  usersTickets: any = [];
 
   @Output() searchEvent = new EventEmitter<string>();
 
@@ -43,6 +45,7 @@ export class NavbarComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private userFavoriteService: UsersFavoritesService,
     private rsvpService: RsvpService,
+    private ticketsService: TicketsService
     )
     {
       this.initForm()
@@ -53,6 +56,7 @@ export class NavbarComponent implements OnInit {
     this.getUser();
     this.getUsersFavorites();
     this.initForm()
+    this.getUsersTickets();
     let sessionQuery = sessionStorage.getItem('search_query');
     sessionQuery ? this.searchQuery = sessionQuery : this.searchQuery = '';
   }
@@ -241,6 +245,10 @@ export class NavbarComponent implements OnInit {
     window.open('/user_events', "_blank");
   }
 
+  openTicketsPage() {
+    window.open('/tickets', "_blank");
+  }
+
   openFavoritesPage() {
     window.open('/events/favorites', "_blank");
 
@@ -304,6 +312,18 @@ export class NavbarComponent implements OnInit {
       res => {
         console.log(res);
         this.userTickets = res.data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  getUsersTickets(): void {
+    this.ticketsService.getUsersOrderedTickets(this.userID).then(
+      res => {
+        console.log(res);
+        this.usersTickets = res;
       },
       err => {
         console.log(err);
