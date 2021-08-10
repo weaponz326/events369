@@ -59,14 +59,14 @@ export class CreateEventTicketingComponent implements OnInit {
     this.eventTitle = data.event[0].title;
     this.eventDate = data.event[0].start_date_time;
     this.eventTicketing = data.event[0].ticketing;
-    if(this.eventTicketing == '0') 
+    if(this.eventTicketing == '0')
     {
       this.f.price.disable();
       this.f.name.setValue('General Admission');
 
       // not working want to auto create a free ticket if ticketing is free
       // this.f.submit();
-      
+
     }
     if(this.eventTicketing == '2') {
       this.f.price.setValue('1');
@@ -74,17 +74,17 @@ export class CreateEventTicketingComponent implements OnInit {
     }
   }
 
-  
+
   public get f(): any {
     return this.form.controls;
   }
-  
+
 
   initForm(): void {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      quantity: ['-1', Validators.pattern("^[-1-9]*$")],
-      price: ['0'],
+      quantity: ['-1', Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+      price: ['0', Validators.pattern(/^(\d+(\.\d{0,2})?|\.?\d{1,2})$/)],
       currency: ['GHS'],
       salesEndDate: [''],
       salesStartDate: ['']
@@ -198,14 +198,14 @@ export class CreateEventTicketingComponent implements OnInit {
           if (ticketId == 0) {
             resolve(false);
           }
-          else { 
+          else {
             const createdTicket = this.getCreatedTicketData(ticketId);
             this.createdTicketList.unshift(createdTicket);
 
             this.saveCreatedEvent(this.eventId).then(
               ok => {
                 if (ok) console.log('saved created event to session');
-              }                               
+              }
             );
 
             resolve(true);
@@ -305,7 +305,7 @@ export class CreateEventTicketingComponent implements OnInit {
 
   openUsersEvents() {
     this.router.navigateByUrl('/user_events');
-    
+
   }
 
 }
